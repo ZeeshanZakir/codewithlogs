@@ -1,0 +1,20 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" rx="32" fill="#F8F9FA"/>
+  <rect x="62" y="56" width="1076" height="518" rx="28" fill="white" stroke="#D7DEE2"/>
+  <rect x="108" y="122" width="328" height="320" rx="30" fill="#0F6E56" opacity="0.12"/>
+  <rect x="168" y="182" width="208" height="42" rx="21" fill="#0F6E56"/>
+  <rect x="168" y="248" width="168" height="24" rx="12" fill="#185FA5" opacity="0.88"/>
+  <rect x="168" y="298" width="208" height="24" rx="12" fill="#DCE3E8"/>
+  <rect x="168" y="348" width="168" height="24" rx="12" fill="#DCE3E8"/>
+  <rect x="472" y="128" width="500" height="42" rx="21" fill="#0F6E56" opacity="0.15"/>
+  <rect x="472" y="194" width="390" height="28" rx="14" fill="#185FA5" opacity="0.16"/>
+  <rect x="472" y="248" width="540" height="18" rx="9" fill="#DCE3E8"/>
+  <rect x="472" y="283" width="490" height="18" rx="9" fill="#DCE3E8"/>
+  <rect x="472" y="318" width="460" height="18" rx="9" fill="#DCE3E8"/>
+  <path d="M522 404C576 366 644 354 722 382C794 408 860 408 930 366" stroke="#0F6E56" stroke-width="16" stroke-linecap="round"/>
+  <circle cx="522" cy="404" r="16" fill="#185FA5"/>
+  <circle cx="722" cy="382" r="16" fill="#0F6E56"/>
+  <circle cx="930" cy="366" r="16" fill="#185FA5"/>
+  <text x="472" y="492" fill="#1A1A1A" font-family="Arial, Helvetica, sans-serif" font-size="58" font-weight="700">Build a SaaS with</text>
+  <text x="472" y="552" fill="#1A1A1A" font-family="Arial, Helvetica, sans-serif" font-size="58" font-weight="700">the MERN Stack</text>
+</svg>

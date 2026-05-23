@@ -1,0 +1,21 @@
+<svg width="1024" height="224" viewBox="0 0 1024 224" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1024" height="224" rx="20" fill="white"/>
+  <rect x="36" y="36" width="158" height="128" rx="14" stroke="#0B8A72" stroke-width="12"/>
+  <path d="M82 95L62 112L82 129" stroke="#0B8A72" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M134 88L120 136" stroke="#0B8A72" stroke-width="12" stroke-linecap="round"/>
+  <path d="M146 95L166 112L146 129" stroke="#0B8A72" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M159 144H216" stroke="#0B8A72" stroke-width="12" stroke-linecap="round"/>
+  <path d="M136 168H216" stroke="#0B8A72" stroke-width="12" stroke-linecap="round"/>
+  <text x="240" y="110" fill="#111827" font-family="Inter, Arial, sans-serif" font-size="72" font-weight="800" letter-spacing="-2">
+    code<tspan fill="#0B8A72">with</tspan>logs<tspan font-size="46" font-weight="700">.com</tspan>
+  </text>
+  <text x="242" y="162" fill="#111827" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="600" letter-spacing="1.8">
+    BLOG. LEARN. BUILD. GROW
+  </text>
+  <text x="645" y="162" fill="#0B8A72" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="700">
+    |
+  </text>
+  <text x="668" y="162" fill="#111827" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="600" letter-spacing="1.4">
+    WEB DEVELOPMENT SERVICES
+  </text>
+</svg>

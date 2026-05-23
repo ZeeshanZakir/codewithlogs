@@ -1,0 +1,17 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" rx="32" fill="#F8F9FA"/>
+  <rect x="62" y="56" width="1076" height="518" rx="28" fill="white" stroke="#D7DEE2"/>
+  <rect x="110" y="120" width="312" height="312" rx="28" fill="#0F6E56" opacity="0.12"/>
+  <rect x="470" y="130" width="510" height="42" rx="21" fill="#0F6E56" opacity="0.14"/>
+  <rect x="470" y="195" width="420" height="28" rx="14" fill="#185FA5" opacity="0.16"/>
+  <rect x="470" y="247" width="560" height="18" rx="9" fill="#DCE3E8"/>
+  <rect x="470" y="282" width="520" height="18" rx="9" fill="#DCE3E8"/>
+  <rect x="470" y="317" width="470" height="18" rx="9" fill="#DCE3E8"/>
+  <rect x="110" y="470" width="220" height="52" rx="26" fill="#0F6E56"/>
+  <rect x="352" y="470" width="180" height="52" rx="26" fill="#185FA5" opacity="0.18"/>
+  <path d="M198 194L256 150L314 194V312L256 348L198 312V194Z" fill="#0F6E56"/>
+  <path d="M256 150L314 194L256 228L198 194L256 150Z" fill="#185FA5"/>
+  <text x="470" y="388" fill="#1A1A1A" font-family="Arial, Helvetica, sans-serif" font-size="58" font-weight="700">Next.js 15 App Router</text>
+  <text x="470" y="448" fill="#1A1A1A" font-family="Arial, Helvetica, sans-serif" font-size="58" font-weight="700">Complete Guide</text>
+  <text x="470" y="507" fill="#4B5563" font-family="Arial, Helvetica, sans-serif" font-size="28">Layouts, server components, routing, data fetching, and production patterns</text>
+</svg>

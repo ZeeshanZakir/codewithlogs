@@ -1,0 +1,16 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" rx="32" fill="#F8F9FA"/>
+  <rect x="62" y="56" width="1076" height="518" rx="28" fill="white" stroke="#D7DEE2"/>
+  <rect x="110" y="120" width="320" height="320" rx="30" fill="#185FA5" opacity="0.12"/>
+  <circle cx="270" cy="280" r="118" fill="#185FA5" opacity="0.18"/>
+  <path d="M228 232H312V254H228V232ZM228 270H346V292H228V270ZM228 308H330V330H228V308Z" fill="#185FA5"/>
+  <rect x="468" y="126" width="480" height="42" rx="21" fill="#185FA5" opacity="0.15"/>
+  <rect x="468" y="192" width="420" height="28" rx="14" fill="#0F6E56" opacity="0.16"/>
+  <rect x="468" y="246" width="520" height="18" rx="9" fill="#DCE3E8"/>
+  <rect x="468" y="281" width="485" height="18" rx="9" fill="#DCE3E8"/>
+  <rect x="468" y="316" width="450" height="18" rx="9" fill="#DCE3E8"/>
+  <rect x="468" y="369" width="188" height="52" rx="26" fill="#0F6E56"/>
+  <rect x="674" y="369" width="188" height="52" rx="26" fill="#185FA5" opacity="0.18"/>
+  <text x="468" y="476" fill="#1A1A1A" font-family="Arial, Helvetica, sans-serif" font-size="58" font-weight="700">Best AI Coding Tools</text>
+  <text x="468" y="536" fill="#1A1A1A" font-family="Arial, Helvetica, sans-serif" font-size="58" font-weight="700">for Developers in 2026</text>
+</svg>
