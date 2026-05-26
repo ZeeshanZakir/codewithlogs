@@ -6,7 +6,6 @@ import { ContactMessage } from "@/lib/contact-message";
 import { connectToDatabase } from "@/lib/mongodb";
 
 export const runtime = "nodejs";
-const resend = new Resend(process.env.RESEND_API_KEY);
 
 async function sendContactNotification(
   payload: Parameters<typeof ContactMessage.create>[0] & {
@@ -17,11 +16,14 @@ async function sendContactNotification(
     message: string;
   },
 ) {
+  const resendApiKey = process.env.RESEND_API_KEY;
   const contactEmail = process.env.CONTACT_EMAIL;
 
-  if (!process.env.RESEND_API_KEY || !contactEmail) {
+  if (!resendApiKey || !contactEmail) {
     return false;
   }
+
+  const resend = new Resend(resendApiKey);
 
   await resend.emails.send({
     from: "Contact Form <onboarding@resend.dev>",
