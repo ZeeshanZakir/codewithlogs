@@ -4,6 +4,7 @@ import { GoogleAdSense } from "nextjs-google-adsense";
 import { Analytics } from "@vercel/analytics/react";
 
 import "./globals.css";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -57,6 +58,7 @@ export default function RootLayout({
         ) : null}
         {children}
         <Analytics />
+        <SpeedInsights/>
       </body>
     </html>
   );
