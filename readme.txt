@@ -1,1 +1,1 @@
-insight
+SpeedInsights
