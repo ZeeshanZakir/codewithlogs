@@ -18,7 +18,7 @@ import { AdUnit } from "@/components/ads/AdUnit";
 import { NewsletterSignup } from "@/components/home/NewsletterSignup";
 import { getFeaturedPosts } from "@/lib/mdx";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000/";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://codewithlogs.com/";
 
 export const metadata: Metadata = {
   title: "Full-Stack MERN Developer for SaaS and Fast Web Apps",
