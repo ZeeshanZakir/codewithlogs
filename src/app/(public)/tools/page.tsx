@@ -26,25 +26,28 @@ const categories = [
     tools: [
       {
         name: "Hostinger",
+        image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Hostinger_logo.svg/2560px-Hostinger_logo.svg.png",
         review:
           "Best budget hosting. I use it for client projects and quick landing pages when cost matters. Starts at $2.99/mo and is hard to beat for value.",
         badge: "81% Off Deal",
         ctaLabel: "Get Hostinger",
-        href: "#",
+        href: "https://www.hostinger.com/",
       },
       {
         name: "Vercel",
+        image: "https://assets.vercel.com/image/upload/v1588805858/repositories/vercel/logo.png",
         review:
           "Where I deploy all Next.js apps. The free tier is generous, the workflow is clean, and preview deployments make client feedback much easier.",
         ctaLabel: "Try Vercel Free",
-        href: "#",
+        href: "https://vercel.com/",
       },
       {
         name: "DigitalOcean",
+        image: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/DigitalOcean_logo.svg/1200px-DigitalOcean_logo.svg.png",
         review:
           "Best for VPS and managed databases when you need a bit more control. The $200 free credit is great for testing and early-stage product builds.",
         ctaLabel: "Claim $200 Credit",
-        href: "#",
+        href: "https://m.do.co/c/ff30bad88175",
       },
     ],
   },
@@ -54,26 +57,29 @@ const categories = [
     tools: [
       {
         name: "MongoDB Atlas",
+        image: "https://www.mongodb.com/assets/images/global/favicon.ico",
         review:
           "My go-to cloud database for MERN projects. The free tier is enough to start, and scaling up later is straightforward.",
         badge: "Free Tier",
         ctaLabel: "Start Free",
-        href: "#",
+        href: "https://www.mongodb.com/cloud/atlas/register",
       },
       {
         name: "Supabase",
+        image: "https://supabase.com/favicons/favicon-32x32.png",
         review:
           "The best Firebase alternative I recommend when teams want an open-source stack with auth, storage, and database features in one place.",
         ctaLabel: "Try Supabase",
-        href: "#",
+        href: "https://supabase.com/",
       },
-      {
-        name: "PlanetScale",
-        review:
-          "A strong option for serverless MySQL and branching workflows. I like it for products that need clean schema changes without slowing down delivery.",
-        ctaLabel: "Get Started",
-        href: "#",
-      },
+      // {
+      //   name: "PlanetScale",
+      //   image: "https://planetscale.com/favicon.ico",
+      //   review:
+      //     "A strong option for serverless MySQL and branching workflows. I like it for products that need clean schema changes without slowing down delivery.",
+      //   ctaLabel: "Get Started",
+      //   href: "#",
+      // },
     ],
   },
   {
@@ -82,18 +88,20 @@ const categories = [
     tools: [
       {
         name: "Cursor",
+        image: "https://cursor.com/favicon.ico",
         review:
           "The best AI code editor in my workflow right now. It genuinely makes development faster for planning, refactors, and shipping features.",
         badge: "My #1 Pick",
         ctaLabel: "Try Cursor Free",
-        href: "#",
+        href: "https://cursor.com/",
       },
       {
         name: "GitHub Copilot",
+        image: "https://github.githubassets.com/favicons/favicon.svg",
         review:
           "A strong AI pair programmer for repetitive code, boilerplate, and day-to-day implementation inside familiar editor workflows.",
         ctaLabel: "Start Free Trial",
-        href: "#",
+        href: "https://github.com/features/copilot",
       },
     ],
   },
@@ -103,11 +111,12 @@ const categories = [
     tools: [
       {
         name: "Namecheap",
+        image: "https://www.namecheap.com/favicon.ico",
         review:
           "Where I buy all my domains. Great prices, simple management, and a reliable place to secure names for client and product work.",
         badge: "Best Value",
         ctaLabel: "Buy a Domain",
-        href: "#",
+        href: "https://www.namecheap.com/",
       },
     ],
   },
@@ -117,10 +126,11 @@ const categories = [
     tools: [
       {
         name: "Udemy",
+        image: "https://www.udemy.com/static/images/v7/apple-touch-icon.png",
         review:
           "Still one of the best places to find practical online courses. I always tell people to wait for the $9.99 sales before buying.",
         ctaLabel: "Browse Courses",
-        href: "#",
+        href: "https://www.udemy.com/",
       },
     ],
   },
@@ -179,8 +189,7 @@ export default function ToolsPage() {
                     review={tool.review}
                     badge={tool.badge}
                     ctaLabel={tool.ctaLabel}
-                    href={tool.href}
-                  />
+                    href={tool.href} image={""}                  />
                 ))}
               </div>
             </section>

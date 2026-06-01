@@ -45,9 +45,7 @@ export default async function BlogPage() {
               Deep-dive tutorials, practical product notes, and real-world engineering advice
               for developers building modern web apps.
             </p>
-            <div className="inline-flex rounded-full border border-black/8 bg-white px-4 py-2 text-sm font-medium text-text/65">
-              {posts.length} posts published
-            </div>
+            
           </div>
         </div>
       </section>

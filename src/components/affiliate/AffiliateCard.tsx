@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
@@ -6,6 +7,7 @@ type AffiliateCardProps = {
   review: string;
   ctaLabel: string;
   href: string;
+  image: string;
   badge?: string;
 };
 
@@ -14,13 +16,22 @@ export function AffiliateCard({
   review,
   ctaLabel,
   href,
+  image,
   badge,
 }: AffiliateCardProps) {
   return (
     <article className="rounded-xl border border-black/6 bg-white p-6 shadow-sm transition-colors hover:border-primary/20">
       <div className="flex items-start justify-between gap-4">
         <div className="flex items-center gap-4">
-          <div className="h-10 w-10 rounded-lg bg-zinc-200" aria-hidden="true" />
+          <div className="relative h-10 w-10 overflow-hidden rounded-lg bg-zinc-100 p-1">
+            <Image
+              src={image}
+              alt={`${name} logo`}
+              fill
+              className="object-contain"
+              sizes="40px"
+            />
+          </div>
           <div className="space-y-1">
             <h3 className="text-lg font-semibold text-text">{name}</h3>
             {badge ? (
