@@ -1,5 +1,3 @@
-import fs from "node:fs";
-import path from "node:path";
 import bcrypt from "bcryptjs";
 import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
@@ -14,51 +12,29 @@ const credentialsSchema = z.object({
 
 const BCRYPT_HASH_PATTERN = /^\$2[aby]\$\d{2}\$[./A-Za-z0-9]{53}$/;
 
-function stripWrappingQuotes(value?: string) {
-  if (!value) return value;
-  if (
-    (value.startsWith('"') && value.endsWith('"')) ||
-    (value.startsWith("'") && value.endsWith("'"))
-  ) {
-    return value.slice(1, -1);
-  }
-  return value;
-}
-
 function isBcryptHash(value?: string) {
   return Boolean(value && BCRYPT_HASH_PATTERN.test(value));
 }
 
-function readRawEnvValue(name: string) {
-  const envFiles = [".env.local", ".env"];
-  for (const envFile of envFiles) {
-    const envPath = path.join(process.cwd(), envFile);
-    try {
-      const content = fs.readFileSync(envPath, "utf8");
-      const line = content
-        .split(/\r?\n/)
-        .find((entry) => entry.startsWith(`${name}=`));
-      if (!line) continue;
-      return stripWrappingQuotes(line.slice(name.length + 1).trim());
-    } catch {
-      continue;
-    }
-  }
-  return undefined;
-}
-
 function getAdminPasswordHash() {
-  const loadedHash = stripWrappingQuotes(process.env.ADMIN_PASSWORD_HASH);
-  if (isBcryptHash(loadedHash)) return loadedHash;
+  const hash = process.env.ADMIN_PASSWORD_HASH?.trim();
 
-  const rawHash = readRawEnvValue("ADMIN_PASSWORD_HASH");
-  if (isBcryptHash(rawHash)) return rawHash;
+  // Remove potential wrapping quotes added by some environment loaders
+  if (
+    hash &&
+    ((hash.startsWith('"') && hash.endsWith('"')) ||
+      (hash.startsWith("'") && hash.endsWith("'")))
+  ) {
+    return hash.slice(1, -1);
+  }
 
-  return loadedHash;
+  return hash;
 }
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   ...authConfig,
+  // NextAuth v5 expects AUTH_SECRET. Fallback to NEXTAUTH_SECRET for compatibility.
+  secret: process.env.AUTH_SECRET ?? process.env.NEXTAUTH_SECRET,
   providers: [
     Credentials({
       credentials: {
@@ -73,25 +49,44 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         const adminPasswordHash = getAdminPasswordHash();
 
         if (!adminEmail || !adminPasswordHash) {
-          console.error("Missing admin credentials in environment variables");
+          console.error(
+            "Auth Error: ADMIN_EMAIL or ADMIN_PASSWORD_HASH is not defined in environment variables."
+          );
           return null;
+        }
+
+        if (!isBcryptHash(adminPasswordHash)) {
+          console.error(
+            "Auth Error: ADMIN_PASSWORD_HASH does not appear to be a valid bcrypt hash. " +
+            "Ensure it starts with $2b$, $2a$, or $2y$ and is not corrupted by environment variable expansion."
+          );
+          // We continue anyway as bcrypt.compare might still work if the hash is partially valid,
+          // but logging the error helps the developer diagnose the issue.
         }
 
         const emailMatches =
           parsed.data.email.toLowerCase() === adminEmail.toLowerCase();
 
-        const passwordMatches = await bcrypt.compare(
-          parsed.data.password,
-          adminPasswordHash
-        );
+        try {
+          const passwordMatches = await bcrypt.compare(
+            parsed.data.password,
+            adminPasswordHash
+          );
 
-        if (!emailMatches || !passwordMatches) return null;
+          if (!emailMatches || !passwordMatches) {
+            console.warn(`Auth Warning: Failed login attempt for ${parsed.data.email}`);
+            return null;
+          }
 
-        return {
-          id: "admin",
-          name: "Zeeshan Zakir",
-          email: adminEmail,
-        };
+          return {
+            id: "admin",
+            name: "Zeeshan Zakir",
+            email: adminEmail,
+          };
+        } catch (error) {
+          console.error("Auth Error: Bcrypt comparison failed:", error);
+          return null;
+        }
       },
     }),
   ],
