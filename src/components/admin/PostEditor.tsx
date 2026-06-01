@@ -15,6 +15,7 @@ import {
   Save,
   SquareTerminal,
   Star,
+  Upload,
 } from "lucide-react";
 
 import { savePostAction, type PostSaveInput } from "@/app/(admin)/admin/actions";
@@ -263,6 +264,7 @@ function PreviewPane({ content }: { content: string }) {
 export function PostEditor({ initialPost }: PostEditorProps) {
   const router = useRouter();
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
   const [isPending, startTransition] = useTransition();
   const [toast, setToast] = useState<ToastState>(null);
   const [title, setTitle] = useState(initialPost?.title ?? "");
@@ -273,11 +275,13 @@ export function PostEditor({ initialPost }: PostEditorProps) {
   const [coverImage, setCoverImage] = useState(initialPost?.coverImage ?? "");
   const [author, setAuthor] = useState(initialPost?.author ?? "Zeeshan Zakir");
   const [featured, setFeatured] = useState(initialPost?.featured ?? false);
-  const [status, setStatus] = useState<"draft" | "published">(
+  const [status, setStatus] = useState<"draft" | "published" | "scheduled">(
     initialPost?.status ?? "draft",
   );
+  const [scheduledAt, setScheduledAt] = useState(initialPost?.scheduledAt ?? "");
   const [tags, setTags] = useState(initialPost?.tags.join(", ") ?? "");
   const [content, setContent] = useState(initialPost?.content ?? "");
+  const [isUploading, setIsUploading] = useState(false);
   const [affiliateLinks, setAffiliateLinks] = useState<EditableAffiliateLink[]>(() =>
     initialPost?.affiliateLinks.length
       ? initialPost.affiliateLinks.map((link) => createAffiliateLink(link))
@@ -295,6 +299,45 @@ export function PostEditor({ initialPost }: PostEditorProps) {
 
   const wordCount = useMemo(() => getWordCount(content), [content]);
   const readTime = useMemo(() => getReadTime(content), [content]);
+
+  async function handleImageUpload(event: React.ChangeEvent<HTMLInputElement>, target: "cover" | "content") {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    setIsUploading(true);
+    const formData = new FormData();
+    formData.append("file", file);
+
+    try {
+      const response = await fetch("/api/upload", {
+        method: "POST",
+        body: formData,
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || "Failed to upload image");
+      }
+
+      if (target === "cover") {
+        setCoverImage(result.url);
+      } else {
+        insertSnippet(`![${file.name}](${result.url})`, "", "");
+      }
+
+      setToast({ type: "success", message: "Image uploaded successfully" });
+    } catch (error) {
+      setToast({
+        type: "error",
+        message: error instanceof Error ? error.message : "Failed to upload image",
+      });
+    } finally {
+      setIsUploading(false);
+      // Clear input
+      event.target.value = "";
+    }
+  }
 
   function updateAffiliateLink(
     id: string,
@@ -373,6 +416,11 @@ export function PostEditor({ initialPost }: PostEditorProps) {
       return;
     }
 
+    if (type === "upload") {
+      fileInputRef.current?.click();
+      return;
+    }
+
     if (type === "affiliate") {
       const label = window.prompt("Tool name:", "Cursor");
       const url = window.prompt("Affiliate URL:", "https://example.com");
@@ -398,7 +446,7 @@ export function PostEditor({ initialPost }: PostEditorProps) {
     }
   }
 
-  async function persistPost(nextStatus: "draft" | "published") {
+  async function persistPost(nextStatus: "draft" | "published" | "scheduled") {
     const payload: PostSaveInput = {
       originalSlug: initialPost?.slug ?? undefined,
       title: title.trim(),
@@ -409,6 +457,7 @@ export function PostEditor({ initialPost }: PostEditorProps) {
       author: author.trim() || "Zeeshan Zakir",
       featured,
       status: nextStatus,
+      scheduledAt: nextStatus === "scheduled" ? scheduledAt : undefined,
       tags: tags
         .split(",")
         .map((tag) => tag.trim())
@@ -466,13 +515,22 @@ export function PostEditor({ initialPost }: PostEditorProps) {
     { type: "code", label: "Code", icon: Code },
     { type: "code-block", label: "Code Block", icon: SquareTerminal },
     { type: "link", label: "Link", icon: Link2 },
-    { type: "image", label: "Image", icon: ImageIcon },
+    { type: "image", label: "Image URL", icon: ImageIcon },
+    { type: "upload", label: "Upload Image", icon: Upload },
     { type: "affiliate", label: "Affiliate", icon: Star },
     { type: "ads", label: "AdSense", icon: MonitorPlay },
   ] as const;
 
   return (
     <div className="space-y-6">
+      <input
+        ref={fileInputRef}
+        type="file"
+        className="hidden"
+        accept="image/*"
+        onChange={(e) => handleImageUpload(e, "content")}
+        disabled={isUploading}
+      />
       {toast ? (
         <div
           className={`rounded-xl px-4 py-3 text-sm font-medium ${
@@ -547,7 +605,19 @@ export function PostEditor({ initialPost }: PostEditorProps) {
               </div>
 
               <div className="space-y-2 lg:col-span-2">
-                <label className="text-sm font-medium text-white/75">Cover image URL</label>
+                <div className="flex items-center justify-between gap-4">
+                  <label className="text-sm font-medium text-white/75">Cover image URL</label>
+                  <label className="cursor-pointer text-xs font-medium text-primary hover:text-primary/80">
+                    <input
+                      type="file"
+                      className="hidden"
+                      accept="image/*"
+                      onChange={(e) => handleImageUpload(e, "cover")}
+                      disabled={isUploading}
+                    />
+                    {isUploading ? "Uploading..." : "Upload Image"}
+                  </label>
+                </div>
                 <input
                   value={coverImage}
                   onChange={(event) => setCoverImage(event.target.value)}
@@ -584,7 +654,7 @@ export function PostEditor({ initialPost }: PostEditorProps) {
               <div className="space-y-3">
                 <p className="text-sm font-medium text-white/75">Status</p>
                 <div className="flex flex-wrap gap-3">
-                  {(["draft", "published"] as const).map((option) => (
+                  {(["draft", "published", "scheduled"] as const).map((option) => (
                     <label
                       key={option}
                       className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-[#0b1020] px-4 py-2 text-sm text-white/75"
@@ -595,11 +665,23 @@ export function PostEditor({ initialPost }: PostEditorProps) {
                         checked={status === option}
                         onChange={() => setStatus(option)}
                       />
-                      {option === "draft" ? "Draft" : "Published"}
+                      {option.charAt(0).toUpperCase() + option.slice(1)}
                     </label>
                   ))}
                 </div>
               </div>
+
+              {status === "scheduled" ? (
+                <div className="space-y-2 lg:col-span-2">
+                  <label className="text-sm font-medium text-white/75">Schedule for</label>
+                  <input
+                    type="datetime-local"
+                    value={scheduledAt}
+                    onChange={(event) => setScheduledAt(event.target.value)}
+                    className="h-12 w-full rounded-xl border border-white/10 bg-[#0b1020] px-4 text-sm text-white outline-none focus:border-primary/40 [color-scheme:dark]"
+                  />
+                </div>
+              ) : null}
 
               <div className="space-y-3 lg:col-span-2">
                 <label className="inline-flex items-center gap-3 rounded-xl border border-white/10 bg-[#0b1020] px-4 py-3 text-sm text-white/75">
@@ -763,14 +845,25 @@ export function PostEditor({ initialPost }: PostEditorProps) {
                 <Save className="h-4 w-4" />
                 Save Draft
               </button>
-              <button
-                type="button"
-                onClick={() => persistPost("published")}
-                disabled={isPending}
-                className="inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-5 py-3 text-sm font-semibold text-white"
-              >
-                Publish
-              </button>
+              {status === "scheduled" ? (
+                <button
+                  type="button"
+                  onClick={() => persistPost("scheduled")}
+                  disabled={isPending}
+                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-5 py-3 text-sm font-semibold text-white"
+                >
+                  Schedule
+                </button>
+              ) : (
+                <button
+                  type="button"
+                  onClick={() => persistPost("published")}
+                  disabled={isPending}
+                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-5 py-3 text-sm font-semibold text-white"
+                >
+                  {status === "published" ? "Update Post" : "Publish Now"}
+                </button>
+              )}
               <button
                 type="button"
                 onClick={openPreview}
@@ -789,6 +882,19 @@ export function PostEditor({ initialPost }: PostEditorProps) {
                 <dt>Status</dt>
                 <dd className="capitalize">{status}</dd>
               </div>
+              {status === "scheduled" && scheduledAt ? (
+                <div className="flex items-center justify-between gap-4">
+                  <dt>Scheduled for</dt>
+                  <dd className="text-right">
+                    {new Date(scheduledAt).toLocaleDateString()}
+                    <br />
+                    {new Date(scheduledAt).toLocaleTimeString([], {
+                      hour: "2-digit",
+                      minute: "2-digit",
+                    })}
+                  </dd>
+                </div>
+              ) : null}
               <div className="flex items-center justify-between gap-4">
                 <dt>Slug</dt>
                 <dd className="max-w-[180px] truncate text-right">{slug || "n/a"}</dd>

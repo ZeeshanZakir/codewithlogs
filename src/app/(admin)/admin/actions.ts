@@ -35,7 +35,8 @@ const postSaveSchema = z.object({
   coverImage: z.string().trim().min(1),
   author: z.string().trim().min(1),
   featured: z.boolean(),
-  status: z.enum(["draft", "published"]),
+  status: z.enum(["draft", "published", "scheduled"]),
+  scheduledAt: z.string().trim().optional(),
   tags: z.array(z.string().trim().min(1)).default([]),
   content: z.string().trim().min(50),
   affiliateLinks: z.array(affiliateLinkSchema).default([]),
@@ -78,7 +79,7 @@ async function writePostFile(input: PostSaveInput) {
       : existingPost?.date ?? new Date().toISOString();
   const readTime = readingTime(input.content).text;
 
-  const document = matter.stringify(input.content, {
+  const data: Record<string, any> = {
     title: input.title,
     date,
     category: input.category,
@@ -90,7 +91,13 @@ async function writePostFile(input: PostSaveInput) {
     affiliateLinks: normalizeAffiliateLinks(input.affiliateLinks),
     status: nextStatus,
     tags: input.tags,
-  });
+  };
+
+  if (input.scheduledAt) {
+    data.scheduledAt = input.scheduledAt;
+  }
+
+  const document = matter.stringify(input.content, data);
 
   const nextPath = getBlogPostPath(input.slug);
   await fs.writeFile(nextPath, document, "utf8");

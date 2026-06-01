@@ -15,11 +15,12 @@ export type AffiliateLink = {
   disclosure: string;
 };
 
-export type BlogPostStatus = "draft" | "published";
+export type BlogPostStatus = "draft" | "published" | "scheduled";
 
 export type BlogPostFrontmatter = {
   title: string;
   date: string;
+  scheduledAt?: string;
   category: string;
   excerpt: string;
   coverImage: string;
@@ -114,9 +115,17 @@ function normalizeFrontmatter(
 ): BlogPostFrontmatter {
   const computedReadTime = readingTime(content).text;
 
+  let status: BlogPostStatus = "published";
+  if (data.status === "draft") {
+    status = "draft";
+  } else if (data.status === "scheduled") {
+    status = "scheduled";
+  }
+
   return {
     title: data.title ?? slug.replace(/-/g, " "),
     date: data.date ?? "2026-01-01",
+    scheduledAt: data.scheduledAt,
     category: data.category ?? "General",
     excerpt: fallbackExcerpt(content, data.excerpt),
     coverImage: data.coverImage ?? "/images/blog/default-cover.svg",
@@ -124,7 +133,7 @@ function normalizeFrontmatter(
     readTime: data.readTime ?? computedReadTime,
     featured: data.featured ?? false,
     affiliateLinks: Array.isArray(data.affiliateLinks) ? data.affiliateLinks : [],
-    status: data.status === "draft" ? "draft" : "published",
+    status,
     tags: Array.isArray(data.tags)
       ? data.tags.filter((tag): tag is string => typeof tag === "string")
       : [],
@@ -148,19 +157,35 @@ async function readPostFile(fileName: string) {
 
 export const getAllPosts = cache(
   async (includeDrafts = false): Promise<BlogPostMeta[]> => {
-  const fileNames = await getMdxFileNames();
-  const posts = await Promise.all(fileNames.map(readPostFile));
+    const fileNames = await getMdxFileNames();
+    const posts = await Promise.all(fileNames.map(readPostFile));
+
+    const now = new Date();
 
     return posts
-    .map(({ slug, frontmatter }) => ({
-      slug,
-      ...frontmatter,
-    }))
-      .filter((post) => includeDrafts || post.status === "published")
-    .sort(
-      (left, right) =>
-        new Date(right.date).getTime() - new Date(left.date).getTime(),
-    );
+      .map(({ slug, frontmatter }) => ({
+        slug,
+        ...frontmatter,
+      }))
+      .filter((post) => {
+        if (includeDrafts) {
+          return true;
+        }
+
+        if (post.status === "draft") {
+          return false;
+        }
+
+        if (post.status === "scheduled" && post.scheduledAt) {
+          return new Date(post.scheduledAt) <= now;
+        }
+
+        return post.status === "published";
+      })
+      .sort(
+        (left, right) =>
+          new Date(right.date).getTime() - new Date(left.date).getTime(),
+      );
   },
 );
 
@@ -175,8 +200,18 @@ export const getPostBySlug = cache(
 
     const post = await readPostFile(fileName);
 
-    if (!includeDrafts && post.frontmatter.status !== "published") {
-      return null;
+    if (!includeDrafts) {
+      if (post.frontmatter.status === "draft") {
+        return null;
+      }
+
+      if (
+        post.frontmatter.status === "scheduled" &&
+        post.frontmatter.scheduledAt &&
+        new Date(post.frontmatter.scheduledAt) > new Date()
+      ) {
+        return null;
+      }
     }
 
     return {
