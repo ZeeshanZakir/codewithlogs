@@ -17,9 +17,9 @@ const legalLinks = [
 ];
 
 const socialLinks = [
-  { href: "https://github.com", label: "GitHub" },
-  { href: "https://linkedin.com", label: "LinkedIn" },
-  { href: "https://twitter.com", label: "Twitter" },
+  { href: "https://github.com/ZeeshanZakir/", label: "GitHub" },
+  { href: "https://www.linkedin.com/in/zeeshan-zakir-profile/", label: "LinkedIn" },
+  { href: "https://twitter.com/ZeeshanZakir", label: "Twitter" },
 ];
 
 export function Footer() {

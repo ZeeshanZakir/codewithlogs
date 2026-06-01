@@ -50,7 +50,7 @@ const milestones = [
 const socialLinks = [
   {
     label: "GitHub",
-    href: "https://github.com",
+    href: "https://github.com/ZeeshanZakir/",
     icon: (
       <svg viewBox="0 0 24 24" className="h-4 w-4" aria-hidden="true">
         <path
@@ -62,7 +62,7 @@ const socialLinks = [
   },
   {
     label: "LinkedIn",
-    href: "https://linkedin.com",
+    href: "https://www.linkedin.com/in/zeeshan-zakir-profile/",
     icon: (
       <svg viewBox="0 0 24 24" className="h-4 w-4" aria-hidden="true">
         <path
@@ -74,7 +74,7 @@ const socialLinks = [
   },
   {
     label: "Twitter",
-    href: "https://twitter.com",
+    href: "https://twitter.com/ZeeshanZakir",
     icon: (
       <svg viewBox="0 0 24 24" className="h-4 w-4" aria-hidden="true">
         <path

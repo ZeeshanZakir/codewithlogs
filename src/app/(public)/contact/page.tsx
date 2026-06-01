@@ -34,8 +34,8 @@ const infoCards = [
 ];
 
 const socialLinks = [
-  { label: "GitHub", href: "https://github.com" },
-  { label: "LinkedIn", href: "https://linkedin.com" },
+  { label: "GitHub", href: "https://github.com/ZeeshanZakir/" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/zeeshan-zakir-profile/" },
 ];
 
 export default function ContactPage() {
