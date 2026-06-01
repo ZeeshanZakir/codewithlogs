@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 import { Logo } from "@/components/branding/Logo";
 import { cn } from "@/lib/utils";
@@ -59,3 +60,4 @@ export function Navbar() {
     </header>
   );
 }
+<SpeedInsights/>

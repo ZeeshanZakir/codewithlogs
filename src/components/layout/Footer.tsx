@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import { Logo } from "@/components/branding/Logo";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const quickLinks = [
   { href: "/", label: "Home" },
@@ -82,3 +83,4 @@ export function Footer() {
     </footer>
   );
 }
+<SpeedInsights/>
