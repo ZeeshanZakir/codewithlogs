@@ -1,1 +1,1 @@
-SpeedInsights
+logs
