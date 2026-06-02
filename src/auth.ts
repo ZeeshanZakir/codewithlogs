@@ -47,9 +47,8 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
 
         const adminEmail = process.env.ADMIN_EMAIL;
         const adminPasswordHash = getAdminPasswordHash();
-        console.log("ADMIN_EMAIL:", adminEmail);
-        console.log("HASH EXISTS:", !!adminPasswordHash);
-        console.log("HASH:", adminPasswordHash);
+        console.log("Production ADMIN_EMAIL:", process.env.ADMIN_EMAIL);
+        console.log("Hash exists:", !!process.env.ADMIN_PASSWORD_HASH);
 
         if (!adminEmail || !adminPasswordHash) {
           console.error(
