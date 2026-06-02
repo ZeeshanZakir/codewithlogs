@@ -31,7 +31,7 @@ const postSaveSchema = z.object({
     .min(3)
     .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/),
   category: z.string().trim().min(1),
-  excerpt: z.string().trim().min(10).max(150),
+  excerpt: z.string().trim().min(10).max(500),
   coverImage: z.string().trim().min(1),
   author: z.string().trim().min(1),
   featured: z.boolean(),
@@ -183,6 +183,14 @@ export async function deleteMessageAction(id: string) {
   await ensureAdmin();
   await connectToDatabase();
   await ContactMessage.findByIdAndDelete(id).exec();
+  revalidatePath("/admin/dashboard");
+  revalidatePath("/admin/contact-messages");
+}
+
+export async function deleteMessagesBulkAction(ids: string[]) {
+  await ensureAdmin();
+  await connectToDatabase();
+  await ContactMessage.deleteMany({ _id: { $in: ids } }).exec();
   revalidatePath("/admin/dashboard");
   revalidatePath("/admin/contact-messages");
 }

@@ -39,7 +39,7 @@ type ToastState =
     }
   | null;
 
-const categories = [
+const PREDEFINED_CATEGORIES = [
   "Next.js",
   "React",
   "MERN",
@@ -270,7 +270,10 @@ export function PostEditor({ initialPost }: PostEditorProps) {
   const [title, setTitle] = useState(initialPost?.title ?? "");
   const [slug, setSlug] = useState(initialPost?.slug ?? "");
   const [slugTouched, setSlugTouched] = useState(Boolean(initialPost?.slug));
-  const [category, setCategory] = useState(initialPost?.category ?? "Next.js");
+  const [category, setCategory] = useState(initialPost?.category ?? PREDEFINED_CATEGORIES[0]);
+  const [isCustomCategory, setIsCustomCategory] = useState(
+    initialPost?.category ? !PREDEFINED_CATEGORIES.includes(initialPost.category as any) : false,
+  );
   const [excerpt, setExcerpt] = useState(initialPost?.excerpt ?? "");
   const [coverImage, setCoverImage] = useState(initialPost?.coverImage ?? "");
   const [author, setAuthor] = useState(initialPost?.author ?? "Zeeshan Zakir");
@@ -576,18 +579,43 @@ export function PostEditor({ initialPost }: PostEditorProps) {
               </div>
 
               <div className="space-y-2">
-                <label className="text-sm font-medium text-white/75">Category</label>
-                <select
-                  value={category}
-                  onChange={(event) => setCategory(event.target.value)}
-                  className="h-12 w-full rounded-xl border border-white/10 bg-[#0b1020] px-4 text-sm text-white outline-none focus:border-primary/40"
-                >
-                  {categories.map((option) => (
-                    <option key={option} value={option}>
-                      {option}
-                    </option>
-                  ))}
-                </select>
+                <div className="flex items-center justify-between gap-4">
+                  <label className="text-sm font-medium text-white/75">Category</label>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setIsCustomCategory(!isCustomCategory);
+                      if (isCustomCategory) {
+                        setCategory(PREDEFINED_CATEGORIES[0]);
+                      } else {
+                        setCategory("");
+                      }
+                    }}
+                    className="text-xs font-medium text-primary hover:text-primary/80"
+                  >
+                    {isCustomCategory ? "Choose existing" : "Add custom"}
+                  </button>
+                </div>
+                {isCustomCategory ? (
+                  <input
+                    value={category}
+                    onChange={(event) => setCategory(event.target.value)}
+                    placeholder="Enter custom category"
+                    className="h-12 w-full rounded-xl border border-white/10 bg-[#0b1020] px-4 text-sm text-white outline-none focus:border-primary/40"
+                  />
+                ) : (
+                  <select
+                    value={category}
+                    onChange={(event) => setCategory(event.target.value)}
+                    className="h-12 w-full rounded-xl border border-white/10 bg-[#0b1020] px-4 text-sm text-white outline-none focus:border-primary/40"
+                  >
+                    {PREDEFINED_CATEGORIES.map((option) => (
+                      <option key={option} value={option}>
+                        {option}
+                      </option>
+                    ))}
+                  </select>
+                )}
               </div>
 
               <div className="space-y-2 lg:col-span-2">
@@ -597,9 +625,9 @@ export function PostEditor({ initialPost }: PostEditorProps) {
                 </div>
                 <textarea
                   value={excerpt}
-                  maxLength={150}
+                  maxLength={500}
                   onChange={(event) => setExcerpt(event.target.value)}
-                  rows={3}
+                  rows={4}
                   className="w-full rounded-xl border border-white/10 bg-[#0b1020] px-4 py-3 text-sm text-white outline-none focus:border-primary/40"
                 />
               </div>

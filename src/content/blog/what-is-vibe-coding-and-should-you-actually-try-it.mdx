@@ -1,0 +1,73 @@
+---
+title: What Is Vibe Coding and Should You Actually Try It?
+date: '2026-06-01T16:25:54.653Z'
+category: AI Tools
+excerpt: >-
+  Vibe coding is everywhere in developer conversations right now. I spent two
+  weeks doing it properly. Here's what actually happened — good and bad.
+coverImage: /images/blog/default-cover.svg
+author: Zeeshan Zakir
+readTime: 5 min read
+featured: false
+affiliateLinks: []
+status: draft
+tags:
+  - AI Tools
+---
+A few months ago I saw someone on Twitter describe building an entire startup landing page without writing a single line of code themselves. They described what they wanted in plain English, an AI built it, they gave feedback, the AI revised it, and they shipped it.
+
+Their caption was "vibe coding is the future."
+
+I immediately had two reactions. The first was skepticism — this sounds like people who never learned to cook claiming they can run a restaurant because they can order DoorDash. The second was curiosity — what if there's actually something here?
+
+So I spent two weeks doing it intentionally.
+
+## What Vibe Coding Actually Means
+
+The term "vibe coding" was coined by Andrej Karpathy — one of the founders of OpenAI and a seriously credentialed AI researcher. His original description was roughly this: you describe what you want, the AI writes the code, you test it, give feedback, and iterate. You're not reading the code carefully or worrying about implementation details. You're just vibing toward the outcome.
+
+The word choice — "vibing" — was intentional. It describes an approach that's more intuitive and conversational than traditional development. Less precise specification, more back-and-forth dialogue with an AI that fills in the gaps.
+
+This is distinct from using AI tools to accelerate your normal coding workflow. That's using Cursor or Copilot to write faster. Vibe coding is a fundamentally different approach where the AI is doing the bulk of the thinking and you're steering by feel.
+
+## What I Actually Built While Vibe Coding
+
+For my two-week experiment I used Cursor in agent mode and Claude for longer reasoning tasks.
+
+The first project was a simple admin dashboard for tracking affiliate link clicks. I described what I wanted, the AI generated the components, I said "this button is in the wrong place" and "I want the chart to show weekly instead of daily," and it adjusted. The whole thing took about 90 minutes.
+
+Did it work? Mostly. The UI looked good, the data displayed correctly, and the charts worked. But when I looked at the generated code later, it had some patterns I wouldn't have chosen — redundant state, a fetch that ran on every render, and a component structure that would be annoying to extend.
+
+For a quick internal tool that only I use, those problems don't matter much. For a client-facing product I'm responsible for maintaining, they'd matter quite a bit.
+
+The second project was a more complex SaaS feature — a user invitation system with email verification. This is where vibe coding started showing its limits. The AI built something that looked right but had a subtle security issue in the token validation. I only caught it because I know enough about authentication to recognize the problem.
+
+That experience clarified my thinking considerably.
+
+## Where Vibe Coding Works Well
+
+For prototyping and exploration, vibe coding is genuinely excellent. If you want to see whether an idea is worth building, you can have a working prototype in hours instead of days. That speed is real and valuable.
+
+For internal tools that you're the only user of, vibe coding works well. The bar for internal tools is "does it work for my purpose" not "is it production-grade." Imperfect code in an internal dashboard nobody else touches is fine.
+
+For learning what's possible, vibe coding is useful in an unexpected way. Watching the AI build something often teaches you patterns you didn't know about — component structures, API designs, and solutions to problems you hadn't thought about yet.
+
+## Where Vibe Coding Falls Apart
+
+For anything touching security — authentication, payments, data access, permissions — you should not vibe code. The AI generates code that looks right and mostly is right, but "mostly right" in security means there's a vulnerability somewhere. You need to understand and review security-critical code.
+
+For products you're responsible for maintaining and scaling, vibe-coded architecture tends to create problems later. The AI optimizes for "working now" not "easy to change later." When requirements evolve — and they always do — you find yourself refactoring code you don't fully understand.
+
+For professional client work, I would not use pure vibe coding. The accountability is different. A client trusts you with their product. That requires understanding what you've built, being able to explain your decisions, and knowing how to fix problems when they appear.
+
+## The Honest Verdict
+
+Vibe coding is not the future of professional software development. But it's also not as useless as skeptics claim.
+
+The right way to think about it is as a tool with a specific use case: fast, low-stakes prototyping and internal tooling. Within that use case it's excellent. Outside that use case it creates technical debt and risk.
+
+The developers who will benefit most from vibe coding are those who already have strong fundamentals. Knowing how code should work lets you spot AI mistakes, evaluate the quality of what's generated, and intervene when the AI heads in a wrong direction.
+
+Using vibe coding without foundational knowledge is like using GPS navigation without knowing how to drive. It works until it doesn't, and when it stops working you have no way to recover.
+
+Try it. It's worth experiencing. Just don't mistake it for a replacement for learning to code properly.

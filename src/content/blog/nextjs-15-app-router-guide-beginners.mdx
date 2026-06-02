@@ -1,0 +1,112 @@
+---
+title: Next.js 15 App Router Complete Guide for Beginners (2026)
+date: '2026-06-01T16:13:07.321Z'
+category: Next.js
+excerpt: >-
+  The Next.js App Router confused me for weeks. Here's the guide I wish existed
+  when I started — covering everything from file routing to server components in
+  plain language.
+coverImage: /images/blog/default-cover.svg
+author: Zeeshan Zakir
+readTime: 6 min read
+featured: false
+affiliateLinks: []
+status: draft
+tags:
+  - nextjs
+---
+The first time I tried to migrate a project from the Next.js Pages Router to the App Router, I gave up after two hours and reverted everything. The new folder structure made no sense to me, my layouts broke, and I couldn't figure out why some components needed the "use client" directive and others didn't.
+
+That was embarrassing to admit. I had been building with Next.js for a while at that point.
+
+Eventually I sat down, read everything properly, and built a fresh project with the App Router from scratch. Now it clicks completely. And looking back, the concept isn't complicated at all — the documentation just assumes you already know things that most beginners don't.
+
+This is the guide I needed then.
+
+## What the App Router Actually Is
+
+Next.js 15 uses what they call the App Router by default. This is a completely different way of organizing your project compared to the old Pages Router that most tutorials still teach.
+
+The core idea is simple. Every folder inside your `app` directory represents a URL route. A file called `page.tsx` inside that folder is what renders at that URL. That's it.
+
+So if you have `app/blog/page.tsx`, that file renders at `yourdomain.com/blog`. If you have `app/blog/[slug]/page.tsx`, that renders at `yourdomain.com/blog/anything-here`. The folder name with square brackets becomes a dynamic parameter you can read in your code.
+
+This is actually simpler than the old approach once you see it. The confusion comes from everything built on top of this basic idea.
+
+## Understanding Layouts
+
+One of the most useful App Router features is layouts. A `layout.tsx` file wraps everything inside its folder and all subfolders.
+
+So your `app/layout.tsx` is the global layout — it wraps every page on your site. That's where you put your navbar, footer, fonts, and global CSS. You define it once and it wraps everything automatically.
+
+If you have a blog section with a sidebar that only appears on blog pages, you create `app/blog/layout.tsx` and put the sidebar there. Every page inside the `app/blog/` folder will have that layout applied on top of the global layout.
+
+This nesting system eliminates the repetitive pattern of importing and rendering layout components at the top of every single page file. Once you grasp this, layouts become one of your favorite App Router features.
+
+## Server Components vs Client Components — The Part That Confuses Everyone
+
+This is where most beginners get stuck, including me.
+
+In the App Router, every component is a **Server Component** by default. Server Components render on the server and send plain HTML to the browser. They can fetch data directly, read databases, access environment variables, and do things that would be insecure or slow in the browser.
+
+**Client Components** run in the browser and handle all the interactive stuff — click handlers, form inputs, state, animations. You make a component a Client Component by adding `"use client"` at the very top of the file.
+
+The mental model that finally made it click for me: Server Components are for data fetching and static rendering. Client Components are for interactivity.
+
+Here is a practical example. Your blog post page fetches the article from your MDX files and renders it. No user interaction, no state. That's a Server Component — no "use client" needed, fetch directly in the component, done.
+
+But your newsletter signup form has an input field and a button. The user types their email and clicks submit. That requires state and event handlers. That's a Client Component — add "use client" at the top.
+
+The important rule: Client Components cannot import Server Components. But Server Components can pass data down to Client Components as props. Once you know that rule, the architecture becomes logical.
+
+## Data Fetching in the App Router
+
+In the old Pages Router you used `getServerSideProps` or `getStaticProps` — special functions that Next.js called at build or request time.
+
+In the App Router, data fetching is simpler. Because your components are Server Components by default, you can just use `async/await` directly inside the component function.
+
+```typescript
+export default async function BlogPost({ params }) {
+  const post = await getPostBySlug(params.slug)
+  return <article>{post.content}</article>
+}
+```
+
+That component runs on the server, fetches the post, and renders the HTML. No special function names, no weird export patterns. Just async component functions.
+
+For dynamic pages where you want static generation, you export a `generateStaticParams` function that returns all the possible parameter values. Next.js uses this to pre-render all those pages at build time.
+
+## Route Handlers — Your API in the App Router
+
+In the Pages Router, API routes lived in `pages/api/`. In the App Router they're called Route Handlers and they live in `app/api/` using a `route.ts` file.
+
+The syntax changed. Instead of `export default function handler(req, res)`, you export named functions matching HTTP methods.
+
+```typescript
+export async function GET(request: Request) {
+  return Response.json({ message: 'hello' })
+}
+
+export async function POST(request: Request) {
+  const body = await request.json()
+  return Response.json({ received: body })
+}
+```
+
+Each method is its own exported function. This is cleaner and aligns with how modern web APIs work.
+
+## Common Mistakes Beginners Make With the App Router
+
+The most common one is adding "use client" to everything because you're not sure which components need it. That defeats the purpose of Server Components. Only add it when you actually need interactivity — state, effects, event handlers.
+
+The second mistake is trying to use browser APIs like `localStorage` or `window` in Server Components. Those APIs don't exist on the server. If you need them, move that logic into a Client Component.
+
+The third is forgetting that the `app` directory and the `pages` directory cannot coexist once you've fully migrated. Some people try to use both and run into confusing conflicts.
+
+## A Simple Project to Practice
+
+The best way to learn the App Router is to build a simple blog with it. Create a Next.js 15 project, set up an `app/blog/page.tsx` that lists posts, an `app/blog/[slug]/page.tsx` that renders individual posts, and a shared `app/layout.tsx` with a basic navbar.
+
+Doing that exercise will force you to work with dynamic routes, layouts, Server Components for data fetching, and `generateStaticParams` for static generation. In one small project you'll cover 80% of what you use day to day.
+
+The App Router has a real learning curve compared to the Pages Router, but once it clicks, going back feels like stepping backwards. The patterns are cleaner, the data fetching is more straightforward, and the layout system saves a significant amount of repetitive code.

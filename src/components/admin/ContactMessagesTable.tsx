@@ -5,10 +5,7 @@ import { format } from "date-fns";
 import { Eye, MailOpen, Trash2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 
-import {
-  deleteMessageAction,
-  markMessageAsReadAction,
-} from "@/app/(admin)/admin/actions";
+import { deleteMessageAction, deleteMessagesBulkAction, markMessageAsReadAction } from "@/app/(admin)/admin/actions";
 import type { AdminContactMessage } from "@/lib/admin";
 
 type ContactMessagesTableProps = {
@@ -18,6 +15,7 @@ type ContactMessagesTableProps = {
 export function ContactMessagesTable({ messages }: ContactMessagesTableProps) {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
+  const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
   const [selectedMessage, setSelectedMessage] = useState<AdminContactMessage | null>(
     null,
   );
@@ -44,14 +42,60 @@ export function ContactMessagesTable({ messages }: ContactMessagesTableProps) {
     });
   }
 
+  function toggleSelectAll() {
+    if (selectedIds.size === messages.length) {
+      setSelectedIds(new Set());
+    } else {
+      setSelectedIds(new Set(messages.map((m) => m.id)));
+    }
+  }
+
+  function toggleSelect(id: string) {
+    const next = new Set(selectedIds);
+    if (next.has(id)) {
+      next.delete(id);
+    } else {
+      next.add(id);
+    }
+    setSelectedIds(next);
+  }
+
+  function deleteSelected() {
+    if (selectedIds.size === 0) return;
+    if (!window.confirm(`Are you sure you want to delete ${selectedIds.size} messages?`)) return;
+
+    startTransition(async () => {
+      await deleteMessagesBulkAction(Array.from(selectedIds));
+      setSelectedIds(new Set());
+      router.refresh();
+    });
+  }
+
   return (
     <div className="space-y-5">
-      <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
+      <div className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-white/10 bg-white/5 p-5">
         <p className="text-sm text-white/60">
           Total messages: <span className="font-semibold text-white">{messages.length}</span>
           {" · "}
           Unread: <span className="font-semibold text-amber-200">{unreadCount}</span>
         </p>
+
+        {selectedIds.size > 0 && (
+          <div className="flex items-center gap-3 animate-in fade-in slide-in-from-right-4">
+            <span className="text-sm text-white/60">
+              {selectedIds.size} selected
+            </span>
+            <button
+              type="button"
+              disabled={isPending}
+              onClick={deleteSelected}
+              className="inline-flex items-center gap-2 rounded-xl bg-red-600/90 px-4 py-2 text-sm font-semibold text-white transition hover:bg-red-600 disabled:opacity-50"
+            >
+              <Trash2 className="h-4 w-4" />
+              Delete Selected
+            </button>
+          </div>
+        )}
       </div>
 
       <div className="overflow-hidden rounded-2xl border border-white/10 bg-white/5">
@@ -59,6 +103,14 @@ export function ContactMessagesTable({ messages }: ContactMessagesTableProps) {
           <table className="min-w-full divide-y divide-white/10 text-left">
             <thead className="bg-white/5 text-xs uppercase tracking-[0.18em] text-white/45">
               <tr>
+                <th className="px-5 py-4 w-10">
+                  <input
+                    type="checkbox"
+                    checked={messages.length > 0 && selectedIds.size === messages.length}
+                    onChange={toggleSelectAll}
+                    className="h-4 w-4 rounded border-white/10 bg-[#0b1020] text-primary focus:ring-0 focus:ring-offset-0"
+                  />
+                </th>
                 <th className="px-5 py-4">Name</th>
                 <th className="px-5 py-4">Email</th>
                 <th className="px-5 py-4">Subject</th>
@@ -70,7 +122,18 @@ export function ContactMessagesTable({ messages }: ContactMessagesTableProps) {
             </thead>
             <tbody className="divide-y divide-white/10">
               {messages.map((message) => (
-                <tr key={message.id}>
+                <tr
+                  key={message.id}
+                  className={selectedIds.has(message.id) ? "bg-primary/5" : ""}
+                >
+                  <td className="px-5 py-4">
+                    <input
+                      type="checkbox"
+                      checked={selectedIds.has(message.id)}
+                      onChange={() => toggleSelect(message.id)}
+                      className="h-4 w-4 rounded border-white/10 bg-[#0b1020] text-primary focus:ring-0 focus:ring-offset-0"
+                    />
+                  </td>
                   <td className="px-5 py-4 text-sm font-medium text-white">
                     {message.name}
                   </td>
