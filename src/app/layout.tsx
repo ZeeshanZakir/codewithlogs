@@ -57,7 +57,7 @@ export default function RootLayout({
           <GoogleAdSense publisherId={process.env.NEXT_PUBLIC_ADSENSE_PUBLISHER_ID!} />
         ) : null}
         {children}
-        <Analytics />
+        <Analytics/>
         <SpeedInsights/>
       </body>
     </html>
