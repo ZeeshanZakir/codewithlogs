@@ -79,6 +79,9 @@ export async function generateMetadata({
   return {
     title: post.title,
     description: post.excerpt,
+    alternates: {
+      canonical: `${siteUrl}/blog/${post.slug}`,
+    },
     openGraph: {
       title: post.title,
       description: post.excerpt,
@@ -190,7 +193,6 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           </div>
 
           <section className="rounded-[12px] border border-primary/20 bg-primary/5 p-6">
-            <h2 className="text-2xl font-semibold tracking-tight text-text">Conclusion</h2>
             <p className="mt-4 text-base leading-8 text-text/75">
               The key takeaway from this guide is that strong implementation comes from clarity,
               not complexity. Focus on shipping a clean version of the core idea, keep your

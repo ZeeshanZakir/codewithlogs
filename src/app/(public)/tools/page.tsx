@@ -78,7 +78,7 @@ const categories = [
       //   review:
       //     "A strong option for serverless MySQL and branching workflows. I like it for products that need clean schema changes without slowing down delivery.",
       //   ctaLabel: "Get Started",
-      //   href: "#",
+      //   href: "https://planetscale.com/",
       // },
     ],
   },
