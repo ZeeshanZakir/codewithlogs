@@ -116,7 +116,7 @@ const categories = [
           "Where I buy all my domains. Great prices, simple management, and a reliable place to secure names for client and product work.",
         badge: "Best Value",
         ctaLabel: "Buy a Domain",
-        href: "https://www.namecheap.com/",
+        href: "https://namecheap.pxf.io/c/7364953/1632743/5618",
       },
     ],
   },
