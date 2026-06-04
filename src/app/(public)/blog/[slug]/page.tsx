@@ -3,9 +3,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { format } from "date-fns";
+import { Suspense } from "react";
 import { CalendarDays, ChevronRight, Clock3 } from "lucide-react";
 
-import { auth } from "@/auth";
 import { AdUnit } from "@/components/ads/AdUnit";
 import { BlogCard } from "@/components/blog/BlogCard";
 import { MDXRenderer } from "@/components/blog/MDXRenderer";
@@ -17,7 +17,10 @@ import {
   getRelatedPosts,
 } from "@/lib/mdx";
 
+export const dynamic = "force-static";
+export const revalidate = false;
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://codewithlogs.com";
+export const dynamicParams = false;
 
 type BlogPostPageProps = {
   params: Promise<{ slug: string }>;
@@ -101,8 +104,7 @@ export async function generateMetadata({
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const { slug } = await params;
-  const session = await auth();
-  const post = await getPostBySlug(slug, Boolean(session?.user));
+  const post = await getPostBySlug(slug);
 
   if (!post) {
     notFound();
@@ -112,7 +114,6 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     post.slug,
     post.category,
     3,
-    Boolean(session?.user),
   );
   const shareUrl = `${siteUrl}/blog/${post.slug}`;
   const primaryAffiliate = post.affiliateLinks[0];
@@ -173,19 +174,22 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             <AdUnit slot="article-top" format="horizontal" />
           </div>
 
-          <div className="relative aspect-[16/9] overflow-hidden rounded-[16px] border border-black/6 bg-surface">
+          <div className="overflow-hidden rounded-[16px] border border-black/6 bg-surface">
             <Image
               src={post.coverImage}
               alt={post.title}
-              fill
-              className="object-cover"
+              width={1600}
+              height={900}
+              className="h-auto w-full object-cover"
               sizes="(max-width: 1024px) 100vw, 65vw"
               priority
             />
           </div>
 
           <div className="rounded-[12px] border border-black/6 bg-white p-6 sm:p-8 lg:p-10">
-            <MDXRenderer source={post.content} />
+            <Suspense fallback={<ArticleContentFallback />}>
+              <MDXRenderer source={post.content} />
+            </Suspense>
           </div>
 
           <div className="rounded-[12px] border border-black/6 bg-white p-4">
@@ -298,6 +302,20 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           </div>
         </aside>
       </div>
+    </div>
+  );
+}
+function ArticleContentFallback() {
+  return (
+    <div className="space-y-5">
+      {Array.from({ length: 6 }).map((_, index) => (
+        <div
+          key={index}
+          className={`animate-pulse rounded bg-surface ${
+            index === 0 ? "h-8 w-2/3" : "h-5 w-full"
+          }`}
+        />
+      ))}
     </div>
   );
 }

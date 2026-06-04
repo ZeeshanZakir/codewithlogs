@@ -14,7 +14,7 @@ import {
   type AffiliateLink,
   type BlogPostStatus,
 } from "@/lib/mdx";
-import { connectToDatabase } from "@/lib/mongodb";
+import dbConnect from "@/lib/mongodb";
 
 const affiliateLinkSchema = z.object({
   label: z.string().trim().min(1),
@@ -173,7 +173,7 @@ export async function togglePostStatusAction(slug: string) {
 
 export async function markMessageAsReadAction(id: string) {
   await ensureAdmin();
-  await connectToDatabase();
+  await dbConnect();
   await ContactMessage.findByIdAndUpdate(id, { status: "read" }).exec();
   revalidatePath("/admin/dashboard");
   revalidatePath("/admin/contact-messages");
@@ -181,7 +181,7 @@ export async function markMessageAsReadAction(id: string) {
 
 export async function deleteMessageAction(id: string) {
   await ensureAdmin();
-  await connectToDatabase();
+  await dbConnect();
   await ContactMessage.findByIdAndDelete(id).exec();
   revalidatePath("/admin/dashboard");
   revalidatePath("/admin/contact-messages");
@@ -189,7 +189,7 @@ export async function deleteMessageAction(id: string) {
 
 export async function deleteMessagesBulkAction(ids: string[]) {
   await ensureAdmin();
-  await connectToDatabase();
+  await dbConnect();
   await ContactMessage.deleteMany({ _id: { $in: ids } }).exec();
   revalidatePath("/admin/dashboard");
   revalidatePath("/admin/contact-messages");

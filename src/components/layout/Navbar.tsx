@@ -1,11 +1,6 @@
-"use client";
-
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { SpeedInsights } from "@vercel/speed-insights/next"
 
 import { Logo } from "@/components/branding/Logo";
-import { cn } from "@/lib/utils";
 
 const navigation = [
   { href: "/", label: "Home" },
@@ -17,8 +12,6 @@ const navigation = [
 ];
 
 export function Navbar() {
-  const pathname = usePathname();
-
   return (
     <header className="sticky top-0 z-50 border-b border-black/5 bg-white/90 backdrop-blur">
       <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-6 px-4 py-4 sm:px-6 lg:px-8">
@@ -29,25 +22,15 @@ export function Navbar() {
         />
 
         <nav className="hidden items-center gap-1 md:flex">
-          {navigation.map((item) => {
-            const isActive =
-              item.href === "/"
-                ? pathname === item.href
-                : pathname.startsWith(item.href);
-
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={cn(
-                  "rounded-full px-4 py-2 text-sm font-medium text-text/70 transition-colors hover:text-primary",
-                  isActive && "bg-surface text-primary",
-                )}
-              >
-                {item.label}
-              </Link>
-            );
-          })}
+          {navigation.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className="rounded-full px-4 py-2 text-sm font-medium text-text/70 transition-colors hover:bg-surface hover:text-primary"
+            >
+              {item.label}
+            </Link>
+          ))}
         </nav>
 
         <Link
@@ -60,4 +43,3 @@ export function Navbar() {
     </header>
   );
 }
-<SpeedInsights/>

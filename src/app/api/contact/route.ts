@@ -3,7 +3,7 @@ import { Resend } from "resend";
 
 import { contactFormSchema } from "@/lib/contact";
 import { ContactMessage } from "@/lib/contact-message";
-import { connectToDatabase } from "@/lib/mongodb";
+import dbConnect from "@/lib/mongodb";
 
 export const runtime = "nodejs";
 
@@ -57,7 +57,7 @@ export async function POST(request: Request) {
       );
     }
 
-    await connectToDatabase();
+    await dbConnect();
 
     const submission = await ContactMessage.create({
       ...parsed.data,

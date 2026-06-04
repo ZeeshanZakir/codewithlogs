@@ -9,6 +9,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
+  display: "swap",
 });
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://codewithlogs.com";
@@ -54,11 +55,14 @@ export default function RootLayout({
     <html lang="en" className={inter.variable}>
       <body className="min-h-screen bg-background font-sans text-text antialiased">
         {shouldLoadAdsense ? (
-          <GoogleAdSense publisherId={process.env.NEXT_PUBLIC_ADSENSE_PUBLISHER_ID!} />
+          <GoogleAdSense
+            publisherId={process.env.NEXT_PUBLIC_ADSENSE_PUBLISHER_ID!}
+            strategy="afterInteractive"
+          />
         ) : null}
         {children}
-        <Analytics/>
-        <SpeedInsights/>
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );

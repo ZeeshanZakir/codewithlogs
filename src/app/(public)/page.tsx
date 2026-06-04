@@ -2,6 +2,7 @@ import Image from "next/image";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { format } from "date-fns";
+import { Suspense } from "react";
 import {
   ArrowRight,
   BriefcaseBusiness,
@@ -169,8 +170,6 @@ function DeveloperIllustration() {
 }
 
 export default async function HomePage() {
-  const featuredPosts = await getFeaturedPosts(3);
-
   return (
     <div className="bg-background">
       <section className="min-h-[90vh]">
@@ -280,72 +279,9 @@ export default async function HomePage() {
       </section>
 
       <section className="mx-auto w-full max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-24">
-        <div className="mb-10 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-          <div className="max-w-2xl space-y-3">
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-primary">
-              Content
-            </p>
-            <h2 className="text-3xl font-bold tracking-tight text-text sm:text-4xl">
-              Latest From The Blog
-            </h2>
-            <p className="text-base leading-8 text-text/70">
-              Practical tutorials and lessons from building products with the modern MERN stack.
-            </p>
-          </div>
-          <Link
-            href="/blog"
-            className="inline-flex items-center gap-2 text-sm font-semibold text-primary"
-          >
-            View all posts <ArrowRight className="h-4 w-4" />
-          </Link>
-        </div>
-
-        <div className="grid gap-6 lg:grid-cols-3">
-          {featuredPosts.map((post) => (
-            <article
-              key={post.slug}
-              className="overflow-hidden rounded-[12px] border border-black/6 bg-white"
-            >
-              <div className="relative h-48 overflow-hidden bg-surface">
-                <Image
-                  src={post.coverImage}
-                  alt={post.title}
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 1024px) 100vw, 33vw"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/15 to-transparent" />
-                <div className="absolute inset-x-0 bottom-0 p-5">
-                  <span className="inline-flex rounded-full bg-white px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-text/70">
-                    {post.category}
-                  </span>
-                </div>
-              </div>
-              <div className="space-y-5 p-6">
-                <div className="space-y-3">
-                  <h3 className="text-xl font-semibold leading-8 text-text">{post.title}</h3>
-                  <p className="text-sm leading-7 text-text/70">{truncate(post.excerpt, 120)}</p>
-                </div>
-                <div className="flex flex-wrap items-center gap-4 text-sm text-text/60">
-                  <span className="inline-flex items-center gap-2">
-                    <Clock3 className="h-4 w-4" />
-                    {post.readTime}
-                  </span>
-                  <span className="inline-flex items-center gap-2">
-                    <CalendarDays className="h-4 w-4" />
-                    {format(new Date(post.date), "MMM d, yyyy")}
-                  </span>
-                </div>
-                <Link
-                  href={`/blog/${post.slug}`}
-                  className="inline-flex items-center gap-2 text-sm font-semibold text-primary"
-                >
-                  Read more <ArrowRight className="h-4 w-4" />
-                </Link>
-              </div>
-            </article>
-          ))}
-        </div>
+        <Suspense fallback={<FeaturedPostsSectionFallback />}>
+          <FeaturedPostsSection />
+        </Suspense>
       </section>
 
       <section className="border-y border-black/5 bg-surface">
@@ -404,5 +340,118 @@ export default async function HomePage() {
         </div>
       </section>
     </div>
+  );
+}
+
+async function FeaturedPostsSection() {
+  const featuredPosts = await getFeaturedPosts(3);
+
+  return (
+    <>
+      <div className="mb-10 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+        <div className="max-w-2xl space-y-3">
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-primary">
+            Content
+          </p>
+          <h2 className="text-3xl font-bold tracking-tight text-text sm:text-4xl">
+            Latest From The Blog
+          </h2>
+          <p className="text-base leading-8 text-text/70">
+            Practical tutorials and lessons from building products with the modern MERN stack.
+          </p>
+        </div>
+        <Link
+          href="/blog"
+          className="inline-flex items-center gap-2 text-sm font-semibold text-primary"
+        >
+          View all posts <ArrowRight className="h-4 w-4" />
+        </Link>
+      </div>
+
+      <div className="grid gap-6 lg:grid-cols-3">
+        {featuredPosts.map((post) => (
+          <article
+            key={post.slug}
+            className="overflow-hidden rounded-[12px] border border-black/6 bg-white"
+          >
+            <div className="relative h-48 overflow-hidden bg-surface">
+              <Image
+                src={post.coverImage}
+                alt={post.title}
+                width={1200}
+                height={675}
+                loading="lazy"
+                className="h-full w-full object-cover"
+                sizes="(max-width: 1024px) 100vw, 33vw"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/15 to-transparent" />
+              <div className="absolute inset-x-0 bottom-0 p-5">
+                <span className="inline-flex rounded-full bg-white px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-text/70">
+                  {post.category}
+                </span>
+              </div>
+            </div>
+            <div className="space-y-5 p-6">
+              <div className="space-y-3">
+                <h3 className="text-xl font-semibold leading-8 text-text">{post.title}</h3>
+                <p className="text-sm leading-7 text-text/70">{truncate(post.excerpt, 120)}</p>
+              </div>
+              <div className="flex flex-wrap items-center gap-4 text-sm text-text/60">
+                <span className="inline-flex items-center gap-2">
+                  <Clock3 className="h-4 w-4" />
+                  {post.readTime}
+                </span>
+                <span className="inline-flex items-center gap-2">
+                  <CalendarDays className="h-4 w-4" />
+                  {format(new Date(post.date), "MMM d, yyyy")}
+                </span>
+              </div>
+              <Link
+                href={`/blog/${post.slug}`}
+                className="inline-flex items-center gap-2 text-sm font-semibold text-primary"
+              >
+                Read more <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+          </article>
+        ))}
+      </div>
+    </>
+  );
+}
+
+function FeaturedPostsSectionFallback() {
+  return (
+    <>
+      <div className="mb-10 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+        <div className="max-w-2xl space-y-3">
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-primary">
+            Content
+          </p>
+          <h2 className="text-3xl font-bold tracking-tight text-text sm:text-4xl">
+            Latest From The Blog
+          </h2>
+          <p className="text-base leading-8 text-text/70">
+            Practical tutorials and lessons from building products with the modern MERN stack.
+          </p>
+        </div>
+      </div>
+
+      <div className="grid gap-6 lg:grid-cols-3">
+        {Array.from({ length: 3 }).map((_, index) => (
+          <div
+            key={index}
+            className="overflow-hidden rounded-[12px] border border-black/6 bg-white"
+          >
+            <div className="h-48 animate-pulse bg-surface" />
+            <div className="space-y-4 p-6">
+              <div className="h-6 w-3/4 animate-pulse rounded bg-surface" />
+              <div className="h-4 w-full animate-pulse rounded bg-surface" />
+              <div className="h-4 w-2/3 animate-pulse rounded bg-surface" />
+            </div>
+          </div>
+        ))}
+      </div>
+    </>
   );
 }

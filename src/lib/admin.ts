@@ -2,7 +2,7 @@ import "server-only";
 
 import { ContactMessage } from "@/lib/contact-message";
 import { getAllPosts, type BlogPostMeta } from "@/lib/mdx";
-import { connectToDatabase } from "@/lib/mongodb";
+import dbConnect from "@/lib/mongodb";
 
 export type AdminContactMessage = {
   id: string;
@@ -56,7 +56,7 @@ export async function getDashboardMetrics() {
 }
 
 export async function getContactMessages(limit?: number) {
-  await connectToDatabase();
+  await dbConnect();
 
   const query = ContactMessage.find().sort({ createdAt: -1 });
 
