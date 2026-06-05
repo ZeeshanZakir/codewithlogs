@@ -4,7 +4,7 @@ const settings = [
   {
     title: "Authentication",
     description:
-      "Admin access is controlled with NextAuth credentials using ADMIN_EMAIL and ADMIN_PASSWORD_HASH from .env.local.",
+      "Admin access is controlled with NextAuth credentials backed by the MongoDB profile collection.",
   },
   {
     title: "Email Delivery",

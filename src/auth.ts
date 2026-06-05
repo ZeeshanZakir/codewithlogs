@@ -1,8 +1,11 @@
+import bcrypt from "bcryptjs";
 import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import { z } from "zod";
 
 import authConfig from "@/auth.config";
+import dbConnect from "@/lib/mongodb";
+import { Profile } from "@/lib/profile";
 
 const credentialsSchema = z.object({
   email: z.string().email(),
@@ -10,25 +13,6 @@ const credentialsSchema = z.object({
 });
 
 const BCRYPT_HASH_PATTERN = /^\$2[aby]\$\d{2}\$[./A-Za-z0-9]{53}$/;
-
-function isBcryptHash(value?: string) {
-  return Boolean(value && BCRYPT_HASH_PATTERN.test(value));
-}
-
-function getAdminPasswordHash() {
-  const hash = process.env.ADMIN_PASSWORD_HASH?.trim();
-
-  // Remove potential wrapping quotes added by some environment loaders
-  if (
-    hash &&
-    ((hash.startsWith('"') && hash.endsWith('"')) ||
-      (hash.startsWith("'") && hash.endsWith("'")))
-  ) {
-    return hash.slice(1, -1);
-  }
-
-  return hash;
-}
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   ...authConfig,
@@ -44,47 +28,37 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         const parsed = credentialsSchema.safeParse(credentials);
         if (!parsed.success) return null;
 
-        const adminEmail = process.env.ADMIN_EMAIL;
-        const adminPasswordHash = getAdminPasswordHash();
-        console.log("Production ADMIN_EMAIL:", process.env.ADMIN_EMAIL);
-        console.log("Hash exists:", !!process.env.ADMIN_PASSWORD_HASH);
-
-        if (!adminEmail || !adminPasswordHash) {
-          console.error(
-            "Auth Error: ADMIN_EMAIL or ADMIN_PASSWORD_HASH is not defined in environment variables."
-          );
-          return null;
-        }
-
-        if (!isBcryptHash(adminPasswordHash)) {
-          console.error(
-            "Auth Error: ADMIN_PASSWORD_HASH does not appear to be a valid bcrypt hash. " +
-            "Ensure it starts with $2b$, $2a$, or $2y$ and is not corrupted by environment variable expansion."
-          );
-          // We continue anyway as bcrypt.compare might still work if the hash is partially valid,
-          // but logging the error helps the developer diagnose the issue.
-        }
-
-        const emailMatches =
-          parsed.data.email.toLowerCase() === adminEmail.toLowerCase();
-
         try {
-          const passwordMatches = true;
+          await dbConnect();
 
-          if (!emailMatches || !passwordMatches) {
-            console.warn(`Auth Warning: Failed login attempt for ${parsed.data.email}`);
+          const email = parsed.data.email.toLowerCase();
+          const profile = await Profile.findOne({ email }).lean();
+
+          if (!profile?.password) {
             return null;
           }
-          console.log("emailMatches:", emailMatches);
-          console.log("passwordMatches:", passwordMatches);
+
+          if (!BCRYPT_HASH_PATTERN.test(profile.password)) {
+            console.error("Auth Error: Stored profile password is not a valid bcrypt hash.");
+            return null;
+          }
+
+          const passwordMatches = await bcrypt.compare(
+            parsed.data.password,
+            profile.password,
+          );
+
+          if (!passwordMatches) {
+            return null;
+          }
 
           return {
-            id: "admin",
-            name: "Zeeshan Zakir",
-            email: adminEmail,
+            id: profile._id.toString(),
+            name: profile.email,
+            email: profile.email,
           };
         } catch (error) {
-          console.error("Auth Error: Bcrypt comparison failed:", error);
+          console.error("Auth Error: Database-backed sign-in failed:", error);
           return null;
         }
       },
