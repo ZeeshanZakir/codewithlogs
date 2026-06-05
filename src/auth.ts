@@ -33,6 +33,9 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
 
           const email = parsed.data.email.toLowerCase();
           const profile = await Profile.findOne({ email }).lean();
+          console.log("Login email:", email);
+          console.log("Profile found:", !!profile);
+          console.log("Profile email:", profile?.email);  
 
           if (!profile?.password) {
             return null;
