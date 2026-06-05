@@ -3,8 +3,7 @@ export async function GET() {
 
   return Response.json({
     exists: !!uri,
-    length: uri.length,
-    containsMongoNet: uri.includes(".mongodb.net"),
-    containsCodeWithLogs: uri.includes("codewithlogs.kdzgntg"),
+    actualLength: uri.length,
+    first50: uri.slice(0, 50),
   });
 }
