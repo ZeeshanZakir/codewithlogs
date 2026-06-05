@@ -1,8 +1,10 @@
-// app/api/debug/route.ts
 export async function GET() {
+  const uri = process.env.MONGODB_URI || "";
+
   return Response.json({
-    email: process.env.ADMIN_EMAIL,
-    hashExists: !!process.env.ADMIN_PASSWORD_HASH,
-    hashStart: process.env.ADMIN_PASSWORD_HASH?.substring(0, 4),
+    exists: !!uri,
+    start: uri.substring(0, 25),
+    containsAtlas: uri.includes("mongodb.net"),
+    hostname: uri.match(/@([^/]+)/)?.[1],
   });
 }
