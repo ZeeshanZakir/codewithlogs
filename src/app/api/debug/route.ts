@@ -3,8 +3,8 @@ export async function GET() {
 
   return Response.json({
     exists: !!uri,
-    start: uri.substring(0, 25),
-    containsAtlas: uri.includes("mongodb.net"),
-    hostname: uri.match(/@([^/]+)/)?.[1],
+    length: uri.length,
+    containsMongoNet: uri.includes(".mongodb.net"),
+    containsCodeWithLogs: uri.includes("codewithlogs.kdzgntg"),
   });
 }
