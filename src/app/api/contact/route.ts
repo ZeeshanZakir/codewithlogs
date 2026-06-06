@@ -26,7 +26,7 @@ async function sendContactNotification(
   const resend = new Resend(resendApiKey);
 
   await resend.emails.send({
-    from: "Contact Form <onboarding@resend.dev>",
+    from: "CodeWithLogs New Message <onboarding@resend.dev>",
     to: contactEmail,
     subject: `New message from ${payload.name}: ${payload.subject}`,
     html: `

@@ -17,8 +17,10 @@ import {
 
 import { AdUnit } from "@/components/ads/AdUnit";
 import { NewsletterSignup } from "@/components/home/NewsletterSignup";
-import { getFeaturedPosts } from "@/lib/mdx";
+import { getAllPosts } from "@/lib/mdx";
 
+export const dynamic = "force-static";
+export const revalidate = 86400;
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://codewithlogs.com/";
 
 export const metadata: Metadata = {
@@ -344,7 +346,11 @@ export default async function HomePage() {
 }
 
 async function FeaturedPostsSection() {
-  const featuredPosts = await getFeaturedPosts(3);
+  const posts = await getAllPosts();
+  const featuredPosts = (posts.filter((post) => post.featured).length > 0
+    ? posts.filter((post) => post.featured)
+    : posts
+  ).slice(0, 3);
 
   return (
     <>
