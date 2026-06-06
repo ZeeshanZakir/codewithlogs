@@ -1,0 +1,16 @@
+{
+  "framework": "nextjs",
+  "buildCommand": "npm run build",
+  "outputDirectory": ".next",
+  "env": {
+    "NEXT_PUBLIC_SITE_URL": "https://codewithlogs.com",
+    "NEXT_PUBLIC_ADSENSE_PUBLISHER_ID": "ca-pub-XXXXXXXXXXXXXXXXX",
+    "NEXTAUTH_SECRET":"6b803dbfd25e5b680930cedd44d9f06f35b28fc51654ec4f1097ed0f18f1777a",
+    "NEXTAUTH_URL": "https://codewithlogs.com",
+    "ADMIN_EMAIL": "codewithlogs19@gmail.com",
+    "ADMIN_PASSWORD_HASH": "$2b$10$Za4HnImIChkrr.M8OxWUS.j71jw3h4CJ59k6atSv1Iq01iM13tbPe",
+    "MONGODB_URI": "mongodb+srv://codewithlogs:QWRtaW5AMTIz@codewithlogs.kdzgntg.mongodb.net/?appName=codewithlogs",
+    "RESEND_API_KEY": "re_RrvYxD8U_4mXFPhNrK1xTDopiX4H1nBxc",
+    "CONTACT_EMAIL": "codewithlogs19@gmail.com"
+  }
+}
