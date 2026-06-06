@@ -22,6 +22,10 @@ import { getAllPosts } from "@/lib/mdx";
 export const dynamic = "force-static";
 export const revalidate = 86400;
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://codewithlogs.com/";
+const shouldShowHomepageMidAd =
+  process.env.NODE_ENV === "production" &&
+  Boolean(process.env.NEXT_PUBLIC_ADSENSE_PUBLISHER_ID) &&
+  Boolean(process.env.NEXT_PUBLIC_ADSENSE_SLOT_HOMEPAGE_MID);
 
 export const metadata: Metadata = {
   title: "Full-Stack MERN Developer for SaaS and Fast Web Apps",
@@ -274,11 +278,13 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <section className="mx-auto w-full max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
-        <div className="rounded-[12px] border-y border-black/6 py-8">
-          <AdUnit slot="homepage-mid" format="horizontal" />
-        </div>
-      </section>
+      {shouldShowHomepageMidAd ? (
+        <section className="mx-auto w-full max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
+          <div className="rounded-[12px] border-y border-black/6 py-8">
+            <AdUnit slot="homepage-mid" format="horizontal" />
+          </div>
+        </section>
+      ) : null}
 
       <section className="mx-auto w-full max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-24">
         <Suspense fallback={<FeaturedPostsSectionFallback />}>
@@ -347,10 +353,11 @@ export default async function HomePage() {
 
 async function FeaturedPostsSection() {
   const posts = await getAllPosts();
-  const featuredPosts = (posts.filter((post) => post.featured).length > 0
-    ? posts.filter((post) => post.featured)
-    : posts
-  ).slice(0, 3);
+  const featuredPosts = posts.filter((post) => post.featured);
+  const fallbackPosts = posts.filter(
+    (post) => !featuredPosts.some((featuredPost) => featuredPost.slug === post.slug),
+  );
+  const homepagePosts = [...featuredPosts, ...fallbackPosts].slice(0, 3);
 
   return (
     <>
@@ -375,7 +382,7 @@ async function FeaturedPostsSection() {
       </div>
 
       <div className="grid gap-6 lg:grid-cols-3">
-        {featuredPosts.map((post) => (
+        {homepagePosts.map((post) => (
           <article
             key={post.slug}
             className="overflow-hidden rounded-[12px] border border-black/6 bg-white"
