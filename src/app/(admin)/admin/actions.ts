@@ -122,10 +122,16 @@ async function writePostFile(input: PostSaveInput) {
     data.scheduledAt = scheduledAt;
   }
 
-  const document = matter.stringify(input.content, data);
+ const document = matter.stringify(input.content, data);
 
-  const nextPath = getBlogPostPath(input.slug);
-  await fs.writeFile(nextPath, document, "utf8");
+if (process.env.VERCEL) {
+  throw new Error(
+    "Creating or editing MDX posts is not supported on Vercel. Add posts through GitHub."
+  );
+}
+
+const nextPath = getBlogPostPath(input.slug);
+await fs.writeFile(nextPath, document, "utf8");
 
   if (input.originalSlug && input.originalSlug !== input.slug) {
     await removeFileIfExists(getBlogPostPath(input.originalSlug));
@@ -165,7 +171,13 @@ export async function savePostAction(input: PostSaveInput) {
 
 export async function deletePostAction(slug: string) {
   await ensureAdmin();
-  await removeFileIfExists(getBlogPostPath(slug));
+  if (process.env.VERCEL) {
+  throw new Error(
+    "Deleting MDX posts is not supported on Vercel."
+  );
+}
+
+await removeFileIfExists(getBlogPostPath(slug));
   revalidatePostRoutes(slug);
 }
 
