@@ -55,6 +55,18 @@ function publicFilter() {
   };
 }
 
+function normalizeCoverImageUrl(value?: string) {
+  if (!value) {
+    return "/images/blog/default-cover.svg";
+  }
+
+  if (/^https?:\/\//i.test(value) || value.startsWith("/")) {
+    return value;
+  }
+
+  return `/images/blog/${value}`;
+}
+
 function mapPost(doc: any): BlogPost {
   return {
     slug: doc.slug,
@@ -66,9 +78,7 @@ function mapPost(doc: any): BlogPost {
     scheduledAt: doc.scheduledAt?.toISOString(),
     category: doc.category,
     excerpt: doc.excerpt,
-    coverImage: doc.coverImage?.startsWith("/")
-  ? doc.coverImage
-  : `/images/blog/${doc.coverImage}`,
+    coverImage: normalizeCoverImageUrl(doc.coverImage),
     author: doc.author,
     readTime: doc.readTime,
     featured: doc.featured ?? false,
