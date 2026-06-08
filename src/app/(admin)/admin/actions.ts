@@ -128,12 +128,19 @@ export async function savePostAction(input: PostSaveInput) {
       ? scheduledAt
       : existing?.publishedAt ?? null;
 
+      const normalizedCoverImage =
+  data.coverImage.startsWith("http")
+    ? data.coverImage
+    : data.coverImage.startsWith("/")
+    ? data.coverImage
+    : `/images/blog/${data.coverImage}`;
+
   const payload = {
     title: data.title,
     slug: data.slug,
     excerpt: data.excerpt,
     content: data.content,
-    coverImage: data.coverImage,
+    coverImage: normalizedCoverImage,
     author: data.author,
     category: data.category,
     tags: data.tags,

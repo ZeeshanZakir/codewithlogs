@@ -66,7 +66,9 @@ function mapPost(doc: any): BlogPost {
     scheduledAt: doc.scheduledAt?.toISOString(),
     category: doc.category,
     excerpt: doc.excerpt,
-    coverImage: doc.coverImage,
+    coverImage: doc.coverImage?.startsWith("/")
+  ? doc.coverImage
+  : `/images/blog/${doc.coverImage}`,
     author: doc.author,
     readTime: doc.readTime,
     featured: doc.featured ?? false,
