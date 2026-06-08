@@ -40,6 +40,14 @@ const postSaveSchema = z.object({
   tags: z.array(z.string().trim().min(1)).default([]),
   content: z.string().trim().min(50),
   affiliateLinks: z.array(affiliateLinkSchema).default([]),
+}).superRefine((input, ctx) => {
+  if (input.status === "scheduled" && !input.scheduledAt?.trim()) {
+    ctx.addIssue({
+      code: z.ZodIssueCode.custom,
+      path: ["scheduledAt"],
+      message: "Scheduled posts require a schedule date.",
+    });
+  }
 });
 
 export type PostSaveInput = z.infer<typeof postSaveSchema>;
@@ -70,11 +78,28 @@ async function removeFileIfExists(filePath: string) {
   }
 }
 
+function normalizeScheduledAtInput(value?: string) {
+  if (!value) {
+    return undefined;
+  }
+
+  const parsed = new Date(value);
+
+  if (Number.isNaN(parsed.getTime())) {
+    throw new Error("Invalid schedule date.");
+  }
+
+  return parsed.toISOString();
+}
+
 async function writePostFile(input: PostSaveInput) {
   const existingPost = await getPostBySlug(input.originalSlug ?? input.slug, true);
   const nextStatus: BlogPostStatus = input.status;
+  const scheduledAt = normalizeScheduledAtInput(input.scheduledAt);
   const date =
-    nextStatus === "published"
+    nextStatus === "scheduled" && scheduledAt
+      ? scheduledAt
+      : nextStatus === "published"
       ? new Date().toISOString()
       : existingPost?.date ?? new Date().toISOString();
   const readTime = readingTime(input.content).text;
@@ -93,8 +118,8 @@ async function writePostFile(input: PostSaveInput) {
     tags: input.tags,
   };
 
-  if (input.scheduledAt) {
-    data.scheduledAt = input.scheduledAt;
+  if (scheduledAt) {
+    data.scheduledAt = scheduledAt;
   }
 
   const document = matter.stringify(input.content, data);

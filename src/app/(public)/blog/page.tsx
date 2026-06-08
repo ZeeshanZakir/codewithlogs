@@ -4,7 +4,7 @@ import { BlogIndexClient } from "@/components/blog/BlogIndexClient";
 import { getAllPosts } from "@/lib/mdx";
 
 export const dynamic = "force-static";
-export const revalidate = 86400;
+export const revalidate = 60;
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://codewithlogs.com";
 const categories = [
   "All",

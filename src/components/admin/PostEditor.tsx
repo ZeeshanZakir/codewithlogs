@@ -66,6 +66,21 @@ function getReadTime(value: string) {
   return `${Math.max(1, Math.ceil(getWordCount(value) / 200))} min read`;
 }
 
+function toDateTimeLocalValue(value?: string) {
+  if (!value) {
+    return "";
+  }
+
+  const parsed = new Date(value);
+
+  if (Number.isNaN(parsed.getTime())) {
+    return value;
+  }
+
+  const localDate = new Date(parsed.getTime() - parsed.getTimezoneOffset() * 60_000);
+  return localDate.toISOString().slice(0, 16);
+}
+
 function createAffiliateLink(
   value: Partial<Omit<EditableAffiliateLink, "id">> = {},
 ): EditableAffiliateLink {
@@ -281,7 +296,7 @@ export function PostEditor({ initialPost }: PostEditorProps) {
   const [status, setStatus] = useState<"draft" | "published" | "scheduled">(
     initialPost?.status ?? "draft",
   );
-  const [scheduledAt, setScheduledAt] = useState(initialPost?.scheduledAt ?? "");
+  const [scheduledAt, setScheduledAt] = useState(toDateTimeLocalValue(initialPost?.scheduledAt));
   const [tags, setTags] = useState(initialPost?.tags.join(", ") ?? "");
   const [content, setContent] = useState(initialPost?.content ?? "");
   const [isUploading, setIsUploading] = useState(false);

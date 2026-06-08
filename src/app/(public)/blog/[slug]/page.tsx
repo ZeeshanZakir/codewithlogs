@@ -18,9 +18,8 @@ import {
 } from "@/lib/mdx";
 
 export const dynamic = "force-static";
-export const revalidate = false;
+export const revalidate = 60;
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://codewithlogs.com";
-export const dynamicParams = false;
 
 type BlogPostPageProps = {
   params: Promise<{ slug: string }>;
