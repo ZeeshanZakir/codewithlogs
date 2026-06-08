@@ -1,19 +1,13 @@
 "use server";
 
-import { promises as fs } from "node:fs";
-import matter from "gray-matter";
 import readingTime from "reading-time";
+import { BlogPost } from "@/lib/blog-post";
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
 
 import { auth } from "@/auth";
 import { ContactMessage } from "@/lib/contact-message";
-import {
-  getBlogPostPath,
-  getPostBySlug,
-  type AffiliateLink,
-  type BlogPostStatus,
-} from "@/lib/mdx";
+import { getPostBySlug, type BlogPostStatus } from "@/lib/mdx";
 import dbConnect from "@/lib/mongodb";
 
 const affiliateLinkSchema = z.object({
@@ -62,85 +56,35 @@ async function ensureAdmin() {
   return session;
 }
 
-function normalizeAffiliateLinks(affiliateLinks: AffiliateLink[]) {
-  return affiliateLinks.filter(
-    (link) => link.label.trim() && link.url.trim() && link.disclosure.trim(),
-  );
+function slugifyHeading(value: string) {
+  return value
+    .toLowerCase()
+    .trim()
+    .replace(/[`~!@#$%^&*()+=,[\]{}|\\:;"'<>,.?/]/g, "")
+    .replace(/\s+/g, "-");
 }
 
-async function removeFileIfExists(filePath: string) {
-  try {
-    await fs.unlink(filePath);
-  } catch (error) {
-    if ((error as NodeJS.ErrnoException).code !== "ENOENT") {
-      throw error;
-    }
-  }
-}
+function extractHeadings(content: string) {
+  const headings: {
+  id: string;
+  text: string;
+  level: number;
+}[] = [];
+  const lines = content.split("\n");
 
-function normalizeScheduledAtInput(value?: string) {
-  if (!value) {
-    return undefined;
-  }
+  for (const line of lines) {
+    const match = /^(##|###)\s+(.*)$/.exec(line.trim());
 
-  const parsed = new Date(value);
+    if (!match) continue;
 
-  if (Number.isNaN(parsed.getTime())) {
-    throw new Error("Invalid schedule date.");
-  }
-
-  return parsed.toISOString();
-}
-
-async function writePostFile(input: PostSaveInput) {
-  const existingPost = await getPostBySlug(input.originalSlug ?? input.slug, true);
-  const nextStatus: BlogPostStatus = input.status;
-  const scheduledAt = normalizeScheduledAtInput(input.scheduledAt);
-  const date =
-    nextStatus === "scheduled" && scheduledAt
-      ? scheduledAt
-      : nextStatus === "published"
-      ? new Date().toISOString()
-      : existingPost?.date ?? new Date().toISOString();
-  const readTime = readingTime(input.content).text;
-
-  const data: Record<string, any> = {
-    title: input.title,
-    date,
-    category: input.category,
-    excerpt: input.excerpt,
-    coverImage: input.coverImage,
-    author: input.author,
-    readTime,
-    featured: input.featured,
-    affiliateLinks: normalizeAffiliateLinks(input.affiliateLinks),
-    status: nextStatus,
-    tags: input.tags,
-  };
-
-  if (scheduledAt) {
-    data.scheduledAt = scheduledAt;
+    headings.push({
+      id: slugifyHeading(match[2]),
+      text: match[2],
+      level: match[1].length,
+    });
   }
 
- const document = matter.stringify(input.content, data);
-
-if (process.env.VERCEL) {
-  throw new Error(
-    "Creating or editing MDX posts is not supported on Vercel. Add posts through GitHub."
-  );
-}
-
-const nextPath = getBlogPostPath(input.slug);
-await fs.writeFile(nextPath, document, "utf8");
-
-  if (input.originalSlug && input.originalSlug !== input.slug) {
-    await removeFileIfExists(getBlogPostPath(input.originalSlug));
-  }
-
-  return {
-    slug: input.slug,
-    status: nextStatus,
-  };
+  return headings;
 }
 
 function revalidatePostRoutes(slug: string) {
@@ -154,58 +98,112 @@ function revalidatePostRoutes(slug: string) {
 
 export async function savePostAction(input: PostSaveInput) {
   await ensureAdmin();
+
   const parsed = postSaveSchema.safeParse(input);
 
   if (!parsed.success) {
     throw new Error("Invalid post data.");
   }
 
-  const result = await writePostFile(parsed.data);
-  revalidatePostRoutes(result.slug);
+  const data = parsed.data;
+
+  await dbConnect();
+
+  const existing = await BlogPost.findOne({
+    slug: data.originalSlug ?? data.slug,
+  });
+
+  const scheduledAt = data.scheduledAt
+    ? new Date(data.scheduledAt)
+    : null;
+
+    if (scheduledAt && Number.isNaN(scheduledAt.getTime())) {
+  throw new Error("Invalid schedule date.");
+}
+
+  const publishedAt =
+    data.status === "published"
+      ? new Date()
+      : data.status === "scheduled"
+      ? scheduledAt
+      : existing?.publishedAt ?? null;
+
+  const payload = {
+    title: data.title,
+    slug: data.slug,
+    excerpt: data.excerpt,
+    content: data.content,
+    coverImage: data.coverImage,
+    author: data.author,
+    category: data.category,
+    tags: data.tags,
+    featured: data.featured,
+    status: data.status,
+    scheduledAt,
+    publishedAt,
+    readTime: readingTime(data.content).text,
+    headings: extractHeadings(data.content),
+    affiliateLinks: data.affiliateLinks,
+  };
+
+  if (existing) {
+    Object.assign(existing, payload);
+    await existing.save();
+  } else {
+    await BlogPost.create(payload);
+  }
+  const slugTaken = await BlogPost.findOne({
+  slug: data.slug,
+  ...(existing ? { _id: { $ne: existing._id } } : {}),
+});
+
+if (slugTaken) {
+  throw new Error("A post with this slug already exists.");
+}
+
+  revalidatePostRoutes(data.slug);
 
   return {
-    slug: result.slug,
-    status: result.status,
+    slug: data.slug,
+    status: data.status,
   };
 }
 
 export async function deletePostAction(slug: string) {
   await ensureAdmin();
-  if (process.env.VERCEL) {
-  throw new Error(
-    "Deleting MDX posts is not supported on Vercel."
-  );
-}
 
-await removeFileIfExists(getBlogPostPath(slug));
+  await dbConnect();
+
+  await BlogPost.deleteOne({
+    slug,
+  });
+
   revalidatePostRoutes(slug);
 }
 
 export async function togglePostStatusAction(slug: string) {
   await ensureAdmin();
-  const post = await getPostBySlug(slug, true);
+
+  await dbConnect();
+
+  const post = await BlogPost.findOne({ slug });
 
   if (!post) {
     throw new Error("Post not found.");
   }
 
-  const nextStatus: BlogPostStatus =
-    post.status === "published" ? "draft" : "published";
+  post.status =
+    post.status === "published"
+      ? "draft"
+      : "published";
 
-  await savePostAction({
-    originalSlug: slug,
-    title: post.title,
-    slug: post.slug,
-    category: post.category,
-    excerpt: post.excerpt,
-    coverImage: post.coverImage,
-    author: post.author,
-    featured: post.featured,
-    status: nextStatus,
-    tags: post.tags,
-    content: post.content,
-    affiliateLinks: post.affiliateLinks,
-  });
+  if (post.status === "published") {
+    post.publishedAt = new Date();
+  }
+
+  await post.save();
+
+  revalidatePostRoutes(slug);
 }
 
 export async function markMessageAsReadAction(id: string) {

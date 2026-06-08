@@ -5,17 +5,18 @@ import { notFound } from "next/navigation";
 import { format } from "date-fns";
 import { Suspense } from "react";
 import { CalendarDays, ChevronRight, Clock3 } from "lucide-react";
-
+import {
+  getAllPosts,
+  getPostBySlug,
+  getRelatedPosts,
+  type BlogPostMeta,
+} from "@/lib/mdx";
 import { AdUnit } from "@/components/ads/AdUnit";
 import { BlogCard } from "@/components/blog/BlogCard";
 import { MDXRenderer } from "@/components/blog/MDXRenderer";
 import { ShareButtons } from "@/components/blog/ShareButtons";
 import { TableOfContents } from "@/components/blog/TableOfContents";
-import {
-  getAllPosts,
-  getPostBySlug,
-  getRelatedPosts,
-} from "@/lib/mdx";
+
 
 export const dynamic = "force-static";
 export const revalidate = 60;
@@ -39,7 +40,7 @@ async function getAugmentedRelatedPosts(
   category: string,
   limit = 3,
   includeDrafts = false,
-) {
+): Promise<BlogPostMeta[]> {
   const sameCategory = await getRelatedPosts(
     category,
     currentSlug,
@@ -53,9 +54,9 @@ async function getAugmentedRelatedPosts(
 
   const allPosts = await getAllPosts(includeDrafts);
   const fallback = allPosts.filter(
-    (post) =>
+    (post: { slug: string; }) =>
       post.slug !== currentSlug &&
-      !sameCategory.some((related) => related.slug === post.slug),
+      !sameCategory.some((related: { slug: any; }) => related.slug === post.slug),
   );
 
   return [...sameCategory, ...fallback].slice(0, limit);
@@ -63,7 +64,7 @@ async function getAugmentedRelatedPosts(
 
 export async function generateStaticParams() {
   const posts = await getAllPosts();
-  return posts.map((post) => ({ slug: post.slug }));
+  return posts.map((post: { slug: any; }) => ({ slug: post.slug }));
 }
 
 export async function generateMetadata({
@@ -240,9 +241,12 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             </div>
 
             <div className="grid gap-6 xl:grid-cols-3">
-              {relatedPosts.map((relatedPost) => (
-                <BlogCard key={relatedPost.slug} post={relatedPost} />
-              ))}
+              {relatedPosts.map((relatedPost: BlogPostMeta) => (
+  <BlogCard
+    key={relatedPost.slug}
+    post={relatedPost}
+  />
+))}
             </div>
           </section>
         </article>
