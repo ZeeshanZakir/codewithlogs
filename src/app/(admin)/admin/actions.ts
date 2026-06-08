@@ -130,20 +130,13 @@ export async function savePostAction(input: PostSaveInput) {
 
       let coverImage = data.coverImage.trim();
 
-if (
-  !coverImage.startsWith("http://") &&
-  !coverImage.startsWith("https://") &&
-  !coverImage.startsWith("/")
-) {
-  coverImage = `/images/blog/${coverImage}`;
-}
 
   const payload = {
     title: data.title,
     slug: data.slug,
     excerpt: data.excerpt,
     content: data.content,
-    coverImage,
+    coverImage: data.coverImage,
     author: data.author,
     category: data.category,
     tags: data.tags,
