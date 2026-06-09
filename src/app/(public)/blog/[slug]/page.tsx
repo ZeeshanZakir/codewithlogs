@@ -20,6 +20,7 @@ import { TableOfContents } from "@/components/blog/TableOfContents";
 
 export const dynamic = "force-static";
 export const revalidate = 60;
+export const dynamicParams = true;
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://codewithlogs.com";
 
 type BlogPostPageProps = {
@@ -63,8 +64,7 @@ async function getAugmentedRelatedPosts(
 }
 
 export async function generateStaticParams() {
-  const posts = await getAllPosts();
-  return posts.map((post: { slug: any; }) => ({ slug: post.slug }));
+  return [];
 }
 
 export async function generateMetadata({

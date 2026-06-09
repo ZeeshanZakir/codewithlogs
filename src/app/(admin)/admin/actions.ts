@@ -91,6 +91,7 @@ function revalidatePostRoutes(slug: string) {
   revalidatePath("/");
   revalidatePath("/blog");
   revalidatePath(`/blog/${slug}`);
+  revalidatePath("/blog/[slug]", "page");
   revalidatePath("/admin/dashboard");
   revalidatePath("/admin/manage-posts");
   revalidatePath("/admin/new-post");
@@ -113,6 +114,15 @@ export async function savePostAction(input: PostSaveInput) {
     slug: data.originalSlug ?? data.slug,
   });
 
+  const slugTaken = await BlogPost.findOne({
+    slug: data.slug,
+    ...(existing ? { _id: { $ne: existing._id } } : {}),
+  });
+
+  if (slugTaken) {
+    throw new Error("A post with this slug already exists.");
+  }
+
   const scheduledAt = data.scheduledAt
     ? new Date(data.scheduledAt)
     : null;
@@ -128,15 +138,14 @@ export async function savePostAction(input: PostSaveInput) {
       ? scheduledAt
       : existing?.publishedAt ?? null;
 
-      let coverImage = data.coverImage.trim();
-
+  const coverImage = data.coverImage.trim();
 
   const payload = {
     title: data.title,
     slug: data.slug,
     excerpt: data.excerpt,
     content: data.content,
-    coverImage: data.coverImage,
+    coverImage,
     author: data.author,
     category: data.category,
     tags: data.tags,
@@ -155,14 +164,6 @@ export async function savePostAction(input: PostSaveInput) {
   } else {
     await BlogPost.create(payload);
   }
-  const slugTaken = await BlogPost.findOne({
-  slug: data.slug,
-  ...(existing ? { _id: { $ne: existing._id } } : {}),
-});
-
-if (slugTaken) {
-  throw new Error("A post with this slug already exists.");
-}
 
   revalidatePostRoutes(data.slug);
 

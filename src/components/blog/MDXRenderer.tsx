@@ -10,6 +10,16 @@ type MDXRendererProps = {
   source: string;
 };
 
+function renderComponentLiteral(name: string) {
+  return function ComponentLiteral() {
+    return (
+      <code className="rounded bg-[#0f172a] px-1.5 py-0.5 text-sm text-emerald-200">
+        {`<${name} />`}
+      </code>
+    );
+  };
+}
+
 const mdxComponents = {
   h2: (props: ComponentProps<"h2">) => (
     <h2
@@ -47,6 +57,9 @@ const mdxComponents = {
   ),
   pre: CodeBlock,
   AffiliateLink: AffiliateLinkBox,
+  SignIn: renderComponentLiteral("SignIn"),
+  SignUp: renderComponentLiteral("SignUp"),
+  UserButton: renderComponentLiteral("UserButton"),
 };
 
 export async function MDXRenderer({ source }: MDXRendererProps) {
