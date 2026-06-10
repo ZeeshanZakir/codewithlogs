@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import Script from "next/script";
 import { GoogleAdSense } from "nextjs-google-adsense";
 import { Analytics } from "@vercel/analytics/react";
 
@@ -13,6 +14,7 @@ const inter = Inter({
 });
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://codewithlogs.com";
+const googleTagId = "G-NMGJP556HE";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -53,6 +55,18 @@ export default function RootLayout({
 
   return (
     <html lang="en" className={inter.variable}>
+      <Script
+        src={`https://www.googletagmanager.com/gtag/js?id=${googleTagId}`}
+        strategy="beforeInteractive"
+      />
+      <Script id="google-tag" strategy="beforeInteractive">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', '${googleTagId}');
+        `}
+      </Script>
       <body className="min-h-screen bg-background font-sans text-text antialiased">
         {shouldLoadAdsense ? (
           <GoogleAdSense
