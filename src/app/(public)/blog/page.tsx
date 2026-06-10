@@ -20,6 +20,9 @@ export const metadata: Metadata = {
   title: "The Developer Blog",
   description:
     "Practical posts on Next.js, React, MERN, AI tools, SaaS, and freelancing from a full-stack developer building fast web apps.",
+  alternates: {
+    canonical: `${siteUrl}/blog`,
+  },
   openGraph: {
     title: "The Developer Blog",
     description:

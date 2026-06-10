@@ -43,6 +43,49 @@ export type BlogPost = BlogPostMeta & {
   headings: TocHeading[];
 };
 
+function slugifyHeading(value: string) {
+  return value
+    .toLowerCase()
+    .trim()
+    .replace(/\[(.*?)\]\(.*?\)/g, "$1")
+    .replace(/\s+/g, "-")
+    .replace(/[^a-z0-9-]/g, "");
+}
+
+function extractHeadings(content: string): TocHeading[] {
+  const headings: TocHeading[] = [];
+  const lines = content.split("\n");
+  let inCodeBlock = false;
+
+  for (const line of lines) {
+    if (line.trim().startsWith("```")) {
+      inCodeBlock = !inCodeBlock;
+      continue;
+    }
+
+    if (inCodeBlock) {
+      continue;
+    }
+
+    const match = /^(##|###)\s+(.*)$/.exec(line.trim());
+
+    if (!match) {
+      continue;
+    }
+
+    const level = match[1].length as 2 | 3;
+    const text = match[2].replace(/\[(.*?)\]\(.*?\)/g, "$1").trim();
+
+    headings.push({
+      id: slugifyHeading(text),
+      text,
+      level,
+    });
+  }
+
+  return headings;
+}
+
 function publicFilter() {
   return {
     $or: [
@@ -86,7 +129,7 @@ function mapPost(doc: any): BlogPost {
     status: doc.status,
     tags: doc.tags ?? [],
     content: doc.content,
-    headings: doc.headings ?? [],
+    headings: extractHeadings(doc.content ?? ""),
   };
 }
 

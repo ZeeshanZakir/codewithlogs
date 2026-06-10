@@ -9,6 +9,9 @@ export const metadata: Metadata = {
   title: "Privacy Policy",
   description:
     "Privacy Policy for codewithlogs.com, covering data collection, cookies, analytics, Google AdSense, affiliate links, and privacy rights.",
+  alternates: {
+    canonical: `${siteUrl}/privacy-policy`,
+  },
   openGraph: {
     title: "Privacy Policy",
     description:

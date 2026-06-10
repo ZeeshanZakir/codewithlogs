@@ -70,18 +70,22 @@ const toolRecommendations = [
   {
     name: "Hostinger",
     description: "Affordable hosting and domains for landing pages, staging, and side projects.",
+    url: "https://www.hostinger.com/",
   },
   {
     name: "Vercel",
     description: "The fastest deployment workflow for Next.js sites and product experiments.",
+    url: "https://vercel.com/",
   },
   {
     name: "MongoDB Atlas",
     description: "Managed MongoDB that keeps shipping velocity high and ops overhead low.",
+    url: "https://www.mongodb.com/products/platform/atlas-database",
   },
   {
     name: "Cursor",
     description: "A strong AI-assisted editor for building features, refactors, and prototypes.",
+    url: "https://www.cursor.com/",
   },
 ];
 
@@ -310,7 +314,9 @@ export default async function HomePage() {
             {toolRecommendations.map((tool, index) => (
               <a
                 key={tool.name}
-                href="#"
+                href={tool.url}
+                target="_blank"
+                rel="noreferrer sponsored"
                 className="rounded-[12px] border border-black/6 bg-white p-5 transition-colors hover:border-primary/20"
               >
                 <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-[12px] bg-surface text-primary">

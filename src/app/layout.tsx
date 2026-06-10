@@ -24,9 +24,6 @@ export const metadata: Metadata = {
   },
   description:
     "Full-stack MERN developer blog. Tutorials on Next.js, React, Node.js, MongoDB, SaaS development, and developer tools.",
-  alternates: {
-    canonical: "/",
-  },
   openGraph: {
     title: "Zeeshan Zakir — Full Stack Developer",
     description:

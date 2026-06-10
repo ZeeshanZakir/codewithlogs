@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   title: "About Zeeshan Zakir | Full-Stack MERN Developer",
   description:
     "Learn more about Zeeshan Zakir, a full-stack MERN developer with 6 years of experience building web apps, SaaS products, and developer-focused content.",
+  alternates: {
+    canonical: `${siteUrl}/about`,
+  },
   openGraph: {
     title: "About Zeeshan Zakir | Full-Stack MERN Developer",
     description:

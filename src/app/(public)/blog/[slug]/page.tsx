@@ -196,14 +196,6 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             <AdUnit slot="article-mid" format="auto" />
           </div>
 
-          <section className="rounded-[12px] border border-primary/20 bg-primary/5 p-6">
-            <p className="mt-4 text-base leading-8 text-text/75">
-              The key takeaway from this guide is that strong implementation comes from clarity,
-              not complexity. Focus on shipping a clean version of the core idea, keep your
-              architecture understandable, and build around the user outcome that matters most.
-            </p>
-          </section>
-
           <section className="rounded-[12px] bg-primary p-6 text-white sm:p-8">
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-white/70">
               Need help building this?
