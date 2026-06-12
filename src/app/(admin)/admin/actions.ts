@@ -196,13 +196,22 @@ export async function togglePostStatusAction(slug: string) {
     throw new Error("Post not found.");
   }
 
+  const isPublishedLike =
+    post.status === "published" ||
+    (post.status === "scheduled" &&
+      post.scheduledAt instanceof Date &&
+      post.scheduledAt.getTime() <= Date.now());
+
   post.status =
-    post.status === "published"
+    isPublishedLike
       ? "draft"
       : "published";
 
   if (post.status === "published") {
     post.publishedAt = new Date();
+    post.scheduledAt = null;
+  } else {
+    post.scheduledAt = null;
   }
 
   await post.save();

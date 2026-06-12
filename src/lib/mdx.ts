@@ -43,6 +43,18 @@ export type BlogPost = BlogPostMeta & {
   headings: TocHeading[];
 };
 
+function isPastScheduledPublishTime(scheduledAt?: Date | null) {
+  return Boolean(scheduledAt && scheduledAt.getTime() <= Date.now());
+}
+
+function getEffectiveStatus(doc: { status: BlogPostStatus; scheduledAt?: Date | null }) {
+  if (doc.status === "scheduled" && isPastScheduledPublishTime(doc.scheduledAt)) {
+    return "published" as const;
+  }
+
+  return doc.status;
+}
+
 function slugifyHeading(value: string) {
   return value
     .toLowerCase()
@@ -111,13 +123,17 @@ function normalizeCoverImageUrl(value?: string) {
 }
 
 function mapPost(doc: any): BlogPost {
+  const effectiveStatus = getEffectiveStatus(doc);
+  const effectiveDate =
+    doc.publishedAt?.toISOString() ||
+    (effectiveStatus === "published" ? doc.scheduledAt?.toISOString() : undefined) ||
+    doc.createdAt?.toISOString() ||
+    new Date().toISOString();
+
   return {
     slug: doc.slug,
     title: doc.title,
-    date:
-      doc.publishedAt?.toISOString() ||
-      doc.createdAt?.toISOString() ||
-      new Date().toISOString(),
+    date: effectiveDate,
     scheduledAt: doc.scheduledAt?.toISOString(),
     category: doc.category,
     excerpt: doc.excerpt,
@@ -126,7 +142,7 @@ function mapPost(doc: any): BlogPost {
     readTime: doc.readTime,
     featured: doc.featured ?? false,
     affiliateLinks: doc.affiliateLinks ?? [],
-    status: doc.status,
+    status: effectiveStatus,
     tags: doc.tags ?? [],
     content: doc.content,
     headings: extractHeadings(doc.content ?? ""),

@@ -152,7 +152,7 @@ export default function AboutPage() {
           </div>
 
           <div className="flex flex-wrap gap-3">
-            {["Based in Pakistan", "Available Worldwide", "English + Urdu"].map((fact) => (
+            {["Based in United States", "Available Worldwide", "English + Urdu"].map((fact) => (
               <span
                 key={fact}
                 className="rounded-full border border-black/8 bg-surface px-4 py-2 text-sm font-medium text-text/70"
