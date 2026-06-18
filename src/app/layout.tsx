@@ -14,6 +14,7 @@ const inter = Inter({
 });
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://codewithlogs.com";
+const adsensePublisherId = process.env.NEXT_PUBLIC_ADSENSE_PUBLISHER_ID;
 const googleTagId = "G-NMGJP556HE";
 
 export const metadata: Metadata = {
@@ -39,6 +40,11 @@ export const metadata: Metadata = {
     description:
       "Full-stack MERN developer blog. Tutorials on Next.js, React, Node.js, MongoDB, SaaS development, and developer tools.",
   },
+  other: adsensePublisherId
+    ? {
+        "google-adsense-account": adsensePublisherId,
+      }
+    : undefined,
 };
 
 export default function RootLayout({
