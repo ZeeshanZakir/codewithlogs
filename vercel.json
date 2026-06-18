@@ -4,7 +4,7 @@
   "outputDirectory": ".next",
   "env": {
     "NEXT_PUBLIC_SITE_URL": "https://codewithlogs.com",
-    "NEXT_PUBLIC_ADSENSE_PUBLISHER_ID": "ca-pub-XXXXXXXXXXXXXXXXX",
+    "NEXT_PUBLIC_ADSENSE_PUBLISHER_ID": "pub-4582138963683131",
     "NEXTAUTH_URL": "https://codewithlogs.com",
     "ADMIN_EMAIL": "codewithlogs19@gmail.com",
     "CONTACT_EMAIL": "codewithlogs19@gmail.com"
