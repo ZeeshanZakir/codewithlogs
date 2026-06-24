@@ -2,7 +2,11 @@ import Link from "next/link";
 import { format } from "date-fns";
 
 import { deletePostAction } from "@/app/(admin)/admin/actions";
-import { getContactMessages, getDashboardMetrics, getRecentPosts } from "@/lib/admin";
+import {
+  getContactMessages,
+  getDashboardMetrics,
+  getRecentPosts,
+} from "@/lib/admin";
 
 export const dynamic = "force-dynamic";
 

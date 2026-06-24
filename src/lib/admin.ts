@@ -3,6 +3,7 @@ import "server-only";
 import { ContactMessage } from "@/lib/contact-message";
 import { getAllPosts, type BlogPostMeta } from "@/lib/mdx";
 import dbConnect from "@/lib/mongodb";
+import { Subscriber } from "@/lib/subscriber";
 
 export type AdminContactMessage = {
   id: string;
@@ -13,6 +14,17 @@ export type AdminContactMessage = {
   budget: string;
   status: "read" | "unread";
   createdAt: string;
+};
+
+export type AdminSubscriber = {
+  id: string;
+  email: string;
+  blogUpdates: boolean;
+  promotions: boolean;
+  source: "popup" | "homepage";
+  status: "active";
+  subscribedAt: string;
+  updatedAt: string;
 };
 
 function normalizeMessage(document: {
@@ -34,6 +46,28 @@ function normalizeMessage(document: {
     budget: document.budget,
     status: document.status,
     createdAt: document.createdAt.toISOString(),
+  };
+}
+
+function normalizeSubscriber(document: {
+  _id: { toString(): string };
+  email: string;
+  blogUpdates: boolean;
+  promotions: boolean;
+  source: "popup" | "homepage";
+  status: "active";
+  subscribedAt: Date;
+  updatedAt: Date;
+}): AdminSubscriber {
+  return {
+    id: document._id.toString(),
+    email: document.email,
+    blogUpdates: document.blogUpdates,
+    promotions: document.promotions,
+    source: document.source,
+    status: document.status,
+    subscribedAt: document.subscribedAt.toISOString(),
+    updatedAt: document.updatedAt.toISOString(),
   };
 }
 
@@ -68,6 +102,22 @@ export async function getContactMessages(limit?: number) {
 
   return messages.map((message) =>
     normalizeMessage(message as Parameters<typeof normalizeMessage>[0]),
+  );
+}
+
+export async function getSubscribers(limit?: number) {
+  await dbConnect();
+
+  const query = Subscriber.find().sort({ subscribedAt: -1 });
+
+  if (typeof limit === "number") {
+    query.limit(limit);
+  }
+
+  const subscribers = await query.lean();
+
+  return subscribers.map((subscriber) =>
+    normalizeSubscriber(subscriber as Parameters<typeof normalizeSubscriber>[0]),
   );
 }
 

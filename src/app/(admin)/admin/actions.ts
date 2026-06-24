@@ -9,6 +9,7 @@ import { auth } from "@/auth";
 import { ContactMessage } from "@/lib/contact-message";
 import { getPostBySlug, type BlogPostStatus } from "@/lib/mdx";
 import dbConnect from "@/lib/mongodb";
+import { Subscriber } from "@/lib/subscriber";
 
 const affiliateLinkSchema = z.object({
   label: z.string().trim().min(1),
@@ -45,6 +46,23 @@ const postSaveSchema = z.object({
 });
 
 export type PostSaveInput = z.infer<typeof postSaveSchema>;
+
+const subscriberUpdateSchema = z
+  .object({
+    id: z.string().trim().min(1),
+    email: z.string().trim().email(),
+    blogUpdates: z.boolean(),
+    promotions: z.boolean(),
+  })
+  .superRefine((input, ctx) => {
+    if (!input.blogUpdates && !input.promotions) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["blogUpdates"],
+        message: "Select at least one subscription type.",
+      });
+    }
+  });
 
 async function ensureAdmin() {
   const session = await auth();
@@ -95,6 +113,10 @@ function revalidatePostRoutes(slug: string) {
   revalidatePath("/admin/dashboard");
   revalidatePath("/admin/manage-posts");
   revalidatePath("/admin/new-post");
+}
+
+function revalidateSubscriberRoutes() {
+  revalidatePath("/admin/subscribers");
 }
 
 export async function savePostAction(input: PostSaveInput) {
@@ -241,4 +263,57 @@ export async function deleteMessagesBulkAction(ids: string[]) {
   await ContactMessage.deleteMany({ _id: { $in: ids } }).exec();
   revalidatePath("/admin/dashboard");
   revalidatePath("/admin/contact-messages");
+}
+
+export async function updateSubscriberAction(
+  input: z.infer<typeof subscriberUpdateSchema>,
+) {
+  await ensureAdmin();
+
+  const parsed = subscriberUpdateSchema.safeParse(input);
+
+  if (!parsed.success) {
+    throw new Error("Invalid subscriber data.");
+  }
+
+  await dbConnect();
+
+  const data = parsed.data;
+  const normalizedEmail = data.email.toLowerCase();
+  const existingSubscriber = await Subscriber.findById(data.id);
+
+  if (!existingSubscriber) {
+    throw new Error("Subscriber not found.");
+  }
+
+  const emailTaken = await Subscriber.findOne({
+    email: normalizedEmail,
+    _id: { $ne: data.id },
+  }).lean();
+
+  if (emailTaken) {
+    throw new Error("A subscriber with this email already exists.");
+  }
+
+  existingSubscriber.email = normalizedEmail;
+  existingSubscriber.blogUpdates = data.blogUpdates;
+  existingSubscriber.promotions = data.promotions;
+
+  await existingSubscriber.save();
+
+  revalidateSubscriberRoutes();
+}
+
+export async function deleteSubscriberAction(id: string) {
+  await ensureAdmin();
+  await dbConnect();
+  await Subscriber.findByIdAndDelete(id).exec();
+  revalidateSubscriberRoutes();
+}
+
+export async function deleteSubscribersBulkAction(ids: string[]) {
+  await ensureAdmin();
+  await dbConnect();
+  await Subscriber.deleteMany({ _id: { $in: ids } }).exec();
+  revalidateSubscriberRoutes();
 }

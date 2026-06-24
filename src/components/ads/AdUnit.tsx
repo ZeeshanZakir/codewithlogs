@@ -17,6 +17,8 @@ declare global {
 
 const slotMap = {
   "homepage-mid": process.env.NEXT_PUBLIC_ADSENSE_SLOT_HOMEPAGE_MID,
+  "gallery-top": process.env.NEXT_PUBLIC_ADSENSE_SLOT_GALLERY_TOP,
+  "gallery-grid": process.env.NEXT_PUBLIC_ADSENSE_SLOT_GALLERY_GRID,
 } as const;
 
 const formatStyles = {
@@ -26,7 +28,11 @@ const formatStyles = {
 } as const;
 
 function resolveSlotId(slot: string) {
-  return slotMap[slot as keyof typeof slotMap] ?? slot;
+  if (slot in slotMap) {
+    return slotMap[slot as keyof typeof slotMap];
+  }
+
+  return slot;
 }
 
 export function AdUnit({ slot, format = "auto" }: AdUnitProps) {

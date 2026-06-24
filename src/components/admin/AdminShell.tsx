@@ -6,11 +6,13 @@ import { signOut } from "next-auth/react";
 import {
   FileText,
   Files,
+  ImageUp,
   Inbox,
   LayoutDashboard,
   LogOut,
   NotebookPen,
   Settings,
+  Users,
 } from "lucide-react";
 
 import { Logo } from "@/components/branding/Logo";
@@ -33,6 +35,11 @@ const navItems = [
     icon: NotebookPen,
   },
   {
+    href: "/admin/upload-gallery",
+    label: "Upload Gallery",
+    icon: ImageUp,
+  },
+  {
     href: "/admin/manage-posts",
     label: "Manage Posts",
     icon: Files,
@@ -41,6 +48,11 @@ const navItems = [
     href: "/admin/contact-messages",
     label: "Contact Messages",
     icon: Inbox,
+  },
+  {
+    href: "/admin/subscribers",
+    label: "Subscribers",
+    icon: Users,
   },
   {
     href: "/admin/site-settings",
@@ -52,8 +64,10 @@ const navItems = [
 const pageTitleMap: Record<string, string> = {
   "/admin/dashboard": "Dashboard",
   "/admin/new-post": "New Post",
+  "/admin/upload-gallery": "Upload Gallery",
   "/admin/manage-posts": "Manage Posts",
   "/admin/contact-messages": "Contact Messages",
+  "/admin/subscribers": "Subscribers",
   "/admin/site-settings": "Site Settings",
 };
 
@@ -125,7 +139,7 @@ export function AdminShell({ children, userEmail }: AdminShellProps) {
                 <div>
                   <h1 className="text-xl font-semibold text-white">{pageTitle}</h1>
                   <p className="text-sm text-white/55">
-                    Manage blog content, contact messages, and site settings.
+                    Manage blog content, subscribers, contact messages, and site settings.
                   </p>
                 </div>
               </div>

@@ -4,12 +4,56 @@ import { FormEvent, useState } from "react";
 
 export function NewsletterSignup() {
   const [email, setEmail] = useState("");
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [feedback, setFeedback] = useState("");
+  const [feedbackTone, setFeedbackTone] = useState<"success" | "error" | null>(null);
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setIsSubmitted(true);
-    setEmail("");
+
+    if (!email.trim()) {
+      setFeedbackTone("error");
+      setFeedback("Enter your email address to subscribe.");
+      return;
+    }
+
+    try {
+      setIsSubmitting(true);
+      setFeedback("");
+      setFeedbackTone(null);
+
+      const response = await fetch("/api/subscribers", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          blogUpdates: true,
+          promotions: false,
+          source: "homepage",
+        }),
+      });
+
+      const payload = (await response.json()) as { error?: string; message?: string };
+
+      if (!response.ok) {
+        throw new Error(payload.error ?? "Unable to save your subscription.");
+      }
+
+      setFeedbackTone("success");
+      setFeedback(payload.message ?? "Thanks for subscribing.");
+      setEmail("");
+    } catch (error) {
+      setFeedbackTone("error");
+      setFeedback(
+        error instanceof Error
+          ? error.message
+          : "Unable to save your subscription right now.",
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   return (
@@ -25,14 +69,19 @@ export function NewsletterSignup() {
         />
         <button
           type="submit"
+          disabled={isSubmitting}
           className="inline-flex h-[52px] items-center justify-center rounded-full bg-accent px-6 text-sm font-semibold text-white transition-colors hover:bg-accent/90"
         >
-          Subscribe
+          {isSubmitting ? "Subscribing..." : "Subscribe"}
         </button>
       </div>
-      {isSubmitted ? (
-        <p className="mt-3 text-sm text-white/80">
-          Thanks. Your signup UI is connected and ready for a real email service later.
+      {feedback ? (
+        <p
+          className={`mt-3 text-sm ${
+            feedbackTone === "error" ? "text-red-200" : "text-white/80"
+          }`}
+        >
+          {feedback}
         </p>
       ) : null}
     </form>
