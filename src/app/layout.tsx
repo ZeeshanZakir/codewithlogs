@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Script from "next/script";
-import { GoogleAdSense } from "nextjs-google-adsense";
 import { Analytics } from "@vercel/analytics/react";
 
 import "./globals.css";
@@ -67,6 +66,13 @@ export default function RootLayout({
         data-cfasync="false"
         async
       />
+      {shouldLoadAdsense ? (
+        <Script
+          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${process.env.NEXT_PUBLIC_ADSENSE_PUBLISHER_ID}`}
+          crossOrigin="anonymous"
+          async
+        />
+      ) : null}
       <Script
         src={`https://www.googletagmanager.com/gtag/js?id=${googleTagId}`}
         strategy="beforeInteractive"
@@ -80,12 +86,6 @@ export default function RootLayout({
         `}
       </Script>
       <body className="min-h-screen bg-background font-sans text-text antialiased">
-        {shouldLoadAdsense ? (
-          <GoogleAdSense
-            publisherId={process.env.NEXT_PUBLIC_ADSENSE_PUBLISHER_ID!}
-            strategy="afterInteractive"
-          />
-        ) : null}
         {children}
         <Analytics />
         <SpeedInsights />
