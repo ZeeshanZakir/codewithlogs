@@ -62,6 +62,12 @@ export default function RootLayout({
   return (
     <html lang="en" className={inter.variable}>
       <Script
+        src="https://quge5.com/88/tag.min.js"
+        data-zone="256903"
+        data-cfasync="false"
+        async
+      />
+      <Script
         src={`https://www.googletagmanager.com/gtag/js?id=${googleTagId}`}
         strategy="beforeInteractive"
       />
