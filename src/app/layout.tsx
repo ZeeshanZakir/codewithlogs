@@ -40,11 +40,14 @@ export const metadata: Metadata = {
     description:
       "Full-stack MERN developer blog. Tutorials on Next.js, React, Node.js, MongoDB, SaaS development, and developer tools.",
   },
-  other: adsensePublisherId
-    ? {
-        "google-adsense-account": adsensePublisherId,
-      }
-    : undefined,
+  other: {
+    monetag: "4f8c3ff5fbf9312dc5f3ac62b2dd58d0",
+    ...(adsensePublisherId
+      ? {
+          "google-adsense-account": adsensePublisherId,
+        }
+      : {}),
+  },
 };
 
 export default function RootLayout({
