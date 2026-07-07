@@ -39,14 +39,14 @@ export const metadata: Metadata = {
     description:
       "Full-stack MERN developer blog. Tutorials on Next.js, React, Node.js, MongoDB, SaaS development, and developer tools.",
   },
-  other: {
-    monetag: "4f8c3ff5fbf9312dc5f3ac62b2dd58d0",
-    ...(adsensePublisherId
-      ? {
-          "google-adsense-account": adsensePublisherId,
-        }
-      : {}),
-  },
+  // other: {
+  //   monetag: "4f8c3ff5fbf9312dc5f3ac62b2dd58d0",
+  //   ...(adsensePublisherId
+  //     ? {
+  //         "google-adsense-account": adsensePublisherId,
+  //       }
+  //     : {}),
+  // },
 };
 
 export default function RootLayout({
@@ -60,12 +60,6 @@ export default function RootLayout({
 
   return (
     <html lang="en" className={inter.variable}>
-      <Script
-        src="https://quge5.com/88/tag.min.js"
-        data-zone="256903"
-        data-cfasync="false"
-        async
-      />
       {shouldLoadAdsense ? (
         <Script
           src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${process.env.NEXT_PUBLIC_ADSENSE_PUBLISHER_ID}`}
