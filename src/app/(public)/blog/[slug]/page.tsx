@@ -3,7 +3,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { format } from "date-fns";
-import { Suspense } from "react";
 import { CalendarDays, ChevronRight, Clock3 } from "lucide-react";
 import {
   getAllPosts,
@@ -187,9 +186,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           </div>
 
           <div className="rounded-[12px] border border-black/6 bg-white p-6 sm:p-8 lg:p-10">
-            <Suspense fallback={<ArticleContentFallback />}>
-              <MDXRenderer source={post.content} />
-            </Suspense>
+            <MDXRenderer source={post.content} />
           </div>
 
           <div className="rounded-[12px] border border-black/6 bg-white p-4">
@@ -297,20 +294,6 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           </div>
         </aside>
       </div>
-    </div>
-  );
-}
-function ArticleContentFallback() {
-  return (
-    <div className="space-y-5">
-      {Array.from({ length: 6 }).map((_, index) => (
-        <div
-          key={index}
-          className={`animate-pulse rounded bg-surface ${
-            index === 0 ? "h-8 w-2/3" : "h-5 w-full"
-          }`}
-        />
-      ))}
     </div>
   );
 }
