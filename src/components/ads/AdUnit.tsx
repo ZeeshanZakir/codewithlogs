@@ -19,6 +19,8 @@ const slotMap = {
   "homepage-mid": process.env.NEXT_PUBLIC_ADSENSE_SLOT_HOMEPAGE_MID,
   "gallery-top": process.env.NEXT_PUBLIC_ADSENSE_SLOT_GALLERY_TOP,
   "gallery-grid": process.env.NEXT_PUBLIC_ADSENSE_SLOT_GALLERY_GRID,
+  "json-tool-top": process.env.NEXT_PUBLIC_ADSENSE_SLOT_JSON_TOOL_TOP,
+  "json-tool-bottom": process.env.NEXT_PUBLIC_ADSENSE_SLOT_JSON_TOOL_BOTTOM,
 } as const;
 
 const formatStyles = {
