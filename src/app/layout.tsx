@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     description:
       "Full-stack MERN developer blog with practical tutorials on Next.js, React, Node.js, MongoDB, SaaS development, and developer tools.",
     url: siteUrl,
-    siteName: "CodeWithLogs",
+    siteName: "Code With Logs",
     locale: "en_US",
     type: "website",
   },

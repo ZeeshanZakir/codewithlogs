@@ -275,7 +275,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
             <div className="rounded-[12px] border border-black/6 bg-white p-5">
               <p className="text-sm font-semibold uppercase tracking-[0.18em] text-text/55">
-                Hire Me
+                Contact Me
               </p>
               <h2 className="mt-3 text-xl font-semibold tracking-tight text-text">
                 Need a developer? Let&apos;s work together.

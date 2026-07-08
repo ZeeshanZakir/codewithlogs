@@ -5,16 +5,16 @@ import { ArrowRight, Braces, Code2, KeyRound, Regex, Type, Wand2 } from "lucide-
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://codewithlogs.com";
 
 export const metadata: Metadata = {
-  title: "Developer Tools — Free Online Utilities | CodeWithLogs",
+  title: "Best Developer Tools — Free Online Utilities | CodeWithLogs",
   description:
-    "Explore free online developer tools from CodeWithLogs, including a JSON Formatter & Validator with more utilities coming soon.",
+    "Explore free online developer tools from Code With Logs, including a JSON Formatter & Validator with more utilities coming soon.",
   alternates: {
     canonical: `${siteUrl}/tools`,
   },
   openGraph: {
-    title: "Developer Tools — Free Online Utilities | CodeWithLogs",
+    title: "Best Developer Tools — Free Online Utilities | Code With Logs",
     description:
-      "Explore free online developer tools from CodeWithLogs, including a JSON Formatter & Validator with more utilities coming soon.",
+      "Explore free online developer tools from Code With Logs, including a JSON Formatter & Validator with more utilities coming soon.",
     url: `${siteUrl}/tools`,
     type: "website",
   },

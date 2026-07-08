@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   description:
     "Hire a full-stack MERN developer to build fast web apps and SaaS products, or explore practical articles on Next.js, React, Node.js, and MongoDB.",
   openGraph: {
-    title: "I Build Fast Web Apps & SaaS Products",
+    title: "Code with Logs Build Fast Web Apps & SaaS Products",
     description:
       "Full-stack MERN developer helping founders launch high-performance products with Next.js, React, Node.js, and MongoDB.",
     url: siteUrl,
@@ -205,7 +205,7 @@ export default async function HomePage() {
                 href="/contact"
                 className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-6 py-3.5 text-sm font-semibold text-white transition-transform hover:-translate-y-0.5 hover:bg-primary/92"
               >
-                Hire Me <ArrowRight className="h-4 w-4" />
+                Contact Me <ArrowRight className="h-4 w-4" />
               </Link>
               <Link
                 href="/blog"

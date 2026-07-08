@@ -6,14 +6,14 @@ import { JsonFormatterTool } from "@/components/tools/JsonFormatterTool";
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://codewithlogs.com";
 
 export const metadata: Metadata = {
-  title: "JSON Formatter & Validator Online — Free Tool | CodeWithLogs",
+  title: "Best JSON Formatter & Validator Online — Free Tool | Code With Logs",
   description:
     "Free online JSON formatter, validator and beautifier. Paste your JSON to instantly format, validate, and fix errors. Works in your browser — no data sent to any server.",
   alternates: {
     canonical: `${siteUrl}/tools/json-formatter`,
   },
   openGraph: {
-    title: "JSON Formatter & Validator Online — Free Tool | CodeWithLogs",
+    title: "Best JSON Formatter & Validator Online — Free Tool | Code With Logs",
     description:
       "Free online JSON formatter, validator and beautifier. Paste your JSON to instantly format, validate, and fix errors. Works in your browser — no data sent to any server.",
     url: `${siteUrl}/tools/json-formatter`,

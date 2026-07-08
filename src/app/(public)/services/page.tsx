@@ -347,7 +347,7 @@ export default function ServicesPage() {
         <div className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-18">
           <div className="mb-10 max-w-3xl space-y-3">
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-primary">
-              Why Hire Me
+              Why Contact Me
             </p>
             <h2 className="text-3xl font-bold tracking-tight text-text sm:text-4xl">
               Reliable delivery with product-minded engineering
