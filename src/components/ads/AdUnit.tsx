@@ -21,6 +21,14 @@ const slotMap = {
   "gallery-grid": process.env.NEXT_PUBLIC_ADSENSE_SLOT_GALLERY_GRID,
   "json-tool-top": process.env.NEXT_PUBLIC_ADSENSE_SLOT_JSON_TOOL_TOP,
   "json-tool-bottom": process.env.NEXT_PUBLIC_ADSENSE_SLOT_JSON_TOOL_BOTTOM,
+  "password-generator-top": process.env.NEXT_PUBLIC_ADSENSE_SLOT_PASSWORD_GENERATOR_TOP,
+  "password-generator-bottom": process.env.NEXT_PUBLIC_ADSENSE_SLOT_PASSWORD_GENERATOR_BOTTOM,
+  "word-counter-top": process.env.NEXT_PUBLIC_ADSENSE_SLOT_WORD_COUNTER_TOP,
+  "word-counter-bottom": process.env.NEXT_PUBLIC_ADSENSE_SLOT_WORD_COUNTER_BOTTOM,
+  "css-minifier-top": process.env.NEXT_PUBLIC_ADSENSE_SLOT_CSS_MINIFIER_TOP,
+  "css-minifier-bottom": process.env.NEXT_PUBLIC_ADSENSE_SLOT_CSS_MINIFIER_BOTTOM,
+  "base64-top": process.env.NEXT_PUBLIC_ADSENSE_SLOT_BASE64_TOP,
+  "base64-bottom": process.env.NEXT_PUBLIC_ADSENSE_SLOT_BASE64_BOTTOM,
 } as const;
 
 const formatStyles = {

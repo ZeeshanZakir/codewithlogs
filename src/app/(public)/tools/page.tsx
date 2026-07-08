@@ -7,14 +7,14 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://codewithlogs.com";
 export const metadata: Metadata = {
   title: "Best Developer Tools — Free Online Utilities | CodeWithLogs",
   description:
-    "Explore free online developer tools from Code With Logs, including a JSON Formatter & Validator with more utilities coming soon.",
+    "Explore free online developer tools from Code With Logs, including a JSON Formatter & Validator, Password Generator, Word Counter, CSS Minifier, Base64 Encoder/Decoder, and more utilities coming soon.",
   alternates: {
     canonical: `${siteUrl}/tools`,
   },
   openGraph: {
     title: "Best Developer Tools — Free Online Utilities | Code With Logs",
     description:
-      "Explore free online developer tools from Code With Logs, including a JSON Formatter & Validator with more utilities coming soon.",
+      "Explore free online developer tools from Code With Logs, including a JSON Formatter & Validator, Password Generator, Word Counter, CSS Minifier, Base64 Encoder/Decoder, and more utilities coming soon.",
     url: `${siteUrl}/tools`,
     type: "website",
   },
@@ -29,15 +29,41 @@ const availableTools = [
     icon: Braces,
     badge: "Live",
   },
+  {
+    name: "Password Generator",
+    description:
+      "Generate strong passwords instantly with length controls, character rules, copy actions, and session-only history.",
+    href: "/tools/password-generator",
+    icon: KeyRound,
+    badge: "Live",
+  },
+  {
+    name: "Word Counter",
+    description:
+      "Count words, characters, sentences, paragraphs, reading time, and keyword density in real time.",
+    href: "/tools/word-counter",
+    icon: Type,
+    badge: "Live",
+  },
+  {
+    name: "CSS Minifier",
+    description:
+      "Minify and beautify CSS instantly with compression stats, sample code, and line-numbered panels.",
+    href: "/tools/css-minifier",
+    icon: Wand2,
+    badge: "Live",
+  },
+  {
+    name: "Base64 Encoder/Decoder",
+    description:
+      "Encode and decode Base64 text, inspect image/file payloads, and preview supported image data directly in the browser.",
+    href: "/tools/base64",
+    icon: Code2,
+    badge: "Live",
+  },
 ];
 
-const comingSoonTools = [
-  { name: "CSS Minifier", icon: Wand2 },
-  { name: "Password Generator", icon: KeyRound },
-  { name: "Word Counter", icon: Type },
-  { name: "Base64 Encoder/Decoder", icon: Code2 },
-  { name: "Regex Tester", icon: Regex },
-];
+const comingSoonTools = [{ name: "Regex Tester", icon: Regex }];
 
 export default function ToolsPage() {
   return (
@@ -46,7 +72,7 @@ export default function ToolsPage() {
         <div className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
           <div className="max-w-4xl space-y-5">
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-primary">
-              CodeWithLogs Tools
+              Code With Logs Tools
             </p>
             <h1 className="text-4xl font-bold tracking-tight text-text sm:text-5xl lg:text-6xl">
               Free developer tools built for speed and clarity
@@ -130,7 +156,7 @@ export default function ToolsPage() {
                     </div>
                     <h3 className="mt-6 text-xl font-semibold text-text">{tool.name}</h3>
                     <p className="mt-2 text-sm leading-7 text-text/60">
-                      This tool is planned for a future release in the CodeWithLogs tools library.
+                      This tool is planned for a future release in the Code with Logs tools library.
                     </p>
                   </div>
                 );
