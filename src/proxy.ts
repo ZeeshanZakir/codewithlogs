@@ -6,19 +6,36 @@ import authConfig from "@/auth.config";
 const { auth } = NextAuth(authConfig);
 
 const TOOLS_HOST = "tools.codewithlogs.com";
+const MAIN_HOSTS = ["codewithlogs.com", "www.codewithlogs.com"];
 
 export default auth((request) => {
-  const host = request.headers.get("host") || "";
+  const host =
+    request.headers.get("x-forwarded-host") ||
+    request.headers.get("host") ||
+    "";
   const pathname = request.nextUrl.pathname;
 
-  // 1. Subdomain rewrite — serve /tools on tools.codewithlogs.com
+  // 1. Main domain: /tools now lives on the subdomain → redirect away
+  if (
+    MAIN_HOSTS.includes(host) &&
+    (pathname === "/tools" || pathname.startsWith("/tools/"))
+  ) {
+    const rest = pathname.replace(/^\/tools/, ""); // "" or "/json-formatter"
+    return NextResponse.redirect(`https://tools.codewithlogs.com${rest}`, 308);
+  }
+
+  // 2. Subdomain: serve the /tools section
   if (host === TOOLS_HOST) {
+    const isAsset = pathname.includes(".");
+    if (pathname.startsWith("/tools") || isAsset) {
+      return NextResponse.next();
+    }
     const url = request.nextUrl.clone();
-    url.pathname = `/tools${pathname === "/" ? "" : pathname}`;
+    url.pathname = pathname === "/" ? "/tools" : `/tools${pathname}`;
     return NextResponse.rewrite(url);
   }
 
-  // 2. Auth protection — ONLY for /admin routes
+  // 3. Auth protection — ONLY for /admin routes
   if (pathname.startsWith("/admin")) {
     const isLoggedIn = Boolean(request.auth?.user);
     const isLoginRoute = pathname === "/admin/login";
