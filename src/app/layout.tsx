@@ -19,13 +19,13 @@ const googleTagId = "G-NMGJP556HE";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Zeeshan Zakir — Full Stack Developer",
-    template: "%s | Zeeshan Zakir — Full Stack Developer",
+    default: "Code with Logs",
+    template: "%s | Code with Logs",
   },
   description:
     "Full-stack MERN developer blog. Tutorials on Next.js, React, Node.js, MongoDB, SaaS development, and developer tools.",
   openGraph: {
-    title: "Zeeshan Zakir — Full Stack Developer",
+    title: "Code with Logs",
     description:
       "Full-stack MERN developer blog with practical tutorials on Next.js, React, Node.js, MongoDB, SaaS development, and developer tools.",
     url: siteUrl,
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Zeeshan Zakir — Full Stack Developer",
+    title: "Code with Logs",
     description:
       "Full-stack MERN developer blog. Tutorials on Next.js, React, Node.js, MongoDB, SaaS development, and developer tools.",
   },

@@ -192,11 +192,11 @@ export default async function HomePage() {
 
             <div className="space-y-5">
               <h1 className="max-w-3xl text-4xl font-bold tracking-tight text-text sm:text-5xl lg:text-7xl">
-                I Build Fast Web Apps &amp; SaaS Products
+                We Build Fast Web Apps &amp; SaaS Products
               </h1>
               <p className="max-w-2xl text-base leading-8 text-text/70 sm:text-lg">
-                Full-stack MERN developer with 6 years of experience. I turn your ideas into
-                high-performance web applications using Next.js, React, Node.js, and MongoDB.
+                Practical full-stack development tutorials and engineering 
+                lessons from real SaaS and client projects.
               </p>
             </div>
 
@@ -234,8 +234,8 @@ export default async function HomePage() {
       <section className="border-y border-black/5 bg-surface">
         <div className="mx-auto grid w-full max-w-7xl gap-6 px-4 py-6 text-center sm:grid-cols-2 sm:px-6 lg:grid-cols-4 lg:px-8">
           {[
-            "6+ Years Experience",
-            "50+ Projects Delivered",
+            "Many Years Experience",
+            "500+ Projects Delivered",
             "MERN Stack Expert",
             "Available Worldwide",
           ].map((item) => (

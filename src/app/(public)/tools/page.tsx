@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, Braces, Code2, KeyRound, Regex, Type, Wand2 } from "lucide-react";
+import { ArrowRight, Braces, Clock, Code2, FileSearch, Hash, Key, KeyRound, Type, Wand2 } from "lucide-react";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://codewithlogs.com";
 
@@ -30,11 +30,43 @@ const availableTools = [
     badge: "Live",
   },
   {
+    name: "Token Counter",
+    description:
+      "Count tokens for GPT, Claude & Gemini prompts with cost estimation. 100% free, runs in your browser.",
+    href: "/tools/token-counter",
+    icon: Hash,
+    badge: "Live",
+  },
+  {
+    name: "Regex Tester",
+    description:
+      "Test regular expressions in real time with match highlighting, group capture, and plain-English explanations.",
+    href: "/tools/regex-tester",
+    icon: FileSearch,
+    badge: "Live",
+  },
+  {
+    name: "Cron Expression Builder",
+    description:
+      "Build and understand cron expressions with a visual editor. Get human-readable explanations and next run times.",
+    href: "/tools/cron-builder",
+    icon: Clock,
+    badge: "Live",
+  },
+  {
     name: "Password Generator",
     description:
       "Generate strong passwords instantly with length controls, character rules, copy actions, and session-only history.",
     href: "/tools/password-generator",
     icon: KeyRound,
+    badge: "Live",
+  },
+  {
+    name: "JWT Decoder",
+    description:
+      "Decode JSON Web Tokens instantly in your browser. Inspect headers, payloads, and signatures without sending any data to a server.",
+    href: "/tools/jwt-decoder",
+    icon: Key,
     badge: "Live",
   },
   {
@@ -63,7 +95,7 @@ const availableTools = [
   },
 ];
 
-const comingSoonTools = [{ name: "Regex Tester", icon: Regex }];
+const comingSoonTools: Array<{ name: string; icon: any }> = [];
 
 export default function ToolsPage() {
   return (

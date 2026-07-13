@@ -130,7 +130,7 @@ export default function AboutPage() {
             </h2>
             <div className="space-y-5 text-base leading-8 text-text/75">
               <p>
-                I have spent the last 6 years growing as a full-stack developer, starting with
+                I have spent the many years growing as a full-stack developer, starting with
                 simple HTML and CSS projects and gradually building the confidence to work on
                 real-world client websites. What began as curiosity quickly became a serious path
                 once I realized how much I enjoyed turning ideas into working products on the web.
