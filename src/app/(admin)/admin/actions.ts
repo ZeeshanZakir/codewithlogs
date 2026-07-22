@@ -31,6 +31,7 @@ const postSaveSchema = z.object({
   author: z.string().trim().min(1),
   featured: z.boolean(),
   status: z.enum(["draft", "published", "scheduled"]),
+  publishDate: z.string().trim().optional(),
   scheduledAt: z.string().trim().optional(),
   tags: z.array(z.string().trim().min(1)).default([]),
   content: z.string().trim().min(50),
@@ -149,13 +150,19 @@ export async function savePostAction(input: PostSaveInput) {
     ? new Date(data.scheduledAt)
     : null;
 
-    if (scheduledAt && Number.isNaN(scheduledAt.getTime())) {
-  throw new Error("Invalid schedule date.");
-}
+  if (scheduledAt && Number.isNaN(scheduledAt.getTime())) {
+    throw new Error("Invalid schedule date.");
+  }
+
+  const manualPublishDate = data.publishDate ? new Date(data.publishDate) : null;
+
+  if (manualPublishDate && Number.isNaN(manualPublishDate.getTime())) {
+    throw new Error("Invalid publish date.");
+  }
 
   const publishedAt =
     data.status === "published"
-      ? new Date()
+      ? manualPublishDate ?? existing?.publishedAt ?? new Date()
       : data.status === "scheduled"
       ? scheduledAt
       : existing?.publishedAt ?? null;

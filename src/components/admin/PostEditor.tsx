@@ -296,6 +296,7 @@ export function PostEditor({ initialPost }: PostEditorProps) {
   const [status, setStatus] = useState<"draft" | "published" | "scheduled">(
     initialPost?.status ?? "draft",
   );
+  const [publishDate, setPublishDate] = useState(toDateTimeLocalValue(initialPost?.date));
   const [scheduledAt, setScheduledAt] = useState(toDateTimeLocalValue(initialPost?.scheduledAt));
   const [tags, setTags] = useState(initialPost?.tags.join(", ") ?? "");
   const [content, setContent] = useState(initialPost?.content ?? "");
@@ -475,6 +476,7 @@ export function PostEditor({ initialPost }: PostEditorProps) {
       author: author.trim() || "Zeeshan Zakir",
       featured,
       status: nextStatus,
+      publishDate: publishDate || undefined,
       scheduledAt: nextStatus === "scheduled" ? scheduledAt : undefined,
       tags: tags
         .split(",")
@@ -674,6 +676,16 @@ export function PostEditor({ initialPost }: PostEditorProps) {
                   value={author}
                   onChange={(event) => setAuthor(event.target.value)}
                   className="h-12 w-full rounded-xl border border-white/10 bg-[#0b1020] px-4 text-sm text-white outline-none focus:border-primary/40"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-white/75">Post date</label>
+                <input
+                  type="datetime-local"
+                  value={publishDate}
+                  onChange={(event) => setPublishDate(event.target.value)}
+                  className="h-12 w-full rounded-xl border border-white/10 bg-[#0b1020] px-4 text-sm text-white outline-none focus:border-primary/40 [color-scheme:dark]"
                 />
               </div>
 
@@ -946,6 +958,19 @@ export function PostEditor({ initialPost }: PostEditorProps) {
                 <dt>Read time</dt>
                 <dd>{readTime}</dd>
               </div>
+              {publishDate ? (
+                <div className="flex items-center justify-between gap-4">
+                  <dt>Post date</dt>
+                  <dd className="text-right">
+                    {new Date(publishDate).toLocaleDateString()}
+                    <br />
+                    {new Date(publishDate).toLocaleTimeString([], {
+                      hour: "2-digit",
+                      minute: "2-digit",
+                    })}
+                  </dd>
+                </div>
+              ) : null}
               <div className="flex items-center justify-between gap-4">
                 <dt>Word count</dt>
                 <dd>{wordCount}</dd>
