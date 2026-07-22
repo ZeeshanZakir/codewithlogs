@@ -2,8 +2,15 @@
 const fs = require("node:fs");
 const path = require("node:path");
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://codewithlogs.com";
-const blogDirectory = path.join(process.cwd(), "src", "content", "blog");
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL || "https://codewithlogs.com";
+
+const blogDirectory = path.join(
+  process.cwd(),
+  "src",
+  "content",
+  "blog",
+);
 
 function getBlogSlugs() {
   try {
@@ -11,7 +18,8 @@ function getBlogSlugs() {
       .readdirSync(blogDirectory)
       .filter((entry) => entry.endsWith(".mdx"))
       .map((entry) => entry.replace(/\.mdx$/, ""));
-  } catch {
+  } catch (error) {
+    console.warn("Could not read blog directory:", error.message);
     return [];
   }
 }
@@ -28,21 +36,23 @@ const publicRoutes = [
   "/tools",
 ];
 
-/** @type {import('next-sitemap').IConfig} */
+/** @type {import("next-sitemap").IConfig} */
 module.exports = {
   siteUrl,
   generateRobotsTxt: true,
-  exclude: ["/admin/*", "/admin/**", "/api/*", "/api/**"],
+
+  exclude: ["/admin", "/admin/*", "/api/*"],
+
   robotsTxtOptions: {
     policies: [
       {
         userAgent: "*",
         allow: "/",
-        disallow: "/admin/",
+        disallow: ["/admin/", "/api/"],
       },
     ],
-    additionalSitemaps: [`${siteUrl}/sitemap.xml`],
   },
+
   additionalPaths: async (config) => {
     const blogPaths = getBlogSlugs().map((slug) => ({
       loc: `/blog/${slug}`,
@@ -58,7 +68,7 @@ module.exports = {
       lastmod: new Date().toISOString(),
     }));
 
-    const transformed = await Promise.all(
+    return Promise.all(
       [...staticPaths, ...blogPaths].map(async (route) => {
         const defaultEntry = await config.transform(config, route.loc);
 
@@ -68,7 +78,5 @@ module.exports = {
         };
       }),
     );
-
-    return transformed;
   },
 };
