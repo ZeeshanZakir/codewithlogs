@@ -11,6 +11,25 @@ export const revalidate = 60;
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const posts = await getAllPosts(false);
 
+  const toolSlugs = [
+  "base64",
+  "cron-builder",
+  "css-minifier",
+  "json-formatter",
+  "jwt-decoder",
+  "password-generator",
+  "regex-tester",
+  "token-counter",
+  "word-counter",
+];
+
+const toolPages: MetadataRoute.Sitemap = toolSlugs.map((slug) => ({
+  url: `${siteUrl}/tools/${slug}`,
+  lastModified: new Date(),
+  changeFrequency: "monthly",
+  priority: 0.7,
+}));
+
   const staticPages: MetadataRoute.Sitemap = [
     {
       url: siteUrl,
@@ -75,5 +94,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.8,
   }));
 
-  return [...staticPages, ...blogPages];
+  return [...staticPages, ...toolPages, ...blogPages];
 }
