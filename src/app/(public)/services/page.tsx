@@ -11,8 +11,7 @@ import {
   Server,
   Wrench,
 } from "lucide-react";
-
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://codewithlogs.com";
+import { siteUrl } from "@/lib/site-url";
 
 export const metadata: Metadata = {
   title: "Web Development Services That Ship Fast",

@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 
 import { AdUnit } from "@/components/ads/AdUnit";
 import { Base64Tool } from "@/components/tools/Base64Tool";
-
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://codewithlogs.com";
+import { siteUrl } from "@/lib/site-url";
 
 export const metadata: Metadata = {
   title: "Base64 Encoder/Decoder — Free Online Tool | Code With Logs",

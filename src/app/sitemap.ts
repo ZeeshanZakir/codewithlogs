@@ -1,10 +1,7 @@
 import type { MetadataRoute } from "next";
 
 import { getAllPosts } from "@/lib/mdx";
-
-const siteUrl = (
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://codewithlogs.com"
-).replace(/\/$/, "");
+import { siteUrl } from "@/lib/site-url";
 
 export const revalidate = 60;
 

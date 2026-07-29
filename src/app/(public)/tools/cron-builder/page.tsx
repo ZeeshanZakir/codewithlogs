@@ -4,8 +4,7 @@ import { AdUnit } from "@/components/ads/AdUnit";
 import { CronBuilderTool } from "@/components/tools/CronBuilderTool";
 import { CronBuilderSeoContent } from "@/components/tools/CronBuilderSeoContent";
 import { Braces, Code2, Key } from "lucide-react";
-
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://codewithlogs.com";
+import { siteUrl } from "@/lib/site-url";
 
 export const metadata: Metadata = {
   title: "Cron Expression Builder & Parser — Free Cron Job Generator | CodeWithLogs",

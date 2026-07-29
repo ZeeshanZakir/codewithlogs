@@ -2,10 +2,10 @@ import type { Metadata } from "next";
 
 import { BlogIndexClient } from "@/components/blog/BlogIndexClient";
 import { getAllPosts } from "@/lib/mdx";
+import { siteUrl } from "@/lib/site-url";
 
 export const dynamic = "force-static";
 export const revalidate = 60;
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://codewithlogs.com";
 const categories = [
   "All",
   "Next.js",

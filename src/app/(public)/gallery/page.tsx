@@ -2,10 +2,9 @@ import type { Metadata } from "next";
 
 import { GalleryPageClient } from "@/components/gallery/GalleryPageClient";
 import { getGalleryPins } from "@/lib/gallery";
+import { siteUrl } from "@/lib/site-url";
 
 export const revalidate = 60;
-
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://codewithlogs.com";
 
 export const metadata: Metadata = {
   title: "Gallery",

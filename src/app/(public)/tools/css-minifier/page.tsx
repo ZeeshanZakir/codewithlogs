@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 
 import { AdUnit } from "@/components/ads/AdUnit";
 import { CssMinifierTool } from "@/components/tools/CssMinifierTool";
-
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://codewithlogs.com";
+import { siteUrl } from "@/lib/site-url";
 
 export const metadata: Metadata = {
   title: "Best CSS Minifier — Free Online CSS Minify & Beautify Tool | CodeWithLogs",

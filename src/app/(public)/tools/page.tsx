@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, Braces, Clock, Code2, FileSearch, Hash, Key, KeyRound, Type, Wand2 } from "lucide-react";
-
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://codewithlogs.com";
+import { siteUrl } from "@/lib/site-url";
 
 export const metadata: Metadata = {
   title: "Best Developer Tools — Free Online Utilities | CodeWithLogs",

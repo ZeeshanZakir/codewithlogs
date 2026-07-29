@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 
 import { AdUnit } from "@/components/ads/AdUnit";
 import { JsonFormatterTool } from "@/components/tools/JsonFormatterTool";
-
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://codewithlogs.com";
+import { siteUrl } from "@/lib/site-url";
 
 export const metadata: Metadata = {
   title: "Best JSON Formatter & Validator Online — Free Tool | Code With Logs",

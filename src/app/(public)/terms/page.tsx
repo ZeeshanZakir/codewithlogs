@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 
 import { LegalPageTemplate } from "@/components/legal/LegalPageTemplate";
-
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://codewithlogs.com";
+import { siteUrl } from "@/lib/site-url";
 const lastUpdated = "May 23, 2026";
 
 export const metadata: Metadata = {

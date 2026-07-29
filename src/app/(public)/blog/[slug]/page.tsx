@@ -15,12 +15,11 @@ import { BlogCard } from "@/components/blog/BlogCard";
 import { MDXRenderer } from "@/components/blog/MDXRenderer";
 import { ShareButtons } from "@/components/blog/ShareButtons";
 import { TableOfContents } from "@/components/blog/TableOfContents";
-
+import { siteUrl } from "@/lib/site-url";
 
 export const dynamic = "force-static";
 export const revalidate = 60;
 export const dynamicParams = true;
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://codewithlogs.com";
 
 type BlogPostPageProps = {
   params: Promise<{ slug: string }>;

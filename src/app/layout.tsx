@@ -5,6 +5,7 @@ import { Analytics } from "@vercel/analytics/react";
 
 import "./globals.css";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { siteUrl } from "@/lib/site-url";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -12,7 +13,6 @@ const inter = Inter({
   display: "swap",
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://codewithlogs.com";
 const adsensePublisherId = process.env.NEXT_PUBLIC_ADSENSE_PUBLISHER_ID;
 const googleTagId = "G-NMGJP556HE";
 

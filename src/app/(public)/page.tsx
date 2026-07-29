@@ -18,10 +18,10 @@ import {
 import { AdUnit } from "@/components/ads/AdUnit";
 import { NewsletterSignup } from "@/components/home/NewsletterSignup";
 import { getAllPosts } from "@/lib/mdx";
+import { siteUrl } from "@/lib/site-url";
 
 export const dynamic = "force-static";
 export const revalidate = 60;
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://codewithlogs.com/";
 const shouldShowHomepageMidAd =
   process.env.NODE_ENV === "production" &&
   Boolean(process.env.NEXT_PUBLIC_ADSENSE_PUBLISHER_ID) &&

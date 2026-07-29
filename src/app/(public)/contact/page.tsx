@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import { ContactForm } from "@/components/contact/ContactForm";
-
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://codewithlogs.com";
+import { siteUrl } from "@/lib/site-url";
 
 export const metadata: Metadata = {
   title: "Let's Work Together | Contact",
