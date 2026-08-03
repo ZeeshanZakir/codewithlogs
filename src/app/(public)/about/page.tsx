@@ -64,7 +64,7 @@ const socialLinks = [
   },
   {
     label: "LinkedIn",
-    href: "https://www.linkedin.com/in/zeeshan-zakir-profile/",
+    href: "https://www.linkedin.com/company/code-with-logs",
     icon: (
       <svg viewBox="0 0 24 24" className="h-4 w-4" aria-hidden="true">
         <path
@@ -129,23 +129,17 @@ export default function AboutPage() {
             </h2>
             <div className="space-y-5 text-base leading-8 text-text/75">
               <p>
-                I have spent the many years growing as a full-stack developer, starting with
-                simple HTML and CSS projects and gradually building the confidence to work on
-                real-world client websites. What began as curiosity quickly became a serious path
-                once I realized how much I enjoyed turning ideas into working products on the web.
+                I've spent years growing as a full-stack developer — starting with simple HTML and CSS projects, then slowly building the confidence to take on real client work. What started as curiosity turned into something much more serious once I realized how satisfying it is to turn an idea into a working product people can actually use.
               </p>
               <p>
-                The turning point for me was JavaScript. Once I understood how much interactivity,
-                logic, and product thinking could live inside a web application, I leaned fully into
-                modern frontend and backend development. Over time I specialized in the MERN stack,
-                working with React, Node.js, Express, and MongoDB to deliver applications that are
-                not only functional, but also maintainable and scalable.
+                JavaScript was the real turning point for me. The moment I understood how much logic, interactivity, and product thinking could live inside a single web app, I was hooked. From there, I leaned fully into modern frontend and backend development and eventually specialized in the MERN stack — React, Node.js, Express, and MongoDB — building applications that aren't just functional, but maintainable and built to scale.
               </p>
               <p>
-                Today I focus on building SaaS products, content-driven platforms, and custom web
-                tools for founders and businesses. I care deeply about clean code, performance, and
-                developer education. This blog exists because I want to share practical lessons,
-                better tools, and the kind of no-fluff guidance I wish I had when I was learning.
+                These days, my focus is on building SaaS products, content-driven platforms, and custom web tools for founders and small businesses. I care a lot about clean code, real performance, and making developer education less intimidating than it often is.
+              </p>
+              <p>This blog exists because of that last part — I want to share the practical lessons, useful tools, and no-fluff guidance I wish someone had handed me when I was starting out.</p>
+              <p>
+                You can check out my client work and portfolio at <a href="https://zeeshanzakir.com" target="_blank" rel="noopener">zeeshanzakir.com</a>.
               </p>
             </div>
           </div>

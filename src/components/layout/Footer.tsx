@@ -18,7 +18,7 @@ const legalLinks = [
 
 const socialLinks = [
   { href: "https://github.com/ZeeshanZakir/", label: "GitHub" },
-  { href: "https://www.linkedin.com/in/zeeshan-zakir-profile/", label: "LinkedIn" },
+  { href: "https://www.linkedin.com/company/code-with-logs", label: "LinkedIn" },
   { href: "https://twitter.com/ZeeshanZakir", label: "Twitter" },
 ];
 
