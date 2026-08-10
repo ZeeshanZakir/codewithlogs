@@ -1,1 +1,1 @@
-export const siteUrl = "https://codewithlogs.com";
+export const siteUrl = 'https://www.codewithlogs.com'

@@ -26,6 +26,7 @@ const shouldShowHomepageMidAd =
   process.env.NODE_ENV === "production" &&
   Boolean(process.env.NEXT_PUBLIC_ADSENSE_PUBLISHER_ID) &&
   Boolean(process.env.NEXT_PUBLIC_ADSENSE_SLOT_HOMEPAGE_MID);
+  <link rel="canonical" href="https://www.codewithlogs.com/" />
 
 export const metadata: Metadata = {
   title: "Full-Stack MERN Developer for SaaS and Fast Web Apps",
