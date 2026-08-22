@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 const infoCards = [
   {
     title: "Email",
-    body: "contact@codewithlogs.com",
+    body: "info@codewithlogs.com",
   },
   {
     title: "Response Time",
