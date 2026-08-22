@@ -17,9 +17,9 @@ async function sendContactNotification(
   },
 ) {
   const resendApiKey = process.env.RESEND_API_KEY;
-  const contactEmail = process.env.CONTACT_EMAIL;
+  const contactEmail = process.env.CONTACT_EMAIL || "contact@codewithlogs.com";
 
-  if (!resendApiKey || !contactEmail) {
+  if (!resendApiKey) {
     return false;
   }
 
