@@ -1,7 +1,7 @@
 import type { MetadataRoute } from 'next'
 import { getAllPosts } from '@/lib/mdx'
 
-const siteUrl = 'https://www.codewithlogs.com'
+const siteUrl = 'https://codewithlogs.com'
 
 export const revalidate = 60
 
@@ -51,6 +51,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.6,
+    },
+    {
+      url: `${siteUrl}/gallery`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.5,
     },
     {
       url: `${siteUrl}/disclaimer`,
