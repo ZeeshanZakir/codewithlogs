@@ -1,479 +1,73 @@
-import Image from "next/image";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { format } from "date-fns";
-import { Suspense } from "react";
-import {
-  ArrowRight,
-  BriefcaseBusiness,
-  CalendarDays,
-  Clock3,
-  Code2,
-  Globe,
-  Rocket,
-  Server,
-  Wrench,
-} from "lucide-react";
-
-import { AdUnit } from "@/components/ads/AdUnit";
+import { ArrowDown, ArrowUpRight, Braces, Bug, Database } from "lucide-react";
+import { BlogCard } from "@/components/blog/BlogCard";
 import { NewsletterSignup } from "@/components/home/NewsletterSignup";
 import { getAllPosts } from "@/lib/mdx";
 import { siteUrl } from "@/lib/site-url";
 
 export const dynamic = "force-static";
 export const revalidate = 60;
-const shouldShowHomepageMidAd =
-  process.env.NODE_ENV === "production" &&
-  Boolean(process.env.NEXT_PUBLIC_ADSENSE_PUBLISHER_ID) &&
-  Boolean(process.env.NEXT_PUBLIC_ADSENSE_SLOT_HOMEPAGE_MID);
-
+const description = "Practical web development tutorials, Next.js guides, Supabase workflows, and debugging notes. Understand the problem, follow the code, and build with confidence.";
 export const metadata: Metadata = {
-  title: "Full-Stack MERN Developer for SaaS and Fast Web Apps",
-  description:
-    "Hire a full-stack MERN developer to build fast web apps and SaaS products, or explore practical articles on Next.js, React, Node.js, and MongoDB.",
-  alternates: {
-    canonical: siteUrl,
-  },
-  openGraph: {
-    title: "Code with Logs Build Fast Web Apps & SaaS Products",
-    description:
-      "Full-stack MERN developer helping founders launch high-performance products with Next.js, React, Node.js, and MongoDB.",
-    url: siteUrl,
-    type: "website",
-  },
+  title: "Next.js Tutorials & Practical Debugging Notes",
+  description,
+  alternates: { canonical: siteUrl },
+  openGraph: { title: "CodeWithLogs — Notes from the build", description, url: siteUrl, type: "website" },
 };
 
-const stack = ["Next.js", "React", "Node.js", "MongoDB", "TypeScript", "Tailwind"];
-
-const services = [
-  {
-    title: "Full-Stack Web Apps",
-    description:
-      "Production-ready web applications with fast UI, clean architecture, and reliable backend workflows.",
-    price: "From $500",
-    icon: Code2,
-  },
-  {
-    title: "SaaS Development",
-    description:
-      "MVPs and growth-stage SaaS products built for launch speed, usability, and ongoing iteration.",
-    price: "From $800",
-    icon: Rocket,
-  },
-  {
-    title: "REST API & Backend",
-    description:
-      "Secure API layers, admin workflows, and scalable backend services for modern applications.",
-    price: "From $300",
-    icon: Server,
-  },
+const topics = [
+  { name: "Next.js", icon: Braces, query: "Next.js", description: "Routing, rendering, and the decisions between browser and server." },
+  { name: "Supabase", icon: Database, query: "Supabase", description: "Authentication, data access, and the permissions behind your app." },
+  { name: "Debugging", icon: Bug, query: "debug", description: "Follow the error, isolate the cause, and understand the fix." },
 ];
-
-const toolRecommendations = [
-  {
-    name: "Hostinger",
-    description: "Affordable hosting and domains for landing pages, staging, and side projects.",
-    url: "https://www.hostinger.com/",
-  },
-  {
-    name: "Vercel",
-    description: "The fastest deployment workflow for Next.js sites and product experiments.",
-    url: "https://vercel.com/",
-  },
-  {
-    name: "MongoDB Atlas",
-    description: "Managed MongoDB that keeps shipping velocity high and ops overhead low.",
-    url: "https://www.mongodb.com/products/platform/atlas-database",
-  },
-  {
-    name: "Cursor",
-    description: "A strong AI-assisted editor for building features, refactors, and prototypes.",
-    url: "https://www.cursor.com/",
-  },
-];
-
-function truncate(text: string, limit: number) {
-  return text.length > limit ? `${text.slice(0, limit).trim()}...` : text;
-}
-
-function DeveloperIllustration() {
-  return (
-    <div className="animate-float-slow relative mx-auto flex w-full max-w-md items-center justify-center">
-      <div className="absolute inset-8 rounded-full bg-primary/8 blur-3xl" />
-      <div className="relative w-full rounded-[24px] border border-black/6 bg-white p-4 shadow-[0_30px_80px_rgba(15,110,86,0.12)]">
-        <div className="mb-4 flex items-center gap-2 border-b border-black/6 pb-3">
-          <span className="h-3 w-3 rounded-full bg-red-300" />
-          <span className="h-3 w-3 rounded-full bg-amber-300" />
-          <span className="h-3 w-3 rounded-full bg-emerald-300" />
-          <span className="ml-2 text-xs font-medium tracking-[0.18em] text-text/40 uppercase">
-            shipping.fast.tsx
-          </span>
-        </div>
-        <div className="grid gap-4 lg:grid-cols-[1.1fr_0.9fr]">
-          <div className="space-y-3 rounded-[18px] bg-surface p-4">
-            <div className="h-3 w-24 rounded-full bg-primary/20" />
-            <div className="space-y-2">
-              <div className="h-3 w-full rounded-full bg-black/6" />
-              <div className="h-3 w-4/5 rounded-full bg-black/6" />
-              <div className="h-3 w-2/3 rounded-full bg-black/6" />
-            </div>
-            <div className="grid grid-cols-2 gap-3 pt-2">
-              <div className="rounded-[14px] border border-primary/12 bg-white p-3">
-                <div className="mb-2 flex items-center gap-2 text-primary">
-                  <Code2 className="h-4 w-4" />
-                  <span className="text-xs font-semibold">Frontend</span>
-                </div>
-                <div className="space-y-2">
-                  <div className="h-2.5 w-full rounded-full bg-primary/14" />
-                  <div className="h-2.5 w-3/4 rounded-full bg-primary/14" />
-                </div>
-              </div>
-              <div className="rounded-[14px] border border-accent/12 bg-white p-3">
-                <div className="mb-2 flex items-center gap-2 text-accent">
-                  <Server className="h-4 w-4" />
-                  <span className="text-xs font-semibold">Backend</span>
-                </div>
-                <div className="space-y-2">
-                  <div className="h-2.5 w-full rounded-full bg-accent/14" />
-                  <div className="h-2.5 w-2/3 rounded-full bg-accent/14" />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="space-y-4">
-            <div className="rounded-[18px] bg-primary p-5 text-white">
-              <div className="mb-5 flex items-center justify-between">
-                <span className="rounded-full bg-white/12 px-3 py-1 text-xs font-semibold tracking-[0.18em] uppercase">
-                  Velocity
-                </span>
-                <Rocket className="h-5 w-5" />
-              </div>
-              <div className="space-y-3">
-                <div className="h-2.5 w-full rounded-full bg-white/20" />
-                <div className="h-2.5 w-4/5 rounded-full bg-white/20" />
-                <div className="h-16 rounded-[14px] bg-white/12" />
-              </div>
-            </div>
-
-            <svg
-              viewBox="0 0 320 160"
-              className="w-full rounded-[18px] border border-black/6 bg-white p-3"
-              aria-hidden="true"
-            >
-              <rect x="18" y="20" width="90" height="44" rx="14" fill="#D8F3EC" />
-              <rect x="124" y="20" width="178" height="22" rx="11" fill="#E5E7EB" />
-              <rect x="124" y="52" width="140" height="12" rx="6" fill="#E5E7EB" />
-              <path
-                d="M34 118C60 82 97 74 132 95C166 116 186 120 208 102C228 86 252 83 286 108"
-                fill="none"
-                stroke="#185FA5"
-                strokeWidth="10"
-                strokeLinecap="round"
-              />
-              <circle cx="98" cy="92" r="11" fill="#0F6E56" />
-              <circle cx="208" cy="102" r="11" fill="#185FA5" />
-              <circle cx="280" cy="108" r="11" fill="#0F6E56" />
-            </svg>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
 
 export default async function HomePage() {
+  const posts = await getAllPosts();
+  const featured = posts.find((post) => post.featured) ?? posts[0];
+  const latest = posts.filter((post) => post.slug !== featured?.slug).slice(0, 4);
   return (
-    <div className="bg-background">
-      <section className="min-h-[90vh]">
-        <div className="mx-auto grid w-full max-w-7xl gap-14 px-4 py-16 sm:px-6 md:py-20 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:gap-16 lg:px-8 lg:py-24">
-          <div className="space-y-8">
-            <div className="inline-flex items-center gap-3 rounded-full border border-primary/20 bg-primary/5 px-4 py-2 text-sm font-medium text-primary">
-              <span className="h-2.5 w-2.5 rounded-full bg-primary" />
-              Available for freelance work
-            </div>
-
-            <div className="space-y-5">
-              <h1 className="max-w-3xl text-4xl font-bold tracking-tight text-text sm:text-5xl lg:text-7xl">
-                We Build Fast Web Apps &amp; SaaS Products
-              </h1>
-              <p className="max-w-2xl text-base leading-8 text-text/70 sm:text-lg">
-                Practical full-stack development tutorials and engineering 
-                lessons from real SaaS and client projects.
-              </p>
-            </div>
-
-            <div className="flex flex-col gap-3 sm:flex-row">
-              <Link
-                href="/contact"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-6 py-3.5 text-sm font-semibold text-white transition-transform hover:-translate-y-0.5 hover:bg-primary/92"
-              >
-                Contact Me <ArrowRight className="h-4 w-4" />
-              </Link>
-              <Link
-                href="/blog"
-                className="inline-flex items-center justify-center rounded-full border border-black/10 bg-white px-6 py-3.5 text-sm font-semibold text-text transition-colors hover:border-primary/25 hover:text-primary"
-              >
-                Read My Blog
-              </Link>
-            </div>
-
-            <div className="flex flex-wrap gap-3 pt-1">
-              {stack.map((item) => (
-                <span
-                  key={item}
-                  className="rounded-full border border-black/8 bg-surface px-4 py-2 text-sm font-medium text-text/70"
-                >
-                  {item}
-                </span>
-              ))}
-            </div>
+    <div className="journal-home">
+      <section className="journal-container journal-hero">
+        <div className="hero-copy">
+          <p className="eyebrow"><span className="status-dot" /> An independent developer publication</p>
+          <h1>Less guesswork.<br />More <em>understanding.</em></h1>
+          <p className="hero-description">Notes from building for the web. Practical tutorials on Next.js, Supabase, and working through the bugs that documentation doesn’t always explain.</p>
+          <div className="hero-actions">
+            <Link href="/blog" className="journal-button">Explore the articles <ArrowUpRight size={17} /></Link>
+            <a href="#latest" className="journal-text-link">See what’s new <ArrowDown size={15} /></a>
           </div>
-
-          <DeveloperIllustration />
+          <p className="hero-footnote">Read the code. Understand the why. Make it your own.</p>
+        </div>
+        <div className="field-note" aria-label="A practical debugging approach">
+          <div className="field-note-bar"><span>FIELD NOTES / DEBUGGING</span><Bug size={17} /></div>
+          <p className="field-note-title">A bug is a clue.<br />Start there.</p>
+          <ol>
+            <li><span>01</span><div><strong>Reproduce it.</strong><p>Find the smallest case that fails.</p></div></li>
+            <li><span>02</span><div><strong>Follow the evidence.</strong><p>Inspect the inputs, logs, and boundaries.</p></div></li>
+            <li><span>03</span><div><strong>Verify the fix.</strong><p>Test the failure and the working path.</p></div></li>
+          </ol>
+          <div className="field-note-bottom"><span className="status-dot" /> A method, not a magic snippet.</div>
         </div>
       </section>
-
-      <section className="border-y border-black/5 bg-surface">
-        <div className="mx-auto grid w-full max-w-7xl gap-6 px-4 py-6 text-center sm:grid-cols-2 sm:px-6 lg:grid-cols-4 lg:px-8">
-          {[
-            "Many Years Experience",
-            "500+ Projects Delivered",
-            "MERN Stack Expert",
-            "Available Worldwide",
-          ].map((item) => (
-            <div key={item} className="rounded-[12px] bg-white px-4 py-5 text-sm font-semibold text-text shadow-sm">
-              {item}
-            </div>
-          ))}
+      <section className="topic-strip" aria-label="Explore topics">
+        <div className="journal-container topic-grid">
+          {topics.map(({ name, icon: Icon, query, description }, index) => {
+            const count = posts.filter((post) => `${post.title} ${post.excerpt} ${post.category} ${post.tags.join(" ")}`.toLowerCase().includes(query.toLowerCase())).length;
+            return <Link key={name} href={`/blog?q=${encodeURIComponent(query)}`} className="topic-link">
+              <div className="topic-heading"><Icon size={19} /><h2>{name}</h2><ArrowUpRight size={17} /></div>
+              <p>{description}</p><span className="topic-count">0{index + 1} / {count ? `${count} ${count === 1 ? "article" : "articles"}` : "Explore the archive"}</span>
+            </Link>;
+          })}
         </div>
       </section>
-
-      <section className="mx-auto w-full max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-24">
-        <div className="mb-10 max-w-2xl space-y-3">
-          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-primary">
-            Services
-          </p>
-          <h2 className="text-3xl font-bold tracking-tight text-text sm:text-4xl">What I Build</h2>
-          <p className="text-base leading-8 text-text/70">
-            Service packages designed to turn readers and founders into shipped products quickly.
-          </p>
-        </div>
-
-        <div className="grid gap-6 lg:grid-cols-3">
-          {services.map(({ icon: Icon, title, description, price }) => (
-            <article
-              key={title}
-              className="group rounded-[12px] border border-black/6 bg-white p-7 transition-colors hover:border-primary/25"
-            >
-              <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-[12px] bg-surface text-primary">
-                <Icon className="h-6 w-6" />
-              </div>
-              <div className="space-y-4">
-                <h3 className="text-xl font-semibold text-text">{title}</h3>
-                <p className="text-sm leading-7 text-text/70">{description}</p>
-                <div className="text-sm font-semibold text-primary">{price}</div>
-                <Link
-                  href="/services"
-                  className="inline-flex items-center gap-2 text-sm font-semibold text-text transition-colors group-hover:text-primary"
-                >
-                  Learn more <ArrowRight className="h-4 w-4" />
-                </Link>
-              </div>
-            </article>
-          ))}
-        </div>
+      <section id="latest" className="journal-container journal-section">
+        <div className="section-heading"><div><p className="eyebrow">The reading desk</p><h2>Fresh from the logs<span>.</span></h2></div><Link href="/blog" className="journal-text-link">All articles <ArrowUpRight size={16} /></Link></div>
+        {featured ? <div className="home-articles"><div><p className="article-label">{featured.featured ? "EDITOR’S PICK" : "LATEST ARTICLE"}</p><BlogCard post={featured} featured /></div><div className="article-stack">{latest.map((post) => <BlogCard key={post.slug} post={post} compact />)}{latest.length === 0 ? <p className="muted">More articles will appear here as they’re published.</p> : null}</div></div> : <div className="journal-empty"><h3>The archive is getting started.</h3><p>Explore the developer tools or learn about the person behind CodeWithLogs.</p><Link href="/tools" className="journal-text-link">Open developer tools <ArrowUpRight size={16} /></Link></div>}
       </section>
-
-      {shouldShowHomepageMidAd ? (
-        <section className="mx-auto w-full max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
-          <div className="rounded-[12px] border-y border-black/6 py-8">
-            <AdUnit slot="homepage-mid" format="horizontal" />
-          </div>
-        </section>
-      ) : null}
-
-      <section className="mx-auto w-full max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-24">
-        <Suspense fallback={<FeaturedPostsSectionFallback />}>
-          <FeaturedPostsSection />
-        </Suspense>
-      </section>
-
-      <section className="border-y border-black/5 bg-surface">
-        <div className="mx-auto w-full max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-20">
-          <div className="mb-10 max-w-2xl space-y-3">
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-primary">
-              Affiliate Picks
-            </p>
-            <h2 className="text-3xl font-bold tracking-tight text-text sm:text-4xl">
-              Tools I Recommend
-            </h2>
-            <p className="text-base leading-8 text-text/70">
-              Platforms and tools I actually recommend for hosting, shipping, and maintaining modern apps.
-            </p>
-          </div>
-
-          <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-            {toolRecommendations.map((tool, index) => (
-              <a
-                key={tool.name}
-                href={tool.url}
-                target="_blank"
-                rel="noreferrer sponsored"
-                className="rounded-[12px] border border-black/6 bg-white p-5 transition-colors hover:border-primary/20"
-              >
-                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-[12px] bg-surface text-primary">
-                  {index === 0 ? <Globe className="h-5 w-5" /> : null}
-                  {index === 1 ? <Rocket className="h-5 w-5" /> : null}
-                  {index === 2 ? <BriefcaseBusiness className="h-5 w-5" /> : null}
-                  {index === 3 ? <Wrench className="h-5 w-5" /> : null}
-                </div>
-                <h3 className="mb-2 text-lg font-semibold text-text">{tool.name}</h3>
-                <p className="text-sm leading-7 text-text/70">{tool.description}</p>
-              </a>
-            ))}
-          </div>
-
-          <p className="mt-5 text-sm text-text/60">
-            * Affiliate links — I earn a commission at no extra cost to you
-          </p>
-        </div>
-      </section>
-
-      <section className="bg-primary">
-        <div className="mx-auto grid w-full max-w-7xl gap-8 px-4 py-16 sm:px-6 lg:grid-cols-[1fr_0.9fr] lg:items-center lg:px-8">
-          <div className="space-y-3 text-white">
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-white/70">
-              Newsletter
-            </p>
-            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-              Get weekly web dev tips, tutorials, and tools.
-            </h2>
-            <p className="max-w-2xl text-base leading-8 text-white/78">
-              Short, practical insights on building faster products, shipping cleaner code, and choosing better tools.
-            </p>
-          </div>
-          <NewsletterSignup />
-        </div>
-      </section>
+      <section className="journal-container editor-note"><p className="eyebrow">Behind the logs</p><div><h2>A place to work things out.</h2><p>I’m Zeeshan Zakir, the developer behind CodeWithLogs. This publication is focused on making web development easier to understand: the implementation, the tradeoffs, and what to check when something breaks.</p><Link href="/about" className="journal-text-link">Meet the author <ArrowUpRight size={16} /></Link></div></section>
+      <section id="newsletter" className="journal-container newsletter-section"><div><p className="eyebrow">Keep learning</p><h2>The next useful read,<br />in your inbox.</h2><p>Subscribe to new articles and development notes.</p></div><div><NewsletterSignup /><p className="newsletter-privacy">Article updates only. Read our <Link href="/privacy-policy">privacy policy</Link>.</p></div></section>
     </div>
   );
 }
 
-async function FeaturedPostsSection() {
-  const posts = await getAllPosts();
-  const featuredPosts = posts.filter((post) => post.featured);
-  const fallbackPosts = posts.filter(
-    (post) => !featuredPosts.some((featuredPost) => featuredPost.slug === post.slug),
-  );
-  const homepagePosts = [...featuredPosts, ...fallbackPosts].slice(0, 3);
-
-  return (
-    <>
-      <div className="mb-10 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-        <div className="max-w-2xl space-y-3">
-          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-primary">
-            Content
-          </p>
-          <h2 className="text-3xl font-bold tracking-tight text-text sm:text-4xl">
-            Latest From The Blog
-          </h2>
-          <p className="text-base leading-8 text-text/70">
-            Practical tutorials and lessons from building products with the modern MERN stack.
-          </p>
-        </div>
-        <Link
-          href="/blog"
-          className="inline-flex items-center gap-2 text-sm font-semibold text-primary"
-        >
-          View all posts <ArrowRight className="h-4 w-4" />
-        </Link>
-      </div>
-
-      <div className="grid gap-6 lg:grid-cols-3">
-        {homepagePosts.map((post) => (
-          <article
-            key={post.slug}
-            className="overflow-hidden rounded-[12px] border border-black/6 bg-white"
-          >
-            <div className="relative h-48 overflow-hidden bg-surface">
-              <Image
-                src={post.coverImage}
-                alt={post.title}
-                width={1200}
-                height={675}
-                loading="lazy"
-                className="h-full w-full object-cover"
-                sizes="(max-width: 1024px) 100vw, 33vw"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/15 to-transparent" />
-              <div className="absolute inset-x-0 bottom-0 p-5">
-                <span className="inline-flex rounded-full bg-white px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-text/70">
-                  {post.category}
-                </span>
-              </div>
-            </div>
-            <div className="space-y-5 p-6">
-              <div className="space-y-3">
-                <h3 className="text-xl font-semibold leading-8 text-text">{post.title}</h3>
-                <p className="text-sm leading-7 text-text/70">{truncate(post.excerpt, 120)}</p>
-              </div>
-              <div className="flex flex-wrap items-center gap-4 text-sm text-text/60">
-                <span className="inline-flex items-center gap-2">
-                  <Clock3 className="h-4 w-4" />
-                  {post.readTime}
-                </span>
-                <span className="inline-flex items-center gap-2">
-                  <CalendarDays className="h-4 w-4" />
-                  {format(new Date(post.date), "MMM d, yyyy")}
-                </span>
-              </div>
-              <Link
-                href={`/blog/${post.slug}`}
-                className="inline-flex items-center gap-2 text-sm font-semibold text-primary"
-              >
-                Read more <ArrowRight className="h-4 w-4" />
-              </Link>
-            </div>
-          </article>
-        ))}
-      </div>
-    </>
-  );
-}
-
-function FeaturedPostsSectionFallback() {
-  return (
-    <>
-      <div className="mb-10 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-        <div className="max-w-2xl space-y-3">
-          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-primary">
-            Content
-          </p>
-          <h2 className="text-3xl font-bold tracking-tight text-text sm:text-4xl">
-            Latest From The Blog
-          </h2>
-          <p className="text-base leading-8 text-text/70">
-            Practical tutorials and lessons from building products with the modern MERN stack.
-          </p>
-        </div>
-      </div>
-
-      <div className="grid gap-6 lg:grid-cols-3">
-        {Array.from({ length: 3 }).map((_, index) => (
-          <div
-            key={index}
-            className="overflow-hidden rounded-[12px] border border-black/6 bg-white"
-          >
-            <div className="h-48 animate-pulse bg-surface" />
-            <div className="space-y-4 p-6">
-              <div className="h-6 w-3/4 animate-pulse rounded bg-surface" />
-              <div className="h-4 w-full animate-pulse rounded bg-surface" />
-              <div className="h-4 w-2/3 animate-pulse rounded bg-surface" />
-            </div>
-          </div>
-        ))}
-      </div>
-    </>
-  );
-}

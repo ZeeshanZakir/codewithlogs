@@ -1,45 +1,19 @@
+"use client";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useState } from "react";
+import { ArrowUpRight, Menu, X } from "lucide-react";
 
-import { Logo } from "@/components/branding/Logo";
-
-const navigation = [
-  { href: "/", label: "Home" },
-  { href: "/services", label: "Services" },
-  { href: "/blog", label: "Blog" },
-  { href: "/tools", label: "Tools" },
-  { href: "/about", label: "About" },
-  { href: "/contact", label: "Contact" },
-];
-
+const navigation = [{ href: "/blog", label: "Articles" }, { href: "/tools", label: "Developer tools" }, { href: "/about", label: "About" }, { href: "/contact", label: "Contact" }];
 export function Navbar() {
-  return (
-    <header className="sticky top-0 z-50 border-b border-black/5 bg-white/90 backdrop-blur">
-      <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-6 px-4 py-4 sm:px-6 lg:px-8">
-        <Logo
-          priority
-          className="block w-[170px] shrink-0 sm:w-[210px] lg:w-[240px]"
-          imageClassName="block"
-        />
-
-        <nav className="hidden items-center gap-1 md:flex">
-          {navigation.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="rounded-full px-4 py-2 text-sm font-medium text-text/70 transition-colors hover:bg-surface hover:text-primary"
-            >
-              {item.label}
-            </Link>
-          ))}
-        </nav>
-
-        <Link
-          href="/contact"
-          className="inline-flex items-center justify-center rounded-full bg-primary px-4 py-2 text-sm font-semibold text-white transition-transform hover:-translate-y-0.5 hover:bg-primary/90"
-        >
-          Contact Me
-        </Link>
-      </div>
-    </header>
-  );
+  const pathname = usePathname();
+  const [open, setOpen] = useState(false);
+  return <header className="journal-header"><div className="journal-container header-inner">
+    <Link href="/" className="journal-wordmark" aria-label="CodeWithLogs home" onClick={() => setOpen(false)}><span className="brand-mark" aria-hidden="true">/l</span>codewithlogs<span className="brand-period">.</span></Link>
+    <nav className="desktop-nav" aria-label="Main navigation">{navigation.map(({ href, label }) => <Link key={href} href={href} aria-current={pathname === href || pathname.startsWith(`${href}/`) ? "page" : undefined}>{label}</Link>)}</nav>
+    <Link href="/#newsletter" className="header-subscribe">Stay in the loop <ArrowUpRight size={15} /></Link>
+    <button type="button" className="mobile-toggle" aria-label={open ? "Close navigation" : "Open navigation"} aria-expanded={open} aria-controls="mobile-navigation" onClick={() => setOpen(!open)}>{open ? <X size={23} /> : <Menu size={23} />}</button>
+    {open && <nav id="mobile-navigation" className="mobile-nav" aria-label="Mobile navigation">{navigation.map(({ href, label }) => <Link key={href} href={href} aria-current={pathname === href || pathname.startsWith(`${href}/`) ? "page" : undefined} onClick={() => setOpen(false)}>{label}<ArrowUpRight size={16} /></Link>)}<Link href="/#newsletter" onClick={() => setOpen(false)}>Subscribe to article updates</Link></nav>}
+  </div></header>;
 }
+

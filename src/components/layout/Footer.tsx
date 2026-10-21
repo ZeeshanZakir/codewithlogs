@@ -1,84 +1,9 @@
 import Link from "next/link";
-
-import { Logo } from "@/components/branding/Logo";
-
-const quickLinks = [
-  { href: "/", label: "Home" },
-  { href: "/services", label: "Services" },
-  { href: "/blog", label: "Blog" },
-  { href: "/tools", label: "Tools" },
-  { href: "/contact", label: "Contact" },
-];
-
-const legalLinks = [
-  { href: "/privacy-policy", label: "Privacy Policy" },
-  { href: "/disclaimer", label: "Disclaimer" },
-  { href: "/terms", label: "Terms of Service" },
-];
-
-const socialLinks = [
-  { href: "https://github.com/ZeeshanZakir/", label: "GitHub" },
-  { href: "https://www.linkedin.com/company/code-with-logs", label: "LinkedIn" },
-  { href: "https://twitter.com/ZeeshanZakir", label: "Twitter" },
-];
-
+import { ArrowUpRight } from "lucide-react";
 export function Footer() {
-  return (
-    <footer className="border-t border-black/5 bg-surface">
-      <div className="mx-auto grid w-full max-w-7xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-[1.4fr_1fr_1fr] lg:px-8">
-        <div className="space-y-4">
-          <Logo className="block w-[220px] sm:w-[260px]" />
-          <p className="max-w-md text-sm leading-7 text-text/70">
-            I help startups and solo founders ship high-performance products with a clean full-stack architecture.
-          </p>
-        </div>
-
-        <div className="space-y-4">
-          <h2 className="text-sm font-semibold uppercase tracking-[0.18em] text-text/60">
-            Quick Links
-          </h2>
-          <div className="flex flex-col gap-3 text-sm text-text/75">
-            {quickLinks.map((item) => (
-              <Link key={item.href} href={item.href} className="transition-colors hover:text-primary">
-                {item.label}
-              </Link>
-            ))}
-          </div>
-        </div>
-
-        <div className="space-y-4">
-          <h2 className="text-sm font-semibold uppercase tracking-[0.18em] text-text/60">
-            Legal & Social
-          </h2>
-          <div className="flex flex-col gap-3 text-sm text-text/75">
-            {legalLinks.map((item) => (
-              <Link key={item.href} href={item.href} className="transition-colors hover:text-primary">
-                {item.label}
-              </Link>
-            ))}
-          </div>
-          <div className="flex flex-wrap items-center gap-4 pt-2">
-            {socialLinks.map(({ href, label }) => (
-              <a
-                key={label}
-                href={href}
-                target="_blank"
-                rel="noreferrer"
-                className="text-sm text-text/60 transition-colors hover:text-primary"
-              >
-                {label}
-              </a>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      <div className="border-t border-black/5">
-        <div className="mx-auto flex w-full max-w-7xl flex-col gap-3 px-4 py-5 text-sm text-text/60 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8">
-          <p>© 2026 CodeWithLogs. Built for founders who value speed, clarity, and clean execution.</p>
-          <p>Affiliate disclosure: Some tool links may earn a commission at no extra cost to you.</p>
-        </div>
-      </div>
-    </footer>
-  );
+  return <footer className="journal-footer"><div className="journal-container">
+    <div className="footer-top"><div><Link href="/" className="journal-wordmark"><span className="brand-mark" aria-hidden="true">/l</span>codewithlogs<span className="brand-period">.</span></Link><p>Practical notes for people who build.<br />Next.js. Supabase. The bugs in between.</p></div><nav aria-label="Explore"><h2>Explore</h2><Link href="/blog">All articles</Link><Link href="/tools">Developer tools</Link><Link href="/about">About the author</Link><Link href="/contact">Contact & corrections</Link></nav><nav aria-label="More"><h2>Elsewhere</h2><a href="https://github.com/ZeeshanZakir/" target="_blank" rel="noreferrer">GitHub <ArrowUpRight size={13} /></a><a href="https://www.linkedin.com/company/code-with-logs" target="_blank" rel="noreferrer">LinkedIn <ArrowUpRight size={13} /></a><Link href="/services">Work with me</Link><Link href="/gallery">Gallery</Link></nav></div>
+    <div className="footer-bottom"><p>© {new Date().getFullYear()} CodeWithLogs. Keep building. Keep learning.</p><nav aria-label="Legal"><Link href="/privacy-policy">Privacy</Link><Link href="/terms">Terms</Link><Link href="/disclaimer">Disclaimer & disclosures</Link></nav></div>
+  </div></footer>;
 }
+
