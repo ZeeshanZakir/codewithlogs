@@ -1,63 +1,26 @@
 import type { Metadata } from "next";
-
+import { Suspense } from "react";
 import { BlogIndexClient } from "@/components/blog/BlogIndexClient";
 import { getAllPosts } from "@/lib/mdx";
 import { siteUrl } from "@/lib/site-url";
 
 export const dynamic = "force-static";
 export const revalidate = 60;
-const categories = [
-  "All",
-  "Next.js",
-  "React",
-  "MERN",
-  "AI Tools",
-  "Freelancing",
-  "SaaS",
-];
-
+const description = "Explore practical web development articles, Next.js tutorials, Supabase workflows, and debugging notes from CodeWithLogs.";
 export const metadata: Metadata = {
-  title: "The Developer Blog",
-  description:
-    "Practical posts on Next.js, React, MERN, AI tools, SaaS, and freelancing from a full-stack developer building fast web apps.",
-  alternates: {
-    canonical: `${siteUrl}/blog`,
-  },
-  openGraph: {
-    title: "The Developer Blog",
-    description:
-      "Tutorials, guides, and practical lessons on modern web development, SaaS, and developer tooling.",
-    url: `${siteUrl}/blog`,
-    type: "website",
-  },
+  title: "Articles — Web Development & Debugging",
+  description,
+  alternates: { canonical: `${siteUrl}/blog` },
+  openGraph: { title: "The CodeWithLogs Archive", description, url: `${siteUrl}/blog`, type: "website" },
 };
-
 export default async function BlogPage() {
   const posts = await getAllPosts();
-
-  return (
-    <div className="bg-background">
-      <section className="border-b border-black/5 bg-surface">
-        <div className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
-          <div className="max-w-3xl space-y-4">
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-primary">
-              Blog
-            </p>
-            <h1 className="text-4xl font-bold tracking-tight text-text sm:text-5xl">
-              The Developer Blog
-            </h1>
-            <p className="text-base leading-8 text-text/70 sm:text-lg">
-              Deep-dive tutorials, practical product notes, and real-world engineering advice
-              for developers building modern web apps.
-            </p>
-            
-          </div>
-        </div>
-      </section>
-
-      <section className="mx-auto w-full max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
-        <BlogIndexClient posts={posts} categories={categories} />
-      </section>
-    </div>
-  );
+  const existing = [...new Set(posts.map((post) => post.category).filter(Boolean))];
+  const priority = ["Next.js", "Supabase", "Debugging"];
+  const categories = ["All", ...priority.filter((category) => existing.includes(category)), ...existing.filter((category) => !priority.includes(category)).sort()];
+  return <div className="journal-container journal-section">
+    <header className="archive-header"><p className="eyebrow">The archive / CodeWithLogs</p><h1>A little more clarity.<br /><em>One article at a time.</em></h1><p>Tutorials, implementation notes, and the occasional hard-earned fix. Find something useful for the thing you’re building.</p></header>
+    <Suspense fallback={<p className="journal-empty" role="status">Loading the article archive…</p>}><BlogIndexClient posts={posts} categories={categories} /></Suspense>
+  </div>;
 }
+
