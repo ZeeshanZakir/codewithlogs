@@ -21,7 +21,7 @@ export function AffiliateLinkBox({
       <p className="mt-3 text-base leading-8 text-text/80">
         <span className="font-semibold">I recommend {label}</span>
         {description ? ` — ${description}` : "."}{" "}
-        <Link href={url} className="font-semibold text-primary">
+        <Link href={url} rel="sponsored nofollow" className="font-semibold text-primary">
           Get started →
         </Link>
       </p>

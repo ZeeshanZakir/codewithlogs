@@ -1,0 +1,1955 @@
+{
+  "generatedAt": "2026-10-21T12:50:54.276Z",
+  "method": "Read-only database snapshot, automated body/heading/reference signals, editorial topical/duplicate-intent triage, and manual review of selected relevant article bodies. Signals are triage evidence, not proof of correctness, originality, plagiarism, or successful testing.",
+  "publicationChanges": false,
+  "counts": {
+    "KEEP": 0,
+    "IMPROVE": 7,
+    "MERGE": 5,
+    "ARCHIVE": 46
+  },
+  "posts": [
+    {
+      "slug": "ai-memory-systems-short-term-long-term",
+      "url": "https://codewithlogs.com/blog/ai-memory-systems-short-term-long-term",
+      "title": "AI Memory Systems: Short-Term vs Long-Term Memory",
+      "status": "scheduled",
+      "category": "AI Tools",
+      "action": "ARCHIVE",
+      "reason": "Outside the Windows developer troubleshooting niche. Recommend a legacy editorial archive, preserving the live URL and content until an approved migration plan exists.",
+      "mergeWith": null,
+      "windowsVerification": "NOT VERIFIED",
+      "specificFindings": [
+        "This is an editorial scope decision, not a finding that the content is worthless or plagiarized. No archival status change has been made."
+      ],
+      "wordCount": 1000,
+      "headings": [
+        "Short-term memory: the context window is all there is",
+        "Long-term memory: two very different filing systems",
+        "The step everyone skips: forgetting",
+        "The blueprint, assembled"
+      ],
+      "codeBlocks": 1,
+      "officialLinks": [],
+      "missing": [
+        "Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.",
+        "No explicit reproduction section detected.",
+        "No explicit verification/expected-result wording detected.",
+        "No relevant Windows/VS Code/Node/npm/Git/Next official reference detected."
+      ],
+      "bodyPreserved": true
+    },
+    {
+      "slug": "pgvector-tutorial-supabase-vector-database",
+      "url": "https://codewithlogs.com/blog/pgvector-tutorial-supabase-vector-database",
+      "title": "Vector Databases Explained with Supabase pgvector",
+      "status": "scheduled",
+      "category": "AI Tools",
+      "action": "ARCHIVE",
+      "reason": "Outside the Windows developer troubleshooting niche. Recommend a legacy editorial archive, preserving the live URL and content until an approved migration plan exists.",
+      "mergeWith": null,
+      "windowsVerification": "NOT VERIFIED",
+      "specificFindings": [
+        "This is an editorial scope decision, not a finding that the content is worthless or plagiarized. No archival status change has been made."
+      ],
+      "wordCount": 1028,
+      "headings": [
+        "First: what a vector database even stores",
+        "Setup: genuinely two commands",
+        "Searching: the distance operators",
+        "Indexes: the part everyone does too early",
+        "The quiet superpower: it's still just Postgres",
+        "When you'd actually outgrow it"
+      ],
+      "codeBlocks": 7,
+      "officialLinks": [],
+      "missing": [
+        "Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.",
+        "No explicit reproduction section detected.",
+        "No explicit verification/expected-result wording detected.",
+        "No relevant Windows/VS Code/Node/npm/Git/Next official reference detected."
+      ],
+      "bodyPreserved": true
+    },
+    {
+      "slug": "ai-semantic-search-nextjs-website",
+      "url": "https://codewithlogs.com/blog/ai-semantic-search-nextjs-website",
+      "title": "How I Added AI Search to My Next.js Website",
+      "status": "scheduled",
+      "category": "AI Tools",
+      "action": "ARCHIVE",
+      "reason": "Outside the Windows developer troubleshooting niche. Recommend a legacy editorial archive, preserving the live URL and content until an approved migration plan exists.",
+      "mergeWith": null,
+      "windowsVerification": "NOT VERIFIED",
+      "specificFindings": [
+        "This is an editorial scope decision, not a finding that the content is worthless or plagiarized. No archival status change has been made."
+      ],
+      "wordCount": 977,
+      "headings": [
+        "How semantic search works, in one paragraph",
+        "The pipeline I built",
+        "Step 1: Chunk the content (the step I got wrong first)",
+        "Step 2: The embedding script",
+        "Step 3: The search route handler",
+        "Step 4: The hybrid correction",
+        "What changed"
+      ],
+      "codeBlocks": 3,
+      "officialLinks": [],
+      "missing": [
+        "Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.",
+        "No explicit reproduction section detected.",
+        "No explicit verification/expected-result wording detected.",
+        "No relevant Windows/VS Code/Node/npm/Git/Next official reference detected."
+      ],
+      "bodyPreserved": true
+    },
+    {
+      "slug": "ai-tool-calling-tutorial-api-examples",
+      "url": "https://codewithlogs.com/blog/ai-tool-calling-tutorial-api-examples",
+      "title": "AI Tool Calling Explained with Real API Examples",
+      "status": "scheduled",
+      "category": "AI Tools",
+      "action": "ARCHIVE",
+      "reason": "Outside the Windows developer troubleshooting niche. Recommend a legacy editorial archive, preserving the live URL and content until an approved migration plan exists.",
+      "mergeWith": null,
+      "windowsVerification": "NOT VERIFIED",
+      "specificFindings": [
+        "This is an editorial scope decision, not a finding that the content is worthless or plagiarized. No archival status change has been made."
+      ],
+      "wordCount": 905,
+      "headings": [
+        "The conversation, spelled out",
+        "Example 1: OpenAI",
+        "Example 2: Anthropic (Claude)",
+        "The loop that makes it real",
+        "The three lessons that fix most tool-calling bugs",
+        "Where this leaves you"
+      ],
+      "codeBlocks": 5,
+      "officialLinks": [],
+      "missing": [
+        "Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.",
+        "No explicit reproduction section detected.",
+        "No explicit verification/expected-result wording detected.",
+        "No relevant Windows/VS Code/Node/npm/Git/Next official reference detected."
+      ],
+      "bodyPreserved": true
+    },
+    {
+      "slug": "multi-agent-ai-architecture-that-works",
+      "url": "https://codewithlogs.com/blog/multi-agent-ai-architecture-that-works",
+      "title": "Building Multi-Agent AI Systems That Actually Work",
+      "status": "scheduled",
+      "category": "AI Tools",
+      "action": "ARCHIVE",
+      "reason": "Outside the Windows developer troubleshooting niche. Recommend a legacy editorial archive, preserving the live URL and content until an approved migration plan exists.",
+      "mergeWith": null,
+      "windowsVerification": "NOT VERIFIED",
+      "specificFindings": [
+        "This is an editorial scope decision, not a finding that the content is worthless or plagiarized. No archival status change has been made."
+      ],
+      "wordCount": 1040,
+      "headings": [
+        "Why \"a team of AI agents\" fails by default",
+        "The question to ask before going multi-agent",
+        "The architecture that works: orchestrator and workers",
+        "Three design decisions that made the difference",
+        "Validate at the seams",
+        "What it looks like in production",
+        "The honest summary"
+      ],
+      "codeBlocks": 2,
+      "officialLinks": [],
+      "missing": [
+        "Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.",
+        "No explicit reproduction section detected.",
+        "No explicit verification/expected-result wording detected.",
+        "No relevant Windows/VS Code/Node/npm/Git/Next official reference detected."
+      ],
+      "bodyPreserved": true
+    },
+    {
+      "slug": "ai-customer-support-agent-with-memory",
+      "url": "https://codewithlogs.com/blog/ai-customer-support-agent-with-memory",
+      "title": "Building an AI Customer Support Agent with Memory",
+      "status": "scheduled",
+      "category": "AI Tools",
+      "action": "ARCHIVE",
+      "reason": "Outside the Windows developer troubleshooting niche. Recommend a legacy editorial archive, preserving the live URL and content until an approved migration plan exists.",
+      "mergeWith": null,
+      "windowsVerification": "NOT VERIFIED",
+      "specificFindings": [
+        "This is an editorial scope decision, not a finding that the content is worthless or plagiarized. No archival status change has been made."
+      ],
+      "wordCount": 897,
+      "headings": [
+        "The two kinds of memory (and why you need both)",
+        "The architecture at a glance",
+        "Short-term memory: cheaper than you think, until it isn't",
+        "Long-term memory: extract facts, not transcripts",
+        "The escalation rule that saved the whole project",
+        "What it changed"
+      ],
+      "codeBlocks": 4,
+      "officialLinks": [],
+      "missing": [
+        "Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.",
+        "No explicit reproduction section detected.",
+        "No explicit verification/expected-result wording detected.",
+        "No relevant Windows/VS Code/Node/npm/Git/Next official reference detected."
+      ],
+      "bodyPreserved": true
+    },
+    {
+      "slug": "reduce-ai-api-costs-prompt-caching",
+      "url": "https://codewithlogs.com/blog/reduce-ai-api-costs-prompt-caching",
+      "title": "How I Reduced AI API Costs by 80% Using Prompt Caching",
+      "status": "scheduled",
+      "category": "AI Tools",
+      "action": "ARCHIVE",
+      "reason": "Outside the Windows developer troubleshooting niche. Recommend a legacy editorial archive, preserving the live URL and content until an approved migration plan exists.",
+      "mergeWith": null,
+      "windowsVerification": "NOT VERIFIED",
+      "specificFindings": [
+        "This is an editorial scope decision, not a finding that the content is worthless or plagiarized. No archival status change has been made."
+      ],
+      "wordCount": 907,
+      "headings": [
+        "The problem: you keep paying for the same tokens",
+        "How caching works on the two big providers",
+        "The audit: finding my cache busters",
+        "The restructure: static first, dynamic last",
+        "The real math",
+        "The bonus nobody mentions"
+      ],
+      "codeBlocks": 2,
+      "officialLinks": [],
+      "missing": [
+        "Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.",
+        "No explicit reproduction section detected.",
+        "No relevant Windows/VS Code/Node/npm/Git/Next official reference detected."
+      ],
+      "bodyPreserved": true
+    },
+    {
+      "slug": "rag-vs-fine-tuning-which-to-choose",
+      "url": "https://codewithlogs.com/blog/rag-vs-fine-tuning-which-to-choose",
+      "title": "RAG vs Fine-Tuning: Which One Should You Choose?",
+      "status": "scheduled",
+      "category": "AI Tools",
+      "action": "ARCHIVE",
+      "reason": "Outside the Windows developer troubleshooting niche. Recommend a legacy editorial archive, preserving the live URL and content until an approved migration plan exists.",
+      "mergeWith": null,
+      "windowsVerification": "NOT VERIFIED",
+      "specificFindings": [
+        "This is an editorial scope decision, not a finding that the content is worthless or plagiarized. No archival status change has been made."
+      ],
+      "wordCount": 923,
+      "headings": [
+        "What each one actually does",
+        "The experiment that settled it for me",
+        "The honest comparison table",
+        "Where fine-tuning genuinely won for me",
+        "The decision framework I actually use",
+        "What I tell clients now"
+      ],
+      "codeBlocks": 0,
+      "officialLinks": [],
+      "missing": [
+        "Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.",
+        "No explicit reproduction section detected.",
+        "No relevant Windows/VS Code/Node/npm/Git/Next official reference detected."
+      ],
+      "bodyPreserved": true
+    },
+    {
+      "slug": "model-context-protocol-tutorial-real-project",
+      "url": "https://codewithlogs.com/blog/model-context-protocol-tutorial-real-project",
+      "title": "MCP (Model Context Protocol) Explained with a Real Project",
+      "status": "scheduled",
+      "category": "AI Tools",
+      "action": "ARCHIVE",
+      "reason": "Outside the Windows developer troubleshooting niche. Recommend a legacy editorial archive, preserving the live URL and content until an approved migration plan exists.",
+      "mergeWith": null,
+      "windowsVerification": "NOT VERIFIED",
+      "specificFindings": [
+        "This is an editorial scope decision, not a finding that the content is worthless or plagiarized. No archival status change has been made."
+      ],
+      "wordCount": 912,
+      "headings": [
+        "What MCP actually is (one paragraph, no buzzwords)",
+        "The real project",
+        "Building the server",
+        "Plugging it into Claude Desktop",
+        "The security decision I'm glad I made early",
+        "The bugs that will get you (they got me)",
+        "Where I've landed on MCP"
+      ],
+      "codeBlocks": 3,
+      "officialLinks": [],
+      "missing": [
+        "Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.",
+        "No explicit reproduction section detected.",
+        "No explicit verification/expected-result wording detected.",
+        "No relevant Windows/VS Code/Node/npm/Git/Next official reference detected."
+      ],
+      "bodyPreserved": true
+    },
+    {
+      "slug": "openai-responses-api-tutorial-first-ai-agent",
+      "url": "https://codewithlogs.com/blog/openai-responses-api-tutorial-first-ai-agent",
+      "title": "How I Built My First AI Agent Using OpenAI Responses API",
+      "status": "scheduled",
+      "category": "AI Tools",
+      "action": "ARCHIVE",
+      "reason": "Outside the Windows developer troubleshooting niche. Recommend a legacy editorial archive, preserving the live URL and content until an approved migration plan exists.",
+      "mergeWith": null,
+      "windowsVerification": "NOT VERIFIED",
+      "specificFindings": [
+        "This is an editorial scope decision, not a finding that the content is worthless or plagiarized. No archival status change has been made."
+      ],
+      "wordCount": 953,
+      "headings": [
+        "Why the Responses API and not Chat Completions",
+        "The smallest possible start",
+        "Giving it hands: function tools",
+        "The agent loop — where it actually becomes an agent",
+        "Wiring it into Next.js",
+        "What I'd tell past me"
+      ],
+      "codeBlocks": 3,
+      "officialLinks": [],
+      "missing": [
+        "Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.",
+        "No explicit reproduction section detected.",
+        "No relevant Windows/VS Code/Node/npm/Git/Next official reference detected."
+      ],
+      "bodyPreserved": true
+    },
+    {
+      "slug": "claude-code-vs-github-copilot-review",
+      "url": "https://codewithlogs.com/blog/claude-code-vs-github-copilot-review",
+      "title": "Claude Code vs GitHub Copilot: Real Developer Review",
+      "status": "scheduled",
+      "category": "AI Tools",
+      "action": "ARCHIVE",
+      "reason": "Outside the Windows developer troubleshooting niche. Recommend a legacy editorial archive, preserving the live URL and content until an approved migration plan exists.",
+      "mergeWith": null,
+      "windowsVerification": "NOT VERIFIED",
+      "specificFindings": [
+        "This is an editorial scope decision, not a finding that the content is worthless or plagiarized. No archival status change has been made."
+      ],
+      "wordCount": 967,
+      "headings": [
+        "Two different animals",
+        "Living with Copilot",
+        "Living with Claude Code",
+        "The money conversation",
+        "Head to head, task by task",
+        "So which one?"
+      ],
+      "codeBlocks": 0,
+      "officialLinks": [],
+      "missing": [
+        "Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.",
+        "No explicit reproduction section detected.",
+        "No explicit verification/expected-result wording detected.",
+        "No relevant Windows/VS Code/Node/npm/Git/Next official reference detected."
+      ],
+      "bodyPreserved": true
+    },
+    {
+      "slug": "n8n-openai-ai-workflows",
+      "url": "https://codewithlogs.com/blog/n8n-openai-ai-workflows",
+      "title": "Building AI Workflows with n8n and OpenAI",
+      "status": "scheduled",
+      "category": "AI Tools",
+      "action": "ARCHIVE",
+      "reason": "Outside the Windows developer troubleshooting niche. Recommend a legacy editorial archive, preserving the live URL and content until an approved migration plan exists.",
+      "mergeWith": null,
+      "windowsVerification": "NOT VERIFIED",
+      "specificFindings": [
+        "This is an editorial scope decision, not a finding that the content is worthless or plagiarized. No archival status change has been made."
+      ],
+      "wordCount": 978,
+      "headings": [
+        "What n8n actually is",
+        "The workflow, node by node",
+        "The infinite loop story",
+        "The n8n habits that make workflows debuggable",
+        "Where n8n fits (and where it doesn't)"
+      ],
+      "codeBlocks": 3,
+      "officialLinks": [],
+      "missing": [
+        "Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.",
+        "No explicit reproduction section detected.",
+        "No explicit verification/expected-result wording detected.",
+        "No relevant Windows/VS Code/Node/npm/Git/Next official reference detected."
+      ],
+      "bodyPreserved": true
+    },
+    {
+      "slug": "openai-structured-outputs-complete-guide",
+      "url": "https://codewithlogs.com/blog/openai-structured-outputs-complete-guide",
+      "title": "Structured Outputs in OpenAI API: Complete Guide",
+      "status": "scheduled",
+      "category": "AI Tools",
+      "action": "ARCHIVE",
+      "reason": "Outside the Windows developer troubleshooting niche. Recommend a legacy editorial archive, preserving the live URL and content until an approved migration plan exists.",
+      "mergeWith": null,
+      "windowsVerification": "NOT VERIFIED",
+      "specificFindings": [
+        "This is an editorial scope decision, not a finding that the content is worthless or plagiarized. No archival status change has been made."
+      ],
+      "wordCount": 1000,
+      "headings": [
+        "The three eras of getting JSON from a model",
+        "The basic setup",
+        "The Zod shortcut (use this one)",
+        "The strict-mode rules that will trip you",
+        "Refusals: the field nobody reads about",
+        "It works on tools too",
+        "What the guarantee doesn't cover"
+      ],
+      "codeBlocks": 3,
+      "officialLinks": [],
+      "missing": [
+        "Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.",
+        "No explicit reproduction section detected.",
+        "No explicit verification/expected-result wording detected.",
+        "No relevant Windows/VS Code/Node/npm/Git/Next official reference detected."
+      ],
+      "bodyPreserved": true
+    },
+    {
+      "slug": "building-saas-admin-dashboard-from-scratch",
+      "url": "https://codewithlogs.com/blog/building-saas-admin-dashboard-from-scratch",
+      "title": "Building a SaaS Admin Dashboard from Scratch",
+      "status": "scheduled",
+      "category": "SaaS",
+      "action": "ARCHIVE",
+      "reason": "Outside the Windows developer troubleshooting niche. Recommend a legacy editorial archive, preserving the live URL and content until an approved migration plan exists.",
+      "mergeWith": null,
+      "windowsVerification": "NOT VERIFIED",
+      "specificFindings": [
+        "This is an editorial scope decision, not a finding that the content is worthless or plagiarized. No archival status change has been made."
+      ],
+      "wordCount": 966,
+      "headings": [
+        "Deciding what \"admin dashboard\" actually means",
+        "Where it lives: a route group with a locked door",
+        "The stats row: one function, not five queries",
+        "The user table: pagination is not optional",
+        "Admin actions: server actions plus a paper trail",
+        "The chart that makes it feel real",
+        "What it costs and what it's worth"
+      ],
+      "codeBlocks": 4,
+      "officialLinks": [],
+      "missing": [
+        "Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.",
+        "No explicit reproduction section detected.",
+        "No relevant Windows/VS Code/Node/npm/Git/Next official reference detected."
+      ],
+      "bodyPreserved": true
+    },
+    {
+      "slug": "common-vercel-deployment-errors-solutions",
+      "url": "https://codewithlogs.com/blog/common-vercel-deployment-errors-solutions",
+      "title": "Common Vercel Deployment Errors and Their Solutions",
+      "status": "scheduled",
+      "category": "Vercel",
+      "action": "IMPROVE",
+      "reason": "Useful adjacent technical material. Rework around a specific Windows development failure, document the environment, reproduce and verify each fix, and retain the existing URL.",
+      "mergeWith": null,
+      "windowsVerification": "NOT VERIFIED",
+      "specificFindings": [
+        "The claim that next build runs ESLint is outdated for this installed Next.js 16 project.",
+        "The NODE_OPTIONS=... command uses POSIX syntax; a Windows version needs shell-specific examples.",
+        "Reproduce case-only renames in a disposable Windows Git repository and validate the tracked path in a case-sensitive environment.",
+        "Review platform limits against current official docs instead of hardcoding plan assumptions."
+      ],
+      "wordCount": 1081,
+      "headings": [
+        "1. \"Module not found: Can't resolve './components/Button'\"",
+        "2. Type errors that only fail in the cloud",
+        "3. Environment variables that are undefined in production",
+        "4. \"Task timed out after 10 seconds\"",
+        "5. The serverless function size limit",
+        "6. \"Dynamic server usage: couldn't be rendered statically because it used cookies\"",
+        "7. \"JavaScript heap out of memory\"",
+        "8. Dynamic routes that 404 only in production",
+        "9. ESLint errors blocking the deploy",
+        "10. The deploy \"succeeded\" but nothing changed",
+        "The prevention routine that replaced most of these"
+      ],
+      "codeBlocks": 2,
+      "officialLinks": [],
+      "missing": [
+        "Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.",
+        "No explicit reproduction section detected.",
+        "No explicit verification/expected-result wording detected.",
+        "No relevant Windows/VS Code/Node/npm/Git/Next official reference detected."
+      ],
+      "bodyPreserved": true
+    },
+    {
+      "slug": "reduce-nextjs-website-loading-time",
+      "url": "https://codewithlogs.com/blog/reduce-nextjs-website-loading-time",
+      "title": "How I Reduced My Next.js Website Loading Time",
+      "status": "scheduled",
+      "category": "Next.js",
+      "action": "IMPROVE",
+      "reason": "Useful adjacent technical material. Rework around a specific Windows development failure, document the environment, reproduce and verify each fix, and retain the existing URL.",
+      "mergeWith": null,
+      "windowsVerification": "NOT VERIFIED",
+      "specificFindings": [
+        "The claimed 52-to-94 score and LCP/CLS/JS-size improvements need original reports and author confirmation.",
+        "Distinguish Lighthouse laboratory results from real-user Core Web Vitals.",
+        "Review the installed version docs for image preloading conventions; provide a complete before/after fixture."
+      ],
+      "wordCount": 937,
+      "headings": [
+        "Step zero: measure before touching anything",
+        "Fix 1: Images, done properly this time (biggest win)",
+        "Fix 2: Fonts with next/font (killed the layout shift)",
+        "Fix 3: The \"use client\" audit (the Next.js-specific win)",
+        "Fix 4: Dynamic imports for below-the-fold weight",
+        "Fix 5: What the bundle analyzer confessed",
+        "Fix 6: Third-party scripts on a leash",
+        "What didn't move the needle",
+        "The mistake worth confessing",
+        "Where it landed"
+      ],
+      "codeBlocks": 4,
+      "officialLinks": [],
+      "missing": [
+        "Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.",
+        "No explicit reproduction section detected.",
+        "No explicit verification/expected-result wording detected.",
+        "No relevant Windows/VS Code/Node/npm/Git/Next official reference detected."
+      ],
+      "bodyPreserved": true
+    },
+    {
+      "slug": "nextjs-folder-structure-large-projects",
+      "url": "https://codewithlogs.com/blog/nextjs-folder-structure-large-projects",
+      "title": "My Complete Next.js Folder Structure for Large Projects",
+      "status": "published",
+      "category": "Next.js",
+      "action": "IMPROVE",
+      "reason": "Useful adjacent technical material. Rework around a specific Windows development failure, document the environment, reproduce and verify each fix, and retain the existing URL.",
+      "mergeWith": null,
+      "windowsVerification": "NOT VERIFIED",
+      "specificFindings": [
+        "The directory tree is useful supporting material but is not a specific troubleshooting solution.",
+        "Focus a revision on resolving aliases, file casing and module boundaries; preserve the existing URL.",
+        "Do not turn folder-count anecdotes into verified claims without author confirmation."
+      ],
+      "wordCount": 969,
+      "headings": [
+        "The full tree",
+        "Rule 1: app/ is for routing, nothing else",
+        "Rule 2: three kinds of components, three homes",
+        "Rule 3: features own their logic",
+        "Rule 4: two Supabase clients, never one",
+        "The mistakes that shaped this structure",
+        "Does a small project need all this?"
+      ],
+      "codeBlocks": 2,
+      "officialLinks": [],
+      "missing": [
+        "Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.",
+        "No explicit reproduction section detected.",
+        "No explicit verification/expected-result wording detected.",
+        "No relevant Windows/VS Code/Node/npm/Git/Next official reference detected."
+      ],
+      "bodyPreserved": true
+    },
+    {
+      "slug": "supabase-row-level-security-real-examples",
+      "url": "https://codewithlogs.com/blog/supabase-row-level-security-real-examples",
+      "title": "Supabase Row Level Security Explained with Real Examples (Copy These Policies)",
+      "status": "scheduled",
+      "category": "Supabase",
+      "action": "ARCHIVE",
+      "reason": "Outside the Windows developer troubleshooting niche. Recommend a legacy editorial archive, preserving the live URL and content until an approved migration plan exists.",
+      "mergeWith": null,
+      "windowsVerification": "NOT VERIFIED",
+      "specificFindings": [
+        "This is an editorial scope decision, not a finding that the content is worthless or plagiarized. No archival status change has been made."
+      ],
+      "wordCount": 1012,
+      "headings": [
+        "The mental model that makes RLS click",
+        "Example 1: Personal data (the todo pattern)",
+        "Example 2: Public content, private control (the blog pattern)",
+        "Example 3: Team access (and the trap inside it)",
+        "Example 4: The admin override",
+        "Testing policies without losing your mind",
+        "Two things that bite everyone",
+        "Where I've landed"
+      ],
+      "codeBlocks": 6,
+      "officialLinks": [],
+      "missing": [
+        "Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.",
+        "No explicit reproduction section detected.",
+        "No explicit verification/expected-result wording detected.",
+        "No relevant Windows/VS Code/Node/npm/Git/Next official reference detected."
+      ],
+      "bodyPreserved": true
+    },
+    {
+      "slug": "debug-production-errors-nextjs",
+      "url": "https://codewithlogs.com/blog/debug-production-errors-nextjs",
+      "title": "How I Debug Production Errors in Next.js",
+      "status": "scheduled",
+      "category": "Next.js",
+      "action": "IMPROVE",
+      "reason": "Useful adjacent technical material. Rework around a specific Windows development failure, document the environment, reproduce and verify each fix, and retain the existing URL.",
+      "mergeWith": null,
+      "windowsVerification": "NOT VERIFIED",
+      "specificFindings": [
+        "The error component snippet has untyped props and needs a complete pinned TypeScript fixture.",
+        "The hydration section needs a minimal reproducible mismatch and explicit post-fix checks.",
+        "Confirm anecdotal client stories with the author; no supporting evidence was found in the repository."
+      ],
+      "wordCount": 920,
+      "headings": [
+        "Why production errors tell you nothing",
+        "Step 1: Figure out which side broke",
+        "Step 2: The digest trick for server errors",
+        "Step 3: Error boundaries so users never see the ugly screen",
+        "Step 4: Fifteen minutes of Sentry setup pays forever",
+        "Step 5: Hunting hydration errors",
+        "Step 6: Log with context, not confetti",
+        "The boring class of bugs: environment differences",
+        "My checklist, in order"
+      ],
+      "codeBlocks": 2,
+      "officialLinks": [],
+      "missing": [
+        "Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.",
+        "No explicit verification/expected-result wording detected.",
+        "No relevant Windows/VS Code/Node/npm/Git/Next official reference detected."
+      ],
+      "bodyPreserved": true
+    },
+    {
+      "slug": "nextjs-authentication-without-nextauth",
+      "url": "https://codewithlogs.com/blog/nextjs-authentication-without-nextauth",
+      "title": "How I Built Authentication in Next.js Without NextAuth",
+      "status": "scheduled",
+      "category": "Next.js",
+      "action": "IMPROVE",
+      "reason": "Useful adjacent technical material. Rework around a specific Windows development failure, document the environment, reproduce and verify each fix, and retain the existing URL.",
+      "mergeWith": null,
+      "windowsVerification": "NOT VERIFIED",
+      "specificFindings": [
+        "The sample imports an updateSession helper without supplying its implementation.",
+        "Review middleware versus proxy conventions for the pinned Next.js version.",
+        "Layout-only authorization claims need security review; protect each data/action boundary and verify access tests."
+      ],
+      "wordCount": 1021,
+      "headings": [
+        "The mental model first",
+        "Step 1: The two clients",
+        "Step 2: The middleware (the part everyone skips)",
+        "Step 3: Login with a server action",
+        "Step 4: Protecting routes",
+        "The security detail most tutorials get wrong",
+        "Mistakes I made along the way",
+        "What I gave up by skipping NextAuth"
+      ],
+      "codeBlocks": 5,
+      "officialLinks": [],
+      "missing": [
+        "Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.",
+        "No explicit reproduction section detected.",
+        "No relevant Windows/VS Code/Node/npm/Git/Next official reference detected."
+      ],
+      "bodyPreserved": true
+    },
+    {
+      "slug": "sync-supabase-google-sheets-automatically",
+      "url": "https://codewithlogs.com/blog/sync-supabase-google-sheets-automatically",
+      "title": "How I Sync Supabase Data with Google Sheets Automatically",
+      "status": "scheduled",
+      "category": "Supabase",
+      "action": "ARCHIVE",
+      "reason": "Outside the Windows developer troubleshooting niche. Recommend a legacy editorial archive, preserving the live URL and content until an approved migration plan exists.",
+      "mergeWith": null,
+      "windowsVerification": "NOT VERIFIED",
+      "specificFindings": [
+        "This is an editorial scope decision, not a finding that the content is worthless or plagiarized. No archival status change has been made."
+      ],
+      "wordCount": 933,
+      "headings": [
+        "The options I considered first",
+        "How the sync works",
+        "Step 1: Create a safe way to read the data",
+        "Step 2: The Apps Script",
+        "Step 3: Make it automatic",
+        "The gotchas that got me",
+        "What about syncing the other direction?",
+        "When this setup is the right call"
+      ],
+      "codeBlocks": 2,
+      "officialLinks": [],
+      "missing": [
+        "Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.",
+        "No explicit reproduction section detected.",
+        "No explicit verification/expected-result wording detected.",
+        "No relevant Windows/VS Code/Node/npm/Git/Next official reference detected."
+      ],
+      "bodyPreserved": true
+    },
+    {
+      "slug": "supabase-errors-production-fixes",
+      "url": "https://codewithlogs.com/blog/supabase-errors-production-fixes",
+      "title": "10 Supabase Errors I Faced in Production (And Their Fixes)",
+      "status": "scheduled",
+      "category": "Supabase",
+      "action": "ARCHIVE",
+      "reason": "Outside the Windows developer troubleshooting niche. Recommend a legacy editorial archive, preserving the live URL and content until an approved migration plan exists.",
+      "mergeWith": null,
+      "windowsVerification": "NOT VERIFIED",
+      "specificFindings": [
+        "This is an editorial scope decision, not a finding that the content is worthless or plagiarized. No archival status change has been made."
+      ],
+      "wordCount": 1095,
+      "headings": [
+        "1. \"new row violates row-level security policy\"",
+        "2. \"infinite recursion detected in policy for relation\"",
+        "3. \"JWT expired\"",
+        "4. The .single() error: \"JSON object requested, multiple (or no) rows returned\"",
+        "5. \"remaining connection slots are reserved\"",
+        "6. \"duplicate key value violates unique constraint\"",
+        "7. \"Failed to fetch\" right after deploying",
+        "8. \"relation \\\"public.something\\\" does not exist\"",
+        "9. \"column reference \\\"id\\\" is ambiguous\"",
+        "10. Auth emails suddenly not arriving",
+        "The pattern behind all ten"
+      ],
+      "codeBlocks": 3,
+      "officialLinks": [],
+      "missing": [
+        "Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.",
+        "No explicit reproduction section detected.",
+        "No relevant Windows/VS Code/Node/npm/Git/Next official reference detected."
+      ],
+      "bodyPreserved": true
+    },
+    {
+      "slug": "build-saas-with-nextjs",
+      "url": "https://codewithlogs.com/blog/build-saas-with-nextjs",
+      "title": "How to Build a SaaS Product with Next.js in 2026 (Step-by-Step)",
+      "status": "draft",
+      "category": "SaaS",
+      "action": "ARCHIVE",
+      "reason": "Outside the Windows developer troubleshooting niche. Recommend a legacy editorial archive, preserving the live URL and content until an approved migration plan exists.",
+      "mergeWith": null,
+      "windowsVerification": "NOT VERIFIED",
+      "specificFindings": [
+        "This is an editorial scope decision, not a finding that the content is worthless or plagiarized. No archival status change has been made."
+      ],
+      "wordCount": 973,
+      "headings": [
+        "How to Build a SaaS Product with Next.js in 2026 (Step-by-Step)",
+        "Why Next.js is a strong SaaS foundation",
+        "The 2026 SaaS stack at a glance",
+        "Step 1: Scaffold the project",
+        "Step 2: Design your data model",
+        "Step 3: Add authentication",
+        "Step 4: Build the core product",
+        "Step 5: Add billing with Stripe",
+        "Step 6: Deploy",
+        "Common mistakes that sink SaaS projects",
+        "Expert tips"
+      ],
+      "codeBlocks": 0,
+      "officialLinks": [],
+      "missing": [
+        "Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.",
+        "No explicit reproduction section detected.",
+        "No relevant Windows/VS Code/Node/npm/Git/Next official reference detected."
+      ],
+      "bodyPreserved": true
+    },
+    {
+      "slug": "inventory-management-system-nextjs-supabase",
+      "url": "https://codewithlogs.com/blog/inventory-management-system-nextjs-supabase",
+      "title": "How I Built an Inventory Management System Using Next.js and Supabase",
+      "status": "published",
+      "category": "Next.js",
+      "action": "ARCHIVE",
+      "reason": "Outside the Windows developer troubleshooting niche. Recommend a legacy editorial archive, preserving the live URL and content until an approved migration plan exists.",
+      "mergeWith": null,
+      "windowsVerification": "NOT VERIFIED",
+      "specificFindings": [
+        "This is an editorial scope decision, not a finding that the content is worthless or plagiarized. No archival status change has been made."
+      ],
+      "wordCount": 1115,
+      "headings": [
+        "Why I didn't just recommend existing software",
+        "The stack, and why",
+        "Designing the schema (the part I got wrong first)",
+        "The race condition that almost ruined launch week",
+        "Row level security in five minutes",
+        "The frontend: server components did the heavy lifting",
+        "Mistakes I'd avoid next time",
+        "What this actually cost",
+        "Final thoughts"
+      ],
+      "codeBlocks": 6,
+      "officialLinks": [],
+      "missing": [
+        "Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.",
+        "No explicit reproduction section detected.",
+        "No explicit verification/expected-result wording detected.",
+        "No relevant Windows/VS Code/Node/npm/Git/Next official reference detected."
+      ],
+      "bodyPreserved": true
+    },
+    {
+      "slug": "what-is-n8",
+      "url": "https://codewithlogs.com/blog/what-is-n8",
+      "title": "What Is n8n? The Automation Tool I Wish I'd Found Before My Zapier Bill Blew Up",
+      "status": "scheduled",
+      "category": "Automation",
+      "action": "ARCHIVE",
+      "reason": "Outside the Windows developer troubleshooting niche. Recommend a legacy editorial archive, preserving the live URL and content until an approved migration plan exists.",
+      "mergeWith": null,
+      "windowsVerification": "NOT VERIFIED",
+      "specificFindings": [
+        "This is an editorial scope decision, not a finding that the content is worthless or plagiarized. No archival status change has been made."
+      ],
+      "wordCount": 1643,
+      "headings": [
+        "So what actually is n8n?",
+        "The moment it clicked for me",
+        "How n8n actually works (the 3 pieces you need to know)",
+        "Let's build your first workflow (step by step)",
+        "Where n8n really earns its keep",
+        "The pricing thing nobody explains clearly",
+        "Mistakes I made so you don't have to",
+        "Is n8n right for you?"
+      ],
+      "codeBlocks": 0,
+      "officialLinks": [],
+      "missing": [
+        "Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.",
+        "No explicit reproduction section detected.",
+        "No explicit verification/expected-result wording detected.",
+        "No relevant Windows/VS Code/Node/npm/Git/Next official reference detected."
+      ],
+      "bodyPreserved": true
+    },
+    {
+      "slug": "what-is-typescript",
+      "url": "https://codewithlogs.com/blog/what-is-typescript",
+      "title": "What Is TypeScript? Why Every JavaScript Developer Should Learn It in 2026",
+      "status": "scheduled",
+      "category": "Web Development",
+      "action": "MERGE",
+      "reason": "Overlapping search intent with the paired article. Compare examples and Search Console performance before choosing a primary URL; no redirect or deletion authorized.",
+      "mergeWith": "what-is-typescript-why-developers-switching",
+      "windowsVerification": "NOT VERIFIED",
+      "specificFindings": [
+        "Compare the complete examples and search intent in this overlapping group before proposing a consolidation; keep every URL until approved."
+      ],
+      "wordCount": 1185,
+      "headings": [
+        "TypeScript in one sentence",
+        "A quick before-and-after",
+        "Why TypeScript took over",
+        "JavaScript vs TypeScript at a glance",
+        "The state of TypeScript in 2026",
+        "How to start learning TypeScript",
+        "Common mistakes beginners make",
+        "Expert tips",
+        "Frequently asked questions"
+      ],
+      "codeBlocks": 0,
+      "officialLinks": [],
+      "missing": [
+        "Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.",
+        "No explicit reproduction section detected.",
+        "No relevant Windows/VS Code/Node/npm/Git/Next official reference detected."
+      ],
+      "bodyPreserved": true
+    },
+    {
+      "slug": "mongodb-vs-postgresql",
+      "url": "https://codewithlogs.com/blog/mongodb-vs-postgresql",
+      "title": "MongoDB vs PostgreSQL: Which Database Should You Choose in 2026?",
+      "status": "scheduled",
+      "category": "Web Development",
+      "action": "MERGE",
+      "reason": "Overlapping search intent with the paired article. Compare examples and Search Console performance before choosing a primary URL; no redirect or deletion authorized.",
+      "mergeWith": "mongodb-vs-postgresql-which-database-2026",
+      "windowsVerification": "NOT VERIFIED",
+      "specificFindings": [
+        "Compare the complete examples and search intent in this overlapping group before proposing a consolidation; keep every URL until approved."
+      ],
+      "wordCount": 897,
+      "headings": [
+        "The fundamental difference: relational vs document",
+        "PostgreSQL: structure, integrity, and relationships",
+        "MongoDB: flexibility and speed of iteration",
+        "Side-by-side comparison",
+        "How to choose: a simple rule",
+        "Common mistakes",
+        "Expert tips"
+      ],
+      "codeBlocks": 0,
+      "officialLinks": [],
+      "missing": [
+        "Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.",
+        "No explicit reproduction section detected.",
+        "No explicit verification/expected-result wording detected.",
+        "No relevant Windows/VS Code/Node/npm/Git/Next official reference detected."
+      ],
+      "bodyPreserved": true
+    },
+    {
+      "slug": "what-is-an-api",
+      "url": "https://codewithlogs.com/blog/what-is-an-api",
+      "title": "What Is an API? The Waiter Analogy That Finally Made It Click for Me",
+      "status": "published",
+      "category": "Software Development",
+      "action": "ARCHIVE",
+      "reason": "Outside the Windows developer troubleshooting niche. Recommend a legacy editorial archive, preserving the live URL and content until an approved migration plan exists.",
+      "mergeWith": null,
+      "windowsVerification": "NOT VERIFIED",
+      "specificFindings": [
+        "This is an editorial scope decision, not a finding that the content is worthless or plagiarized. No archival status change has been made."
+      ],
+      "wordCount": 945,
+      "headings": [
+        "What is an API?",
+        "The waiter analogy",
+        "How do APIs work?",
+        "Real examples you use every day",
+        "Why APIs matter",
+        "A quick word on types",
+        "Common mistakes beginners make",
+        "Expert tips"
+      ],
+      "codeBlocks": 0,
+      "officialLinks": [],
+      "missing": [
+        "Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.",
+        "No explicit reproduction section detected.",
+        "No relevant Windows/VS Code/Node/npm/Git/Next official reference detected."
+      ],
+      "bodyPreserved": true
+    },
+    {
+      "slug": "how-to-become-an-ai-engineer",
+      "url": "https://codewithlogs.com/blog/how-to-become-an-ai-engineer",
+      "title": "How to Become an AI Engineer in 2026: A Realistic Roadmap (Not a Hype Reel)",
+      "status": "scheduled",
+      "category": "Career & Skills",
+      "action": "ARCHIVE",
+      "reason": "Outside the Windows developer troubleshooting niche. Recommend a legacy editorial archive, preserving the live URL and content until an approved migration plan exists.",
+      "mergeWith": null,
+      "windowsVerification": "NOT VERIFIED",
+      "specificFindings": [
+        "This is an editorial scope decision, not a finding that the content is worthless or plagiarized. No archival status change has been made."
+      ],
+      "wordCount": 950,
+      "headings": [
+        "What does an AI engineer actually do?",
+        "Do you need a PhD or to be a math genius?",
+        "The realistic roadmap",
+        "A simple step-by-step starting plan",
+        "Tools worth learning",
+        "What about salary and demand?",
+        "Common mistakes beginners make",
+        "Expert tips"
+      ],
+      "codeBlocks": 0,
+      "officialLinks": [],
+      "missing": [
+        "Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.",
+        "No explicit reproduction section detected.",
+        "No explicit verification/expected-result wording detected.",
+        "No relevant Windows/VS Code/Node/npm/Git/Next official reference detected."
+      ],
+      "bodyPreserved": true
+    },
+    {
+      "slug": "cloud-computing-explained",
+      "url": "https://codewithlogs.com/blog/cloud-computing-explained",
+      "title": "Cloud Computing Explained: What It Actually Is (Without the Buzzwords)",
+      "status": "published",
+      "category": "Cloud Computing",
+      "action": "ARCHIVE",
+      "reason": "Outside the Windows developer troubleshooting niche. Recommend a legacy editorial archive, preserving the live URL and content until an approved migration plan exists.",
+      "mergeWith": null,
+      "windowsVerification": "NOT VERIFIED",
+      "specificFindings": [
+        "This is an editorial scope decision, not a finding that the content is worthless or plagiarized. No archival status change has been made."
+      ],
+      "wordCount": 981,
+      "headings": [
+        "What is cloud computing?",
+        "How does cloud computing work?",
+        "A simple analogy",
+        "The three main types of cloud services",
+        "The big cloud providers",
+        "Why cloud computing matters",
+        "The drawbacks (because there always are some)",
+        "Common mistakes beginners make",
+        "Expert tips"
+      ],
+      "codeBlocks": 0,
+      "officialLinks": [],
+      "missing": [
+        "Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.",
+        "No explicit reproduction section detected.",
+        "No explicit verification/expected-result wording detected.",
+        "No relevant Windows/VS Code/Node/npm/Git/Next official reference detected."
+      ],
+      "bodyPreserved": true
+    },
+    {
+      "slug": "what-is-code-with-logs",
+      "url": "https://codewithlogs.com/blog/what-is-code-with-logs",
+      "title": "What Is \"Code With Logs\"? (And Why Every Developer Ends Up Living By Them)",
+      "status": "published",
+      "category": "Next.js",
+      "action": "IMPROVE",
+      "reason": "Useful adjacent technical material. Rework around a specific Windows development failure, document the environment, reproduce and verify each fix, and retain the existing URL.",
+      "mergeWith": null,
+      "windowsVerification": "NOT VERIFIED",
+      "specificFindings": [
+        "Useful logging background, but it needs a narrow reproducible Windows debugging example.",
+        "Avoid treating anecdotal production experience as independently verified test evidence."
+      ],
+      "wordCount": 1527,
+      "headings": [
+        "The core problem logs solve",
+        "The humble `console.log` (a.k.a. everyone's first debugger)",
+        "What actually makes a log *useful*",
+        "Log levels: not everything is an emergency",
+        "The tools worth knowing about",
+        "A simple way to actually debug with logs",
+        "Mistakes I've watched people make (myself included)",
+        "So, what *is* \"code with logs,\" really?"
+      ],
+      "codeBlocks": 2,
+      "officialLinks": [],
+      "missing": [
+        "Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.",
+        "No explicit reproduction section detected.",
+        "No relevant Windows/VS Code/Node/npm/Git/Next official reference detected."
+      ],
+      "bodyPreserved": true
+    },
+    {
+      "slug": "cybersecurity-for-beginners",
+      "url": "https://codewithlogs.com/blog/cybersecurity-for-beginners",
+      "title": "Cybersecurity for Beginners: The Simple Habits That Actually Keep You Safe",
+      "status": "scheduled",
+      "category": "Cybersecurity",
+      "action": "ARCHIVE",
+      "reason": "Outside the Windows developer troubleshooting niche. Recommend a legacy editorial archive, preserving the live URL and content until an approved migration plan exists.",
+      "mergeWith": null,
+      "windowsVerification": "NOT VERIFIED",
+      "specificFindings": [
+        "This is an editorial scope decision, not a finding that the content is worthless or plagiarized. No archival status change has been made."
+      ],
+      "wordCount": 842,
+      "headings": [
+        "What is cybersecurity (for normal people)?",
+        "The real threats you actually face",
+        "The handful of habits that actually keep you safe",
+        "A simple step-by-step starting plan",
+        "Common mistakes beginners make",
+        "Expert tips"
+      ],
+      "codeBlocks": 0,
+      "officialLinks": [],
+      "missing": [
+        "Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.",
+        "No explicit reproduction section detected.",
+        "No explicit verification/expected-result wording detected.",
+        "No relevant Windows/VS Code/Node/npm/Git/Next official reference detected."
+      ],
+      "bodyPreserved": true
+    },
+    {
+      "slug": "ai-productivity-guide",
+      "url": "https://codewithlogs.com/blog/ai-productivity-guide",
+      "title": "The AI Productivity Guide I Wish I'd Had: Real Workflows, Not Just App Lists",
+      "status": "scheduled",
+      "category": "Productivity",
+      "action": "ARCHIVE",
+      "reason": "Outside the Windows developer troubleshooting niche. Recommend a legacy editorial archive, preserving the live URL and content until an approved migration plan exists.",
+      "mergeWith": null,
+      "windowsVerification": "NOT VERIFIED",
+      "specificFindings": [
+        "This is an editorial scope decision, not a finding that the content is worthless or plagiarized. No archival status change has been made."
+      ],
+      "wordCount": 781,
+      "headings": [
+        "What \"AI productivity\" really means",
+        "The mindset shift that actually matters",
+        "Real workflows that save me hours",
+        "How to write prompts that don't waste your time",
+        "A simple daily AI routine",
+        "Common mistakes people make",
+        "Expert tips"
+      ],
+      "codeBlocks": 0,
+      "officialLinks": [],
+      "missing": [
+        "Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.",
+        "No explicit reproduction section detected.",
+        "No relevant Windows/VS Code/Node/npm/Git/Next official reference detected."
+      ],
+      "bodyPreserved": true
+    },
+    {
+      "slug": "can-ai-replace-programmers",
+      "url": "https://codewithlogs.com/blog/can-ai-replace-programmers",
+      "title": "Can AI Replace Programmers? An Honest Answer From Someone Who Codes With AI Every Day",
+      "status": "scheduled",
+      "category": "Software Development",
+      "action": "ARCHIVE",
+      "reason": "Outside the Windows developer troubleshooting niche. Recommend a legacy editorial archive, preserving the live URL and content until an approved migration plan exists.",
+      "mergeWith": null,
+      "windowsVerification": "NOT VERIFIED",
+      "specificFindings": [
+        "This is an editorial scope decision, not a finding that the content is worthless or plagiarized. No archival status change has been made."
+      ],
+      "wordCount": 862,
+      "headings": [
+        "The short answer",
+        "What AI is genuinely good at",
+        "What AI still can't do",
+        "How the job is actually changing",
+        "So should you still learn to code?",
+        "Common mistakes people make about this topic",
+        "Expert tips"
+      ],
+      "codeBlocks": 0,
+      "officialLinks": [],
+      "missing": [
+        "Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.",
+        "No explicit reproduction section detected.",
+        "No explicit verification/expected-result wording detected.",
+        "No relevant Windows/VS Code/Node/npm/Git/Next official reference detected."
+      ],
+      "bodyPreserved": true
+    },
+    {
+      "slug": "chatgpt-vs-claude-vs-gemini",
+      "url": "https://codewithlogs.com/blog/chatgpt-vs-claude-vs-gemini",
+      "title": "ChatGPT vs Claude vs Gemini in 2026: I Use All Three Daily, Here’s the Honest Comparison",
+      "status": "scheduled",
+      "category": "AI Tools",
+      "action": "ARCHIVE",
+      "reason": "Outside the Windows developer troubleshooting niche. Recommend a legacy editorial archive, preserving the live URL and content until an approved migration plan exists.",
+      "mergeWith": null,
+      "windowsVerification": "NOT VERIFIED",
+      "specificFindings": [
+        "This is an editorial scope decision, not a finding that the content is worthless or plagiarized. No archival status change has been made."
+      ],
+      "wordCount": 1136,
+      "headings": [
+        "The quick answer",
+        "What you’re actually comparing in 2026",
+        "ChatGPT: the reliable all-rounder",
+        "Claude: the writer’s and coder’s pick",
+        "Gemini: the Google power move",
+        "Side-by-side comparison",
+        "How much do they cost?",
+        "Which one should you choose?",
+        "Common mistakes people make",
+        "Expert tips"
+      ],
+      "codeBlocks": 0,
+      "officialLinks": [],
+      "missing": [
+        "Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.",
+        "No explicit reproduction section detected.",
+        "No relevant Windows/VS Code/Node/npm/Git/Next official reference detected."
+      ],
+      "bodyPreserved": true
+    },
+    {
+      "slug": "react-vs-nextjs-2026",
+      "url": "https://codewithlogs.com/blog/react-vs-nextjs-2026",
+      "title": "React vs Next.js in 2026: Which One Should You Actually Use?",
+      "status": "draft",
+      "category": "Web Development",
+      "action": "ARCHIVE",
+      "reason": "Outside the Windows developer troubleshooting niche. Recommend a legacy editorial archive, preserving the live URL and content until an approved migration plan exists.",
+      "mergeWith": null,
+      "windowsVerification": "NOT VERIFIED",
+      "specificFindings": [
+        "This is an editorial scope decision, not a finding that the content is worthless or plagiarized. No archival status change has been made."
+      ],
+      "wordCount": 1116,
+      "headings": [
+        "What React actually is",
+        "What Next.js adds on top",
+        "The core difference: where your code runs",
+        "React vs Next.js: side-by-side",
+        "When a plain React app is the right call",
+        "When Next.js wins",
+        "Common mistakes developers make",
+        "Expert tips"
+      ],
+      "codeBlocks": 0,
+      "officialLinks": [],
+      "missing": [
+        "Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.",
+        "No explicit reproduction section detected.",
+        "No explicit verification/expected-result wording detected.",
+        "No relevant Windows/VS Code/Node/npm/Git/Next official reference detected."
+      ],
+      "bodyPreserved": true
+    },
+    {
+      "slug": "what-are-ai-agents",
+      "url": "https://codewithlogs.com/blog/what-are-ai-agents",
+      "title": "What Are AI Agents? A Plain-English Guide (With Real Examples From Someone Who Builds Them)",
+      "status": "draft",
+      "category": "AI Tools",
+      "action": "ARCHIVE",
+      "reason": "Outside the Windows developer troubleshooting niche. Recommend a legacy editorial archive, preserving the live URL and content until an approved migration plan exists.",
+      "mergeWith": null,
+      "windowsVerification": "NOT VERIFIED",
+      "specificFindings": [
+        "This is an editorial scope decision, not a finding that the content is worthless or plagiarized. No archival status change has been made."
+      ],
+      "wordCount": 1459,
+      "headings": [
+        "What is an AI agent?",
+        "AI agents vs chatbots: the difference that actually matters",
+        "How do AI agents work?",
+        "Real examples of AI agents (the useful kind, not the sci-fi kind)",
+        "Why AI agents matter",
+        "The drawbacks nobody puts in the demo video",
+        "Tools and platforms to build AI agents in 2026:",
+        "How to build a simple AI agent: a starting path",
+        "Common mistakes beginners make",
+        "Expert tips"
+      ],
+      "codeBlocks": 0,
+      "officialLinks": [],
+      "missing": [
+        "Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.",
+        "No explicit reproduction section detected.",
+        "No relevant Windows/VS Code/Node/npm/Git/Next official reference detected."
+      ],
+      "bodyPreserved": true
+    },
+    {
+      "slug": "best-ai-tools-2026",
+      "url": "https://codewithlogs.com/blog/best-ai-tools-2026",
+      "title": "The Best AI Tools in 2026: What I Actually Pay For (and What I Quietly Cancelled)",
+      "status": "draft",
+      "category": "AI Tools",
+      "action": "ARCHIVE",
+      "reason": "Outside the Windows developer troubleshooting niche. Recommend a legacy editorial archive, preserving the live URL and content until an approved migration plan exists.",
+      "mergeWith": null,
+      "windowsVerification": "NOT VERIFIED",
+      "specificFindings": [
+        "This is an editorial scope decision, not a finding that the content is worthless or plagiarized. No archival status change has been made."
+      ],
+      "wordCount": 953,
+      "headings": [
+        "How to choose an AI tool (the only framework you need)",
+        "Best all-purpose AI assistants",
+        "Best AI tools for writing",
+        "Best AI tools for coding",
+        "Best AI tools for images",
+        "Best AI tools for video",
+        "Best AI tools for research",
+        "Best AI tools for productivity and audio",
+        "Quick comparison",
+        "Common mistakes people make",
+        "Expert tips"
+      ],
+      "codeBlocks": 0,
+      "officialLinks": [],
+      "missing": [
+        "Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.",
+        "No explicit reproduction section detected.",
+        "No relevant Windows/VS Code/Node/npm/Git/Next official reference detected."
+      ],
+      "bodyPreserved": true
+    },
+    {
+      "slug": "how-i-built-first-saas-lessons-learned",
+      "url": "https://codewithlogs.com/blog/how-i-built-first-saas-lessons-learned",
+      "title": "How I Built My First SaaS Project — Lessons, Mistakes, and What I'd Do Differently",
+      "status": "draft",
+      "category": "SaaS",
+      "action": "ARCHIVE",
+      "reason": "Outside the Windows developer troubleshooting niche. Recommend a legacy editorial archive, preserving the live URL and content until an approved migration plan exists.",
+      "mergeWith": null,
+      "windowsVerification": "NOT VERIFIED",
+      "specificFindings": [
+        "This is an editorial scope decision, not a finding that the content is worthless or plagiarized. No archival status change has been made."
+      ],
+      "wordCount": 1032,
+      "headings": [
+        "The Part Where I Over-Built the First Version",
+        "The Technical Stack I Chose and Whether It Was Right",
+        "Getting the First Users",
+        "The Monetization Conversation I Dreaded",
+        "What I Wish I Had Known Before Starting",
+        "Would I Build a SaaS Again"
+      ],
+      "codeBlocks": 0,
+      "officialLinks": [],
+      "missing": [
+        "Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.",
+        "No explicit reproduction section detected.",
+        "No relevant Windows/VS Code/Node/npm/Git/Next official reference detected."
+      ],
+      "bodyPreserved": true
+    },
+    {
+      "slug": "best-free-websites-learn-web-development-2026",
+      "url": "https://codewithlogs.com/blog/best-free-websites-learn-web-development-2026",
+      "title": "Best Free Websites to Learn Web Development in 2026 (Ranked by a Working Developer)",
+      "status": "draft",
+      "category": "Career",
+      "action": "ARCHIVE",
+      "reason": "Outside the Windows developer troubleshooting niche. Recommend a legacy editorial archive, preserving the live URL and content until an approved migration plan exists.",
+      "mergeWith": null,
+      "windowsVerification": "NOT VERIFIED",
+      "specificFindings": [
+        "This is an editorial scope decision, not a finding that the content is worthless or plagiarized. No archival status change has been made."
+      ],
+      "wordCount": 1059,
+      "headings": [
+        "freeCodeCamp — Best for Structured Beginners",
+        "The Odin Project — Best for Serious Learners",
+        "javascript.info — Best JavaScript Reference",
+        "MDN Web Docs — The Official Reference",
+        "Kevin Powell's YouTube Channel — Best for CSS",
+        "Traversy Media — Best for Project Tutorials",
+        "Scrimba — Best Interactive Learning",
+        "The Official Documentation of Every Framework",
+        "What to Do With This List"
+      ],
+      "codeBlocks": 0,
+      "officialLinks": [],
+      "missing": [
+        "Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.",
+        "No explicit reproduction section detected.",
+        "No relevant Windows/VS Code/Node/npm/Git/Next official reference detected."
+      ],
+      "bodyPreserved": true
+    },
+    {
+      "slug": "what-is-typescript-why-developers-switching",
+      "url": "https://codewithlogs.com/blog/what-is-typescript-why-developers-switching",
+      "title": "What Is TypeScript and Why Every Developer Is Switching to It in 2026",
+      "status": "scheduled",
+      "category": "Web Dev",
+      "action": "MERGE",
+      "reason": "Overlapping search intent with the paired article. Compare examples and Search Console performance before choosing a primary URL; no redirect or deletion authorized.",
+      "mergeWith": "what-is-typescript",
+      "windowsVerification": "NOT VERIFIED",
+      "specificFindings": [
+        "Compare the complete examples and search intent in this overlapping group before proposing a consolidation; keep every URL until approved."
+      ],
+      "wordCount": 899,
+      "headings": [
+        "The Problem TypeScript Solves",
+        "TypeScript Is Not a New Language",
+        "What TypeScript Looks Like in Practice",
+        "Why the Industry Switched So Quickly",
+        "How Long Does It Take to Learn TypeScript",
+        "Should You Learn TypeScript or JavaScript First"
+      ],
+      "codeBlocks": 4,
+      "officialLinks": [],
+      "missing": [
+        "Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.",
+        "No explicit reproduction section detected.",
+        "No explicit verification/expected-result wording detected.",
+        "No relevant Windows/VS Code/Node/npm/Git/Next official reference detected."
+      ],
+      "bodyPreserved": true
+    },
+    {
+      "slug": "make-money-developer-without-job-2026",
+      "url": "https://codewithlogs.com/blog/make-money-developer-without-job-2026",
+      "title": "How to Make Money as a Developer Without a Traditional Job in 2026",
+      "status": "draft",
+      "category": "Freelancing",
+      "action": "ARCHIVE",
+      "reason": "Outside the Windows developer troubleshooting niche. Recommend a legacy editorial archive, preserving the live URL and content until an approved migration plan exists.",
+      "mergeWith": null,
+      "windowsVerification": "NOT VERIFIED",
+      "specificFindings": [
+        "This is an editorial scope decision, not a finding that the content is worthless or plagiarized. No archival status change has been made."
+      ],
+      "wordCount": 1002,
+      "headings": [
+        "Freelancing — The Obvious One",
+        "Building and Selling Digital Products",
+        "Building a Micro-SaaS",
+        "Content Creation — Blogs, YouTube, Newsletters",
+        "Technical Writing and Documentation",
+        "Developer Relations and Consulting",
+        "The Pattern Across All of These"
+      ],
+      "codeBlocks": 0,
+      "officialLinks": [],
+      "missing": [
+        "Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.",
+        "No explicit reproduction section detected.",
+        "No explicit verification/expected-result wording detected.",
+        "No relevant Windows/VS Code/Node/npm/Git/Next official reference detected."
+      ],
+      "bodyPreserved": true
+    },
+    {
+      "slug": "mongodb-vs-postgresql-which-database-2026",
+      "url": "https://codewithlogs.com/blog/mongodb-vs-postgresql-which-database-2026",
+      "title": "MongoDB vs PostgreSQL — Which Database Should You Use? (2026 Guide)",
+      "status": "published",
+      "category": "MERN",
+      "action": "MERGE",
+      "reason": "Overlapping search intent with the paired article. Compare examples and Search Console performance before choosing a primary URL; no redirect or deletion authorized.",
+      "mergeWith": "mongodb-vs-postgresql",
+      "windowsVerification": "NOT VERIFIED",
+      "specificFindings": [
+        "Compare the complete examples and search intent in this overlapping group before proposing a consolidation; keep every URL until approved."
+      ],
+      "wordCount": 837,
+      "headings": [
+        "The Fundamental Difference",
+        "When MongoDB Is the Right Choice",
+        "When PostgreSQL Is the Right Choice",
+        "The Practical Reality in 2026",
+        "My Honest Recommendation"
+      ],
+      "codeBlocks": 0,
+      "officialLinks": [],
+      "missing": [
+        "Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.",
+        "No explicit reproduction section detected.",
+        "No explicit verification/expected-result wording detected.",
+        "No relevant Windows/VS Code/Node/npm/Git/Next official reference detected."
+      ],
+      "bodyPreserved": true
+    },
+    {
+      "slug": "deploy-nextjs-to-vercel-guide",
+      "url": "https://codewithlogs.com/blog/deploy-nextjs-to-vercel-guide",
+      "title": "How to Deploy a Next.js App to Vercel — Complete Step-by-Step Guide (2026)",
+      "status": "scheduled",
+      "category": "Next.js",
+      "action": "IMPROVE",
+      "reason": "Useful adjacent technical material. Rework around a specific Windows development failure, document the environment, reproduce and verify each fix, and retain the existing URL.",
+      "mergeWith": null,
+      "windowsVerification": "NOT VERIFIED",
+      "specificFindings": [
+        "Separate ordinary deployment setup from a specific Windows-to-production failure.",
+        "Do not offer a global database network allowlist as a routine connection fix.",
+        "Verify current image configuration, environment behavior and Windows shell commands against the pinned version."
+      ],
+      "wordCount": 1048,
+      "headings": [
+        "Prerequisites",
+        "Step 1 — Push Your Project to GitHub",
+        "Step 2 — Connect to Vercel",
+        "Step 3 — Add Environment Variables",
+        "Step 4 — Deploy",
+        "Step 5 — Set Up Automatic Deployments",
+        "Connecting a Custom Domain",
+        "Troubleshooting Common Issues",
+        "The NEXT_PUBLIC_ Prefix"
+      ],
+      "codeBlocks": 2,
+      "officialLinks": [],
+      "missing": [
+        "Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.",
+        "No explicit reproduction section detected.",
+        "No explicit verification/expected-result wording detected.",
+        "No relevant Windows/VS Code/Node/npm/Git/Next official reference detected."
+      ],
+      "bodyPreserved": true
+    },
+    {
+      "slug": "react-vs-vue-vs-svelte-2026",
+      "url": "https://codewithlogs.com/blog/react-vs-vue-vs-svelte-2026",
+      "title": "React vs Vue vs Svelte — Which JavaScript Framework Should You Learn in 2026?",
+      "status": "scheduled",
+      "category": "Web Dev",
+      "action": "ARCHIVE",
+      "reason": "Outside the Windows developer troubleshooting niche. Recommend a legacy editorial archive, preserving the live URL and content until an approved migration plan exists.",
+      "mergeWith": null,
+      "windowsVerification": "NOT VERIFIED",
+      "specificFindings": [
+        "This is an editorial scope decision, not a finding that the content is worthless or plagiarized. No archival status change has been made."
+      ],
+      "wordCount": 1049,
+      "headings": [
+        "React — The Industry Standard",
+        "Vue — The Friendly Alternative",
+        "Svelte — The New Paradigm",
+        "My Honest Recommendation"
+      ],
+      "codeBlocks": 1,
+      "officialLinks": [],
+      "missing": [
+        "Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.",
+        "No explicit reproduction section detected.",
+        "No explicit verification/expected-result wording detected.",
+        "No relevant Windows/VS Code/Node/npm/Git/Next official reference detected."
+      ],
+      "bodyPreserved": true
+    },
+    {
+      "slug": "build-rest-api-nodejs-beginners",
+      "url": "https://codewithlogs.com/blog/build-rest-api-nodejs-beginners",
+      "title": "How to Build a REST API with Node.js — Complete Beginner Guide",
+      "status": "draft",
+      "category": "MERN",
+      "action": "ARCHIVE",
+      "reason": "Outside the Windows developer troubleshooting niche. Recommend a legacy editorial archive, preserving the live URL and content until an approved migration plan exists.",
+      "mergeWith": null,
+      "windowsVerification": "NOT VERIFIED",
+      "specificFindings": [
+        "This is an editorial scope decision, not a finding that the content is worthless or plagiarized. No archival status change has been made."
+      ],
+      "wordCount": 969,
+      "headings": [
+        "What We're Building",
+        "Setting Up Your Project",
+        "Creating the Server",
+        "The Task Model",
+        "The Routes",
+        "Testing Your API",
+        "Common Mistakes Beginners Make",
+        "What to Build Next"
+      ],
+      "codeBlocks": 9,
+      "officialLinks": [],
+      "missing": [
+        "Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.",
+        "No explicit reproduction section detected.",
+        "No explicit verification/expected-result wording detected.",
+        "No relevant Windows/VS Code/Node/npm/Git/Next official reference detected."
+      ],
+      "bodyPreserved": true
+    },
+    {
+      "slug": "passive-income-ideas-for-developers-2026",
+      "url": "https://codewithlogs.com/blog/passive-income-ideas-for-developers-2026",
+      "title": "Passive Income Ideas for Developers in 2026 — What Actually Works",
+      "status": "draft",
+      "category": "Freelancing",
+      "action": "ARCHIVE",
+      "reason": "Outside the Windows developer troubleshooting niche. Recommend a legacy editorial archive, preserving the live URL and content until an approved migration plan exists.",
+      "mergeWith": null,
+      "windowsVerification": "NOT VERIFIED",
+      "specificFindings": [
+        "This is an editorial scope decision, not a finding that the content is worthless or plagiarized. No archival status change has been made."
+      ],
+      "wordCount": 1375,
+      "headings": [
+        "The Developer Advantage Nobody Talks About Enough",
+        "1. Selling Code Templates and UI Kits",
+        "2. Affiliate Income from Developer Tools",
+        "3. Building a Micro-SaaS",
+        "4. Creating Online Courses or Tutorials",
+        "5. Writing Technical Content for Other Blogs and Publications",
+        "6. Selling APIs as a Service",
+        "7. Sponsorships on a Developer Blog or Newsletter",
+        "What I Would Focus On Starting Today"
+      ],
+      "codeBlocks": 0,
+      "officialLinks": [],
+      "missing": [
+        "Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.",
+        "No explicit reproduction section detected.",
+        "No explicit verification/expected-result wording detected.",
+        "No relevant Windows/VS Code/Node/npm/Git/Next official reference detected."
+      ],
+      "bodyPreserved": true
+    },
+    {
+      "slug": "typescript-for-beginners-why-learn-it",
+      "url": "https://codewithlogs.com/blog/typescript-for-beginners-why-learn-it",
+      "title": "TypeScript for Beginners — Why You Should Learn It Now (And How to Start)",
+      "status": "draft",
+      "category": "Web Dev",
+      "action": "MERGE",
+      "reason": "Overlapping search intent with the paired article. Compare examples and Search Console performance before choosing a primary URL; no redirect or deletion authorized.",
+      "mergeWith": "what-is-typescript",
+      "windowsVerification": "NOT VERIFIED",
+      "specificFindings": [
+        "Compare the complete examples and search intent in this overlapping group before proposing a consolidation; keep every URL until approved."
+      ],
+      "wordCount": 1293,
+      "headings": [
+        "What TypeScript Actually Is",
+        "Why JavaScript Developers Resist TypeScript",
+        "The Moment TypeScript Saves You",
+        "The Three TypeScript Concepts You Need First",
+        "How to Actually Start Learning TypeScript Today",
+        "Common Beginner Mistakes With TypeScript",
+        "Is TypeScript Worth It for Solo Projects and Freelance Work"
+      ],
+      "codeBlocks": 3,
+      "officialLinks": [],
+      "missing": [
+        "Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.",
+        "No explicit reproduction section detected.",
+        "No explicit verification/expected-result wording detected.",
+        "No relevant Windows/VS Code/Node/npm/Git/Next official reference detected."
+      ],
+      "bodyPreserved": true
+    },
+    {
+      "slug": "what-is-serverless-computing-should-you-use-it",
+      "url": "https://codewithlogs.com/blog/what-is-serverless-computing-should-you-use-it",
+      "title": "What Is Serverless Computing and Should You Actually Use It? (2026 Guide)",
+      "status": "scheduled",
+      "category": "Web Dev",
+      "action": "ARCHIVE",
+      "reason": "Outside the Windows developer troubleshooting niche. Recommend a legacy editorial archive, preserving the live URL and content until an approved migration plan exists.",
+      "mergeWith": null,
+      "windowsVerification": "NOT VERIFIED",
+      "specificFindings": [
+        "This is an editorial scope decision, not a finding that the content is worthless or plagiarized. No archival status change has been made."
+      ],
+      "wordCount": 955,
+      "headings": [
+        "The Name Is Misleading, Here's What It Actually Means",
+        "How Serverless Functions Actually Work",
+        "The Platforms You've Probably Already Used",
+        "Where Serverless Works Really Well",
+        "Where Serverless Has Real Limitations",
+        "Should You Use Serverless for Your Next Project?"
+      ],
+      "codeBlocks": 0,
+      "officialLinks": [],
+      "missing": [
+        "Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.",
+        "No explicit reproduction section detected.",
+        "No explicit verification/expected-result wording detected.",
+        "No relevant Windows/VS Code/Node/npm/Git/Next official reference detected."
+      ],
+      "bodyPreserved": true
+    },
+    {
+      "slug": "what-is-vibe-coding-should-you-try-it",
+      "url": "https://codewithlogs.com/blog/what-is-vibe-coding-should-you-try-it",
+      "title": "What Is Vibe Coding and Should You Actually Try It?",
+      "status": "draft",
+      "category": "AI Tools",
+      "action": "ARCHIVE",
+      "reason": "Outside the Windows developer troubleshooting niche. Recommend a legacy editorial archive, preserving the live URL and content until an approved migration plan exists.",
+      "mergeWith": null,
+      "windowsVerification": "NOT VERIFIED",
+      "specificFindings": [
+        "This is an editorial scope decision, not a finding that the content is worthless or plagiarized. No archival status change has been made."
+      ],
+      "wordCount": 881,
+      "headings": [
+        "What Vibe Coding Actually Means",
+        "What I Actually Built While Vibe Coding",
+        "Where Vibe Coding Works Well",
+        "Where Vibe Coding Falls Apart",
+        "The Honest Verdict"
+      ],
+      "codeBlocks": 0,
+      "officialLinks": [],
+      "missing": [
+        "Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.",
+        "No explicit reproduction section detected.",
+        "No relevant Windows/VS Code/Node/npm/Git/Next official reference detected."
+      ],
+      "bodyPreserved": true
+    },
+    {
+      "slug": "full-stack-developer-roadmap-2026",
+      "url": "https://codewithlogs.com/blog/full-stack-developer-roadmap-2026",
+      "title": "Full Stack Developer Roadmap 2026 — From Zero to Hired (Step by Step)",
+      "status": "draft",
+      "category": "Career",
+      "action": "ARCHIVE",
+      "reason": "Outside the Windows developer troubleshooting niche. Recommend a legacy editorial archive, preserving the live URL and content until an approved migration plan exists.",
+      "mergeWith": null,
+      "windowsVerification": "NOT VERIFIED",
+      "specificFindings": [
+        "This is an editorial scope decision, not a finding that the content is worthless or plagiarized. No archival status change has been made."
+      ],
+      "wordCount": 1107,
+      "headings": [
+        "Phase 1: The Absolute Foundation (Months 1–2)",
+        "HTML — Learn This First, No Exceptions",
+        "CSS — How Pages Look",
+        "Basic JavaScript — The Logic Layer",
+        "Phase 2: Building Real Things (Months 3–5)",
+        "Git and GitHub — Start Here",
+        "JavaScript Deeper",
+        "React — The Frontend Framework",
+        "Phase 3: The Backend (Months 6–8)",
+        "Node.js and Express",
+        "Databases",
+        "Authentication",
+        "Phase 4: Modern Stack and Deployment (Months 9–12)",
+        "Next.js",
+        "TypeScript",
+        "Deployment",
+        "Phase 5: Getting Hired (Month 12+)",
+        "Portfolio Projects",
+        "GitHub Profile",
+        "Job Applications or Freelancing"
+      ],
+      "codeBlocks": 0,
+      "officialLinks": [],
+      "missing": [
+        "Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.",
+        "No explicit reproduction section detected.",
+        "No explicit verification/expected-result wording detected.",
+        "No relevant Windows/VS Code/Node/npm/Git/Next official reference detected."
+      ],
+      "bodyPreserved": true
+    },
+    {
+      "slug": "cursor-vs-github-copilot-2026",
+      "url": "https://codewithlogs.com/blog/cursor-vs-github-copilot-2026",
+      "title": "Cursor vs GitHub Copilot — Which Should You Use in 2026? (Honest Comparison)",
+      "status": "scheduled",
+      "category": "AI Tools",
+      "action": "ARCHIVE",
+      "reason": "Outside the Windows developer troubleshooting niche. Recommend a legacy editorial archive, preserving the live URL and content until an approved migration plan exists.",
+      "mergeWith": null,
+      "windowsVerification": "NOT VERIFIED",
+      "specificFindings": [
+        "This is an editorial scope decision, not a finding that the content is worthless or plagiarized. No archival status change has been made."
+      ],
+      "wordCount": 852,
+      "headings": [
+        "The Core Difference",
+        "Autocomplete Quality",
+        "Chat and Explanation",
+        "Inline Editing",
+        "Agent Mode",
+        "Pricing Comparison",
+        "Which One Should You Use"
+      ],
+      "codeBlocks": 0,
+      "officialLinks": [],
+      "missing": [
+        "Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.",
+        "No explicit reproduction section detected.",
+        "No explicit verification/expected-result wording detected.",
+        "No relevant Windows/VS Code/Node/npm/Git/Next official reference detected."
+      ],
+      "bodyPreserved": true
+    },
+    {
+      "slug": "get-first-freelance-client-web-developer",
+      "url": "https://codewithlogs.com/blog/get-first-freelance-client-web-developer",
+      "title": "How to Get Your First Freelance Client as a Web Developer (What Actually Worked)",
+      "status": "scheduled",
+      "category": "Freelancing",
+      "action": "ARCHIVE",
+      "reason": "Outside the Windows developer troubleshooting niche. Recommend a legacy editorial archive, preserving the live URL and content until an approved migration plan exists.",
+      "mergeWith": null,
+      "windowsVerification": "NOT VERIFIED",
+      "specificFindings": [
+        "This is an editorial scope decision, not a finding that the content is worthless or plagiarized. No archival status change has been made."
+      ],
+      "wordCount": 1014,
+      "headings": [
+        "Why Upwork Doesn't Work for New Freelancers",
+        "The Method That Actually Works: Warm Outreach",
+        "The Portfolio Problem and How to Actually Solve It",
+        "What Your Portfolio Needs to Show",
+        "Platforms Worth Using After Your First Two Clients",
+        "What to Charge for Your First Projects"
+      ],
+      "codeBlocks": 0,
+      "officialLinks": [],
+      "missing": [
+        "Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.",
+        "No explicit reproduction section detected.",
+        "No explicit verification/expected-result wording detected.",
+        "No relevant Windows/VS Code/Node/npm/Git/Next official reference detected."
+      ],
+      "bodyPreserved": true
+    },
+    {
+      "slug": "best-tools-build-saas-2026",
+      "url": "https://codewithlogs.com/blog/best-tools-build-saas-2026",
+      "title": "Best Tools to Build a SaaS Product in 2026 (The Stack I Actually Use)",
+      "status": "draft",
+      "category": "SaaS",
+      "action": "ARCHIVE",
+      "reason": "Outside the Windows developer troubleshooting niche. Recommend a legacy editorial archive, preserving the live URL and content until an approved migration plan exists.",
+      "mergeWith": null,
+      "windowsVerification": "NOT VERIFIED",
+      "specificFindings": [
+        "This is an editorial scope decision, not a finding that the content is worthless or plagiarized. No archival status change has been made."
+      ],
+      "wordCount": 987,
+      "headings": [],
+      "codeBlocks": 0,
+      "officialLinks": [],
+      "missing": [
+        "Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.",
+        "No explicit reproduction section detected.",
+        "No relevant Windows/VS Code/Node/npm/Git/Next official reference detected."
+      ],
+      "bodyPreserved": true
+    },
+    {
+      "slug": "learn-web-development-free-2026",
+      "url": "https://codewithlogs.com/blog/learn-web-development-free-2026",
+      "title": "How to Learn Web Development for Free in 2026 (The Honest Guide)",
+      "status": "draft",
+      "category": "Career",
+      "action": "ARCHIVE",
+      "reason": "Outside the Windows developer troubleshooting niche. Recommend a legacy editorial archive, preserving the live URL and content until an approved migration plan exists.",
+      "mergeWith": null,
+      "windowsVerification": "NOT VERIFIED",
+      "specificFindings": [
+        "This is an editorial scope decision, not a finding that the content is worthless or plagiarized. No archival status change has been made."
+      ],
+      "wordCount": 1116,
+      "headings": [
+        "The Honest Reality About Free Learning",
+        "Step One: HTML and CSS First — No Exceptions",
+        "Step Two: JavaScript — The Language That Runs the Web",
+        "Step Three: Pick a Framework — React or Vue",
+        "Step Four: Git and GitHub — Non-Negotiable",
+        "Step Five: Build Projects — Real Ones",
+        "The YouTube Channels That Are Actually Worth Your Time",
+        "What You Can Realistically Expect"
+      ],
+      "codeBlocks": 0,
+      "officialLinks": [],
+      "missing": [
+        "Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.",
+        "No explicit reproduction section detected.",
+        "No explicit verification/expected-result wording detected.",
+        "No relevant Windows/VS Code/Node/npm/Git/Next official reference detected."
+      ],
+      "bodyPreserved": true
+    },
+    {
+      "slug": "nextjs-15-app-router-guide-beginners",
+      "url": "https://codewithlogs.com/blog/nextjs-15-app-router-guide-beginners",
+      "title": "Next.js 15 App Router Complete Guide for Beginners (2026)",
+      "status": "draft",
+      "category": "Next.js",
+      "action": "ARCHIVE",
+      "reason": "Outside the Windows developer troubleshooting niche. Recommend a legacy editorial archive, preserving the live URL and content until an approved migration plan exists.",
+      "mergeWith": null,
+      "windowsVerification": "NOT VERIFIED",
+      "specificFindings": [
+        "This is an editorial scope decision, not a finding that the content is worthless or plagiarized. No archival status change has been made."
+      ],
+      "wordCount": 1087,
+      "headings": [
+        "What the App Router Actually Is",
+        "Understanding Layouts",
+        "Server Components vs Client Components — The Part That Confuses Everyone",
+        "Data Fetching in the App Router",
+        "Route Handlers — Your API in the App Router",
+        "Common Mistakes Beginners Make With the App Router",
+        "A Simple Project to Practice"
+      ],
+      "codeBlocks": 2,
+      "officialLinks": [],
+      "missing": [
+        "Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.",
+        "No explicit reproduction section detected.",
+        "No explicit verification/expected-result wording detected.",
+        "No relevant Windows/VS Code/Node/npm/Git/Next official reference detected."
+      ],
+      "bodyPreserved": true
+    },
+    {
+      "slug": "what-are-ai-agents-how-they-work",
+      "url": "https://codewithlogs.com/blog/what-are-ai-agents-how-they-work",
+      "title": "What Are AI Agents and How Do They Actually Work (Plain English Guide)",
+      "status": "draft",
+      "category": "AI Tools",
+      "action": "ARCHIVE",
+      "reason": "Outside the Windows developer troubleshooting niche. Recommend a legacy editorial archive, preserving the live URL and content until an approved migration plan exists.",
+      "mergeWith": null,
+      "windowsVerification": "NOT VERIFIED",
+      "specificFindings": [
+        "This is an editorial scope decision, not a finding that the content is worthless or plagiarized. No archival status change has been made."
+      ],
+      "wordCount": 1103,
+      "headings": [
+        "The Simplest Way to Understand an AI Agent",
+        "What Actually Makes Something an AI Agent",
+        "A Real Example: How an AI Agent Handles a Coding Task",
+        "The Tools Building AI Agents Right Now",
+        "Why AI Agents Are a Big Deal in 2026",
+        "What AI Agents Are Not Good At (Yet)",
+        "How Developers Can Start Learning About Agents Today"
+      ],
+      "codeBlocks": 0,
+      "officialLinks": [],
+      "missing": [
+        "Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.",
+        "No explicit reproduction section detected.",
+        "No explicit verification/expected-result wording detected.",
+        "No relevant Windows/VS Code/Node/npm/Git/Next official reference detected."
+      ],
+      "bodyPreserved": true
+    },
+    {
+      "slug": "best-ai-coding-tools-beginners-2026",
+      "url": "https://codewithlogs.com/blog/best-ai-coding-tools-beginners-2026",
+      "title": "Best AI Coding Tools for Beginners in 2026 (I Tested Them All)",
+      "status": "draft",
+      "category": "AI Tools",
+      "action": "ARCHIVE",
+      "reason": "Outside the Windows developer troubleshooting niche. Recommend a legacy editorial archive, preserving the live URL and content until an approved migration plan exists.",
+      "mergeWith": null,
+      "windowsVerification": "NOT VERIFIED",
+      "specificFindings": [
+        "This is an editorial scope decision, not a finding that the content is worthless or plagiarized. No archival status change has been made."
+      ],
+      "wordCount": 1391,
+      "headings": [
+        "Why AI Coding Tools Actually Work for Beginners",
+        "The Tools I Actually Used",
+        "Cursor — My Daily Driver",
+        "GitHub Copilot — The Original",
+        "ChatGPT — The Explainer",
+        "Tabnine — The Private Option",
+        "Codeium — The Free Alternative",
+        "How to Actually Get Value From These Tools as a Beginner",
+        "Common Mistakes Beginners Make With AI Coding Tools",
+        "My Honest Pick for Beginners"
+      ],
+      "codeBlocks": 0,
+      "officialLinks": [],
+      "missing": [
+        "Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.",
+        "No explicit reproduction section detected.",
+        "No explicit verification/expected-result wording detected.",
+        "No relevant Windows/VS Code/Node/npm/Git/Next official reference detected."
+      ],
+      "bodyPreserved": true
+    }
+  ]
+}

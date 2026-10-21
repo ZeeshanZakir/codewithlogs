@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo } from "react";
 
-import { cn } from "@/lib/utils";
+
 
 type AdUnitProps = {
   slot: string;
@@ -16,6 +16,10 @@ declare global {
 }
 
 const slotMap = {
+  "article-top": process.env.NEXT_PUBLIC_ADSENSE_SLOT_ARTICLE_TOP,
+  "article-mid": process.env.NEXT_PUBLIC_ADSENSE_SLOT_ARTICLE_MID,
+  "article-end": process.env.NEXT_PUBLIC_ADSENSE_SLOT_ARTICLE_END,
+  sidebar: process.env.NEXT_PUBLIC_ADSENSE_SLOT_SIDEBAR,
   "homepage-mid": process.env.NEXT_PUBLIC_ADSENSE_SLOT_HOMEPAGE_MID,
   "gallery-top": process.env.NEXT_PUBLIC_ADSENSE_SLOT_GALLERY_TOP,
   "gallery-grid": process.env.NEXT_PUBLIC_ADSENSE_SLOT_GALLERY_GRID,
@@ -42,7 +46,7 @@ function resolveSlotId(slot: string) {
     return slotMap[slot as keyof typeof slotMap];
   }
 
-  return slot;
+  return /^\d+$/.test(slot) ? slot : undefined;
 }
 
 export function AdUnit({ slot, format = "auto" }: AdUnitProps) {
@@ -51,7 +55,7 @@ export function AdUnit({ slot, format = "auto" }: AdUnitProps) {
   const isProduction = process.env.NODE_ENV === "production";
 
   useEffect(() => {
-    if (!isProduction || !publisherId || !slotId) {
+    if (!isProduction || !publisherId || !slotId || !/^\d+$/.test(slotId)) {
       return;
     }
 
@@ -63,30 +67,17 @@ export function AdUnit({ slot, format = "auto" }: AdUnitProps) {
     }
   }, [isProduction, publisherId, slotId]);
 
-  if (!isProduction) {
-    return (
-      <div
-        className={cn(
-          "flex w-full items-center justify-center rounded-[12px] border border-dashed border-black/10 bg-surface px-4 text-sm text-text/50",
-          format === "rectangle" ? "min-h-[280px]" : "min-h-[120px]",
-        )}
-      >
-        Ad placeholder: {slot}
-      </div>
-    );
-  }
-
-  if (!publisherId || !slotId) {
+  if (!isProduction || !publisherId || !slotId || !/^\d+$/.test(slotId)) {
     return null;
   }
 
   return (
     <ins
-      className="adsbygoogle block w-full overflow-hidden rounded-[12px]"
+      className="adsbygoogle ad-placement block w-full overflow-hidden"
       style={formatStyles[format]}
-      data-ad-client={`ca-${publisherId}`}
+      data-ad-client={publisherId.startsWith("ca-") ? publisherId : `ca-${publisherId}`}
       data-ad-slot={slotId}
-      data-ad-format={format === "auto" ? "auto" : "fluid"}
+      data-ad-format={format}
       data-full-width-responsive="true"
     />
   );

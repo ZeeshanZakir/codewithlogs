@@ -5,13 +5,14 @@ import { ContactForm } from "@/components/contact/ContactForm";
 import { siteUrl } from "@/lib/site-url";
 
 export const metadata: Metadata = {
-  title: "Let's Work Together | Contact",
+  title: "Contact & Article Corrections",
   description:
-    "Get in touch for new projects, freelance work, collaborations, or development questions. I reply within 24 hours.",
+    "Ask a development question, report an issue in a tutorial, or contact Zeeshan Zakir about CodeWithLogs.",
+  alternates: { canonical: `${siteUrl}/contact` },
   openGraph: {
-    title: "Let's Work Together | Contact",
+    title: "Contact & Article Corrections",
     description:
-      "Contact Zeeshan Zakir for web development projects, freelance work, and collaborations.",
+      "Contact CodeWithLogs with tutorial questions, corrections, collaborations, or project enquiries.",
     url: `${siteUrl}/contact`,
     type: "website",
   },
@@ -47,11 +48,11 @@ export default function ContactPage() {
               Contact
             </p>
             <h1 className="text-4xl font-bold tracking-tight text-text sm:text-5xl">
-              Let&apos;s Work Together
+              Questions, corrections, or a hello.
             </h1>
             <p className="text-base leading-8 text-text/70 sm:text-lg">
-              Tell me about your project, timeline, and budget. If it looks like a good fit,
-              I&apos;ll reply with the next steps.
+              Found an issue in a tutorial? Include the article link, your framework version, and steps to reproduce it. For project enquiries, share your timeline and budget.
+              You can also email me directly below.
             </p>
           </div>
         </div>
@@ -67,7 +68,7 @@ export default function ContactPage() {
                 <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">
                   {card.title}
                 </p>
-                <p className="mt-3 text-base leading-8 text-text/75">{card.body}</p>
+                <p className="mt-3 text-base leading-8 text-text/75">{card.title === "Email" ? <a href={`mailto:${card.body}`} className="underline underline-offset-4">{card.body}</a> : card.body}</p>
               </div>
             ))}
 

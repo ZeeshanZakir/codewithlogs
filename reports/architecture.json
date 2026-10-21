@@ -1,0 +1,344 @@
+{
+  "sourceFiles": 128,
+  "framework": "Next.js 16.2.6 App Router / React 19",
+  "database": "MongoDB via Mongoose; posts, profiles, subscribers, contact messages, gallery pins",
+  "auth": "NextAuth credentials and JWT sessions, admin proxy, authenticated server actions",
+  "storage": "Vercel Blob with existing upload behavior retained",
+  "email": "Existing Resend contact notifications retained",
+  "rendering": "Server components, MDXRemote, Shiki; client controls for filtering, clipboard, and existing tools",
+  "seo": [
+    "Metadata API",
+    "Canonical URLs",
+    "BlogPosting/BreadcrumbList JSON-LD",
+    "sitemap.ts",
+    "robots.ts",
+    "admin noindex"
+  ],
+  "routes": [
+    {
+      "path": "/admin/contact-messages",
+      "kind": "page",
+      "source": "src/app/(admin)/admin/contact-messages/page.tsx",
+      "methods": [],
+      "sessionCheckObserved": false,
+      "note": "Admin route protected by existing proxy/session setup; page-level detection alone is not an authorization audit."
+    },
+    {
+      "path": "/admin/dashboard",
+      "kind": "page",
+      "source": "src/app/(admin)/admin/dashboard/page.tsx",
+      "methods": [],
+      "sessionCheckObserved": false,
+      "note": "Admin route protected by existing proxy/session setup; page-level detection alone is not an authorization audit."
+    },
+    {
+      "path": "/admin/login",
+      "kind": "page",
+      "source": "src/app/(admin)/admin/login/page.tsx",
+      "methods": [],
+      "sessionCheckObserved": true,
+      "note": "Admin route protected by existing proxy/session setup; page-level detection alone is not an authorization audit."
+    },
+    {
+      "path": "/admin/manage-posts",
+      "kind": "page",
+      "source": "src/app/(admin)/admin/manage-posts/page.tsx",
+      "methods": [],
+      "sessionCheckObserved": false,
+      "note": "Admin route protected by existing proxy/session setup; page-level detection alone is not an authorization audit."
+    },
+    {
+      "path": "/admin/new-post",
+      "kind": "page",
+      "source": "src/app/(admin)/admin/new-post/page.tsx",
+      "methods": [],
+      "sessionCheckObserved": false,
+      "note": "Admin route protected by existing proxy/session setup; page-level detection alone is not an authorization audit."
+    },
+    {
+      "path": "/admin",
+      "kind": "page",
+      "source": "src/app/(admin)/admin/page.tsx",
+      "methods": [],
+      "sessionCheckObserved": true,
+      "note": "Admin route protected by existing proxy/session setup; page-level detection alone is not an authorization audit."
+    },
+    {
+      "path": "/admin/preview",
+      "kind": "page",
+      "source": "src/app/(admin)/admin/preview/page.tsx",
+      "methods": [],
+      "sessionCheckObserved": false,
+      "note": "Admin route protected by existing proxy/session setup; page-level detection alone is not an authorization audit."
+    },
+    {
+      "path": "/admin/site-settings",
+      "kind": "page",
+      "source": "src/app/(admin)/admin/site-settings/page.tsx",
+      "methods": [],
+      "sessionCheckObserved": false,
+      "note": "Admin route protected by existing proxy/session setup; page-level detection alone is not an authorization audit."
+    },
+    {
+      "path": "/admin/subscribers",
+      "kind": "page",
+      "source": "src/app/(admin)/admin/subscribers/page.tsx",
+      "methods": [],
+      "sessionCheckObserved": false,
+      "note": "Admin route protected by existing proxy/session setup; page-level detection alone is not an authorization audit."
+    },
+    {
+      "path": "/admin/upload-gallery",
+      "kind": "page",
+      "source": "src/app/(admin)/admin/upload-gallery/page.tsx",
+      "methods": [],
+      "sessionCheckObserved": true,
+      "note": "Admin route protected by existing proxy/session setup; page-level detection alone is not an authorization audit."
+    },
+    {
+      "path": "/about",
+      "kind": "page",
+      "source": "src/app/(public)/about/page.tsx",
+      "methods": [],
+      "sessionCheckObserved": false
+    },
+    {
+      "path": "/blog",
+      "kind": "page",
+      "source": "src/app/(public)/blog/page.tsx",
+      "methods": [],
+      "sessionCheckObserved": false
+    },
+    {
+      "path": "/blog/[slug]",
+      "kind": "page",
+      "source": "src/app/(public)/blog/[slug]/page.tsx",
+      "methods": [],
+      "sessionCheckObserved": false
+    },
+    {
+      "path": "/contact",
+      "kind": "page",
+      "source": "src/app/(public)/contact/page.tsx",
+      "methods": [],
+      "sessionCheckObserved": false
+    },
+    {
+      "path": "/disclaimer",
+      "kind": "page",
+      "source": "src/app/(public)/disclaimer/page.tsx",
+      "methods": [],
+      "sessionCheckObserved": false
+    },
+    {
+      "path": "/editorial-policy",
+      "kind": "page",
+      "source": "src/app/(public)/editorial-policy/page.tsx",
+      "methods": [],
+      "sessionCheckObserved": false
+    },
+    {
+      "path": "/gallery",
+      "kind": "page",
+      "source": "src/app/(public)/gallery/page.tsx",
+      "methods": [],
+      "sessionCheckObserved": false
+    },
+    {
+      "path": "/",
+      "kind": "page",
+      "source": "src/app/(public)/page.tsx",
+      "methods": [],
+      "sessionCheckObserved": false
+    },
+    {
+      "path": "/privacy-policy",
+      "kind": "page",
+      "source": "src/app/(public)/privacy-policy/page.tsx",
+      "methods": [],
+      "sessionCheckObserved": false
+    },
+    {
+      "path": "/services",
+      "kind": "page",
+      "source": "src/app/(public)/services/page.tsx",
+      "methods": [],
+      "sessionCheckObserved": false
+    },
+    {
+      "path": "/terms",
+      "kind": "page",
+      "source": "src/app/(public)/terms/page.tsx",
+      "methods": [],
+      "sessionCheckObserved": false
+    },
+    {
+      "path": "/tools/base64",
+      "kind": "page",
+      "source": "src/app/(public)/tools/base64/page.tsx",
+      "methods": [],
+      "sessionCheckObserved": false
+    },
+    {
+      "path": "/tools/cron-builder",
+      "kind": "page",
+      "source": "src/app/(public)/tools/cron-builder/page.tsx",
+      "methods": [],
+      "sessionCheckObserved": false
+    },
+    {
+      "path": "/tools/css-minifier",
+      "kind": "page",
+      "source": "src/app/(public)/tools/css-minifier/page.tsx",
+      "methods": [],
+      "sessionCheckObserved": false
+    },
+    {
+      "path": "/tools/json-formatter",
+      "kind": "page",
+      "source": "src/app/(public)/tools/json-formatter/page.tsx",
+      "methods": [],
+      "sessionCheckObserved": false
+    },
+    {
+      "path": "/tools/jwt-decoder",
+      "kind": "page",
+      "source": "src/app/(public)/tools/jwt-decoder/page.tsx",
+      "methods": [],
+      "sessionCheckObserved": false
+    },
+    {
+      "path": "/tools",
+      "kind": "page",
+      "source": "src/app/(public)/tools/page.tsx",
+      "methods": [],
+      "sessionCheckObserved": false
+    },
+    {
+      "path": "/tools/password-generator",
+      "kind": "page",
+      "source": "src/app/(public)/tools/password-generator/page.tsx",
+      "methods": [],
+      "sessionCheckObserved": false
+    },
+    {
+      "path": "/tools/regex-tester",
+      "kind": "page",
+      "source": "src/app/(public)/tools/regex-tester/page.tsx",
+      "methods": [],
+      "sessionCheckObserved": false
+    },
+    {
+      "path": "/tools/token-counter",
+      "kind": "page",
+      "source": "src/app/(public)/tools/token-counter/page.tsx",
+      "methods": [],
+      "sessionCheckObserved": false
+    },
+    {
+      "path": "/tools/word-counter",
+      "kind": "page",
+      "source": "src/app/(public)/tools/word-counter/page.tsx",
+      "methods": [],
+      "sessionCheckObserved": false
+    },
+    {
+      "path": "/api/admin/subscribers/export",
+      "kind": "API",
+      "source": "src/app/api/admin/subscribers/export/route.ts",
+      "methods": [
+        "GET"
+      ],
+      "sessionCheckObserved": true
+    },
+    {
+      "path": "/api/auth/[...nextauth]",
+      "kind": "API",
+      "source": "src/app/api/auth/[...nextauth]/route.ts",
+      "methods": [],
+      "sessionCheckObserved": false
+    },
+    {
+      "path": "/api/contact",
+      "kind": "API",
+      "source": "src/app/api/contact/route.ts",
+      "methods": [
+        "POST"
+      ],
+      "sessionCheckObserved": false
+    },
+    {
+      "path": "/api/debug",
+      "kind": "API",
+      "source": "src/app/api/debug/route.ts",
+      "methods": [
+        "GET"
+      ],
+      "sessionCheckObserved": true
+    },
+    {
+      "path": "/api/gallery/pins",
+      "kind": "API",
+      "source": "src/app/api/gallery/pins/route.ts",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "sessionCheckObserved": true
+    },
+    {
+      "path": "/api/gallery/upload",
+      "kind": "API",
+      "source": "src/app/api/gallery/upload/route.ts",
+      "methods": [
+        "POST"
+      ],
+      "sessionCheckObserved": true
+    },
+    {
+      "path": "/api",
+      "kind": "API",
+      "source": "src/app/api/route.ts",
+      "methods": [
+        "GET"
+      ],
+      "sessionCheckObserved": true
+    },
+    {
+      "path": "/api/search",
+      "kind": "API",
+      "source": "src/app/api/search/route.ts",
+      "methods": [
+        "GET"
+      ],
+      "sessionCheckObserved": false
+    },
+    {
+      "path": "/api/subscribers",
+      "kind": "API",
+      "source": "src/app/api/subscribers/route.ts",
+      "methods": [
+        "POST"
+      ],
+      "sessionCheckObserved": false
+    },
+    {
+      "path": "/api/test-db",
+      "kind": "API",
+      "source": "src/app/api/test-db/route.ts",
+      "methods": [
+        "GET"
+      ],
+      "sessionCheckObserved": true
+    },
+    {
+      "path": "/api/upload",
+      "kind": "API",
+      "source": "src/app/api/upload/route.ts",
+      "methods": [
+        "POST"
+      ],
+      "sessionCheckObserved": true
+    }
+  ]
+}

@@ -6,21 +6,23 @@ import { siteUrl } from "@/lib/site-url";
 
 export const dynamic = "force-static";
 export const revalidate = 60;
-const description = "Explore practical web development articles, Next.js tutorials, Supabase workflows, and debugging notes from CodeWithLogs.";
+const description = "Search CodeWithLogs troubleshooting guides and the existing development archive. Explore Windows setup, VS Code, Node.js and npm, and Next.js errors.";
 export const metadata: Metadata = {
-  title: "Articles — Web Development & Debugging",
+  title: "Troubleshooting Guides & Article Archive",
   description,
   alternates: { canonical: `${siteUrl}/blog` },
-  openGraph: { title: "The CodeWithLogs Archive", description, url: `${siteUrl}/blog`, type: "website" },
+  openGraph: { title: "CodeWithLogs Troubleshooting Archive", description, url: `${siteUrl}/blog`, type: "website" },
 };
 export default async function BlogPage() {
   const posts = await getAllPosts();
-  const existing = [...new Set(posts.map((post) => post.category).filter(Boolean))];
-  const priority = ["Next.js", "Supabase", "Debugging"];
-  const categories = ["All", ...priority.filter((category) => existing.includes(category)), ...existing.filter((category) => !priority.includes(category)).sort()];
-  return <div className="journal-container journal-section">
-    <header className="archive-header"><p className="eyebrow">The archive / CodeWithLogs</p><h1>A little more clarity.<br /><em>One article at a time.</em></h1><p>Tutorials, implementation notes, and the occasional hard-earned fix. Find something useful for the thing you’re building.</p></header>
-    <Suspense fallback={<p className="journal-empty" role="status">Loading the article archive…</p>}><BlogIndexClient posts={posts} categories={categories} /></Suspense>
-  </div>;
+  return (
+    <div className="journal-container journal-section">
+      <header className="archive-header">
+        <p className="eyebrow">The troubleshooting archive</p>
+        <h1>Find the error.<br /><em>Understand the next step.</em></h1>
+        <p>Search by error message, tool, or topic. Windows verification status is shown on each guide. Earlier development articles remain available in the full archive.</p>
+      </header>
+      <Suspense fallback={<p className="journal-empty" role="status">Loading the article archive…</p>}><BlogIndexClient posts={posts} /></Suspense>
+    </div>
+  );
 }
-

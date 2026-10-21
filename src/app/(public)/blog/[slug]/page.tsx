@@ -3,296 +3,72 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { format } from "date-fns";
-import { CalendarDays, ChevronRight, Clock3 } from "lucide-react";
-import {
-  getAllPosts,
-  getPostBySlug,
-  getRelatedPosts,
-  type BlogPostMeta,
-} from "@/lib/mdx";
+import { ArrowLeft, ArrowUpRight } from "lucide-react";
+import { getAllPosts, getPostBySlug, getRelatedPosts, type BlogPostMeta } from "@/lib/mdx";
 import { AdUnit } from "@/components/ads/AdUnit";
 import { BlogCard } from "@/components/blog/BlogCard";
 import { MDXRenderer } from "@/components/blog/MDXRenderer";
 import { ShareButtons } from "@/components/blog/ShareButtons";
 import { TableOfContents } from "@/components/blog/TableOfContents";
 import { siteUrl } from "@/lib/site-url";
+import { getTroubleshootingTopic, getVerification } from "@/lib/troubleshooting";
 
 export const dynamic = "force-static";
 export const revalidate = 60;
 export const dynamicParams = true;
+type BlogPostPageProps = { params: Promise<{ slug: string; }>; };
 
-type BlogPostPageProps = {
-  params: Promise<{ slug: string }>;
-};
-
-function getAuthorInitials(author: string) {
-  return author
-    .split(" ")
-    .map((segment) => segment[0])
-    .join("")
-    .slice(0, 2)
-    .toUpperCase();
+async function getAugmentedRelatedPosts(currentSlug: string, category: string, limit = 3): Promise<BlogPostMeta[]> {
+  const allPosts = await getAllPosts();
+  const current = allPosts.find((post) => post.slug === currentSlug);
+  const topic = current ? getTroubleshootingTopic(current) : undefined;
+  const sameTopic = topic ? allPosts.filter((post) => post.slug !== currentSlug && getTroubleshootingTopic(post) === topic) : [];
+  const sameCategory = await getRelatedPosts(category, currentSlug, limit);
+  const ordered = [...sameTopic, ...sameCategory, ...allPosts.filter((post) => post.slug !== currentSlug)];
+  return [...new Map(ordered.map((post) => [post.slug, post])).values()].slice(0, limit);
 }
-
-async function getAugmentedRelatedPosts(
-  currentSlug: string,
-  category: string,
-  limit = 3,
-  includeDrafts = false,
-): Promise<BlogPostMeta[]> {
-  const sameCategory = await getRelatedPosts(
-    category,
-    currentSlug,
-    limit,
-    includeDrafts,
-  );
-
-  if (sameCategory.length >= limit) {
-    return sameCategory;
-  }
-
-  const allPosts = await getAllPosts(includeDrafts);
-  const fallback = allPosts.filter(
-    (post: { slug: string; }) =>
-      post.slug !== currentSlug &&
-      !sameCategory.some((related: { slug: any; }) => related.slug === post.slug),
-  );
-
-  return [...sameCategory, ...fallback].slice(0, limit);
-}
-
-export async function generateStaticParams() {
-  return [];
-}
-
-export async function generateMetadata({
-  params,
-}: BlogPostPageProps): Promise<Metadata> {
-  const { slug } = await params;
-  const post = await getPostBySlug(slug);
-
-  if (!post) {
-    return {
-      title: "Post Not Found",
-    };
-  }
-
+export async function generateStaticParams() { return []; }
+export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
+  const post = await getPostBySlug((await params).slug);
+  if (!post) return { title: "Article not found", robots: { index: false, follow: true } };
   return {
-    title: post.title,
-    description: post.excerpt,
-    alternates: {
-      canonical: `${siteUrl}/blog/${post.slug}`,
-    },
-    openGraph: {
-      title: post.title,
-      description: post.excerpt,
-      url: `${siteUrl}/blog/${post.slug}`,
-      type: "article",
-      publishedTime: post.date,
-      authors: [post.author],
-      images: [
-        {
-          url: post.coverImage,
-          alt: post.title,
-        },
-      ],
-    },
+    title: post.title, description: post.excerpt,
+    alternates: { canonical: `${siteUrl}/blog/${post.slug}` },
+    openGraph: { title: post.title, description: post.excerpt, url: `${siteUrl}/blog/${post.slug}`, type: "article", publishedTime: post.date, authors: [post.author], images: [{ url: post.coverImage, alt: post.title }] },
+    twitter: { card: "summary_large_image", title: post.title, description: post.excerpt, images: [post.coverImage] },
   };
 }
-
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
-  const { slug } = await params;
-  const post = await getPostBySlug(slug);
-
-  if (!post) {
-    notFound();
-  }
-
-  const relatedPosts = await getAugmentedRelatedPosts(
-    post.slug,
-    post.category,
-    3,
-  );
+  const post = await getPostBySlug((await params).slug);
+  if (!post) notFound();
+  const relatedPosts = await getAugmentedRelatedPosts(post.slug, post.category);
+  const verification = getVerification(post.slug);
   const shareUrl = `${siteUrl}/blog/${post.slug}`;
-  const primaryAffiliate = post.affiliateLinks[0];
-
-  return (
-    <div className="bg-background">
-      <div className="mx-auto grid w-full max-w-7xl gap-12 px-4 py-12 sm:px-6 lg:grid-cols-[minmax(0,1.8fr)_minmax(320px,1fr)] lg:px-8 lg:py-16">
-        <article className="min-w-0 space-y-10">
-          <nav className="flex flex-wrap items-center gap-2 text-sm text-text/55">
-            <Link href="/" className="hover:text-primary">
-              Home
-            </Link>
-            <ChevronRight className="h-4 w-4" />
-            <Link href="/blog" className="hover:text-primary">
-              Blog
-            </Link>
-            <ChevronRight className="h-4 w-4" />
-            <span>{post.category}</span>
-            <ChevronRight className="h-4 w-4" />
-            <span className="text-text/75">{post.title}</span>
-          </nav>
-
-          <div className="space-y-6">
-            <span className="inline-flex rounded-full bg-primary/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-primary">
-              {post.category}
-            </span>
-            <h1 className="max-w-4xl text-4xl font-bold tracking-tight text-text sm:text-5xl lg:text-6xl">
-              {post.title}
-            </h1>
-            <p className="max-w-3xl text-base leading-8 text-text/70 sm:text-lg">
-              {post.excerpt}
-            </p>
-          </div>
-
-          <div className="flex flex-wrap items-center gap-5 rounded-[12px] border border-black/6 bg-white p-5">
-            <div className="flex h-14 w-14 items-center justify-center rounded-full bg-primary text-sm font-semibold text-white">
-              {getAuthorInitials(post.author)}
-            </div>
-            <div className="space-y-1">
-              <p className="font-semibold text-text">{post.author}</p>
-              <div className="flex flex-wrap items-center gap-4 text-sm text-text/60">
-                <span className="inline-flex items-center gap-2">
-                  <CalendarDays className="h-4 w-4" />
-                  {format(new Date(post.date), "MMMM d, yyyy")}
-                </span>
-                <span className="inline-flex items-center gap-2">
-                  <Clock3 className="h-4 w-4" />
-                  {post.readTime}
-                </span>
-                <span className="rounded-full bg-surface px-3 py-1 text-xs font-medium uppercase tracking-[0.16em] text-text/60">
-                  {post.category}
-                </span>
-              </div>
-            </div>
-          </div>
-
-          <div className="rounded-[12px] border border-black/6 bg-white p-4">
-            <AdUnit slot="article-top" format="horizontal" />
-          </div>
-
-          <div className="overflow-hidden rounded-[16px] border border-black/6 bg-surface">
-            <Image
-              src={post.coverImage}
-              alt={post.title}
-              width={1600}
-              height={900}
-              className="h-auto w-full object-cover"
-              sizes="(max-width: 1024px) 100vw, 65vw"
-              priority
-            />
-          </div>
-
-          <div className="rounded-[12px] border border-black/6 bg-white p-6 sm:p-8 lg:p-10">
-            <MDXRenderer source={post.content} />
-          </div>
-
-          <div className="rounded-[12px] border border-black/6 bg-white p-4">
-            <AdUnit slot="article-mid" format="auto" />
-          </div>
-
-          <section className="rounded-[12px] bg-primary p-6 text-white sm:p-8">
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-white/70">
-              Need help building this?
-            </p>
-            <h2 className="mt-3 text-2xl font-semibold tracking-tight">
-              I offer full-stack development services for startups and product teams.
-            </h2>
-            <p className="mt-3 max-w-2xl text-base leading-8 text-white/80">
-              If you want a faster path from idea to shipped product, I can help with architecture,
-              frontend systems, backend APIs, and launch-ready builds.
-            </p>
-            <Link
-              href="/services"
-              className="mt-5 inline-flex rounded-full bg-white px-5 py-3 text-sm font-semibold text-primary"
-            >
-              View Services
-            </Link>
-          </section>
-
-          <div className="rounded-[12px] border border-black/6 bg-white p-4">
-            <AdUnit slot="article-end" format="rectangle" />
-          </div>
-
-          <section className="space-y-5">
-            <h2 className="text-2xl font-semibold tracking-tight text-text">Share this post</h2>
-            <ShareButtons title={post.title} url={shareUrl} />
-          </section>
-
-          <section className="space-y-6">
-            <div className="space-y-2">
-              <h2 className="text-3xl font-semibold tracking-tight text-text">Related posts</h2>
-              <p className="text-base leading-8 text-text/70">
-                More practical reading from the blog to keep your momentum going.
-              </p>
-            </div>
-
-            <div className="grid gap-6 xl:grid-cols-3">
-              {relatedPosts.map((relatedPost: BlogPostMeta) => (
-  <BlogCard
-    key={relatedPost.slug}
-    post={relatedPost}
-  />
-))}
-            </div>
-          </section>
-        </article>
-
-        <aside className="hidden lg:block">
-          <div className="sticky top-24 space-y-6">
-            {post.headings.length > 0 ? (
-              <TableOfContents headings={post.headings} />
-            ) : null}
-
-            <div className="rounded-[12px] border border-black/6 bg-white p-4">
-              <AdUnit slot="sidebar" format="rectangle" />
-            </div>
-
-            {primaryAffiliate ? (
-              <div className="rounded-[12px] border border-primary/20 bg-primary/5 p-5">
-                <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">
-                  Recommended Tool
-                </p>
-                <h2 className="mt-3 text-xl font-semibold text-text">
-                  {primaryAffiliate.label}
-                </h2>
-                <p className="mt-3 text-sm leading-7 text-text/70">
-                  A tool mentioned in this article that fits the workflow and stack being discussed.
-                </p>
-                <Link
-                  href={primaryAffiliate.url}
-                  className="mt-4 inline-flex text-sm font-semibold text-primary"
-                >
-                  Get started →
-                </Link>
-                <p className="mt-3 text-xs leading-6 text-text/55">
-                  {primaryAffiliate.disclosure}
-                </p>
-              </div>
-            ) : null}
-
-            <div className="rounded-[12px] border border-black/6 bg-white p-5">
-              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-text/55">
-                Contact Me
-              </p>
-              <h2 className="mt-3 text-xl font-semibold tracking-tight text-text">
-                Need a developer? Let&apos;s work together.
-              </h2>
-              <p className="mt-3 text-sm leading-7 text-text/70">
-                I build fast web apps, SaaS products, admin dashboards, and backend systems for
-                founders and small teams.
-              </p>
-              <Link
-                href="/contact"
-                className="mt-4 inline-flex rounded-full bg-primary px-4 py-2 text-sm font-semibold text-white"
-              >
-                Contact Me
-              </Link>
-            </div>
-          </div>
-        </aside>
-      </div>
+  const initials = post.author.split(" ").map((part) => part[0]).join("").slice(0, 2).toUpperCase();
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@graph": [
+      { "@type": "BlogPosting", "@id": `${shareUrl}#article`, headline: post.title, description: post.excerpt, datePublished: post.date, image: new URL(post.coverImage, siteUrl).href, mainEntityOfPage: shareUrl, author: { "@type": "Person", name: post.author }, publisher: { "@type": "Organization", name: "CodeWithLogs", url: siteUrl }, articleSection: post.category, keywords: post.tags.join(", "), inLanguage: "en" },
+      { "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: siteUrl }, { "@type": "ListItem", position: 2, name: "Guides & archive", item: `${siteUrl}/blog` }, { "@type": "ListItem", position: 3, name: post.title, item: shareUrl }] },
+    ],
+  };
+  return <div className="journal-container article-page">
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, "\\u003c") }} />
+    <nav aria-label="Breadcrumb" className="article-breadcrumb"><Link href="/">Home</Link><span aria-hidden="true">/</span><Link href="/blog"><ArrowLeft size={15} /> Guides & archive</Link><span aria-hidden="true">/</span><span aria-current="page">{post.title}</span></nav>
+    <header className="article-header"><p className="eyebrow">{post.category} / {post.readTime}</p><h1>{post.title}</h1><p className="article-deck">{post.excerpt}</p><div className="article-byline"><span className="author-initials" aria-hidden="true">{initials}</span><div><span className="author-name">{post.author}</span><p>Published <time dateTime={post.date}>{format(new Date(post.date), "MMMM d, yyyy")}</time><span aria-hidden="true"> · </span>{post.readTime}</p></div></div></header>
+    <section className="article-verification" aria-label="Article verification status"><span className="review-status">{verification ? "Windows-verified" : "Windows verification pending"}</span><p>{verification ? `Tested on ${verification.testedOn} · ${verification.environment} · Reviewed by ${verification.reviewer}` : "This existing article does not yet have a recorded Windows test environment or independently verified fix."}</p><Link href="/editorial-policy">How we verify guides</Link></section>
+    <div className="article-layout">
+      <article className="article-main" aria-label={post.title}>
+        <div className="article-cover"><Image src={post.coverImage} alt={post.title} width={1600} height={900} sizes="(max-width: 1024px) 100vw, 740px" priority /></div>
+        {post.headings.length > 0 && <details className="mobile-toc"><summary>On this page</summary><TableOfContents headings={post.headings} /></details>}
+        {post.affiliateLinks.length > 0 && <p className="article-disclosure">This article includes affiliate links. Purchases through those links may earn a commission at no extra cost to you. <Link href="/disclaimer">Read the disclosure.</Link></p>}
+        <div className="article-prose"><MDXRenderer source={post.content} /></div>
+        <AdUnit slot="article-end" format="horizontal" />
+        <section className="article-endnote"><p className="eyebrow">Keep the conversation useful</p><h2>Found a different result?</h2><p>Include your framework version, the error, and the steps to reproduce it. Specific details help improve the article for the next reader.</p><Link href="/contact" className="journal-text-link">Send a correction or question <ArrowUpRight size={16} /></Link></section>
+        <section className="article-share"><h2>Share this article</h2><ShareButtons title={post.title} url={shareUrl} /></section>
+      </article>
+      <aside className="article-sidebar"><div className="article-sidebar-inner">{post.headings.length > 0 && <TableOfContents headings={post.headings} />}<div className="sidebar-note"><p className="eyebrow">A useful companion</p><h2>Inspect. Format. Debug.</h2><p>Small tools for working with JSON, tokens, regular expressions, and more.</p><Link href="/tools" className="journal-text-link">Open developer tools <ArrowUpRight size={15} /></Link></div><Link href="/about" className="journal-text-link">About CodeWithLogs <ArrowUpRight size={15} /></Link></div></aside>
     </div>
-  );
+    {relatedPosts.length > 0 && <section className="related-section"><div className="section-heading"><div><p className="eyebrow">Follow your curiosity</p><h2>Related troubleshooting & reading<span>.</span></h2></div><Link href="/blog" className="journal-text-link">The full archive <ArrowUpRight size={16} /></Link></div><div className="archive-grid">{relatedPosts.map((related) => <BlogCard key={related.slug} post={related} />)}</div></section>}
+  </div>;
 }

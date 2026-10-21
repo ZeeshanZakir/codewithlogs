@@ -1,6 +1,7 @@
 import { z } from "zod";
 
 export const budgetOptions = [
+  "Not applicable",
   "Under $500",
   "$500-$1500",
   "$1500-$5000",
@@ -8,6 +9,8 @@ export const budgetOptions = [
 ] as const;
 
 export const subjectOptions = [
+  "Article Correction",
+  "Troubleshooting Question",
   "New Project",
   "Freelance Work",
   "Blog Collaboration",

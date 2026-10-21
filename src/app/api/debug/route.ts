@@ -1,9 +1,7 @@
-export async function GET() {
-  const uri = process.env.MONGODB_URI || "mongodb+srv://codewithlogs:QWRtaW5AMTIz@codewithlogs.kdzgntg.mongodb.net/codewithlogs?retryWrites=true&w=majority&appName=codewithlogs";
+import { auth } from "@/auth";
 
-  return Response.json({
-    exists: !!uri,
-    actualLength: uri.length,
-    first50: uri.slice(0, 50),
-  });
+export async function GET() {
+  const session = await auth();
+  if (!session?.user) return Response.json({ error: "Unauthorized" }, { status: 401 });
+  return Response.json({ configured: Boolean(process.env.MONGODB_URI) }, { headers: { "Cache-Control": "no-store" } });
 }

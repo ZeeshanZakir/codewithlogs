@@ -1,0 +1,569 @@
+{
+  "niche": "Windows Developer Troubleshooting",
+  "guideCount": 15,
+  "allDraft": true,
+  "notes": "An editorial roadmap, not new published articles. No commands in this plan were executed as article-solution verification. Order prioritizes narrow repeatable Windows errors before broad app issues.",
+  "articles": [
+    {
+      "order": 1,
+      "slug": "windows-node-not-recognized",
+      "category": "Windows Developer Setup",
+      "proposedTitle": "Node is not recognized after installation on Windows 11",
+      "status": "DRAFT",
+      "publicationApproved": false,
+      "testingPerformed": false,
+      "problemStatement": "node: The term 'node' is not recognized",
+      "exactErrorCapture": "Capture the exact message from the chosen fixture; proposed wording is an identification target, not a fabricated observed log.",
+      "environment": {
+        "os": "Windows 11: edition, version, build and architecture TO RECORD",
+        "shell": "PowerShell version TO RECORD; test Windows PowerShell separately if supported",
+        "tools": "Pin and record every relevant Node/npm/Git/VS Code/Next/React/TypeScript version in the fixture before testing",
+        "testedVersions": null
+      },
+      "reproductionPlan": "In a disposable Windows account or VM, install Node, compare an already-open shell with a new shell, and record command resolution before changing PATH.",
+      "rootCauseToInvestigate": "Distinguish a stale process environment, a missing PATH entry, and competing Node installations.",
+      "candidateDiagnostics": "Get-Command node -All\nwhere.exe node\nnode --version",
+      "workingSolution": "NOT YET TESTED. Document the installer/version-manager-specific PATH correction and reopening the terminal. Show the exact before/after paths without editing machine-wide settings blindly.",
+      "requiredCodeExamples": "Include a complete minimal fixture, file paths, dependency manifest/lockfile, shell-labelled diagnostics, exact before/after changes, expected output and cleanup/rollback. Do not present placeholder commands as final copy/paste instructions.",
+      "verificationPlan": "A new PowerShell process resolves the intended executable, reports the pinned Node version, and runs a one-line JavaScript file.",
+      "alternativesToEvaluate": "Compare a known executable path with normal resolution; distinguish native Windows from WSL.",
+      "commonMistakes": "Mixing nvm-windows with an existing MSI install; editing the wrong PATH; assuming a terminal restart equals an editor restart.",
+      "officialReferences": [
+        "https://learn.microsoft.com/en-us/windows/dev-environment/javascript/nodejs-on-windows"
+      ],
+      "evidenceRequired": [
+        "Timestamped environment record",
+        "Original failure log with secrets removed",
+        "Complete reproducible fixture",
+        "Fix diff and passing verification output",
+        "Repeat on a fresh fixture",
+        "Named technical reviewer; author approval for publication"
+      ],
+      "acceptanceGate": "Remain DRAFT until reproduction, fix, alternatives and limitations are checked, official references are reviewed for the pinned versions, and the author approves publication."
+    },
+    {
+      "order": 2,
+      "slug": "windows-npm-ps1-blocked",
+      "category": "Windows Developer Setup",
+      "proposedTitle": "npm.ps1 cannot be loaded: diagnose PowerShell script selection",
+      "status": "DRAFT",
+      "publicationApproved": false,
+      "testingPerformed": false,
+      "problemStatement": "npm.ps1 cannot be loaded because running scripts is disabled on this system",
+      "exactErrorCapture": "Capture the exact message from the chosen fixture; proposed wording is an identification target, not a fabricated observed log.",
+      "environment": {
+        "os": "Windows 11: edition, version, build and architecture TO RECORD",
+        "shell": "PowerShell version TO RECORD; test Windows PowerShell separately if supported",
+        "tools": "Pin and record every relevant Node/npm/Git/VS Code/Next/React/TypeScript version in the fixture before testing",
+        "testedVersions": null
+      },
+      "reproductionPlan": "Use a disposable VM with a known script policy. Record which npm launcher resolves; do not change the user's policy or bypass organizational controls.",
+      "rootCauseToInvestigate": "Separate PowerShell execution policy from npm installation or filesystem permission problems.",
+      "candidateDiagnostics": "Get-Command npm -All\nGet-ExecutionPolicy -List\nnpm.cmd --version",
+      "workingSolution": "NOT YET TESTED. Test explicitly invoking npm.cmd where permitted; describe when a managed policy needs an administrator rather than proposing a universal policy change.",
+      "requiredCodeExamples": "Include a complete minimal fixture, file paths, dependency manifest/lockfile, shell-labelled diagnostics, exact before/after changes, expected output and cleanup/rollback. Do not present placeholder commands as final copy/paste instructions.",
+      "verificationPlan": "Record the original failure and show the permitted npm.cmd path succeeds with the same package manager version.",
+      "alternativesToEvaluate": "Compare Command Prompt and PowerShell launcher selection while leaving security controls in force.",
+      "commonMistakes": "Recommending Unrestricted or Bypass globally; running all development as administrator; confusing execution policy with antivirus.",
+      "officialReferences": [
+        "https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_execution_policies",
+        "https://learn.microsoft.com/en-us/windows/dev-environment/javascript/nodejs-on-windows"
+      ],
+      "evidenceRequired": [
+        "Timestamped environment record",
+        "Original failure log with secrets removed",
+        "Complete reproducible fixture",
+        "Fix diff and passing verification output",
+        "Repeat on a fresh fixture",
+        "Named technical reviewer; author approval for publication"
+      ],
+      "acceptanceGate": "Remain DRAFT until reproduction, fix, alternatives and limitations are checked, official references are reviewed for the pinned versions, and the author approves publication."
+    },
+    {
+      "order": 3,
+      "slug": "windows-git-not-recognized",
+      "category": "Windows Developer Setup",
+      "proposedTitle": "Git works in Git Bash but is not recognized in PowerShell",
+      "status": "DRAFT",
+      "publicationApproved": false,
+      "testingPerformed": false,
+      "problemStatement": "git: The term 'git' is not recognized",
+      "exactErrorCapture": "Capture the exact message from the chosen fixture; proposed wording is an identification target, not a fabricated observed log.",
+      "environment": {
+        "os": "Windows 11: edition, version, build and architecture TO RECORD",
+        "shell": "PowerShell version TO RECORD; test Windows PowerShell separately if supported",
+        "tools": "Pin and record every relevant Node/npm/Git/VS Code/Next/React/TypeScript version in the fixture before testing",
+        "testedVersions": null
+      },
+      "reproductionPlan": "In a disposable install, compare Git Bash, PowerShell, and a newly launched VS Code terminal after the official Git for Windows setup.",
+      "rootCauseToInvestigate": "Investigate installer PATH choices and the environment inherited by long-running applications.",
+      "candidateDiagnostics": "Get-Command git -All\nwhere.exe git\ngit --version",
+      "workingSolution": "NOT YET TESTED. Explain the verified installer option or PATH entry and which processes must be restarted; include install-location variability.",
+      "requiredCodeExamples": "Include a complete minimal fixture, file paths, dependency manifest/lockfile, shell-labelled diagnostics, exact before/after changes, expected output and cleanup/rollback. Do not present placeholder commands as final copy/paste instructions.",
+      "verificationPlan": "A fresh PowerShell and editor terminal resolve the same intended Git executable; a local disposable repository can be inspected.",
+      "alternativesToEvaluate": "Use the full executable path as a diagnostic and compare per-user versus system installs.",
+      "commonMistakes": "Hardcoding a path that belongs to another installation; confusing Git Bash availability with Windows PATH availability.",
+      "officialReferences": [
+        "https://learn.microsoft.com/en-us/windows/dev-environment/javascript/nodejs-on-windows",
+        "https://git-scm.com/downloads/win"
+      ],
+      "evidenceRequired": [
+        "Timestamped environment record",
+        "Original failure log with secrets removed",
+        "Complete reproducible fixture",
+        "Fix diff and passing verification output",
+        "Repeat on a fresh fixture",
+        "Named technical reviewer; author approval for publication"
+      ],
+      "acceptanceGate": "Remain DRAFT until reproduction, fix, alternatives and limitations are checked, official references are reviewed for the pinned versions, and the author approves publication."
+    },
+    {
+      "order": 4,
+      "slug": "windows-git-line-endings",
+      "category": "Windows Developer Setup",
+      "proposedTitle": "Diagnose CRLF script failures across Windows and Linux",
+      "status": "DRAFT",
+      "publicationApproved": false,
+      "testingPerformed": false,
+      "problemStatement": "env: 'node\r': No such file or directory (exact message to capture in fixture)",
+      "exactErrorCapture": "Capture the exact message from the chosen fixture; proposed wording is an identification target, not a fabricated observed log.",
+      "environment": {
+        "os": "Windows 11: edition, version, build and architecture TO RECORD",
+        "shell": "PowerShell version TO RECORD; test Windows PowerShell separately if supported",
+        "tools": "Pin and record every relevant Node/npm/Git/VS Code/Next/React/TypeScript version in the fixture before testing",
+        "testedVersions": null
+      },
+      "reproductionPlan": "Create a tiny disposable executable script with CRLF and LF variants; capture failures in a Linux test environment and inspect attributes on Windows.",
+      "rootCauseToInvestigate": "Determine how line endings, the shebang, and Git attributes interact; keep WSL/Linux behavior distinct from native Windows.",
+      "candidateDiagnostics": "git ls-files --eol\ngit check-attr text eol -- scripts/example.sh",
+      "workingSolution": "NOT YET TESTED. Develop a repository-specific .gitattributes rule and a reviewed conversion procedure; demonstrate the diff before any normalization.",
+      "requiredCodeExamples": "Include a complete minimal fixture, file paths, dependency manifest/lockfile, shell-labelled diagnostics, exact before/after changes, expected output and cleanup/rollback. Do not present placeholder commands as final copy/paste instructions.",
+      "verificationPlan": "The fixture runs in its intended shell and Git's index/worktree line endings match the documented policy.",
+      "alternativesToEvaluate": "Use editor per-file line-ending conversion for a small change and compare it with repository attributes.",
+      "commonMistakes": "Mass-normalizing an existing repository without review; treating all CRLF files as broken; changing global Git settings unnecessarily.",
+      "officialReferences": [
+        "https://git-scm.com/docs/gitattributes"
+      ],
+      "evidenceRequired": [
+        "Timestamped environment record",
+        "Original failure log with secrets removed",
+        "Complete reproducible fixture",
+        "Fix diff and passing verification output",
+        "Repeat on a fresh fixture",
+        "Named technical reviewer; author approval for publication"
+      ],
+      "acceptanceGate": "Remain DRAFT until reproduction, fix, alternatives and limitations are checked, official references are reviewed for the pinned versions, and the author approves publication."
+    },
+    {
+      "order": 5,
+      "slug": "vscode-terminal-wont-launch",
+      "category": "VS Code Troubleshooting",
+      "proposedTitle": "VS Code integrated terminal exits before the prompt appears",
+      "status": "DRAFT",
+      "publicationApproved": false,
+      "testingPerformed": false,
+      "problemStatement": "The terminal process failed to launch (capture the full exit message)",
+      "exactErrorCapture": "Capture the exact message from the chosen fixture; proposed wording is an identification target, not a fabricated observed log.",
+      "environment": {
+        "os": "Windows 11: edition, version, build and architecture TO RECORD",
+        "shell": "PowerShell version TO RECORD; test Windows PowerShell separately if supported",
+        "tools": "Pin and record every relevant Node/npm/Git/VS Code/Next/React/TypeScript version in the fixture before testing",
+        "testedVersions": null
+      },
+      "reproductionPlan": "Use a clean disposable VS Code profile and an intentionally invalid terminal profile path; compare the same shell outside the editor.",
+      "rootCauseToInvestigate": "Differentiate invalid shell paths, profile startup errors, working-directory failures, and extension interference.",
+      "candidateDiagnostics": "Get-Command pwsh,powershell,cmd -ErrorAction SilentlyContinue",
+      "workingSolution": "NOT YET TESTED. Test a valid default terminal profile and the same shell without its optional startup profile. Record every setting changed and how to revert it.",
+      "requiredCodeExamples": "Include a complete minimal fixture, file paths, dependency manifest/lockfile, shell-labelled diagnostics, exact before/after changes, expected output and cleanup/rollback. Do not present placeholder commands as final copy/paste instructions.",
+      "verificationPlan": "A new integrated terminal opens in the expected project directory and executes a harmless version query.",
+      "alternativesToEvaluate": "Compare a clean VS Code profile and a supported alternate shell before touching extensions or system settings.",
+      "commonMistakes": "Deleting all editor settings; disabling endpoint security; testing a different shell without acknowledging the difference.",
+      "officialReferences": [
+        "https://code.visualstudio.com/docs/supporting/troubleshoot-terminal-launch"
+      ],
+      "evidenceRequired": [
+        "Timestamped environment record",
+        "Original failure log with secrets removed",
+        "Complete reproducible fixture",
+        "Fix diff and passing verification output",
+        "Repeat on a fresh fixture",
+        "Named technical reviewer; author approval for publication"
+      ],
+      "acceptanceGate": "Remain DRAFT until reproduction, fix, alternatives and limitations are checked, official references are reviewed for the pinned versions, and the author approves publication."
+    },
+    {
+      "order": 6,
+      "slug": "vscode-code-command-not-found",
+      "category": "VS Code Troubleshooting",
+      "proposedTitle": "The code command is missing after installing VS Code",
+      "status": "DRAFT",
+      "publicationApproved": false,
+      "testingPerformed": false,
+      "problemStatement": "code: The term 'code' is not recognized",
+      "exactErrorCapture": "Capture the exact message from the chosen fixture; proposed wording is an identification target, not a fabricated observed log.",
+      "environment": {
+        "os": "Windows 11: edition, version, build and architecture TO RECORD",
+        "shell": "PowerShell version TO RECORD; test Windows PowerShell separately if supported",
+        "tools": "Pin and record every relevant Node/npm/Git/VS Code/Next/React/TypeScript version in the fixture before testing",
+        "testedVersions": null
+      },
+      "reproductionPlan": "Compare user installer, system installer, and portable VS Code in disposable environments; check a stale shell and a new one.",
+      "rootCauseToInvestigate": "Distinguish installation mode and PATH registration from Node or Git errors.",
+      "candidateDiagnostics": "Get-Command code -All\nwhere.exe code",
+      "workingSolution": "NOT YET TESTED. Document the verified launcher directory for the selected installation mode and how to refresh the shell environment.",
+      "requiredCodeExamples": "Include a complete minimal fixture, file paths, dependency manifest/lockfile, shell-labelled diagnostics, exact before/after changes, expected output and cleanup/rollback. Do not present placeholder commands as final copy/paste instructions.",
+      "verificationPlan": "code --version reports the intended installation, and code . opens the disposable project.",
+      "alternativesToEvaluate": "Use the application's Open Folder action or an explicit launcher path as a diagnostic.",
+      "commonMistakes": "Applying macOS Command Palette PATH instructions to Windows; assuming every install has the same bin directory.",
+      "officialReferences": [
+        "https://code.visualstudio.com/docs/setup/windows"
+      ],
+      "evidenceRequired": [
+        "Timestamped environment record",
+        "Original failure log with secrets removed",
+        "Complete reproducible fixture",
+        "Fix diff and passing verification output",
+        "Repeat on a fresh fixture",
+        "Named technical reviewer; author approval for publication"
+      ],
+      "acceptanceGate": "Remain DRAFT until reproduction, fix, alternatives and limitations are checked, official references are reviewed for the pinned versions, and the author approves publication."
+    },
+    {
+      "order": 7,
+      "slug": "vscode-typescript-editor-cli-disagree",
+      "category": "VS Code Troubleshooting",
+      "proposedTitle": "VS Code reports TypeScript errors that the project CLI does not",
+      "status": "DRAFT",
+      "publicationApproved": false,
+      "testingPerformed": false,
+      "problemStatement": "Editor diagnostic differs from npx tsc --noEmit",
+      "exactErrorCapture": "Capture the exact message from the chosen fixture; proposed wording is an identification target, not a fabricated observed log.",
+      "environment": {
+        "os": "Windows 11: edition, version, build and architecture TO RECORD",
+        "shell": "PowerShell version TO RECORD; test Windows PowerShell separately if supported",
+        "tools": "Pin and record every relevant Node/npm/Git/VS Code/Next/React/TypeScript version in the fixture before testing",
+        "testedVersions": null
+      },
+      "reproductionPlan": "Create a small project with a pinned TypeScript dependency and a deliberate editor/CLI version difference; retain both diagnostic outputs.",
+      "rootCauseToInvestigate": "Compare workspace versus bundled TypeScript, the selected tsconfig, and language-server project membership.",
+      "candidateDiagnostics": "node --version\nnpm.cmd ls typescript\nnpx.cmd tsc --noEmit",
+      "workingSolution": "NOT YET TESTED. Test selecting the workspace TypeScript version and the intended project before restarting the TS server.",
+      "requiredCodeExamples": "Include a complete minimal fixture, file paths, dependency manifest/lockfile, shell-labelled diagnostics, exact before/after changes, expected output and cleanup/rollback. Do not present placeholder commands as final copy/paste instructions.",
+      "verificationPlan": "The editor and project CLI report the same intentional error, then both clear after the same code correction.",
+      "alternativesToEvaluate": "Compare a minimal isolated project and inspect the TS server log when project selection is unclear.",
+      "commonMistakes": "Suppressing diagnostics; changing skipLibCheck without identifying the error; treating a restart as a root-cause explanation.",
+      "officialReferences": [
+        "https://code.visualstudio.com/docs/typescript/typescript-transpiling"
+      ],
+      "evidenceRequired": [
+        "Timestamped environment record",
+        "Original failure log with secrets removed",
+        "Complete reproducible fixture",
+        "Fix diff and passing verification output",
+        "Repeat on a fresh fixture",
+        "Named technical reviewer; author approval for publication"
+      ],
+      "acceptanceGate": "Remain DRAFT until reproduction, fix, alternatives and limitations are checked, official references are reviewed for the pinned versions, and the author approves publication."
+    },
+    {
+      "order": 8,
+      "slug": "npm-eresolve-peer-conflict",
+      "category": "Node.js and npm Errors",
+      "proposedTitle": "Diagnose ERESOLVE without defaulting to --force",
+      "status": "DRAFT",
+      "publicationApproved": false,
+      "testingPerformed": false,
+      "problemStatement": "npm ERR! ERESOLVE unable to resolve dependency tree",
+      "exactErrorCapture": "Capture the exact message from the chosen fixture; proposed wording is an identification target, not a fabricated observed log.",
+      "environment": {
+        "os": "Windows 11: edition, version, build and architecture TO RECORD",
+        "shell": "PowerShell version TO RECORD; test Windows PowerShell separately if supported",
+        "tools": "Pin and record every relevant Node/npm/Git/VS Code/Next/React/TypeScript version in the fixture before testing",
+        "testedVersions": null
+      },
+      "reproductionPlan": "Pin two packages with a reproducible peer-dependency conflict in a disposable project and capture the exact resolver output.",
+      "rootCauseToInvestigate": "Identify the incompatible peer range and whether the conflict is direct or transitive.",
+      "candidateDiagnostics": "npm.cmd --version\nnpm.cmd ls\nnpm.cmd explain react",
+      "workingSolution": "NOT YET TESTED. Test an explicitly compatible package-version combination and review both manifest and lockfile changes.",
+      "requiredCodeExamples": "Include a complete minimal fixture, file paths, dependency manifest/lockfile, shell-labelled diagnostics, exact before/after changes, expected output and cleanup/rollback. Do not present placeholder commands as final copy/paste instructions.",
+      "verificationPlan": "A clean install of the reviewed lockfile succeeds and the fixture's build/test still works.",
+      "alternativesToEvaluate": "Evaluate a documented supported version change; describe legacy-peer-deps only as a compatibility choice with limitations.",
+      "commonMistakes": "Adding --force universally; deleting the lockfile without review; equating install success with runtime compatibility.",
+      "officialReferences": [
+        "https://docs.npmjs.com/cli/v11/using-npm/config/",
+        "https://docs.npmjs.com/cli/v11/commands/npm-ci/"
+      ],
+      "evidenceRequired": [
+        "Timestamped environment record",
+        "Original failure log with secrets removed",
+        "Complete reproducible fixture",
+        "Fix diff and passing verification output",
+        "Repeat on a fresh fixture",
+        "Named technical reviewer; author approval for publication"
+      ],
+      "acceptanceGate": "Remain DRAFT until reproduction, fix, alternatives and limitations are checked, official references are reviewed for the pinned versions, and the author approves publication."
+    },
+    {
+      "order": 9,
+      "slug": "npm-eperm-windows",
+      "category": "Node.js and npm Errors",
+      "proposedTitle": "Investigate npm EPERM on Windows without disabling protections",
+      "status": "DRAFT",
+      "publicationApproved": false,
+      "testingPerformed": false,
+      "problemStatement": "npm ERR! code EPERM / operation not permitted",
+      "exactErrorCapture": "Capture the exact message from the chosen fixture; proposed wording is an identification target, not a fabricated observed log.",
+      "environment": {
+        "os": "Windows 11: edition, version, build and architecture TO RECORD",
+        "shell": "PowerShell version TO RECORD; test Windows PowerShell separately if supported",
+        "tools": "Pin and record every relevant Node/npm/Git/VS Code/Next/React/TypeScript version in the fixture before testing",
+        "testedVersions": null
+      },
+      "reproductionPlan": "Use a disposable directory and a documented file-lock fixture; separately reproduce a permission denial. Record which file and operation fail.",
+      "rootCauseToInvestigate": "Separate another process's file handle from ACL denial and package lifecycle-script failures.",
+      "candidateDiagnostics": "npm.cmd --version\nnpm.cmd config get cache\nGet-Acl .",
+      "workingSolution": "NOT YET TESTED. Test closing the identified owner process or correcting permissions only on the disposable project, with a documented rollback.",
+      "requiredCodeExamples": "Include a complete minimal fixture, file paths, dependency manifest/lockfile, shell-labelled diagnostics, exact before/after changes, expected output and cleanup/rollback. Do not present placeholder commands as final copy/paste instructions.",
+      "verificationPlan": "The original operation succeeds after releasing the known lock or applying the scoped permission correction; logs show the targeted cause.",
+      "alternativesToEvaluate": "Compare a new local workspace and investigate synchronized-folder behavior without moving the real project.",
+      "commonMistakes": "Running npm as administrator by default; killing unrelated processes; disabling antivirus; recursively deleting unknown paths.",
+      "officialReferences": [
+        "https://nodejs.org/api/errors.html",
+        "https://docs.npmjs.com/cli/v11/using-npm/config/"
+      ],
+      "evidenceRequired": [
+        "Timestamped environment record",
+        "Original failure log with secrets removed",
+        "Complete reproducible fixture",
+        "Fix diff and passing verification output",
+        "Repeat on a fresh fixture",
+        "Named technical reviewer; author approval for publication"
+      ],
+      "acceptanceGate": "Remain DRAFT until reproduction, fix, alternatives and limitations are checked, official references are reviewed for the pinned versions, and the author approves publication."
+    },
+    {
+      "order": 10,
+      "slug": "node-eaddrinuse-port",
+      "category": "Node.js and npm Errors",
+      "proposedTitle": "Find the process behind Node EADDRINUSE on Windows",
+      "status": "DRAFT",
+      "publicationApproved": false,
+      "testingPerformed": false,
+      "problemStatement": "Error: listen EADDRINUSE: address already in use",
+      "exactErrorCapture": "Capture the exact message from the chosen fixture; proposed wording is an identification target, not a fabricated observed log.",
+      "environment": {
+        "os": "Windows 11: edition, version, build and architecture TO RECORD",
+        "shell": "PowerShell version TO RECORD; test Windows PowerShell separately if supported",
+        "tools": "Pin and record every relevant Node/npm/Git/VS Code/Next/React/TypeScript version in the fixture before testing",
+        "testedVersions": null
+      },
+      "reproductionPlan": "Start two disposable local HTTP listeners on the same chosen test port and save the second process's actual error.",
+      "rootCauseToInvestigate": "Distinguish a listening process from a wrong bind address or IPv4/IPv6 mismatch.",
+      "candidateDiagnostics": "Get-NetTCPConnection -State Listen -LocalPort 43127\nGet-Process -Id <OwningProcess-from-the-previous-output>",
+      "workingSolution": "NOT YET TESTED. Test gracefully stopping the owned fixture process, or choosing another explicit test port. Do not kill an unidentified process.",
+      "requiredCodeExamples": "Include a complete minimal fixture, file paths, dependency manifest/lockfile, shell-labelled diagnostics, exact before/after changes, expected output and cleanup/rollback. Do not present placeholder commands as final copy/paste instructions.",
+      "verificationPlan": "The second listener starts on the intended port, serves a request, and both owned test processes are stopped afterward.",
+      "alternativesToEvaluate": "Document an alternate port and inspect bind-address differences when the process list does not explain the failure.",
+      "commonMistakes": "Killing all Node processes; copying a sample PID; confusing TIME_WAIT with an active listening service.",
+      "officialReferences": [
+        "https://nodejs.org/api/errors.html",
+        "https://learn.microsoft.com/en-us/powershell/module/nettcpip/get-nettcpconnection"
+      ],
+      "evidenceRequired": [
+        "Timestamped environment record",
+        "Original failure log with secrets removed",
+        "Complete reproducible fixture",
+        "Fix diff and passing verification output",
+        "Repeat on a fresh fixture",
+        "Named technical reviewer; author approval for publication"
+      ],
+      "acceptanceGate": "Remain DRAFT until reproduction, fix, alternatives and limitations are checked, official references are reviewed for the pinned versions, and the author approves publication."
+    },
+    {
+      "order": 11,
+      "slug": "npm-ci-lockfile-out-of-sync",
+      "category": "Node.js and npm Errors",
+      "proposedTitle": "Why npm ci rejects a package.json and lockfile mismatch",
+      "status": "DRAFT",
+      "publicationApproved": false,
+      "testingPerformed": false,
+      "problemStatement": "npm ci can only install packages when package.json and package-lock.json are in sync",
+      "exactErrorCapture": "Capture the exact message from the chosen fixture; proposed wording is an identification target, not a fabricated observed log.",
+      "environment": {
+        "os": "Windows 11: edition, version, build and architecture TO RECORD",
+        "shell": "PowerShell version TO RECORD; test Windows PowerShell separately if supported",
+        "tools": "Pin and record every relevant Node/npm/Git/VS Code/Next/React/TypeScript version in the fixture before testing",
+        "testedVersions": null
+      },
+      "reproductionPlan": "In a disposable repository, change a dependency in package.json without regenerating its lockfile. Capture the pinned npm version's exact failure.",
+      "rootCauseToInvestigate": "Explain frozen installation and inspect manifest/lockfile differences before choosing the intended dependency state.",
+      "candidateDiagnostics": "git diff -- package.json package-lock.json\nnpm.cmd --version",
+      "workingSolution": "NOT YET TESTED. Test regenerating the lockfile only after reviewing the intended manifest; commit the pair together in the fixture.",
+      "requiredCodeExamples": "Include a complete minimal fixture, file paths, dependency manifest/lockfile, shell-labelled diagnostics, exact before/after changes, expected output and cleanup/rollback. Do not present placeholder commands as final copy/paste instructions.",
+      "verificationPlan": "npm ci succeeds in a clean fixture checkout and its production build still passes.",
+      "alternativesToEvaluate": "Restore the intended matching manifest/lockfile pair from version control when the manifest edit was accidental.",
+      "commonMistakes": "Removing the lockfile as the first step; mixing package managers; overlooking version-specific lockfile behavior.",
+      "officialReferences": [
+        "https://docs.npmjs.com/cli/v11/commands/npm-ci/"
+      ],
+      "evidenceRequired": [
+        "Timestamped environment record",
+        "Original failure log with secrets removed",
+        "Complete reproducible fixture",
+        "Fix diff and passing verification output",
+        "Repeat on a fresh fixture",
+        "Named technical reviewer; author approval for publication"
+      ],
+      "acceptanceGate": "Remain DRAFT until reproduction, fix, alternatives and limitations are checked, official references are reviewed for the pinned versions, and the author approves publication."
+    },
+    {
+      "order": 12,
+      "slug": "nextjs-windows-import-casing",
+      "category": "Next.js Error Fixes",
+      "proposedTitle": "Module not found after a case-only rename on Windows",
+      "status": "DRAFT",
+      "publicationApproved": false,
+      "testingPerformed": false,
+      "problemStatement": "Module not found: Can't resolve './components/Button'",
+      "exactErrorCapture": "Capture the exact message from the chosen fixture; proposed wording is an identification target, not a fabricated observed log.",
+      "environment": {
+        "os": "Windows 11: edition, version, build and architecture TO RECORD",
+        "shell": "PowerShell version TO RECORD; test Windows PowerShell separately if supported",
+        "tools": "Pin and record every relevant Node/npm/Git/VS Code/Next/React/TypeScript version in the fixture before testing",
+        "testedVersions": null
+      },
+      "reproductionPlan": "Create a disposable Next.js app with a tracked case mismatch, then compare native Windows and a case-sensitive Linux build.",
+      "rootCauseToInvestigate": "Distinguish filename case, Git's tracked path, alias configuration, and missing packages.",
+      "candidateDiagnostics": "git ls-files -- src/components\ngit status --short\nnpm.cmd run build",
+      "workingSolution": "NOT YET TESTED. Test a two-step Git rename through a unique intermediate name in the fixture, align the import spelling, and inspect the staged diff.",
+      "requiredCodeExamples": "Include a complete minimal fixture, file paths, dependency manifest/lockfile, shell-labelled diagnostics, exact before/after changes, expected output and cleanup/rollback. Do not present placeholder commands as final copy/paste instructions.",
+      "verificationPlan": "The intended filename appears in Git and both Windows and Linux builds resolve the same import.",
+      "alternativesToEvaluate": "Check tsconfig paths and dependency installation only after ruling out the exact case mismatch.",
+      "commonMistakes": "Changing global core.ignorecase; assuming a Windows-only build proves Linux resolution; renaming user files without checking collisions.",
+      "officialReferences": [
+        "https://nextjs.org/docs/messages/module-not-found",
+        "https://git-scm.com/docs/git-mv"
+      ],
+      "evidenceRequired": [
+        "Timestamped environment record",
+        "Original failure log with secrets removed",
+        "Complete reproducible fixture",
+        "Fix diff and passing verification output",
+        "Repeat on a fresh fixture",
+        "Named technical reviewer; author approval for publication"
+      ],
+      "acceptanceGate": "Remain DRAFT until reproduction, fix, alternatives and limitations are checked, official references are reviewed for the pinned versions, and the author approves publication."
+    },
+    {
+      "order": 13,
+      "slug": "nextjs-hydration-windows",
+      "category": "Next.js Error Fixes",
+      "proposedTitle": "Reproduce a Next.js hydration mismatch before suppressing it",
+      "status": "DRAFT",
+      "publicationApproved": false,
+      "testingPerformed": false,
+      "problemStatement": "Hydration failed because the server rendered HTML didn't match the client",
+      "exactErrorCapture": "Capture the exact message from the chosen fixture; proposed wording is an identification target, not a fabricated observed log.",
+      "environment": {
+        "os": "Windows 11: edition, version, build and architecture TO RECORD",
+        "shell": "PowerShell version TO RECORD; test Windows PowerShell separately if supported",
+        "tools": "Pin and record every relevant Node/npm/Git/VS Code/Next/React/TypeScript version in the fixture before testing",
+        "testedVersions": null
+      },
+      "reproductionPlan": "Create isolated fixtures for unstable dates and invalid nesting; compare the server markup and client console using pinned Next/React versions.",
+      "rootCauseToInvestigate": "Separate nondeterministic render values, HTML parser corrections, and extension-injected markup.",
+      "candidateDiagnostics": "node --version\nnpm.cmd ls next react react-dom",
+      "workingSolution": "NOT YET TESTED. Test stable server/client initial output and valid nesting. Supply the complete minimal before/after component in the eventual article.",
+      "requiredCodeExamples": "Include a complete minimal fixture, file paths, dependency manifest/lockfile, shell-labelled diagnostics, exact before/after changes, expected output and cleanup/rollback. Do not present placeholder commands as final copy/paste instructions.",
+      "verificationPlan": "Hard reloads and client navigations produce no mismatch in the controlled browser; the intentional broken fixture still reproduces the warning.",
+      "alternativesToEvaluate": "Compare a clean browser profile; isolate browser-only rendering where appropriate and document the UX tradeoff.",
+      "commonMistakes": "Adding suppressHydrationWarning everywhere; claiming all locale errors are Windows bugs; using timeouts as a fix.",
+      "officialReferences": [
+        "https://nextjs.org/docs/messages/react-hydration-error"
+      ],
+      "evidenceRequired": [
+        "Timestamped environment record",
+        "Original failure log with secrets removed",
+        "Complete reproducible fixture",
+        "Fix diff and passing verification output",
+        "Repeat on a fresh fixture",
+        "Named technical reviewer; author approval for publication"
+      ],
+      "acceptanceGate": "Remain DRAFT until reproduction, fix, alternatives and limitations are checked, official references are reviewed for the pinned versions, and the author approves publication."
+    },
+    {
+      "order": 14,
+      "slug": "nextjs-env-undefined-windows",
+      "category": "Next.js Error Fixes",
+      "proposedTitle": "Next.js cannot read a local environment variable on Windows",
+      "status": "DRAFT",
+      "publicationApproved": false,
+      "testingPerformed": false,
+      "problemStatement": "Application-specific environment variable is undefined (capture exact fixture error)",
+      "exactErrorCapture": "Capture the exact message from the chosen fixture; proposed wording is an identification target, not a fabricated observed log.",
+      "environment": {
+        "os": "Windows 11: edition, version, build and architecture TO RECORD",
+        "shell": "PowerShell version TO RECORD; test Windows PowerShell separately if supported",
+        "tools": "Pin and record every relevant Node/npm/Git/VS Code/Next/React/TypeScript version in the fixture before testing",
+        "testedVersions": null
+      },
+      "reproductionPlan": "Use a disposable .env.local file with a harmless sentinel, test project-root placement, a stale dev process, and server/client access separately.",
+      "rootCauseToInvestigate": "Investigate filename extensions, loading order, process lifetime, and the distinction between public and server-only values.",
+      "candidateDiagnostics": "Get-ChildItem -Force -Name .env*\nnpm.cmd ls next",
+      "workingSolution": "NOT YET TESTED. Test the exact filename and directory, restart the owned fixture server, and keep secrets server-only. Use a public sentinel only to demonstrate client inlining.",
+      "requiredCodeExamples": "Include a complete minimal fixture, file paths, dependency manifest/lockfile, shell-labelled diagnostics, exact before/after changes, expected output and cleanup/rollback. Do not present placeholder commands as final copy/paste instructions.",
+      "verificationPlan": "The server reads the sentinel from the intended source; the browser bundle does not contain the server-only sentinel.",
+      "alternativesToEvaluate": "Compare a process-level environment variable in the fixture and document precedence without dumping real environment values.",
+      "commonMistakes": "Renaming every secret to NEXT_PUBLIC_; printing .env files into logs; overlooking .env.local.txt; expecting runtime changes to rewrite a built client bundle.",
+      "officialReferences": [
+        "https://nextjs.org/docs/app/guides/environment-variables"
+      ],
+      "evidenceRequired": [
+        "Timestamped environment record",
+        "Original failure log with secrets removed",
+        "Complete reproducible fixture",
+        "Fix diff and passing verification output",
+        "Repeat on a fresh fixture",
+        "Named technical reviewer; author approval for publication"
+      ],
+      "acceptanceGate": "Remain DRAFT until reproduction, fix, alternatives and limitations are checked, official references are reviewed for the pinned versions, and the author approves publication."
+    },
+    {
+      "order": 15,
+      "slug": "nextjs-turbopack-wrong-workspace-root",
+      "category": "Next.js Error Fixes",
+      "proposedTitle": "Turbopack chooses a parent lockfile as the workspace root",
+      "status": "DRAFT",
+      "publicationApproved": false,
+      "testingPerformed": false,
+      "problemStatement": "Next.js inferred your workspace root, but it may not be correct",
+      "exactErrorCapture": "Capture the exact message from the chosen fixture; proposed wording is an identification target, not a fabricated observed log.",
+      "environment": {
+        "os": "Windows 11: edition, version, build and architecture TO RECORD",
+        "shell": "PowerShell version TO RECORD; test Windows PowerShell separately if supported",
+        "tools": "Pin and record every relevant Node/npm/Git/VS Code/Next/React/TypeScript version in the fixture before testing",
+        "testedVersions": null
+      },
+      "reproductionPlan": "In a disposable parent/child workspace, create two lockfiles and record root detection using the pinned Next.js version.",
+      "rootCauseToInvestigate": "Distinguish an accidental parent lockfile from a real monorepo with linked packages outside the app.",
+      "candidateDiagnostics": "npm.cmd ls next\nGet-ChildItem -Force -Name *lock*",
+      "workingSolution": "NOT YET TESTED. Test an explicit absolute turbopack.root appropriate to the fixture, preserve both lockfiles, and compare development plus production builds.",
+      "requiredCodeExamples": "Include a complete minimal fixture, file paths, dependency manifest/lockfile, shell-labelled diagnostics, exact before/after changes, expected output and cleanup/rollback. Do not present placeholder commands as final copy/paste instructions.",
+      "verificationPlan": "The chosen root matches the intended workspace, imports still resolve, and both dev and build work; repeat with a linked-package control case.",
+      "alternativesToEvaluate": "For actual monorepos choose the shared root that contains linked sources; document webpack differences only if tested.",
+      "commonMistakes": "Deleting a parent lockfile without understanding ownership; setting root too narrowly; presenting a warning fix as a universal performance improvement.",
+      "officialReferences": [
+        "https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack"
+      ],
+      "evidenceRequired": [
+        "Timestamped environment record",
+        "Original failure log with secrets removed",
+        "Complete reproducible fixture",
+        "Fix diff and passing verification output",
+        "Repeat on a fresh fixture",
+        "Named technical reviewer; author approval for publication"
+      ],
+      "acceptanceGate": "Remain DRAFT until reproduction, fix, alternatives and limitations are checked, official references are reviewed for the pinned versions, and the author approves publication."
+    }
+  ]
+}

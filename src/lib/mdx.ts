@@ -61,7 +61,7 @@ function slugifyHeading(value: string) {
     .trim()
     .replace(/\[(.*?)\]\(.*?\)/g, "$1")
     .replace(/\s+/g, "-")
-    .replace(/[^a-z0-9-]/g, "");
+    .replace(/[^a-z0-9_-]/g, "");
 }
 
 function extractHeadings(content: string): TocHeading[] {
@@ -122,7 +122,16 @@ function normalizeCoverImageUrl(value?: string) {
   return `/images/blog/${value}`;
 }
 
-function mapPost(doc: any): BlogPost {
+type StoredPost = {
+  slug: string; title: string; status: BlogPostStatus;
+  publishedAt?: Date | null; scheduledAt?: Date | null; createdAt?: Date | null;
+  category?: string | null; excerpt?: string | null; coverImage?: string | null;
+  author?: string | null; readTime?: string | null; featured?: boolean | null;
+  tags?: string[]; content?: string | null;
+  affiliateLinks?: readonly { label?: string | null; url?: string | null; disclosure?: string | null }[];
+};
+
+function mapPost(doc: StoredPost): BlogPost {
   const effectiveStatus = getEffectiveStatus(doc);
   const effectiveDate =
     doc.publishedAt?.toISOString() ||
@@ -135,16 +144,16 @@ function mapPost(doc: any): BlogPost {
     title: doc.title,
     date: effectiveDate,
     scheduledAt: doc.scheduledAt?.toISOString(),
-    category: doc.category,
-    excerpt: doc.excerpt,
-    coverImage: normalizeCoverImageUrl(doc.coverImage),
-    author: doc.author,
-    readTime: doc.readTime,
+    category: doc.category ?? "General",
+    excerpt: doc.excerpt ?? "",
+    coverImage: normalizeCoverImageUrl(doc.coverImage ?? undefined),
+    author: doc.author ?? "Author not listed",
+    readTime: doc.readTime ?? "Read time unavailable",
     featured: doc.featured ?? false,
-    affiliateLinks: doc.affiliateLinks ?? [],
+    affiliateLinks: (doc.affiliateLinks ?? []).map((link) => ({ label: link.label ?? "Affiliate link", url: link.url ?? "", disclosure: link.disclosure ?? "Affiliate link" })),
     status: effectiveStatus,
     tags: doc.tags ?? [],
-    content: doc.content,
+    content: doc.content ?? "",
     headings: extractHeadings(doc.content ?? ""),
   };
 }
@@ -153,7 +162,7 @@ export const getAllPosts = cache(
   async (includeDrafts = false): Promise<BlogPostMeta[]> => {
     await dbConnect();
 
-    const filter: any = includeDrafts
+    const filter = includeDrafts
   ? {}
   : publicFilter();
 
@@ -164,7 +173,7 @@ const docs = await BlogPostModel.find(filter)
       })
       .lean();
 
-    return docs.map((doc: any) => {
+    return docs.map((doc) => {
       const post = mapPost(doc);
 
       return {
@@ -193,7 +202,7 @@ export const getPostBySlug = cache(
   ): Promise<BlogPost | null> => {
     await dbConnect();
 
-    const filter: any = includeDrafts
+    const filter = includeDrafts
   ? { slug }
   : {
       slug,

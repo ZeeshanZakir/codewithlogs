@@ -1,0 +1,26 @@
+DRAFT TROUBLESHOOTING ARTICLE — DO NOT PUBLISH BEFORE REVIEW
+
+Title and intended existing/new URL:
+Status: DRAFT
+Author: TO CONFIRM
+Reviewer and evidence record: NOT RECORDED
+
+1. Exact problem statement and affected audience
+2. Environment table: Windows edition/build/architecture, shell, tool/dependency versions
+   Tested versions: NOT RECORDED. Do not infer them from the website build.
+3. Literal observed error message and original redacted log
+4. Reproduction from a clean disposable fixture
+5. Root cause: connect each symptom to evidence
+6. Working solution: NOT VERIFIED until the fixture passes
+   Complete code, paths, shell labels, side effects, expected output, rollback
+7. Verification: re-run failing step, success criteria, negative control
+8. Alternatives: prerequisites, limits, and evidence for each
+9. Common mistakes and when the solution does not apply
+10. Official references for the pinned versions
+11. Evidence log: timestamps, commands, output, repeatability, reviewer
+12. Publication approval and correction history
+
+No invented screenshots, personal experiences, measurements, test results or credentials.
+Capture screenshots only from the actual fixture. Keep secrets and personal data out.
+Never equate a successful CodeWithLogs build with verification of a tutorial's fix.
+Publication requires author approval. Do not modify a live post or schedule automatically.

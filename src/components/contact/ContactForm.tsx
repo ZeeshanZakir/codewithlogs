@@ -30,9 +30,9 @@ export function ContactForm() {
     defaultValues: {
       name: "",
       email: "",
-      subject: "New Project",
+      subject: "Troubleshooting Question",
       message: "",
-      budget: "Under $500",
+      budget: "Not applicable",
     },
   });
 
@@ -69,9 +69,9 @@ export function ContactForm() {
       reset({
         name: "",
         email: "",
-        subject: "New Project",
+        subject: "Troubleshooting Question",
         message: "",
-        budget: "Under $500",
+        budget: "Not applicable",
       });
 
       setToast({
@@ -164,7 +164,7 @@ export function ContactForm() {
 
           <div className="space-y-2">
             <label htmlFor="budget" className="text-sm font-semibold text-text">
-              Budget Range
+              Budget (project enquiries)
             </label>
             <select
               id="budget"

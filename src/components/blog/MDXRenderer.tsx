@@ -5,6 +5,7 @@ import remarkGfm from "remark-gfm";
 
 import { AffiliateLinkBox } from "./AffiliateLinkBox";
 import { CodeBlock } from "./CodeBlock";
+import { getAllPosts } from "@/lib/mdx";
 
 type MDXRendererProps = {
   source: string;
@@ -63,11 +64,19 @@ const mdxComponents = {
 };
 
 export async function MDXRenderer({ source }: MDXRendererProps) {
+  const publicSlugs = new Set((await getAllPosts()).map((post) => post.slug));
+  function ArticleLink({ href, children, ...props }: ComponentProps<"a">) {
+    const slug = href?.startsWith("/blog/") ? href.split(/[?#]/)[0].slice(6) : undefined;
+    if (slug && !publicSlugs.has(slug)) {
+      return <span className="unpublished-reference">{children}<small> (guide not currently published)</small></span>;
+    }
+    return <a {...props} href={href} className="font-medium text-primary underline decoration-primary/35 underline-offset-4">{children}</a>;
+  }
   return (
     <div className="max-w-none">
       <MDXRemote
         source={source}
-        components={mdxComponents}
+        components={{ ...mdxComponents, a: ArticleLink }}
         options={{
           mdxOptions: {
             remarkPlugins: [remarkGfm],

@@ -1,0 +1,625 @@
+{
+  "searchChecks": [
+    {
+      "query": "module",
+      "status": 200,
+      "privateLeak": false,
+      "passed": true
+    },
+    {
+      "query": "^.*$",
+      "status": 200,
+      "privateLeak": false,
+      "passed": true
+    },
+    {
+      "query": "",
+      "status": 400,
+      "privateLeak": false,
+      "passed": true
+    },
+    {
+      "query": "overlength",
+      "status": 400,
+      "privateLeak": false,
+      "passed": true
+    }
+  ],
+  "origin": "http://localhost:3000",
+  "checkedAt": "2026-10-21T12:59:50.535Z",
+  "totalChecks": 68,
+  "publicArticleCount": 41,
+  "sitemapHasPrivateRoutes": false,
+  "unresolvedLinks": [],
+  "failures": [],
+  "results": [
+    {
+      "route": "/sitemap.xml",
+      "status": 200,
+      "milliseconds": 204
+    },
+    {
+      "route": "/",
+      "status": 200,
+      "milliseconds": 130
+    },
+    {
+      "route": "/blog",
+      "status": 200,
+      "milliseconds": 212
+    },
+    {
+      "route": "/about",
+      "status": 200,
+      "milliseconds": 212
+    },
+    {
+      "route": "/contact",
+      "status": 200,
+      "milliseconds": 64
+    },
+    {
+      "route": "/privacy-policy",
+      "status": 200,
+      "milliseconds": 64
+    },
+    {
+      "route": "/terms",
+      "status": 200,
+      "milliseconds": 64
+    },
+    {
+      "route": "/robots.txt",
+      "status": 200,
+      "milliseconds": 25
+    },
+    {
+      "route": "/disclaimer",
+      "status": 200,
+      "milliseconds": 39
+    },
+    {
+      "route": "/editorial-policy",
+      "status": 200,
+      "milliseconds": 40
+    },
+    {
+      "route": "/gallery",
+      "status": 200,
+      "milliseconds": 46
+    },
+    {
+      "route": "/services",
+      "status": 200,
+      "milliseconds": 47
+    },
+    {
+      "route": "/tools",
+      "status": 200,
+      "milliseconds": 47
+    },
+    {
+      "route": "/tools/base64",
+      "status": 200,
+      "milliseconds": 35
+    },
+    {
+      "route": "/tools/css-minifier",
+      "status": 200,
+      "milliseconds": 35
+    },
+    {
+      "route": "/tools/cron-builder",
+      "status": 200,
+      "milliseconds": 35
+    },
+    {
+      "route": "/tools/json-formatter",
+      "status": 200,
+      "milliseconds": 34
+    },
+    {
+      "route": "/tools/password-generator",
+      "status": 200,
+      "milliseconds": 33
+    },
+    {
+      "route": "/tools/jwt-decoder",
+      "status": 200,
+      "milliseconds": 34
+    },
+    {
+      "route": "/tools/regex-tester",
+      "status": 200,
+      "milliseconds": 30
+    },
+    {
+      "route": "/tools/token-counter",
+      "status": 200,
+      "milliseconds": 30
+    },
+    {
+      "route": "/tools/word-counter",
+      "status": 200,
+      "milliseconds": 31
+    },
+    {
+      "route": "/blog/ai-memory-systems-short-term-long-term",
+      "status": 200,
+      "milliseconds": 7068,
+      "h1Count": 1,
+      "canonical": true,
+      "verificationStatusVisible": true,
+      "missingTOCTargets": [],
+      "structuredDataValid": true,
+      "codeCopyControls": 1
+    },
+    {
+      "route": "/blog/ai-semantic-search-nextjs-website",
+      "status": 200,
+      "milliseconds": 7655,
+      "h1Count": 1,
+      "canonical": true,
+      "verificationStatusVisible": true,
+      "missingTOCTargets": [],
+      "structuredDataValid": true,
+      "codeCopyControls": 3
+    },
+    {
+      "route": "/blog/pgvector-tutorial-supabase-vector-database",
+      "status": 200,
+      "milliseconds": 8238,
+      "h1Count": 1,
+      "canonical": true,
+      "verificationStatusVisible": true,
+      "missingTOCTargets": [],
+      "structuredDataValid": true,
+      "codeCopyControls": 7
+    },
+    {
+      "route": "/blog/ai-tool-calling-tutorial-api-examples",
+      "status": 200,
+      "milliseconds": 943,
+      "h1Count": 1,
+      "canonical": true,
+      "verificationStatusVisible": true,
+      "missingTOCTargets": [],
+      "structuredDataValid": true,
+      "codeCopyControls": 5
+    },
+    {
+      "route": "/blog/multi-agent-ai-architecture-that-works",
+      "status": 200,
+      "milliseconds": 1237,
+      "h1Count": 1,
+      "canonical": true,
+      "verificationStatusVisible": true,
+      "missingTOCTargets": [],
+      "structuredDataValid": true,
+      "codeCopyControls": 2
+    },
+    {
+      "route": "/blog/ai-customer-support-agent-with-memory",
+      "status": 200,
+      "milliseconds": 1441,
+      "h1Count": 1,
+      "canonical": true,
+      "verificationStatusVisible": true,
+      "missingTOCTargets": [],
+      "structuredDataValid": true,
+      "codeCopyControls": 4
+    },
+    {
+      "route": "/blog/reduce-ai-api-costs-prompt-caching",
+      "status": 200,
+      "milliseconds": 1125,
+      "h1Count": 1,
+      "canonical": true,
+      "verificationStatusVisible": true,
+      "missingTOCTargets": [],
+      "structuredDataValid": true,
+      "codeCopyControls": 2
+    },
+    {
+      "route": "/blog/rag-vs-fine-tuning-which-to-choose",
+      "status": 200,
+      "milliseconds": 1128,
+      "h1Count": 1,
+      "canonical": true,
+      "verificationStatusVisible": true,
+      "missingTOCTargets": [],
+      "structuredDataValid": true,
+      "codeCopyControls": 0
+    },
+    {
+      "route": "/blog/model-context-protocol-tutorial-real-project",
+      "status": 200,
+      "milliseconds": 1131,
+      "h1Count": 1,
+      "canonical": true,
+      "verificationStatusVisible": true,
+      "missingTOCTargets": [],
+      "structuredDataValid": true,
+      "codeCopyControls": 3
+    },
+    {
+      "route": "/blog/n8n-openai-ai-workflows",
+      "status": 200,
+      "milliseconds": 1269,
+      "h1Count": 1,
+      "canonical": true,
+      "verificationStatusVisible": true,
+      "missingTOCTargets": [],
+      "structuredDataValid": true,
+      "codeCopyControls": 3
+    },
+    {
+      "route": "/blog/claude-code-vs-github-copilot-review",
+      "status": 200,
+      "milliseconds": 1290,
+      "h1Count": 1,
+      "canonical": true,
+      "verificationStatusVisible": true,
+      "missingTOCTargets": [],
+      "structuredDataValid": true,
+      "codeCopyControls": 0
+    },
+    {
+      "route": "/blog/openai-responses-api-tutorial-first-ai-agent",
+      "status": 200,
+      "milliseconds": 1293,
+      "h1Count": 1,
+      "canonical": true,
+      "verificationStatusVisible": true,
+      "missingTOCTargets": [],
+      "structuredDataValid": true,
+      "codeCopyControls": 3
+    },
+    {
+      "route": "/blog/common-vercel-deployment-errors-solutions",
+      "status": 200,
+      "milliseconds": 1223,
+      "h1Count": 1,
+      "canonical": true,
+      "verificationStatusVisible": true,
+      "missingTOCTargets": [],
+      "structuredDataValid": true,
+      "codeCopyControls": 2
+    },
+    {
+      "route": "/blog/openai-structured-outputs-complete-guide",
+      "status": 200,
+      "milliseconds": 1238,
+      "h1Count": 1,
+      "canonical": true,
+      "verificationStatusVisible": true,
+      "missingTOCTargets": [],
+      "structuredDataValid": true,
+      "codeCopyControls": 3
+    },
+    {
+      "route": "/blog/building-saas-admin-dashboard-from-scratch",
+      "status": 200,
+      "milliseconds": 1742,
+      "h1Count": 1,
+      "canonical": true,
+      "verificationStatusVisible": true,
+      "missingTOCTargets": [],
+      "structuredDataValid": true,
+      "codeCopyControls": 4
+    },
+    {
+      "route": "/blog/supabase-row-level-security-real-examples",
+      "status": 200,
+      "milliseconds": 1567,
+      "h1Count": 1,
+      "canonical": true,
+      "verificationStatusVisible": true,
+      "missingTOCTargets": [],
+      "structuredDataValid": true,
+      "codeCopyControls": 6
+    },
+    {
+      "route": "/blog/nextjs-folder-structure-large-projects",
+      "status": 200,
+      "milliseconds": 1572,
+      "h1Count": 1,
+      "canonical": true,
+      "verificationStatusVisible": true,
+      "missingTOCTargets": [],
+      "structuredDataValid": true,
+      "codeCopyControls": 2
+    },
+    {
+      "route": "/blog/reduce-nextjs-website-loading-time",
+      "status": 200,
+      "milliseconds": 2086,
+      "h1Count": 1,
+      "canonical": true,
+      "verificationStatusVisible": true,
+      "missingTOCTargets": [],
+      "structuredDataValid": true,
+      "codeCopyControls": 4
+    },
+    {
+      "route": "/blog/sync-supabase-google-sheets-automatically",
+      "status": 200,
+      "milliseconds": 1766,
+      "h1Count": 1,
+      "canonical": true,
+      "verificationStatusVisible": true,
+      "missingTOCTargets": [],
+      "structuredDataValid": true,
+      "codeCopyControls": 2
+    },
+    {
+      "route": "/blog/debug-production-errors-nextjs",
+      "status": 200,
+      "milliseconds": 1777,
+      "h1Count": 1,
+      "canonical": true,
+      "verificationStatusVisible": true,
+      "missingTOCTargets": [],
+      "structuredDataValid": true,
+      "codeCopyControls": 2
+    },
+    {
+      "route": "/blog/nextjs-authentication-without-nextauth",
+      "status": 200,
+      "milliseconds": 1779,
+      "h1Count": 1,
+      "canonical": true,
+      "verificationStatusVisible": true,
+      "missingTOCTargets": [],
+      "structuredDataValid": true,
+      "codeCopyControls": 5
+    },
+    {
+      "route": "/blog/what-is-n8",
+      "status": 200,
+      "milliseconds": 1424,
+      "h1Count": 1,
+      "canonical": true,
+      "verificationStatusVisible": true,
+      "missingTOCTargets": [],
+      "structuredDataValid": true,
+      "codeCopyControls": 0
+    },
+    {
+      "route": "/blog/inventory-management-system-nextjs-supabase",
+      "status": 200,
+      "milliseconds": 1430,
+      "h1Count": 1,
+      "canonical": true,
+      "verificationStatusVisible": true,
+      "missingTOCTargets": [],
+      "structuredDataValid": true,
+      "codeCopyControls": 6
+    },
+    {
+      "route": "/blog/supabase-errors-production-fixes",
+      "status": 200,
+      "milliseconds": 1615,
+      "h1Count": 1,
+      "canonical": true,
+      "verificationStatusVisible": true,
+      "missingTOCTargets": [],
+      "structuredDataValid": true,
+      "codeCopyControls": 3
+    },
+    {
+      "route": "/blog/what-is-typescript",
+      "status": 200,
+      "milliseconds": 1203,
+      "h1Count": 1,
+      "canonical": true,
+      "verificationStatusVisible": true,
+      "missingTOCTargets": [],
+      "structuredDataValid": true,
+      "codeCopyControls": 0
+    },
+    {
+      "route": "/blog/what-is-an-api",
+      "status": 200,
+      "milliseconds": 1340,
+      "h1Count": 1,
+      "canonical": true,
+      "verificationStatusVisible": true,
+      "missingTOCTargets": [],
+      "structuredDataValid": true,
+      "codeCopyControls": 0
+    },
+    {
+      "route": "/blog/mongodb-vs-postgresql",
+      "status": 200,
+      "milliseconds": 1480,
+      "h1Count": 1,
+      "canonical": true,
+      "verificationStatusVisible": true,
+      "missingTOCTargets": [],
+      "structuredDataValid": true,
+      "codeCopyControls": 0
+    },
+    {
+      "route": "/blog/how-to-become-an-ai-engineer",
+      "status": 200,
+      "milliseconds": 1082,
+      "h1Count": 1,
+      "canonical": true,
+      "verificationStatusVisible": true,
+      "missingTOCTargets": [],
+      "structuredDataValid": true,
+      "codeCopyControls": 0
+    },
+    {
+      "route": "/blog/cloud-computing-explained",
+      "status": 200,
+      "milliseconds": 1389,
+      "h1Count": 1,
+      "canonical": true,
+      "verificationStatusVisible": true,
+      "missingTOCTargets": [],
+      "structuredDataValid": true,
+      "codeCopyControls": 0
+    },
+    {
+      "route": "/blog/what-is-code-with-logs",
+      "status": 200,
+      "milliseconds": 1390,
+      "h1Count": 1,
+      "canonical": true,
+      "verificationStatusVisible": true,
+      "missingTOCTargets": [],
+      "structuredDataValid": true,
+      "codeCopyControls": 2
+    },
+    {
+      "route": "/blog/cybersecurity-for-beginners",
+      "status": 200,
+      "milliseconds": 965,
+      "h1Count": 1,
+      "canonical": true,
+      "verificationStatusVisible": true,
+      "missingTOCTargets": [],
+      "structuredDataValid": true,
+      "codeCopyControls": 0
+    },
+    {
+      "route": "/blog/ai-productivity-guide",
+      "status": 200,
+      "milliseconds": 1229,
+      "h1Count": 1,
+      "canonical": true,
+      "verificationStatusVisible": true,
+      "missingTOCTargets": [],
+      "structuredDataValid": true,
+      "codeCopyControls": 0
+    },
+    {
+      "route": "/blog/can-ai-replace-programmers",
+      "status": 200,
+      "milliseconds": 1448,
+      "h1Count": 1,
+      "canonical": true,
+      "verificationStatusVisible": true,
+      "missingTOCTargets": [],
+      "structuredDataValid": true,
+      "codeCopyControls": 0
+    },
+    {
+      "route": "/blog/chatgpt-vs-claude-vs-gemini",
+      "status": 200,
+      "milliseconds": 1067,
+      "h1Count": 1,
+      "canonical": true,
+      "verificationStatusVisible": true,
+      "missingTOCTargets": [],
+      "structuredDataValid": true,
+      "codeCopyControls": 0
+    },
+    {
+      "route": "/blog/mongodb-vs-postgresql-which-database-2026",
+      "status": 200,
+      "milliseconds": 1418,
+      "h1Count": 1,
+      "canonical": true,
+      "verificationStatusVisible": true,
+      "missingTOCTargets": [],
+      "structuredDataValid": true,
+      "codeCopyControls": 0
+    },
+    {
+      "route": "/blog/what-is-typescript-why-developers-switching",
+      "status": 200,
+      "milliseconds": 1420,
+      "h1Count": 1,
+      "canonical": true,
+      "verificationStatusVisible": true,
+      "missingTOCTargets": [],
+      "structuredDataValid": true,
+      "codeCopyControls": 4
+    },
+    {
+      "route": "/blog/react-vs-vue-vs-svelte-2026",
+      "status": 200,
+      "milliseconds": 1404,
+      "h1Count": 1,
+      "canonical": true,
+      "verificationStatusVisible": true,
+      "missingTOCTargets": [],
+      "structuredDataValid": true,
+      "codeCopyControls": 1
+    },
+    {
+      "route": "/blog/deploy-nextjs-to-vercel-guide",
+      "status": 200,
+      "milliseconds": 1413,
+      "h1Count": 1,
+      "canonical": true,
+      "verificationStatusVisible": true,
+      "missingTOCTargets": [],
+      "structuredDataValid": true,
+      "codeCopyControls": 2
+    },
+    {
+      "route": "/blog/what-is-serverless-computing-should-you-use-it",
+      "status": 200,
+      "milliseconds": 1419,
+      "h1Count": 1,
+      "canonical": true,
+      "verificationStatusVisible": true,
+      "missingTOCTargets": [],
+      "structuredDataValid": true,
+      "codeCopyControls": 0
+    },
+    {
+      "route": "/blog/cursor-vs-github-copilot-2026",
+      "status": 200,
+      "milliseconds": 1008,
+      "h1Count": 1,
+      "canonical": true,
+      "verificationStatusVisible": true,
+      "missingTOCTargets": [],
+      "structuredDataValid": true,
+      "codeCopyControls": 0
+    },
+    {
+      "route": "/blog/get-first-freelance-client-web-developer",
+      "status": 200,
+      "milliseconds": 1558,
+      "h1Count": 1,
+      "canonical": true,
+      "verificationStatusVisible": true,
+      "missingTOCTargets": [],
+      "structuredDataValid": true,
+      "codeCopyControls": 0
+    },
+    {
+      "route": "/api",
+      "status": 401,
+      "milliseconds": 33
+    },
+    {
+      "route": "/api/debug",
+      "status": 401,
+      "milliseconds": 10
+    },
+    {
+      "route": "/api/test-db",
+      "status": 401,
+      "milliseconds": 12
+    },
+    {
+      "route": "/admin/dashboard",
+      "status": 307,
+      "milliseconds": 28,
+      "location": "https://codewithlogs.com/admin/login?callbackUrl=%2Fadmin%2Fdashboard"
+    },
+    {
+      "route": "/blog/codewithlogs-nonexistent-validation-slug",
+      "status": 404,
+      "milliseconds": 318
+    }
+  ],
+  "limitations": "HTTP/server-rendered markup checks only. These do not verify browser interactions, visual layout, clipboard permissions, real-user Core Web Vitals, tutorial solutions, authenticated admin mutations, or form delivery."
+}

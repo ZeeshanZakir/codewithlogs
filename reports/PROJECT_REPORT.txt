@@ -1,0 +1,222 @@
+CODEWITHLOGS 2.0 — WINDOWS DEVELOPER TROUBLESHOOTING
+Date: 21 October 2026
+Branch: redesign/adsense-readiness (existing requested branch reused)
+Tagline: Fix Your Development Errors. Step by Step.
+
+OUTCOME
+The public website is implemented locally using the existing Next.js architecture.
+It has a prominent error search, four specialist category filters, educational
+article layouts, responsive navigation, copyable highlighted code, relevant
+metadata, and an explicit verification standard. No new guide was published.
+
+1. REPOSITORY AND CONTENT AUDIT
+AGENTS.md and CLAUDE.md were read. Installed Next.js guides were consulted
+before code changes. Existing uncommitted work was retained.
+Architecture: 128 source files, 31 page entry points, 11 API route entry points.
+See architecture.json for the full route/source inventory and integrations.
+Additional metadata routes include sitemap.xml, robots.txt and the favicon.
+
+The read-only database audit covered all 58 stored articles:
+6 stored as published, 35 scheduled with elapsed publication dates, 17 drafts.
+The existing public read model exposes 41 articles; those URLs remain available.
+Editorial recommendations: KEEP 0 / IMPROVE 7 / MERGE 5 / ARCHIVE 46.
+These are recommendations, not changes to CMS statuses.
+KEEP requires recorded Windows verification evidence; none was available.
+The zero count does not mean every article is useless or that a tested fix failed.
+
+CONTENT_AUDIT.txt has every article's recommendation and supporting findings.
+content-audit.json has structured per-article signals and scope limitations.
+Manual review of selected relevant bodies found version-sensitive guidance,
+incomplete snippets, unsupported performance claims, and overlapping intent.
+The deployment article's next-build/lint claim is outdated for installed Next 16.
+No existing article body was rewritten or deleted. Personal claims remain
+author-supplied and require confirmation in the editorial process.
+
+2. UI/UX COMPLETED
+- Windows-focused homepage, exact-error/tool search and four specialist areas:
+  Windows Developer Setup; VS Code Troubleshooting; Node.js and npm Errors;
+  Next.js Error Fixes.
+- Existing relevant troubleshooting guides highlighted without claiming they
+  have been tested on Windows.
+- Empty specialist areas and the verified-guides section state their real
+  status instead of inventing content, tests or popularity.
+- Full-text article search runs server-side and returns public slugs only.
+  Input is bounded, regex metacharacters are treated literally, requests are
+  debounced/cancellable, and failed searches retain a metadata-search fallback.
+- Full archive, filters, clear controls, pagination and accessible result status.
+- Editorial white/off-white, charcoal and subtle teal design; mobile/tablet/
+  desktop layouts; focus styling, skip link, menu and reduced-motion support.
+- Article breadcrumbs, author/date/read time, explicit Windows verification
+  status, desktop/mobile contents, related reading, correction contact link.
+- Shiki-highlighted readable code, copy controls and clipboard-error feedback.
+- Improved contact form defaults for troubleshooting questions and corrections;
+  Not applicable is a valid budget so readers need not select a sales budget.
+- About/publication introduction and an editorial/verification policy page.
+- Earlier sales and affiliate homepage sections remain removed; service pages
+  and original embedded affiliate material remain available.
+
+3. PRESERVED FUNCTIONALITY
+- MongoDB/Mongoose collections, content data, slugs and schedules.
+- NextAuth credentials/JWT sessions and admin proxy authorization.
+- Admin dashboards, editing/publishing, preview, subscriber/message management,
+  gallery administration and existing server actions.
+- Existing public tools, gallery, upload/Blob integrations, contact storage/
+  Resend notifications, subscribers, newsletter API and legal pages.
+- Existing author biography, article bodies, assets and public article URLs.
+- No dependency was added and no database migration or CMS write was performed.
+
+Intentional security correction: /api, /api/debug and /api/test-db now require
+the existing admin session. Anonymous requests return 401. The debug endpoint
+no longer returns connection fragments, and the hardcoded connection fallback
+was removed. Authorized diagnostic access remains; backend credentials and
+authentication providers were not changed. Previously exposed credentials
+still need owner-controlled rotation, including historical copies.
+
+4. CONTENT ROADMAP
+EDITORIAL_ROADMAP.txt and editorial-roadmap.json contain 15 original guide
+briefs. All are DRAFT, untested, not in the public routes or database, and
+require author publication approval. Each has an exact problem target,
+environment fields, reproduction plan, root-cause questions, code requirements,
+verification criteria, alternatives, common mistakes and official references.
+article-template.txt defines the complete article and evidence requirements.
+Do not turn a proposed command or official reference into a claim of testing.
+
+5. SEO AND ADSENSE
+SEO_READINESS.txt is the complete implemented/pending checklist.
+Canonical URLs, titles/descriptions, social metadata and article/breadcrumb
+JSON-LD are present. The sitemap retains public content and excludes drafts
+and private routes. Static pages no longer get fabricated current-day dates.
+Admin metadata is noindex; public educational pages remain readable without login.
+TOC underscores were fixed while preserving rendered fragment identifiers.
+Three references to unpublished guides are shown as unavailable text, avoiding
+404 navigation while leaving their source content and draft state intact.
+The existing X share-intent link was corrected.
+
+Search Console access, live indexing, production HTTPS/crawler/ad configuration,
+consent/CMP assessment, and real-user Core Web Vitals still require owner review
+or an approved deployment. No field metrics or Lighthouse scores are invented.
+Originality, technical usefulness and verifiable evidence remain editorial
+requirements. This work does not guarantee AdSense approval or manipulate review.
+
+6. TEST RESULTS
+Production build: PASS, 33 static pages generated; no deployment.
+Standalone TypeScript check: PASS.
+Changed-file ESLint: PASS, 35 code files.
+Repository ESLint: 54 pre-existing errors and 15 warnings remain
+in unchanged tools/gallery/admin/shared-library code. Rules were not weakened.
+git diff --check: PASS after whitespace normalization.
+Final local production route validation: 68 checks, 41 public
+article pages; no failures or unresolved internal navigation links.
+Four search checks pass: body match, literal metacharacters, empty input,
+overlength input; no private draft slug is returned.
+Diagnostic endpoints return 401 without a session; admin access redirects.
+Article schema parses, canonical tags exist and all checked TOC anchors resolve.
+Browser checks: homepage at 320/390/768/1440, mobile article contents and menu,
+Escape close, full-text search, filters, empty state and code-copy success.
+
+A repeated development run had two transient timeouts while compilation was
+active. The final production-mode run passed both routes and the other 39.
+OS edition/build lookup through CIM was denied by the sandbox, so it is not
+claimed as an article test environment. Exact tool versions are recorded in
+test-environment.json for website checks only.
+No external share, real form delivery, logged-in admin mutation or tutorial
+solution execution was performed. Physical-device and field-performance testing
+remain separate from the responsive browser checks.
+
+7. LOCAL REVIEW
+Use PowerShell from C:UserszeeshDesktopcodewithlogs.
+Dependencies and .env.local are already present; do not print or commit secrets.
+
+Development preview:
+  npm run dev
+  Open http://localhost:3000
+
+Production preview:
+  npm run build
+  npm run start
+
+Re-run route checks against a local running server:
+  node scripts/validate-redesign.mjs http://localhost:3000
+
+Refresh the read-only content audit (requires the existing database connection):
+  node scripts/audit-editorial.mjs
+The audit never updates records. Its temporary source snapshot is under ignored
+.next; reports include private draft titles and should be kept within this repo.
+
+Review the homepage, search module, each category, an article, contents and copy
+controls, About, Contact, editorial policy and policy links. Do not submit real
+forms or publish content just to exercise navigation. Owned preview processes
+are stopped at task teardown; start one of the commands above for local review.
+
+8. REMAINING OWNER ACTIONS
+- Record reproducible Windows evidence for each new guide before publication.
+- Confirm original author experiences and measurements; review dated technical
+  and security-sensitive claims in existing articles.
+- Review MERGE/ARCHIVE recommendations using actual Search Console traffic.
+  No redirects or content-status changes are authorized by this report.
+- Rotate historical database credentials and assess production consent setup.
+- Schedule unrelated lint maintenance and approved authenticated/form tests.
+- Approve any content publication, destructive change or deployment separately.
+
+9. FULL MODIFIED/NEW FILE LIST
+The list includes the earlier redesign edits retained in this working tree.
+1. REDESIGN_REPORT.txt
+2. next.config.ts
+3. reports/CONTENT_AUDIT.txt
+4. reports/EDITORIAL_ROADMAP.txt
+5. reports/PROJECT_REPORT.txt
+6. reports/SEO_READINESS.txt
+7. reports/architecture.json
+8. reports/article-template.txt
+9. reports/browser-validation.json
+10. reports/changed-file-lint.json
+11. reports/content-audit.json
+12. reports/editorial-roadmap.json
+13. reports/eslint-results.json
+14. reports/modified-files.json
+15. reports/route-validation.json
+16. reports/test-environment.json
+17. reports/test-results.json
+18. scripts/audit-editorial.mjs
+19. scripts/validate-redesign.mjs
+20. src/app/(admin)/layout.tsx
+21. src/app/(public)/about/page.tsx
+22. src/app/(public)/blog/[slug]/page.tsx
+23. src/app/(public)/blog/page.tsx
+24. src/app/(public)/contact/page.tsx
+25. src/app/(public)/editorial-policy/page.tsx
+26. src/app/(public)/layout.tsx
+27. src/app/(public)/page.tsx
+28. src/app/api/debug/route.ts
+29. src/app/api/route.ts
+30. src/app/api/search/route.ts
+31. src/app/api/test-db/route.ts
+32. src/app/globals.css
+33. src/app/layout.tsx
+34. src/app/robots.ts
+35. src/app/sitemap.ts
+36. src/components/ads/AdUnit.tsx
+37. src/components/blog/AffiliateLinkBox.tsx
+38. src/components/blog/BlogCard.tsx
+39. src/components/blog/BlogIndexClient.tsx
+40. src/components/blog/CodeBlock.tsx
+41. src/components/blog/CopyCodeButton.tsx
+42. src/components/blog/MDXRenderer.tsx
+43. src/components/blog/ShareButtons.tsx
+44. src/components/blog/TableOfContents.tsx
+45. src/components/contact/ContactForm.tsx
+46. src/components/home/NewsletterSignup.tsx
+47. src/components/layout/Footer.tsx
+48. src/components/layout/Navbar.tsx
+49. src/lib/article-search.ts
+50. src/lib/contact.ts
+51. src/lib/mdx.ts
+52. src/lib/troubleshooting.ts
+
+Detailed machine-readable inventories: modified-files.json, architecture.json,
+content-audit.json, editorial-roadmap.json, route-validation.json,
+browser-validation.json, changed-file-lint.json, eslint-results.json,
+test-environment.json and test-results.json.
+
+No production deployment, content deletion, content publication or database
+write was performed.

@@ -13,40 +13,36 @@ const inter = Inter({
   display: "swap",
 });
 
-const adsensePublisherId = process.env.NEXT_PUBLIC_ADSENSE_PUBLISHER_ID;
+const configuredPublisherId = process.env.NEXT_PUBLIC_ADSENSE_PUBLISHER_ID;
+const adsensePublisherId = configuredPublisherId
+  ? configuredPublisherId.startsWith("ca-") ? configuredPublisherId : `ca-${configuredPublisherId}`
+  : undefined;
 const googleTagId = "G-NMGJP556HE";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Code with Logs",
-    template: "%s | Code with Logs",
+    default: "CodeWithLogs",
+    template: "%s | CodeWithLogs",
   },
   description:
-    "Full-stack MERN developer blog. Tutorials on Next.js, React, Node.js, MongoDB, SaaS development, and developer tools.",
+    "Windows developer troubleshooting for Windows 11, VS Code, Node.js, npm, Git, and Next.js. Fix Your Development Errors. Step by Step.",
   openGraph: {
-    title: "Code with Logs",
+    title: "CodeWithLogs",
     description:
-      "Full-stack MERN developer blog with practical tutorials on Next.js, React, Node.js, MongoDB, SaaS development, and developer tools.",
+      "CodeWithLogs: Windows developer troubleshooting. Fix Your Development Errors. Step by Step.",
     url: siteUrl,
-    siteName: "Code With Logs",
+    siteName: "CodeWithLogs",
     locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Code with Logs",
+    title: "CodeWithLogs",
     description:
-      "Full-stack MERN developer blog. Tutorials on Next.js, React, Node.js, MongoDB, SaaS development, and developer tools.",
+      "Windows developer troubleshooting for Windows 11, VS Code, Node.js, npm, Git, and Next.js. Fix Your Development Errors. Step by Step.",
   },
-  // other: {
-  //   monetag: "4f8c3ff5fbf9312dc5f3ac62b2dd58d0",
-  //   ...(adsensePublisherId
-  //     ? {
-  //         "google-adsense-account": adsensePublisherId,
-  //       }
-  //     : {}),
-  // },
+  other: adsensePublisherId ? { "google-adsense-account": adsensePublisherId } : {},
 };
 
 export default function RootLayout({
@@ -56,22 +52,22 @@ export default function RootLayout({
 }>) {
   const shouldLoadAdsense =
     process.env.NODE_ENV === "production" &&
-    Boolean(process.env.NEXT_PUBLIC_ADSENSE_PUBLISHER_ID);
+    Boolean(adsensePublisherId);
 
   return (
     <html lang="en" className={inter.variable}>
       {shouldLoadAdsense ? (
         <Script
-          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${process.env.NEXT_PUBLIC_ADSENSE_PUBLISHER_ID}`}
+          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsensePublisherId}`}
           crossOrigin="anonymous"
           async
         />
       ) : null}
       <Script
         src={`https://www.googletagmanager.com/gtag/js?id=${googleTagId}`}
-        strategy="beforeInteractive"
+        strategy="afterInteractive"
       />
-      <Script id="google-tag" strategy="beforeInteractive">
+      <Script id="google-tag" strategy="afterInteractive">
         {`
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}

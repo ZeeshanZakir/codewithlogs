@@ -1,0 +1,198 @@
+HISTORICAL REPORT — SUPERSEDED BY reports/PROJECT_REPORT.txt
+This records the earlier Next.js/Supabase redesign concept. Use the Windows
+troubleshooting reports in reports/ for current implementation and test status.
+
+CODEWITHLOGS REDESIGN HANDOFF
+Branch: redesign/adsense-readiness
+Date: 21 October 2026
+Scope: local implementation only; no production deployment.
+
+IMPLEMENTED
+A restrained developer publication in warm white, charcoal, and deep green,
+with an editorial typographic hierarchy, fine rules, compact article metadata,
+a purpose-built debugging field note, and responsive layouts.
+
+The homepage now prioritizes existing Next.js, Supabase, and debugging articles.
+Services, price packages, unverifiable project-count claims, and affiliate picks
+were removed from the homepage presentation. Existing service pages remain
+reachable from the footer. No article, database record, or asset was deleted.
+
+The archive retains all published categories and posts, with topic/tag-aware
+search, category selection, clear-filter controls, result announcements,
+pagination, and useful empty states. Homepage topic links initialize archive
+search. Categories are derived from published posts instead of a stale list.
+
+Article pages now emphasize the actual article, with a readable text column,
+author/date/read-time details, a restrained related-reading section, a desktop
+contents sidebar, collapsible mobile contents, and a correction/contact link.
+Article text and embedded MDX components were preserved.
+
+SEO changes include focused page metadata, canonical URLs, article-specific
+Twitter metadata, sanitized BlogPosting and BreadcrumbList JSON-LD, a contact
+canonical URL, and restored conditional AdSense account metadata.
+
+Navigation includes active states, a functional mobile menu, a keyboard skip
+link, visible focus styles, named navigation landmarks, and reduced-motion
+support. The automatic three-second signup modal is no longer mounted; the
+existing subscriber API is used by an inline newsletter form instead.
+The modal source remains in the repository.
+
+Advertising now uses configured numeric slot IDs, maps article/sidebar slots,
+avoids unconfigured development placeholders, normalizes the publisher ID,
+and uses appropriate responsive ad formats. The article template keeps one
+configured ad position after the educational content. Affiliate content inside
+existing articles is preserved and marked with sponsored/nofollow where the
+dedicated AffiliateLink component renders it.
+
+ALL FILES EDITED DURING THIS TASK
+1. next.config.ts
+   Explicit Turbopack project root to avoid parent-lockfile workspace detection.
+2. src/app/globals.css
+   Scoped public publication design, responsive layouts, article typography,
+   navigation, newsletter, archive, focus styles, and reduced-motion handling.
+3. src/app/layout.tsx
+   Editorial metadata, conditional AdSense verification metadata, normalized
+   publisher ID, and analytics loading after initial interaction readiness.
+4. src/app/(public)/layout.tsx
+   Public design scope, keyboard skip link/main target, removal of automatic
+   subscriber popup mounting.
+5. src/app/(public)/page.tsx
+   Complete editorial homepage, topical reading selection, existing post cards,
+   real topic counts, author introduction, and inline signup.
+6. src/app/(public)/blog/page.tsx
+   Archive header and metadata, dynamic published categories, Suspense boundary.
+7. src/app/(public)/blog/[slug]/page.tsx
+   Article reading template, social metadata, structured data, mobile contents,
+   reduced promotional clutter, related articles, correction links.
+8. src/app/(public)/about/page.tsx
+   Escaped existing apostrophes to resolve two pre-existing lint errors.
+   Existing biography and claims retained.
+9. src/app/(public)/contact/page.tsx
+   Editorial questions/corrections copy and canonical metadata.
+   Existing contact form schema and submission behavior retained.
+10. src/components/layout/Navbar.tsx
+    Publication wordmark, content-first navigation, active links, mobile menu.
+11. src/components/layout/Footer.tsx
+    Editorial identity and grouped article, author, contact, service, gallery,
+    social, and policy links.
+12. src/components/blog/BlogCard.tsx
+    Reusable editorial cards with featured and compact variations.
+13. src/components/blog/BlogIndexClient.tsx
+    Topic/tag-aware search, URL-initialized query, category filters,
+    accessible result status, reset controls, and bounded pagination controls.
+14. src/components/blog/TableOfContents.tsx
+    Reusable scoped styles, named navigation, active-location semantics.
+15. src/components/blog/AffiliateLinkBox.tsx
+    Sponsored/nofollow relationship for affiliate links.
+16. src/components/ads/AdUnit.tsx
+    Configured article/sidebar slot mapping, numeric validation,
+    conditional rendering, normalized publisher ID, responsive formats.
+17. src/components/home/NewsletterSignup.tsx
+    Inline design, accessible email field and feedback.
+    Existing subscription request and promotions:false behavior preserved.
+18. REDESIGN_REPORT.txt
+    This handoff.
+
+Some initial edits were captured in the current Git history during the session.
+This list covers the files edited for the task, including files that may no
+longer show a substantive diff against the current HEAD. No agent commit,
+push, merge, or deployment command was issued.
+
+PRESERVED ARCHITECTURE AND FUNCTIONALITY
+The source inventory contains 123 files under src. The application uses
+Next.js 16.2.6 App Router and React 19, with public/admin route groups.
+Posts are stored in MongoDB through Mongoose. NextAuth credentials and JWT
+sessions protect admin routes through the proxy. Supabase is an editorial
+topic, not a replacement for the existing database.
+
+Existing post publishing, draft/scheduled status handling, admin actions,
+authentication, gallery/uploads, contact storage/email, subscription storage,
+developer tools, sitemap, robots configuration, original assets, and legal
+pages remain in place. No backend schema, authentication code, or stored
+content was changed. No form was submitted and no account was created during
+verification.
+
+VERIFICATION
+- npm run build: PASS after final source changes.
+  Compiled, checked TypeScript, generated 32 static pages, finalized production
+  output, and retained all public/admin/API routes.
+- npx tsc --noEmit: PASS.
+- ESLint on all 16 touched TypeScript files: PASS without warnings.
+- npm run lint: FAIL with 58 existing errors and 15 existing warnings in
+  unchanged files. Initial baseline: 61 errors and 16 warnings.
+- git diff --check: PASS.
+- Public HTTP checks: homepage, archive, about, contact, all three policy pages,
+  tools index, robots.txt, and sitemap.xml returned 200.
+- Unauthenticated /admin/dashboard returned 307 to the existing login URL.
+- Nine articles sampled from the archive returned 200, with one H1, parseable
+  schema.org JSON-LD, canonical metadata, article prose, and working TOC targets.
+- Three additional focused articles returned 200, with article prose,
+  mobile TOC markup, and no missing TOC anchors:
+  debug-production-errors-nextjs
+  supabase-errors-production-fixes
+  inventory-management-system-nextjs-supabase
+- Database audit was read-only: 41 publicly available published/scheduled-due
+  posts. Their author, excerpt, and cover-image fields were populated.
+- Visual verification limitation: the in-app browser initially reached a
+  sandboxed database DNS error, then failed to reconnect reliably. HTTP and
+  server rendering checks succeeded after running the preview with network
+  permission, but actual desktop/mobile screenshots and interactive browser
+  checks could not be completed. Responsive CSS is implemented; its visual
+  behavior is not claimed as browser-verified.
+- Stale .next/dev/types/validator.ts referenced a deleted test-post route.
+  Only that generated validator was removed; Next regenerated route types.
+- The owned development preview process was stopped at final teardown.
+  Preview locally with npm run dev. Nothing was deployed.
+
+REMAINING ISSUES
+1. Existing security exposure (separate from this redesign):
+   src/app/api/debug/route.ts contains a hardcoded MongoDB connection fallback
+   and returns part of the connection string through a public response.
+   src/app/api/route.ts returns profile email data without authentication.
+   src/app/api/test-db/route.ts publicly exposes diagnostic connection state
+   and error messages.
+   These endpoints were not called during verification or modified in this
+   redesign. Restrict/remove diagnostic exposure and rotate any credential
+   that has been committed or exposed. This report intentionally omits values.
+
+2. Existing repository-wide lint debt:
+   tools/page.tsx, PostEditor.tsx, gallery components, and tool components have
+   explicit-any, React hook/state, JSX escaping, or related lint findings.
+   src/lib/mdx.ts, jwt.ts, cron.ts, and mongodb.ts also have existing findings.
+   Admin actions and several tools have unused variable/dependency warnings.
+   Lint rules were not disabled and unrelated functionality was not rewritten.
+
+3. Content quality still needs author review:
+   Existing overlapping articles include:
+   - what-is-typescript-why-developers-switching and what-is-typescript
+   - mongodb-vs-postgresql-which-database-2026 and mongodb-vs-postgresql
+   The 41-post archive also spans broad AI, productivity, cybersecurity, and
+   career subjects. Preserve the posts, but review overlapping search intent,
+   technical accuracy, distinctive examples, citations, and topical focus.
+
+   Useful next editorial work:
+   - Give each tutorial a concrete problem, prerequisites, exact tested package
+     versions, reproducible setup, expected result, failure cases, and references.
+   - Add original screenshots, actual error logs with secrets removed, and
+     repository examples where they help the explanation.
+   - Verify claims and measurements; do not invent production experience,
+     performance results, author qualifications, or review dates.
+   - Review security-sensitive authentication and row-level-security tutorials.
+   - Harmonize overlapping category names such as Web Dev/Web Development.
+   - Decide whether overlapping articles should be revised or consolidated;
+     no deletion, redirect, or database edit was performed here.
+
+4. Broader verification:
+   No authenticated admin mutation, real newsletter/contact submission, gallery
+   upload, complete tool interaction suite, or live ad delivery test was run.
+   Complete desktop/mobile visual review and keyboard interaction QA before
+   deployment.
+
+5. AdSense:
+   The redesign improves navigation, educational emphasis, reading experience,
+   and content discoverability. It does not establish the originality or
+   correctness of every article and does not guarantee AdSense approval.
+   Google calls for valuable unique content and good user experience:
+   https://support.google.com/adsense/answer/12176698?hl=en
+
+No production deployment or database content edits were performed.

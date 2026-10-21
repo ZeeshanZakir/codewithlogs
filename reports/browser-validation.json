@@ -1,0 +1,59 @@
+{
+  "checkedAt": "2026-10-21T12:56:32.995Z",
+  "mode": "In-app browser against local development server",
+  "checks": [
+    {
+      "check": "Homepage desktop layout",
+      "passed": true,
+      "width": 1440
+    },
+    {
+      "check": "Homepage no horizontal overflow",
+      "passed": true,
+      "widths": [
+        320,
+        390,
+        768,
+        1440
+      ]
+    },
+    {
+      "check": "Full-text search includes a body-only module error match",
+      "passed": true,
+      "query": "module",
+      "resultCount": 4
+    },
+    {
+      "check": "Specialist filter and clear controls",
+      "passed": true
+    },
+    {
+      "check": "Empty VS Code category provides honest empty state",
+      "passed": true
+    },
+    {
+      "check": "Mobile article no horizontal overflow",
+      "passed": true,
+      "width": 390
+    },
+    {
+      "check": "Mobile contents expands",
+      "passed": true
+    },
+    {
+      "check": "Mobile navigation opens and Escape closes it",
+      "passed": true
+    },
+    {
+      "check": "Code-copy button reports successful clipboard write",
+      "passed": true
+    }
+  ],
+  "limitations": [
+    "Browser viewport emulation, not testing on physical devices.",
+    "No external share, newsletter subscription, contact delivery or authenticated admin mutation was performed.",
+    "No roadmap tutorial solution was tested.",
+    "No field Core Web Vitals or Lighthouse score is claimed."
+  ],
+  "screenshots": "Desktop homepage and featured guides, and mobile article contents were visually inspected in the conversation."
+}

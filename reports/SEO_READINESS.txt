@@ -1,0 +1,63 @@
+CODEWITHLOGS — SEO AND ADSENSE READINESS CHECKLIST
+
+IMPLEMENTED / LOCALLY CHECKED
+[x] Windows troubleshooting identity and four specialist category filters.
+[x] Homepage GET search and body-aware published-article search.
+[x] Existing public article URLs and stored bodies preserved.
+[x] Existing draft and scheduled publication behavior preserved.
+[x] Educational article content remains available without login.
+[x] Article titles, descriptions, social metadata and canonical URLs.
+[x] Parseable BlogPosting and BreadcrumbList JSON-LD.
+[x] Visible verification status; no unsupported tested/verified labels.
+[x] Sitemap includes public articles, tools, policy and other existing pages.
+[x] Drafts/admin/API routes excluded from the sitemap.
+[x] Robots blocks admin/API route prefixes; public reading remains crawlable.
+[x] Admin layout emits noindex/nofollow.
+[x] Sitemap no longer fabricates today's date for unchanged static pages.
+[x] Table-of-contents anchor mismatch fixed for NEXT_PUBLIC_ headings.
+[x] References to unpublished internal guides are shown as unavailable text,
+    rather than sending readers to a 404. Stored article bodies are unchanged.
+[x] Corrected X share-intent URL; copy failures have understandable feedback.
+[x] About, Contact, Privacy, Terms and disclaimer pages remain discoverable.
+[x] Contact form supports article questions without requiring a project budget.
+[x] Readable code with syntax highlighting, horizontal scrolling and copy controls.
+[x] Mobile menu, skip link, focus styling, labels, live feedback and reduced motion.
+[x] No homepage sales packages or affiliate recommendation grid.
+[x] Diagnostic endpoints require the existing admin session and no longer
+    expose connection-string fragments. Embedded credential fallback removed.
+
+CONTENT WORK STILL REQUIRED
+[ ] Reproduce and independently verify each of the 15 DRAFT troubleshooting briefs.
+[ ] Record actual Windows build, tool versions, fixture, failure log and fix output.
+[ ] Obtain author confirmation for old anecdotes, credentials and numerical claims.
+[ ] Review the 7 IMPROVE and 5 MERGE recommendations. Do not bulk-change live posts.
+[ ] Decide on the 46 ARCHIVE recommendations, The audit also covers 17 unpublished drafts.
+    ARCHIVE is a report recommendation only; no stored status was changed.
+[ ] Complete author review and approve publication before creating any new live guide.
+
+EXTERNAL / PRODUCTION CHECKS STILL REQUIRED
+[ ] Owner must rotate credentials previously committed or exposed; removing
+    a secret from the current source does not invalidate historical copies.
+[ ] Review applicable consent/CMP configuration and privacy disclosures for
+    the actual audience and configured analytics/advertising services.
+[ ] Review Search Console queries/impressions/clicks before any URL consolidation.
+[ ] Owner submits the sitemap and inspects representative URLs in Search Console.
+[ ] Verify production hostname/HTTPS, crawler access, ads.txt and ad account
+    configuration after an approved deployment.
+[ ] Run production Lighthouse checks and assess real-user LCP/INP/CLS after
+    there is sufficient real data. No performance score is fabricated here.
+[ ] Test real form delivery and authenticated admin tasks with owner-controlled
+    accounts in an approved test workflow.
+[ ] Resolve remaining pre-existing repository ESLint errors as separate maintenance.
+
+NO GUARANTEED APPROVAL
+Navigation and design help users, but they do not establish original expertise
+or independently test a proposed fix. No artificial traffic, hidden reviewer
+content, review manipulation, or claim of guaranteed AdSense approval is used.
+
+Official resources reviewed:
+https://support.google.com/adsense/answer/7299563?hl=en
+https://support.google.com/adsense/answer/12176698?hl=en
+https://nextjs.org/docs/app/guides/upgrading/version-16
+See editorial-roadmap.json for guide-specific Microsoft, VS Code, npm, Node, Git
+and Next.js reference URLs.

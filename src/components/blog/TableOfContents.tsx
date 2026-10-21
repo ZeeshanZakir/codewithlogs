@@ -46,15 +46,15 @@ export function TableOfContents({ headings }: TableOfContentsProps) {
   }, [headings]);
 
   return (
-    <div className="rounded-[12px] border border-black/6 bg-white p-5">
-      <p className="text-sm font-semibold uppercase tracking-[0.18em] text-text/55">
+    <div className="toc rounded-[12px] border border-black/6 bg-white p-5">
+      <p className="toc-title">
         Table of Contents
       </p>
-      <nav className="mt-5 space-y-2">
+      <nav aria-label="Article table of contents" className="mt-5 space-y-2">
         {headings.map((heading) => (
           <a
             key={heading.id}
-            href={`#${heading.id}`}
+            href={`#${heading.id}`} aria-current={activeId === heading.id ? "location" : undefined}
             className={cn(
               "block rounded-[10px] px-3 py-2 text-sm transition-colors",
               heading.level === 3 ? "ml-4" : "",

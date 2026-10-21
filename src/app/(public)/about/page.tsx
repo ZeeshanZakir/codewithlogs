@@ -3,14 +3,14 @@ import Link from "next/link";
 import { siteUrl } from "@/lib/site-url";
 
 export const metadata: Metadata = {
-  title: "About Zeeshan Zakir | Full-Stack MERN Developer",
+  title: "About CodeWithLogs & Zeeshan Zakir",
   description:
-    "Learn more about Zeeshan Zakir, a full-stack MERN developer with 6 years of experience building web apps, SaaS products, and developer-focused content.",
+    "Meet Zeeshan Zakir, the author behind CodeWithLogs, and learn about the focus on Windows developer troubleshooting.",
   alternates: {
     canonical: `${siteUrl}/about`,
   },
   openGraph: {
-    title: "About Zeeshan Zakir | Full-Stack MERN Developer",
+    title: "About CodeWithLogs & Zeeshan Zakir",
     description:
       "Background, skills, experience, and the story behind this developer blog.",
     url: `${siteUrl}/about`,
@@ -91,6 +91,7 @@ const socialLinks = [
 export default function AboutPage() {
   return (
     <div className="bg-background">
+      <section className="journal-container about-publication"><p className="eyebrow">About CodeWithLogs</p><h2>Fix Your Development Errors. Step by Step.</h2><p>CodeWithLogs focuses on Windows 11 development: Windows setup, VS Code, Node.js and npm errors, and Next.js troubleshooting. The earlier development archive and author background below are preserved.</p><p>A published date is not a Windows test record. See the <Link href="/editorial-policy">editorial and verification policy</Link> for how guide status is assessed.</p></section>
       <section className="border-b border-black/5 bg-surface">
         <div className="mx-auto flex w-full max-w-5xl flex-col items-center px-4 py-16 text-center sm:px-6 lg:px-8 lg:py-20">
           <div className="flex h-[120px] w-[120px] items-center justify-center rounded-full border border-black/6 bg-white text-3xl font-semibold text-primary">
@@ -129,10 +130,10 @@ export default function AboutPage() {
             </h2>
             <div className="space-y-5 text-base leading-8 text-text/75">
               <p>
-                I've spent years growing as a full-stack developer — starting with simple HTML and CSS projects, then slowly building the confidence to take on real client work. What started as curiosity turned into something much more serious once I realized how satisfying it is to turn an idea into a working product people can actually use.
+                I&apos;ve spent years growing as a full-stack developer — starting with simple HTML and CSS projects, then slowly building the confidence to take on real client work. What started as curiosity turned into something much more serious once I realized how satisfying it is to turn an idea into a working product people can actually use.
               </p>
               <p>
-                JavaScript was the real turning point for me. The moment I understood how much logic, interactivity, and product thinking could live inside a single web app, I was hooked. From there, I leaned fully into modern frontend and backend development and eventually specialized in the MERN stack — React, Node.js, Express, and MongoDB — building applications that aren't just functional, but maintainable and built to scale.
+                JavaScript was the real turning point for me. The moment I understood how much logic, interactivity, and product thinking could live inside a single web app, I was hooked. From there, I leaned fully into modern frontend and backend development and eventually specialized in the MERN stack — React, Node.js, Express, and MongoDB — building applications that aren&apos;t just functional, but maintainable and built to scale.
               </p>
               <p>
                 These days, my focus is on building SaaS products, content-driven platforms, and custom web tools for founders and small businesses. I care a lot about clean code, real performance, and making developer education less intimidating than it often is.

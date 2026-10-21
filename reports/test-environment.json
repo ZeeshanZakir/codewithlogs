@@ -1,0 +1,10 @@
+{
+  "RecordedFor": "Website checks only; not evidence for any roadmap article solution",
+  "OperatingSystem": null,
+  "PowerShell": "7.6.5",
+  "Node": "v22.18.0",
+  "Npm": "10.9.3",
+  "Git": "git version 2.55.0.windows.4",
+  "Next": "16.2.6",
+  "OperatingSystemDetails": "CIM query was denied by the sandbox. No Windows edition/build or OS support claim is inferred from this website test run."
+}

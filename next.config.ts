@@ -3,6 +3,7 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   allowedDevOrigins: ["localhost", "127.0.0.1", "192.168.50.234"],
   compress: true,
+  turbopack: { root: process.cwd() },
   experimental: {
     optimizeCss: true,
   },

@@ -1,0 +1,613 @@
+CODEWITHLOGS — EXISTING CONTENT AUDIT
+Scope: all 58 stored articles, including unpublished drafts.
+Current public set: 41 articles (6 published + 35 scheduled with elapsed dates).
+Private drafts: 17. No article status, content, URL, or schedule was changed.
+
+DECISIONS
+{"KEEP":0,"IMPROVE":7,"MERGE":5,"ARCHIVE":46}
+KEEP means ready to retain as a verified Windows troubleshooting guide.
+No article currently has repository-recorded Windows verification evidence.
+IMPROVE means useful adjacent material requiring a focused reproducible revision.
+MERGE means overlapping intent worth reviewing, not an instruction to delete or redirect.
+ARCHIVE means recommended legacy editorial scope; every existing public URL remains live.
+
+METHOD AND LIMITS
+Read-only database snapshot, automated body/heading/reference signals, editorial topical/duplicate-intent triage, and manual review of selected relevant article bodies. Signals are triage evidence, not proof of correctness, originality, plagiarism, or successful testing.
+Word counts and heading/reference signals are not AdSense approval thresholds.
+This is editorial triage plus manual review of selected relevant bodies; it is not
+an independent test of all fixes, a plagiarism scan, or an authorship investigation.
+Search traffic/primary consolidation URLs cannot be chosen without Search Console data.
+Original author experience, screenshots and measurements require source evidence.
+
+ARTICLE-BY-ARTICLE DECISIONS
+
+1. ARCHIVE | AI Memory Systems: Short-Term vs Long-Term Memory
+https://codewithlogs.com/blog/ai-memory-systems-short-term-long-term
+Stored status: scheduled | Category: AI Tools | Words: 1000 | Code blocks: 1
+Reason: Outside the Windows developer troubleshooting niche. Recommend a legacy editorial archive, preserving the live URL and content until an approved migration plan exists.
+Finding: This is an editorial scope decision, not a finding that the content is worthless or plagiarized. No archival status change has been made.
+Review needed: Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.
+Review needed: No explicit reproduction section detected.
+Review needed: No explicit verification/expected-result wording detected.
+Review needed: No relevant Windows/VS Code/Node/npm/Git/Next official reference detected.
+
+2. ARCHIVE | Vector Databases Explained with Supabase pgvector
+https://codewithlogs.com/blog/pgvector-tutorial-supabase-vector-database
+Stored status: scheduled | Category: AI Tools | Words: 1028 | Code blocks: 7
+Reason: Outside the Windows developer troubleshooting niche. Recommend a legacy editorial archive, preserving the live URL and content until an approved migration plan exists.
+Finding: This is an editorial scope decision, not a finding that the content is worthless or plagiarized. No archival status change has been made.
+Review needed: Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.
+Review needed: No explicit reproduction section detected.
+Review needed: No explicit verification/expected-result wording detected.
+Review needed: No relevant Windows/VS Code/Node/npm/Git/Next official reference detected.
+
+3. ARCHIVE | How I Added AI Search to My Next.js Website
+https://codewithlogs.com/blog/ai-semantic-search-nextjs-website
+Stored status: scheduled | Category: AI Tools | Words: 977 | Code blocks: 3
+Reason: Outside the Windows developer troubleshooting niche. Recommend a legacy editorial archive, preserving the live URL and content until an approved migration plan exists.
+Finding: This is an editorial scope decision, not a finding that the content is worthless or plagiarized. No archival status change has been made.
+Review needed: Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.
+Review needed: No explicit reproduction section detected.
+Review needed: No explicit verification/expected-result wording detected.
+Review needed: No relevant Windows/VS Code/Node/npm/Git/Next official reference detected.
+
+4. ARCHIVE | AI Tool Calling Explained with Real API Examples
+https://codewithlogs.com/blog/ai-tool-calling-tutorial-api-examples
+Stored status: scheduled | Category: AI Tools | Words: 905 | Code blocks: 5
+Reason: Outside the Windows developer troubleshooting niche. Recommend a legacy editorial archive, preserving the live URL and content until an approved migration plan exists.
+Finding: This is an editorial scope decision, not a finding that the content is worthless or plagiarized. No archival status change has been made.
+Review needed: Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.
+Review needed: No explicit reproduction section detected.
+Review needed: No explicit verification/expected-result wording detected.
+Review needed: No relevant Windows/VS Code/Node/npm/Git/Next official reference detected.
+
+5. ARCHIVE | Building Multi-Agent AI Systems That Actually Work
+https://codewithlogs.com/blog/multi-agent-ai-architecture-that-works
+Stored status: scheduled | Category: AI Tools | Words: 1040 | Code blocks: 2
+Reason: Outside the Windows developer troubleshooting niche. Recommend a legacy editorial archive, preserving the live URL and content until an approved migration plan exists.
+Finding: This is an editorial scope decision, not a finding that the content is worthless or plagiarized. No archival status change has been made.
+Review needed: Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.
+Review needed: No explicit reproduction section detected.
+Review needed: No explicit verification/expected-result wording detected.
+Review needed: No relevant Windows/VS Code/Node/npm/Git/Next official reference detected.
+
+6. ARCHIVE | Building an AI Customer Support Agent with Memory
+https://codewithlogs.com/blog/ai-customer-support-agent-with-memory
+Stored status: scheduled | Category: AI Tools | Words: 897 | Code blocks: 4
+Reason: Outside the Windows developer troubleshooting niche. Recommend a legacy editorial archive, preserving the live URL and content until an approved migration plan exists.
+Finding: This is an editorial scope decision, not a finding that the content is worthless or plagiarized. No archival status change has been made.
+Review needed: Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.
+Review needed: No explicit reproduction section detected.
+Review needed: No explicit verification/expected-result wording detected.
+Review needed: No relevant Windows/VS Code/Node/npm/Git/Next official reference detected.
+
+7. ARCHIVE | How I Reduced AI API Costs by 80% Using Prompt Caching
+https://codewithlogs.com/blog/reduce-ai-api-costs-prompt-caching
+Stored status: scheduled | Category: AI Tools | Words: 907 | Code blocks: 2
+Reason: Outside the Windows developer troubleshooting niche. Recommend a legacy editorial archive, preserving the live URL and content until an approved migration plan exists.
+Finding: This is an editorial scope decision, not a finding that the content is worthless or plagiarized. No archival status change has been made.
+Review needed: Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.
+Review needed: No explicit reproduction section detected.
+Review needed: No relevant Windows/VS Code/Node/npm/Git/Next official reference detected.
+
+8. ARCHIVE | RAG vs Fine-Tuning: Which One Should You Choose?
+https://codewithlogs.com/blog/rag-vs-fine-tuning-which-to-choose
+Stored status: scheduled | Category: AI Tools | Words: 923 | Code blocks: 0
+Reason: Outside the Windows developer troubleshooting niche. Recommend a legacy editorial archive, preserving the live URL and content until an approved migration plan exists.
+Finding: This is an editorial scope decision, not a finding that the content is worthless or plagiarized. No archival status change has been made.
+Review needed: Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.
+Review needed: No explicit reproduction section detected.
+Review needed: No relevant Windows/VS Code/Node/npm/Git/Next official reference detected.
+
+9. ARCHIVE | MCP (Model Context Protocol) Explained with a Real Project
+https://codewithlogs.com/blog/model-context-protocol-tutorial-real-project
+Stored status: scheduled | Category: AI Tools | Words: 912 | Code blocks: 3
+Reason: Outside the Windows developer troubleshooting niche. Recommend a legacy editorial archive, preserving the live URL and content until an approved migration plan exists.
+Finding: This is an editorial scope decision, not a finding that the content is worthless or plagiarized. No archival status change has been made.
+Review needed: Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.
+Review needed: No explicit reproduction section detected.
+Review needed: No explicit verification/expected-result wording detected.
+Review needed: No relevant Windows/VS Code/Node/npm/Git/Next official reference detected.
+
+10. ARCHIVE | How I Built My First AI Agent Using OpenAI Responses API
+https://codewithlogs.com/blog/openai-responses-api-tutorial-first-ai-agent
+Stored status: scheduled | Category: AI Tools | Words: 953 | Code blocks: 3
+Reason: Outside the Windows developer troubleshooting niche. Recommend a legacy editorial archive, preserving the live URL and content until an approved migration plan exists.
+Finding: This is an editorial scope decision, not a finding that the content is worthless or plagiarized. No archival status change has been made.
+Review needed: Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.
+Review needed: No explicit reproduction section detected.
+Review needed: No relevant Windows/VS Code/Node/npm/Git/Next official reference detected.
+
+11. ARCHIVE | Claude Code vs GitHub Copilot: Real Developer Review
+https://codewithlogs.com/blog/claude-code-vs-github-copilot-review
+Stored status: scheduled | Category: AI Tools | Words: 967 | Code blocks: 0
+Reason: Outside the Windows developer troubleshooting niche. Recommend a legacy editorial archive, preserving the live URL and content until an approved migration plan exists.
+Finding: This is an editorial scope decision, not a finding that the content is worthless or plagiarized. No archival status change has been made.
+Review needed: Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.
+Review needed: No explicit reproduction section detected.
+Review needed: No explicit verification/expected-result wording detected.
+Review needed: No relevant Windows/VS Code/Node/npm/Git/Next official reference detected.
+
+12. ARCHIVE | Building AI Workflows with n8n and OpenAI
+https://codewithlogs.com/blog/n8n-openai-ai-workflows
+Stored status: scheduled | Category: AI Tools | Words: 978 | Code blocks: 3
+Reason: Outside the Windows developer troubleshooting niche. Recommend a legacy editorial archive, preserving the live URL and content until an approved migration plan exists.
+Finding: This is an editorial scope decision, not a finding that the content is worthless or plagiarized. No archival status change has been made.
+Review needed: Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.
+Review needed: No explicit reproduction section detected.
+Review needed: No explicit verification/expected-result wording detected.
+Review needed: No relevant Windows/VS Code/Node/npm/Git/Next official reference detected.
+
+13. ARCHIVE | Structured Outputs in OpenAI API: Complete Guide
+https://codewithlogs.com/blog/openai-structured-outputs-complete-guide
+Stored status: scheduled | Category: AI Tools | Words: 1000 | Code blocks: 3
+Reason: Outside the Windows developer troubleshooting niche. Recommend a legacy editorial archive, preserving the live URL and content until an approved migration plan exists.
+Finding: This is an editorial scope decision, not a finding that the content is worthless or plagiarized. No archival status change has been made.
+Review needed: Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.
+Review needed: No explicit reproduction section detected.
+Review needed: No explicit verification/expected-result wording detected.
+Review needed: No relevant Windows/VS Code/Node/npm/Git/Next official reference detected.
+
+14. ARCHIVE | Building a SaaS Admin Dashboard from Scratch
+https://codewithlogs.com/blog/building-saas-admin-dashboard-from-scratch
+Stored status: scheduled | Category: SaaS | Words: 966 | Code blocks: 4
+Reason: Outside the Windows developer troubleshooting niche. Recommend a legacy editorial archive, preserving the live URL and content until an approved migration plan exists.
+Finding: This is an editorial scope decision, not a finding that the content is worthless or plagiarized. No archival status change has been made.
+Review needed: Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.
+Review needed: No explicit reproduction section detected.
+Review needed: No relevant Windows/VS Code/Node/npm/Git/Next official reference detected.
+
+15. IMPROVE | Common Vercel Deployment Errors and Their Solutions
+https://codewithlogs.com/blog/common-vercel-deployment-errors-solutions
+Stored status: scheduled | Category: Vercel | Words: 1081 | Code blocks: 2
+Reason: Useful adjacent technical material. Rework around a specific Windows development failure, document the environment, reproduce and verify each fix, and retain the existing URL.
+Finding: The claim that next build runs ESLint is outdated for this installed Next.js 16 project.
+Finding: The NODE_OPTIONS=... command uses POSIX syntax; a Windows version needs shell-specific examples.
+Finding: Reproduce case-only renames in a disposable Windows Git repository and validate the tracked path in a case-sensitive environment.
+Finding: Review platform limits against current official docs instead of hardcoding plan assumptions.
+Review needed: Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.
+Review needed: No explicit reproduction section detected.
+Review needed: No explicit verification/expected-result wording detected.
+Review needed: No relevant Windows/VS Code/Node/npm/Git/Next official reference detected.
+
+16. IMPROVE | How I Reduced My Next.js Website Loading Time
+https://codewithlogs.com/blog/reduce-nextjs-website-loading-time
+Stored status: scheduled | Category: Next.js | Words: 937 | Code blocks: 4
+Reason: Useful adjacent technical material. Rework around a specific Windows development failure, document the environment, reproduce and verify each fix, and retain the existing URL.
+Finding: The claimed 52-to-94 score and LCP/CLS/JS-size improvements need original reports and author confirmation.
+Finding: Distinguish Lighthouse laboratory results from real-user Core Web Vitals.
+Finding: Review the installed version docs for image preloading conventions; provide a complete before/after fixture.
+Review needed: Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.
+Review needed: No explicit reproduction section detected.
+Review needed: No explicit verification/expected-result wording detected.
+Review needed: No relevant Windows/VS Code/Node/npm/Git/Next official reference detected.
+
+17. IMPROVE | My Complete Next.js Folder Structure for Large Projects
+https://codewithlogs.com/blog/nextjs-folder-structure-large-projects
+Stored status: published | Category: Next.js | Words: 969 | Code blocks: 2
+Reason: Useful adjacent technical material. Rework around a specific Windows development failure, document the environment, reproduce and verify each fix, and retain the existing URL.
+Finding: The directory tree is useful supporting material but is not a specific troubleshooting solution.
+Finding: Focus a revision on resolving aliases, file casing and module boundaries; preserve the existing URL.
+Finding: Do not turn folder-count anecdotes into verified claims without author confirmation.
+Review needed: Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.
+Review needed: No explicit reproduction section detected.
+Review needed: No explicit verification/expected-result wording detected.
+Review needed: No relevant Windows/VS Code/Node/npm/Git/Next official reference detected.
+
+18. ARCHIVE | Supabase Row Level Security Explained with Real Examples (Copy These Policies)
+https://codewithlogs.com/blog/supabase-row-level-security-real-examples
+Stored status: scheduled | Category: Supabase | Words: 1012 | Code blocks: 6
+Reason: Outside the Windows developer troubleshooting niche. Recommend a legacy editorial archive, preserving the live URL and content until an approved migration plan exists.
+Finding: This is an editorial scope decision, not a finding that the content is worthless or plagiarized. No archival status change has been made.
+Review needed: Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.
+Review needed: No explicit reproduction section detected.
+Review needed: No explicit verification/expected-result wording detected.
+Review needed: No relevant Windows/VS Code/Node/npm/Git/Next official reference detected.
+
+19. IMPROVE | How I Debug Production Errors in Next.js
+https://codewithlogs.com/blog/debug-production-errors-nextjs
+Stored status: scheduled | Category: Next.js | Words: 920 | Code blocks: 2
+Reason: Useful adjacent technical material. Rework around a specific Windows development failure, document the environment, reproduce and verify each fix, and retain the existing URL.
+Finding: The error component snippet has untyped props and needs a complete pinned TypeScript fixture.
+Finding: The hydration section needs a minimal reproducible mismatch and explicit post-fix checks.
+Finding: Confirm anecdotal client stories with the author; no supporting evidence was found in the repository.
+Review needed: Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.
+Review needed: No explicit verification/expected-result wording detected.
+Review needed: No relevant Windows/VS Code/Node/npm/Git/Next official reference detected.
+
+20. IMPROVE | How I Built Authentication in Next.js Without NextAuth
+https://codewithlogs.com/blog/nextjs-authentication-without-nextauth
+Stored status: scheduled | Category: Next.js | Words: 1021 | Code blocks: 5
+Reason: Useful adjacent technical material. Rework around a specific Windows development failure, document the environment, reproduce and verify each fix, and retain the existing URL.
+Finding: The sample imports an updateSession helper without supplying its implementation.
+Finding: Review middleware versus proxy conventions for the pinned Next.js version.
+Finding: Layout-only authorization claims need security review; protect each data/action boundary and verify access tests.
+Review needed: Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.
+Review needed: No explicit reproduction section detected.
+Review needed: No relevant Windows/VS Code/Node/npm/Git/Next official reference detected.
+
+21. ARCHIVE | How I Sync Supabase Data with Google Sheets Automatically
+https://codewithlogs.com/blog/sync-supabase-google-sheets-automatically
+Stored status: scheduled | Category: Supabase | Words: 933 | Code blocks: 2
+Reason: Outside the Windows developer troubleshooting niche. Recommend a legacy editorial archive, preserving the live URL and content until an approved migration plan exists.
+Finding: This is an editorial scope decision, not a finding that the content is worthless or plagiarized. No archival status change has been made.
+Review needed: Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.
+Review needed: No explicit reproduction section detected.
+Review needed: No explicit verification/expected-result wording detected.
+Review needed: No relevant Windows/VS Code/Node/npm/Git/Next official reference detected.
+
+22. ARCHIVE | 10 Supabase Errors I Faced in Production (And Their Fixes)
+https://codewithlogs.com/blog/supabase-errors-production-fixes
+Stored status: scheduled | Category: Supabase | Words: 1095 | Code blocks: 3
+Reason: Outside the Windows developer troubleshooting niche. Recommend a legacy editorial archive, preserving the live URL and content until an approved migration plan exists.
+Finding: This is an editorial scope decision, not a finding that the content is worthless or plagiarized. No archival status change has been made.
+Review needed: Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.
+Review needed: No explicit reproduction section detected.
+Review needed: No relevant Windows/VS Code/Node/npm/Git/Next official reference detected.
+
+23. ARCHIVE | How to Build a SaaS Product with Next.js in 2026 (Step-by-Step)
+https://codewithlogs.com/blog/build-saas-with-nextjs
+Stored status: draft | Category: SaaS | Words: 973 | Code blocks: 0
+Reason: Outside the Windows developer troubleshooting niche. Recommend a legacy editorial archive, preserving the live URL and content until an approved migration plan exists.
+Finding: This is an editorial scope decision, not a finding that the content is worthless or plagiarized. No archival status change has been made.
+Review needed: Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.
+Review needed: No explicit reproduction section detected.
+Review needed: No relevant Windows/VS Code/Node/npm/Git/Next official reference detected.
+
+24. ARCHIVE | How I Built an Inventory Management System Using Next.js and Supabase
+https://codewithlogs.com/blog/inventory-management-system-nextjs-supabase
+Stored status: published | Category: Next.js | Words: 1115 | Code blocks: 6
+Reason: Outside the Windows developer troubleshooting niche. Recommend a legacy editorial archive, preserving the live URL and content until an approved migration plan exists.
+Finding: This is an editorial scope decision, not a finding that the content is worthless or plagiarized. No archival status change has been made.
+Review needed: Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.
+Review needed: No explicit reproduction section detected.
+Review needed: No explicit verification/expected-result wording detected.
+Review needed: No relevant Windows/VS Code/Node/npm/Git/Next official reference detected.
+
+25. ARCHIVE | What Is n8n? The Automation Tool I Wish I'd Found Before My Zapier Bill Blew Up
+https://codewithlogs.com/blog/what-is-n8
+Stored status: scheduled | Category: Automation | Words: 1643 | Code blocks: 0
+Reason: Outside the Windows developer troubleshooting niche. Recommend a legacy editorial archive, preserving the live URL and content until an approved migration plan exists.
+Finding: This is an editorial scope decision, not a finding that the content is worthless or plagiarized. No archival status change has been made.
+Review needed: Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.
+Review needed: No explicit reproduction section detected.
+Review needed: No explicit verification/expected-result wording detected.
+Review needed: No relevant Windows/VS Code/Node/npm/Git/Next official reference detected.
+
+26. MERGE | What Is TypeScript? Why Every JavaScript Developer Should Learn It in 2026
+https://codewithlogs.com/blog/what-is-typescript
+Stored status: scheduled | Category: Web Development | Words: 1185 | Code blocks: 0
+Reason: Overlapping search intent with the paired article. Compare examples and Search Console performance before choosing a primary URL; no redirect or deletion authorized.
+Finding: Compare the complete examples and search intent in this overlapping group before proposing a consolidation; keep every URL until approved.
+Overlap group/reference: what-is-typescript-why-developers-switching
+Review needed: Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.
+Review needed: No explicit reproduction section detected.
+Review needed: No relevant Windows/VS Code/Node/npm/Git/Next official reference detected.
+
+27. MERGE | MongoDB vs PostgreSQL: Which Database Should You Choose in 2026?
+https://codewithlogs.com/blog/mongodb-vs-postgresql
+Stored status: scheduled | Category: Web Development | Words: 897 | Code blocks: 0
+Reason: Overlapping search intent with the paired article. Compare examples and Search Console performance before choosing a primary URL; no redirect or deletion authorized.
+Finding: Compare the complete examples and search intent in this overlapping group before proposing a consolidation; keep every URL until approved.
+Overlap group/reference: mongodb-vs-postgresql-which-database-2026
+Review needed: Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.
+Review needed: No explicit reproduction section detected.
+Review needed: No explicit verification/expected-result wording detected.
+Review needed: No relevant Windows/VS Code/Node/npm/Git/Next official reference detected.
+
+28. ARCHIVE | What Is an API? The Waiter Analogy That Finally Made It Click for Me
+https://codewithlogs.com/blog/what-is-an-api
+Stored status: published | Category: Software Development | Words: 945 | Code blocks: 0
+Reason: Outside the Windows developer troubleshooting niche. Recommend a legacy editorial archive, preserving the live URL and content until an approved migration plan exists.
+Finding: This is an editorial scope decision, not a finding that the content is worthless or plagiarized. No archival status change has been made.
+Review needed: Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.
+Review needed: No explicit reproduction section detected.
+Review needed: No relevant Windows/VS Code/Node/npm/Git/Next official reference detected.
+
+29. ARCHIVE | How to Become an AI Engineer in 2026: A Realistic Roadmap (Not a Hype Reel)
+https://codewithlogs.com/blog/how-to-become-an-ai-engineer
+Stored status: scheduled | Category: Career & Skills | Words: 950 | Code blocks: 0
+Reason: Outside the Windows developer troubleshooting niche. Recommend a legacy editorial archive, preserving the live URL and content until an approved migration plan exists.
+Finding: This is an editorial scope decision, not a finding that the content is worthless or plagiarized. No archival status change has been made.
+Review needed: Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.
+Review needed: No explicit reproduction section detected.
+Review needed: No explicit verification/expected-result wording detected.
+Review needed: No relevant Windows/VS Code/Node/npm/Git/Next official reference detected.
+
+30. ARCHIVE | Cloud Computing Explained: What It Actually Is (Without the Buzzwords)
+https://codewithlogs.com/blog/cloud-computing-explained
+Stored status: published | Category: Cloud Computing | Words: 981 | Code blocks: 0
+Reason: Outside the Windows developer troubleshooting niche. Recommend a legacy editorial archive, preserving the live URL and content until an approved migration plan exists.
+Finding: This is an editorial scope decision, not a finding that the content is worthless or plagiarized. No archival status change has been made.
+Review needed: Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.
+Review needed: No explicit reproduction section detected.
+Review needed: No explicit verification/expected-result wording detected.
+Review needed: No relevant Windows/VS Code/Node/npm/Git/Next official reference detected.
+
+31. IMPROVE | What Is "Code With Logs"? (And Why Every Developer Ends Up Living By Them)
+https://codewithlogs.com/blog/what-is-code-with-logs
+Stored status: published | Category: Next.js | Words: 1527 | Code blocks: 2
+Reason: Useful adjacent technical material. Rework around a specific Windows development failure, document the environment, reproduce and verify each fix, and retain the existing URL.
+Finding: Useful logging background, but it needs a narrow reproducible Windows debugging example.
+Finding: Avoid treating anecdotal production experience as independently verified test evidence.
+Review needed: Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.
+Review needed: No explicit reproduction section detected.
+Review needed: No relevant Windows/VS Code/Node/npm/Git/Next official reference detected.
+
+32. ARCHIVE | Cybersecurity for Beginners: The Simple Habits That Actually Keep You Safe
+https://codewithlogs.com/blog/cybersecurity-for-beginners
+Stored status: scheduled | Category: Cybersecurity | Words: 842 | Code blocks: 0
+Reason: Outside the Windows developer troubleshooting niche. Recommend a legacy editorial archive, preserving the live URL and content until an approved migration plan exists.
+Finding: This is an editorial scope decision, not a finding that the content is worthless or plagiarized. No archival status change has been made.
+Review needed: Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.
+Review needed: No explicit reproduction section detected.
+Review needed: No explicit verification/expected-result wording detected.
+Review needed: No relevant Windows/VS Code/Node/npm/Git/Next official reference detected.
+
+33. ARCHIVE | The AI Productivity Guide I Wish I'd Had: Real Workflows, Not Just App Lists
+https://codewithlogs.com/blog/ai-productivity-guide
+Stored status: scheduled | Category: Productivity | Words: 781 | Code blocks: 0
+Reason: Outside the Windows developer troubleshooting niche. Recommend a legacy editorial archive, preserving the live URL and content until an approved migration plan exists.
+Finding: This is an editorial scope decision, not a finding that the content is worthless or plagiarized. No archival status change has been made.
+Review needed: Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.
+Review needed: No explicit reproduction section detected.
+Review needed: No relevant Windows/VS Code/Node/npm/Git/Next official reference detected.
+
+34. ARCHIVE | Can AI Replace Programmers? An Honest Answer From Someone Who Codes With AI Every Day
+https://codewithlogs.com/blog/can-ai-replace-programmers
+Stored status: scheduled | Category: Software Development | Words: 862 | Code blocks: 0
+Reason: Outside the Windows developer troubleshooting niche. Recommend a legacy editorial archive, preserving the live URL and content until an approved migration plan exists.
+Finding: This is an editorial scope decision, not a finding that the content is worthless or plagiarized. No archival status change has been made.
+Review needed: Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.
+Review needed: No explicit reproduction section detected.
+Review needed: No explicit verification/expected-result wording detected.
+Review needed: No relevant Windows/VS Code/Node/npm/Git/Next official reference detected.
+
+35. ARCHIVE | ChatGPT vs Claude vs Gemini in 2026: I Use All Three Daily, Here’s the Honest Comparison
+https://codewithlogs.com/blog/chatgpt-vs-claude-vs-gemini
+Stored status: scheduled | Category: AI Tools | Words: 1136 | Code blocks: 0
+Reason: Outside the Windows developer troubleshooting niche. Recommend a legacy editorial archive, preserving the live URL and content until an approved migration plan exists.
+Finding: This is an editorial scope decision, not a finding that the content is worthless or plagiarized. No archival status change has been made.
+Review needed: Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.
+Review needed: No explicit reproduction section detected.
+Review needed: No relevant Windows/VS Code/Node/npm/Git/Next official reference detected.
+
+36. ARCHIVE | React vs Next.js in 2026: Which One Should You Actually Use?
+https://codewithlogs.com/blog/react-vs-nextjs-2026
+Stored status: draft | Category: Web Development | Words: 1116 | Code blocks: 0
+Reason: Outside the Windows developer troubleshooting niche. Recommend a legacy editorial archive, preserving the live URL and content until an approved migration plan exists.
+Finding: This is an editorial scope decision, not a finding that the content is worthless or plagiarized. No archival status change has been made.
+Review needed: Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.
+Review needed: No explicit reproduction section detected.
+Review needed: No explicit verification/expected-result wording detected.
+Review needed: No relevant Windows/VS Code/Node/npm/Git/Next official reference detected.
+
+37. ARCHIVE | What Are AI Agents? A Plain-English Guide (With Real Examples From Someone Who Builds Them)
+https://codewithlogs.com/blog/what-are-ai-agents
+Stored status: draft | Category: AI Tools | Words: 1459 | Code blocks: 0
+Reason: Outside the Windows developer troubleshooting niche. Recommend a legacy editorial archive, preserving the live URL and content until an approved migration plan exists.
+Finding: This is an editorial scope decision, not a finding that the content is worthless or plagiarized. No archival status change has been made.
+Review needed: Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.
+Review needed: No explicit reproduction section detected.
+Review needed: No relevant Windows/VS Code/Node/npm/Git/Next official reference detected.
+
+38. ARCHIVE | The Best AI Tools in 2026: What I Actually Pay For (and What I Quietly Cancelled)
+https://codewithlogs.com/blog/best-ai-tools-2026
+Stored status: draft | Category: AI Tools | Words: 953 | Code blocks: 0
+Reason: Outside the Windows developer troubleshooting niche. Recommend a legacy editorial archive, preserving the live URL and content until an approved migration plan exists.
+Finding: This is an editorial scope decision, not a finding that the content is worthless or plagiarized. No archival status change has been made.
+Review needed: Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.
+Review needed: No explicit reproduction section detected.
+Review needed: No relevant Windows/VS Code/Node/npm/Git/Next official reference detected.
+
+39. ARCHIVE | How I Built My First SaaS Project — Lessons, Mistakes, and What I'd Do Differently
+https://codewithlogs.com/blog/how-i-built-first-saas-lessons-learned
+Stored status: draft | Category: SaaS | Words: 1032 | Code blocks: 0
+Reason: Outside the Windows developer troubleshooting niche. Recommend a legacy editorial archive, preserving the live URL and content until an approved migration plan exists.
+Finding: This is an editorial scope decision, not a finding that the content is worthless or plagiarized. No archival status change has been made.
+Review needed: Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.
+Review needed: No explicit reproduction section detected.
+Review needed: No relevant Windows/VS Code/Node/npm/Git/Next official reference detected.
+
+40. ARCHIVE | Best Free Websites to Learn Web Development in 2026 (Ranked by a Working Developer)
+https://codewithlogs.com/blog/best-free-websites-learn-web-development-2026
+Stored status: draft | Category: Career | Words: 1059 | Code blocks: 0
+Reason: Outside the Windows developer troubleshooting niche. Recommend a legacy editorial archive, preserving the live URL and content until an approved migration plan exists.
+Finding: This is an editorial scope decision, not a finding that the content is worthless or plagiarized. No archival status change has been made.
+Review needed: Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.
+Review needed: No explicit reproduction section detected.
+Review needed: No relevant Windows/VS Code/Node/npm/Git/Next official reference detected.
+
+41. MERGE | What Is TypeScript and Why Every Developer Is Switching to It in 2026
+https://codewithlogs.com/blog/what-is-typescript-why-developers-switching
+Stored status: scheduled | Category: Web Dev | Words: 899 | Code blocks: 4
+Reason: Overlapping search intent with the paired article. Compare examples and Search Console performance before choosing a primary URL; no redirect or deletion authorized.
+Finding: Compare the complete examples and search intent in this overlapping group before proposing a consolidation; keep every URL until approved.
+Overlap group/reference: what-is-typescript
+Review needed: Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.
+Review needed: No explicit reproduction section detected.
+Review needed: No explicit verification/expected-result wording detected.
+Review needed: No relevant Windows/VS Code/Node/npm/Git/Next official reference detected.
+
+42. ARCHIVE | How to Make Money as a Developer Without a Traditional Job in 2026
+https://codewithlogs.com/blog/make-money-developer-without-job-2026
+Stored status: draft | Category: Freelancing | Words: 1002 | Code blocks: 0
+Reason: Outside the Windows developer troubleshooting niche. Recommend a legacy editorial archive, preserving the live URL and content until an approved migration plan exists.
+Finding: This is an editorial scope decision, not a finding that the content is worthless or plagiarized. No archival status change has been made.
+Review needed: Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.
+Review needed: No explicit reproduction section detected.
+Review needed: No explicit verification/expected-result wording detected.
+Review needed: No relevant Windows/VS Code/Node/npm/Git/Next official reference detected.
+
+43. MERGE | MongoDB vs PostgreSQL — Which Database Should You Use? (2026 Guide)
+https://codewithlogs.com/blog/mongodb-vs-postgresql-which-database-2026
+Stored status: published | Category: MERN | Words: 837 | Code blocks: 0
+Reason: Overlapping search intent with the paired article. Compare examples and Search Console performance before choosing a primary URL; no redirect or deletion authorized.
+Finding: Compare the complete examples and search intent in this overlapping group before proposing a consolidation; keep every URL until approved.
+Overlap group/reference: mongodb-vs-postgresql
+Review needed: Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.
+Review needed: No explicit reproduction section detected.
+Review needed: No explicit verification/expected-result wording detected.
+Review needed: No relevant Windows/VS Code/Node/npm/Git/Next official reference detected.
+
+44. IMPROVE | How to Deploy a Next.js App to Vercel — Complete Step-by-Step Guide (2026)
+https://codewithlogs.com/blog/deploy-nextjs-to-vercel-guide
+Stored status: scheduled | Category: Next.js | Words: 1048 | Code blocks: 2
+Reason: Useful adjacent technical material. Rework around a specific Windows development failure, document the environment, reproduce and verify each fix, and retain the existing URL.
+Finding: Separate ordinary deployment setup from a specific Windows-to-production failure.
+Finding: Do not offer a global database network allowlist as a routine connection fix.
+Finding: Verify current image configuration, environment behavior and Windows shell commands against the pinned version.
+Review needed: Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.
+Review needed: No explicit reproduction section detected.
+Review needed: No explicit verification/expected-result wording detected.
+Review needed: No relevant Windows/VS Code/Node/npm/Git/Next official reference detected.
+
+45. ARCHIVE | React vs Vue vs Svelte — Which JavaScript Framework Should You Learn in 2026?
+https://codewithlogs.com/blog/react-vs-vue-vs-svelte-2026
+Stored status: scheduled | Category: Web Dev | Words: 1049 | Code blocks: 1
+Reason: Outside the Windows developer troubleshooting niche. Recommend a legacy editorial archive, preserving the live URL and content until an approved migration plan exists.
+Finding: This is an editorial scope decision, not a finding that the content is worthless or plagiarized. No archival status change has been made.
+Review needed: Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.
+Review needed: No explicit reproduction section detected.
+Review needed: No explicit verification/expected-result wording detected.
+Review needed: No relevant Windows/VS Code/Node/npm/Git/Next official reference detected.
+
+46. ARCHIVE | How to Build a REST API with Node.js — Complete Beginner Guide
+https://codewithlogs.com/blog/build-rest-api-nodejs-beginners
+Stored status: draft | Category: MERN | Words: 969 | Code blocks: 9
+Reason: Outside the Windows developer troubleshooting niche. Recommend a legacy editorial archive, preserving the live URL and content until an approved migration plan exists.
+Finding: This is an editorial scope decision, not a finding that the content is worthless or plagiarized. No archival status change has been made.
+Review needed: Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.
+Review needed: No explicit reproduction section detected.
+Review needed: No explicit verification/expected-result wording detected.
+Review needed: No relevant Windows/VS Code/Node/npm/Git/Next official reference detected.
+
+47. ARCHIVE | Passive Income Ideas for Developers in 2026 — What Actually Works
+https://codewithlogs.com/blog/passive-income-ideas-for-developers-2026
+Stored status: draft | Category: Freelancing | Words: 1375 | Code blocks: 0
+Reason: Outside the Windows developer troubleshooting niche. Recommend a legacy editorial archive, preserving the live URL and content until an approved migration plan exists.
+Finding: This is an editorial scope decision, not a finding that the content is worthless or plagiarized. No archival status change has been made.
+Review needed: Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.
+Review needed: No explicit reproduction section detected.
+Review needed: No explicit verification/expected-result wording detected.
+Review needed: No relevant Windows/VS Code/Node/npm/Git/Next official reference detected.
+
+48. MERGE | TypeScript for Beginners — Why You Should Learn It Now (And How to Start)
+https://codewithlogs.com/blog/typescript-for-beginners-why-learn-it
+Stored status: draft | Category: Web Dev | Words: 1293 | Code blocks: 3
+Reason: Overlapping search intent with the paired article. Compare examples and Search Console performance before choosing a primary URL; no redirect or deletion authorized.
+Finding: Compare the complete examples and search intent in this overlapping group before proposing a consolidation; keep every URL until approved.
+Overlap group/reference: what-is-typescript
+Review needed: Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.
+Review needed: No explicit reproduction section detected.
+Review needed: No explicit verification/expected-result wording detected.
+Review needed: No relevant Windows/VS Code/Node/npm/Git/Next official reference detected.
+
+49. ARCHIVE | What Is Serverless Computing and Should You Actually Use It? (2026 Guide)
+https://codewithlogs.com/blog/what-is-serverless-computing-should-you-use-it
+Stored status: scheduled | Category: Web Dev | Words: 955 | Code blocks: 0
+Reason: Outside the Windows developer troubleshooting niche. Recommend a legacy editorial archive, preserving the live URL and content until an approved migration plan exists.
+Finding: This is an editorial scope decision, not a finding that the content is worthless or plagiarized. No archival status change has been made.
+Review needed: Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.
+Review needed: No explicit reproduction section detected.
+Review needed: No explicit verification/expected-result wording detected.
+Review needed: No relevant Windows/VS Code/Node/npm/Git/Next official reference detected.
+
+50. ARCHIVE | What Is Vibe Coding and Should You Actually Try It?
+https://codewithlogs.com/blog/what-is-vibe-coding-should-you-try-it
+Stored status: draft | Category: AI Tools | Words: 881 | Code blocks: 0
+Reason: Outside the Windows developer troubleshooting niche. Recommend a legacy editorial archive, preserving the live URL and content until an approved migration plan exists.
+Finding: This is an editorial scope decision, not a finding that the content is worthless or plagiarized. No archival status change has been made.
+Review needed: Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.
+Review needed: No explicit reproduction section detected.
+Review needed: No relevant Windows/VS Code/Node/npm/Git/Next official reference detected.
+
+51. ARCHIVE | Full Stack Developer Roadmap 2026 — From Zero to Hired (Step by Step)
+https://codewithlogs.com/blog/full-stack-developer-roadmap-2026
+Stored status: draft | Category: Career | Words: 1107 | Code blocks: 0
+Reason: Outside the Windows developer troubleshooting niche. Recommend a legacy editorial archive, preserving the live URL and content until an approved migration plan exists.
+Finding: This is an editorial scope decision, not a finding that the content is worthless or plagiarized. No archival status change has been made.
+Review needed: Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.
+Review needed: No explicit reproduction section detected.
+Review needed: No explicit verification/expected-result wording detected.
+Review needed: No relevant Windows/VS Code/Node/npm/Git/Next official reference detected.
+
+52. ARCHIVE | Cursor vs GitHub Copilot — Which Should You Use in 2026? (Honest Comparison)
+https://codewithlogs.com/blog/cursor-vs-github-copilot-2026
+Stored status: scheduled | Category: AI Tools | Words: 852 | Code blocks: 0
+Reason: Outside the Windows developer troubleshooting niche. Recommend a legacy editorial archive, preserving the live URL and content until an approved migration plan exists.
+Finding: This is an editorial scope decision, not a finding that the content is worthless or plagiarized. No archival status change has been made.
+Review needed: Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.
+Review needed: No explicit reproduction section detected.
+Review needed: No explicit verification/expected-result wording detected.
+Review needed: No relevant Windows/VS Code/Node/npm/Git/Next official reference detected.
+
+53. ARCHIVE | How to Get Your First Freelance Client as a Web Developer (What Actually Worked)
+https://codewithlogs.com/blog/get-first-freelance-client-web-developer
+Stored status: scheduled | Category: Freelancing | Words: 1014 | Code blocks: 0
+Reason: Outside the Windows developer troubleshooting niche. Recommend a legacy editorial archive, preserving the live URL and content until an approved migration plan exists.
+Finding: This is an editorial scope decision, not a finding that the content is worthless or plagiarized. No archival status change has been made.
+Review needed: Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.
+Review needed: No explicit reproduction section detected.
+Review needed: No explicit verification/expected-result wording detected.
+Review needed: No relevant Windows/VS Code/Node/npm/Git/Next official reference detected.
+
+54. ARCHIVE | Best Tools to Build a SaaS Product in 2026 (The Stack I Actually Use)
+https://codewithlogs.com/blog/best-tools-build-saas-2026
+Stored status: draft | Category: SaaS | Words: 987 | Code blocks: 0
+Reason: Outside the Windows developer troubleshooting niche. Recommend a legacy editorial archive, preserving the live URL and content until an approved migration plan exists.
+Finding: This is an editorial scope decision, not a finding that the content is worthless or plagiarized. No archival status change has been made.
+Review needed: Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.
+Review needed: No explicit reproduction section detected.
+Review needed: No relevant Windows/VS Code/Node/npm/Git/Next official reference detected.
+
+55. ARCHIVE | How to Learn Web Development for Free in 2026 (The Honest Guide)
+https://codewithlogs.com/blog/learn-web-development-free-2026
+Stored status: draft | Category: Career | Words: 1116 | Code blocks: 0
+Reason: Outside the Windows developer troubleshooting niche. Recommend a legacy editorial archive, preserving the live URL and content until an approved migration plan exists.
+Finding: This is an editorial scope decision, not a finding that the content is worthless or plagiarized. No archival status change has been made.
+Review needed: Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.
+Review needed: No explicit reproduction section detected.
+Review needed: No explicit verification/expected-result wording detected.
+Review needed: No relevant Windows/VS Code/Node/npm/Git/Next official reference detected.
+
+56. ARCHIVE | Next.js 15 App Router Complete Guide for Beginners (2026)
+https://codewithlogs.com/blog/nextjs-15-app-router-guide-beginners
+Stored status: draft | Category: Next.js | Words: 1087 | Code blocks: 2
+Reason: Outside the Windows developer troubleshooting niche. Recommend a legacy editorial archive, preserving the live URL and content until an approved migration plan exists.
+Finding: This is an editorial scope decision, not a finding that the content is worthless or plagiarized. No archival status change has been made.
+Review needed: Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.
+Review needed: No explicit reproduction section detected.
+Review needed: No explicit verification/expected-result wording detected.
+Review needed: No relevant Windows/VS Code/Node/npm/Git/Next official reference detected.
+
+57. ARCHIVE | What Are AI Agents and How Do They Actually Work (Plain English Guide)
+https://codewithlogs.com/blog/what-are-ai-agents-how-they-work
+Stored status: draft | Category: AI Tools | Words: 1103 | Code blocks: 0
+Reason: Outside the Windows developer troubleshooting niche. Recommend a legacy editorial archive, preserving the live URL and content until an approved migration plan exists.
+Finding: This is an editorial scope decision, not a finding that the content is worthless or plagiarized. No archival status change has been made.
+Review needed: Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.
+Review needed: No explicit reproduction section detected.
+Review needed: No explicit verification/expected-result wording detected.
+Review needed: No relevant Windows/VS Code/Node/npm/Git/Next official reference detected.
+
+58. ARCHIVE | Best AI Coding Tools for Beginners in 2026 (I Tested Them All)
+https://codewithlogs.com/blog/best-ai-coding-tools-beginners-2026
+Stored status: draft | Category: AI Tools | Words: 1391 | Code blocks: 0
+Reason: Outside the Windows developer troubleshooting niche. Recommend a legacy editorial archive, preserving the live URL and content until an approved migration plan exists.
+Finding: This is an editorial scope decision, not a finding that the content is worthless or plagiarized. No archival status change has been made.
+Review needed: Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry.
+Review needed: No explicit reproduction section detected.
+Review needed: No explicit verification/expected-result wording detected.
+Review needed: No relevant Windows/VS Code/Node/npm/Git/Next official reference detected.
+
+PRIORITY EDITORIAL ACTIONS
+1. Review the deployment and authentication guidance first: version-sensitive and security-relevant claims need correction.
+2. Reproduce narrow Windows failures in disposable fixtures before drafting claimed fixes.
+3. Verify the performance article's original evidence; do not reuse unsupported numerical claims.
+4. Compare three TypeScript articles and two database comparisons before proposing consolidation.
+5. Keep off-niche articles accessible while deciding whether a separate legacy archive is appropriate.
+6. Do not bulk-change statuses or redirect any URL without approval.
+
+Official version reference: https://nextjs.org/docs/app/guides/upgrading/version-16
+Google content guidance: https://support.google.com/adsense/answer/7299563?hl=en

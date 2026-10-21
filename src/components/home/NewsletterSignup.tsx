@@ -35,7 +35,7 @@ export function NewsletterSignup() {
         }),
       });
 
-      const payload = (await response.json()) as { error?: string; message?: string };
+      const payload = (await response.json()) as { error?: string; message?: string; };
 
       if (!response.ok) {
         throw new Error(payload.error ?? "Unable to save your subscription.");
@@ -57,29 +57,27 @@ export function NewsletterSignup() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="w-full">
-      <div className="flex flex-col gap-3 sm:flex-row">
+    <form onSubmit={handleSubmit} className="newsletter-form">
+      <div className="newsletter-form-row">
         <input
-          type="email"
+          type="email" name="email" autoComplete="email" aria-label="Email address for article updates"
           required
           value={email}
           onChange={(event) => setEmail(event.target.value)}
           placeholder="Enter your email"
-          className="h-[52px] w-full rounded-full border border-white/20 bg-white px-5 text-sm text-text outline-none transition-shadow placeholder:text-text/50 focus:ring-4 focus:ring-white/15"
+
         />
         <button
           type="submit"
           disabled={isSubmitting}
-          className="inline-flex h-[52px] items-center justify-center rounded-full bg-accent px-6 text-sm font-semibold text-white transition-colors hover:bg-accent/90"
+          className="journal-button"
         >
           {isSubmitting ? "Subscribing..." : "Subscribe"}
         </button>
       </div>
       {feedback ? (
         <p
-          className={`mt-3 text-sm ${
-            feedbackTone === "error" ? "text-red-200" : "text-white/80"
-          }`}
+          className="newsletter-feedback" data-error={feedbackTone === "error"} role="status" aria-live="polite"
         >
           {feedback}
         </p>

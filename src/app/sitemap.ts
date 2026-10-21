@@ -1,101 +1,30 @@
-import type { MetadataRoute } from 'next'
-import { getAllPosts } from '@/lib/mdx'
+import type { MetadataRoute } from "next";
+import { getAllPosts } from "@/lib/mdx";
+import { siteUrl } from "@/lib/site-url";
 
-const siteUrl = 'https://codewithlogs.com'
-
-export const revalidate = 60
+export const revalidate = 60;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const posts = await getAllPosts(false)
-
-  const toolSlugs = [
-    'base64',
-    'cron-builder',
-    'css-minifier',
-    'json-formatter',
-    'jwt-decoder',
-    'password-generator',
-    'regex-tester',
-    'token-counter',
-    'word-counter',
-  ]
-
+  const posts = await getAllPosts(false);
+  const toolSlugs = ["base64", "cron-builder", "css-minifier", "json-formatter", "jwt-decoder", "password-generator", "regex-tester", "token-counter", "word-counter"];
+  const routes = ["/", "/about", "/blog", "/contact", "/gallery", "/disclaimer", "/privacy-policy", "/services", "/terms", "/tools", "/editorial-policy"];
+  const staticPages: MetadataRoute.Sitemap = routes.map((route) => ({
+    url: route === "/" ? siteUrl + "/" : siteUrl + route,
+    changeFrequency: route === "/blog" || route === "/" ? "weekly" : "monthly",
+    priority: route === "/" ? 1 : route === "/blog" ? 0.9 : 0.5,
+  }));
   const toolPages: MetadataRoute.Sitemap = toolSlugs.map((slug) => ({
-    url: `${siteUrl}/tools/${slug}`,
-    lastModified: new Date(),
-    changeFrequency: 'monthly',
-    priority: 0.7,
-  }))
-
-  const staticPages: MetadataRoute.Sitemap = [
-    {
-      url: `${siteUrl}/`,
-      lastModified: new Date(),
-      changeFrequency: 'daily',
-      priority: 1,
-    },
-    {
-      url: `${siteUrl}/about`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    },
-    {
-      url: `${siteUrl}/blog`,
-      lastModified: new Date(),
-      changeFrequency: 'daily',
-      priority: 0.9,
-    },
-    {
-      url: `${siteUrl}/contact`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.6,
-    },
-    {
-      url: `${siteUrl}/gallery`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.5,
-    },
-    {
-      url: `${siteUrl}/disclaimer`,
-      lastModified: new Date(),
-      changeFrequency: 'yearly',
-      priority: 0.3,
-    },
-    {
-      url: `${siteUrl}/privacy-policy`,
-      lastModified: new Date(),
-      changeFrequency: 'yearly',
-      priority: 0.3,
-    },
-    {
-      url: `${siteUrl}/services`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    },
-    {
-      url: `${siteUrl}/terms`,
-      lastModified: new Date(),
-      changeFrequency: 'yearly',
-      priority: 0.3,
-    },
-    {
-      url: `${siteUrl}/tools`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.8,
-    },
-  ]
-
+    url: siteUrl + "/tools/" + slug,
+    changeFrequency: "monthly",
+    priority: 0.6,
+  }));
+  // Publication time is the only trustworthy content timestamp exposed by
+  // the existing read model. Do not fabricate a new modification date.
   const blogPages: MetadataRoute.Sitemap = posts.map((post) => ({
-    url: `${siteUrl}/blog/${post.slug}`,
-    lastModified: post.date ? new Date(post.date) : new Date(),
-    changeFrequency: 'weekly',
+    url: siteUrl + "/blog/" + post.slug,
+    ...(post.date && !Number.isNaN(Date.parse(post.date)) ? { lastModified: new Date(post.date) } : {}),
+    changeFrequency: "monthly",
     priority: 0.8,
-  }))
-
-  return [...staticPages, ...toolPages, ...blogPages]
+  }));
+  return [...staticPages, ...toolPages, ...blogPages];
 }

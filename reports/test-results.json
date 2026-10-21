@@ -1,0 +1,61 @@
+{
+  "productionBuild": {
+    "passed": true,
+    "command": "npm run build",
+    "staticPages": 33,
+    "deployed": false
+  },
+  "typescript": {
+    "passed": true,
+    "command": "npx tsc --noEmit"
+  },
+  "changedFileLint": {
+    "passed": true,
+    "files": 35
+  },
+  "repositoryLint": {
+    "passed": false,
+    "errors": 54,
+    "warnings": 15,
+    "note": "Remaining findings are in unchanged files; see eslint-results.json."
+  },
+  "routes": {
+    "passed": true,
+    "mode": "local production server",
+    "checks": 68,
+    "publicArticles": 41,
+    "searchChecks": [
+      {
+        "query": "module",
+        "status": 200,
+        "privateLeak": false,
+        "passed": true
+      },
+      {
+        "query": "^.*$",
+        "status": 200,
+        "privateLeak": false,
+        "passed": true
+      },
+      {
+        "query": "",
+        "status": 400,
+        "privateLeak": false,
+        "passed": true
+      },
+      {
+        "query": "overlength",
+        "status": 400,
+        "privateLeak": false,
+        "passed": true
+      }
+    ]
+  },
+  "browserReport": "browser-validation.json",
+  "notes": [
+    "Two transient article timeouts occurred during a development/compiler run; the final production-mode run passed all 41 articles.",
+    "A transient generated dev-route type error cleared after regeneration; the final production build and standalone TypeScript check passed.",
+    "Whitespace normalization after the final production build did not change code semantics.",
+    "No actual troubleshooting-article fix was verified as part of website checks."
+  ]
+}
