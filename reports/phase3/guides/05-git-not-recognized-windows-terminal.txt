@@ -1,0 +1,97 @@
+Fix Git Not Recognized in Windows Terminal
+Status: DRAFT | Proposed slug: windows-git-not-recognized
+PARTIAL evidence: native PowerShell process-PATH case on Windows 10 Pro; Windows
+Terminal UI, Windows 11 and installer repair were not tested.
+
+## Exact observed error
+git: The term 'git' is not recognized as a name of a cmdlet, function, script file, or executable program.
+
+Recorded 2026-10-21 with Windows 10 Pro 10.0.19045 x64, PowerShell 7.6.5 and
+git version 2.55.0.windows.4. This is a real isolated failure after excluding
+Git's confirmed command directory from the runner's process PATH. Windows Terminal
+is a shell host; the shell and its command lookup must be identified separately.
+
+## Root cause and problem scope
+Failure to discover git.exe occurs before repository authentication, SSH keys,
+GitHub permissions or commit identity are relevant. Git can be missing, installed
+outside PATH, shadowed by another command or hidden from a stale parent environment.
+Git Bash can have a different PATH from PowerShell. WSL/remote shells need their
+own installation and diagnostics; a native Git install does not prove those work.
+
+## Diagnose the failing shell
+In PowerShell:
+
+Get-Command git -All -ErrorAction SilentlyContinue |
+  Select-Object CommandType, Source, Definition
+where.exe git
+$env:Path -split ';'
+
+If Git Bash works, compare type -a git and git --version there. Do not paste
+Bash command syntax blindly into PowerShell. Inspect the actual install location;
+for the common system-wide distribution a candidate is:
+
+$gitCandidate = Join-Path $env:ProgramFiles 'Git\cmd\git.exe'
+Test-Path -LiteralPath $gitCandidate
+# Only if True:
+& $gitCandidate --version
+
+Portable, per-user and custom installations can differ. A full-path success is
+evidence of an existing executable, not proof that PATH is correct.
+
+## Solution A: refresh an old host
+Close the terminal host and all editor windows, reopen from Start and create a
+fresh shell. A new tab may inherit the old parent's PATH. This is a documented
+diagnostic branch, not a tested Windows Terminal restart fix in this task.
+
+## Solution B: repair command discovery
+Where the full path works but fresh-shell discovery fails, repair the existing
+Git for Windows installer's command-line PATH configuration or deliberately add
+the confirmed Git command DIRECTORY to User Path. Save the original setting and
+preserve every unrelated entry. Do not add git.exe itself or all internal Unix
+tool directories indiscriminately; those can cause command collisions.
+
+A temporary process check using an actual confirmed path:
+
+$previousPath = $env:Path
+try {
+  if (-not (Test-Path -LiteralPath $gitCandidate)) { throw 'Confirm Git location first.' }
+  $env:Path = (Split-Path -Parent $gitCandidate) + ';' + $previousPath
+  git --version
+  git --exec-path
+} finally { $env:Path = $previousPath }
+
+Persistent installer/User Path modifications were not made in this task.
+
+## Reproduce the actual tested failure and correction
+From the repository root:
+& ./scripts/test-windows-guides.ps1
+
+The runner removes every discovered git.exe directory from its own process PATH,
+starts a child shell, captures the real error, invokes the known executable
+directly, restores PATH and repeats lookup in a fresh child. Actual direct and
+restored results both exited 0 and printed git version 2.55.0.windows.4.
+See reports/phase3/tests/windows/git-path-before.log, git-absolute-path.log and
+git-path-after.log. No installed binary, real repository or remote was changed.
+
+## Alternatives, security and final verification
+If the executable does not exist, repair/install from the official Git for Windows
+distribution according to your organization's rules. If another Git wins, use
+the relevant manager/installer instead of deleting binaries blindly. Git Bash
+may be an allowed temporary workflow; it is not evidence that PowerShell is fixed.
+VS Code's git.path setting affects editor discovery separately from terminal PATH.
+
+In the intended fresh host run Get-Command git -All, git --version and git
+--exec-path. Check the intended executable before testing a trusted repository's
+git status. Do not alter SSH credentials, user.name/email or remote URLs to fix a
+command-not-found error. Never use reset --hard or delete .git as troubleshooting.
+
+No screenshot, Windows Terminal tab test, Windows 11 or Linux result was captured.
+The guide remains DRAFT until the claimed host/install cases are tested or narrowed
+and editorial/publication approval is obtained.
+
+## References and internal links
+https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
+https://gitforwindows.org/
+https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_command_precedence
+Related public guide: https://codewithlogs.com/blog/common-vercel-deployment-errors-solutions
+Related deployment context: https://codewithlogs.com/blog/deploy-nextjs-to-vercel-guide

@@ -1,0 +1,114 @@
+{
+  "productionChanges": false,
+  "environment": {
+    "linuxProbeExitCode": 1,
+    "windows11Available": false,
+    "powershell": "7.6.5",
+    "node": "v22.18.0",
+    "vscode": "1.142.0\r\n6d62b1d5dace93a33b3a6d3eca1317bd5e15bcb1\r\nx64",
+    "git": "git version 2.55.0.windows.4",
+    "verificationDate": "2026-10-21",
+    "displayTimezone": "Asia/Karachi",
+    "fixtureDirectory": "C:\\Users\\zeesh\\Desktop\\codewithlogs\\fixtures\\windows-guides\\runs\\25a5303b-5579-465d-ba79-b9ed41eea3c1",
+    "linuxAvailable": false,
+    "npm": "10.9.3"
+  },
+  "records": [
+    {
+      "passed": true,
+      "shell": "7.6.5",
+      "os": "Windows 10 Pro",
+      "initialError": "npm: File C:\\Program Files\\nodejs\\npm.ps1 cannot be loaded because running scripts is disabled on this system. For more information, see about_Execution_Policies at https://go.microsoft.com/fwlink/?LinkID=135170.\r\n",
+      "steps": [
+        "Start isolated PowerShell child with Restricted process policy",
+        "Run npm --version",
+        "In same process-policy configuration run npm.cmd --version"
+      ],
+      "id": "npm-ps1-launcher",
+      "actualResult": {
+        "exitCode": 0,
+        "output": "10.9.3\r\n"
+      },
+      "scope": "Actual npm launchers; process-scoped policy only. No persistent policy changed. Not Windows 11 or Group Policy validation.",
+      "verifiedAtUtc": "2026-10-21T14:48:51.5580289Z",
+      "release": "10.0.19045"
+    },
+    {
+      "passed": true,
+      "shell": "7.6.5",
+      "os": "Windows 10 Pro",
+      "initialError": "node: The term 'node' is not recognized as a name of a cmdlet, function, script file, or executable program.\r\nCheck the spelling of the name, or if a path was included, verify that the path is correct and try again.\r\n",
+      "steps": [
+        "Remove confirmed executable directories from this process PATH only",
+        "Start child shell and run version command",
+        "Test actual executable directly",
+        "Restore original process PATH and repeat in fresh child"
+      ],
+      "id": "node-path",
+      "actualResult": {
+        "restored": {
+          "exitCode": 0,
+          "output": "v22.18.0\r\n"
+        },
+        "direct": {
+          "exitCode": 0,
+          "output": "v22.18.0\r\n"
+        }
+      },
+      "scope": "Actual installed executable and real command-not-found error. Does not verify a Windows 11 installer repair, persistent User PATH edit or Windows Terminal UI.",
+      "verifiedAtUtc": "2026-10-21T14:48:56.2214601Z",
+      "release": "10.0.19045"
+    },
+    {
+      "passed": true,
+      "shell": "7.6.5",
+      "os": "Windows 10 Pro",
+      "initialError": "git: The term 'git' is not recognized as a name of a cmdlet, function, script file, or executable program.\r\nCheck the spelling of the name, or if a path was included, verify that the path is correct and try again.\r\n",
+      "steps": [
+        "Remove confirmed executable directories from this process PATH only",
+        "Start child shell and run version command",
+        "Test actual executable directly",
+        "Restore original process PATH and repeat in fresh child"
+      ],
+      "id": "git-path",
+      "actualResult": {
+        "restored": {
+          "exitCode": 0,
+          "output": "git version 2.55.0.windows.4\r\n"
+        },
+        "direct": {
+          "exitCode": 0,
+          "output": "git version 2.55.0.windows.4\r\n"
+        }
+      },
+      "scope": "Actual installed executable and real command-not-found error. Does not verify a Windows 11 installer repair, persistent User PATH edit or Windows Terminal UI.",
+      "verifiedAtUtc": "2026-10-21T14:49:01.4553737Z",
+      "release": "10.0.19045"
+    },
+    {
+      "passed": true,
+      "shell": "7.6.5",
+      "os": "Windows 10 Pro",
+      "initialError": "No VS Code integrated-terminal failure reproduced",
+      "steps": [
+        "Run pwsh -NoProfile outside VS Code",
+        "Read code --version; no editor settings changed"
+      ],
+      "id": "external-shell-control",
+      "actualResult": {
+        "vscode": {
+          "exitCode": 0,
+          "output": "1.142.0\r\n6d62b1d5dace93a33b3a6d3eca1317bd5e15bcb1\r\nx64\r\n"
+        },
+        "shell": {
+          "exitCode": 0,
+          "output": "external-shell-started\r\n7.6.5\r\n"
+        }
+      },
+      "scope": "External shell control only; integrated terminal launch remains UNTESTED. No screenshot captured.",
+      "verifiedAtUtc": "2026-10-21T14:49:03.8321853Z",
+      "release": "10.0.19045"
+    }
+  ],
+  "limitations": "No VM, Windows 11, Linux, persistent install/PATH change, integrated VS Code terminal failure or screenshot evidence. Process-only controls are real tests, not simulated outputs."
+}

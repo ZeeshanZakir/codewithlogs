@@ -24,12 +24,12 @@ const infoCards = [
     body: "info@codewithlogs.com",
   },
   {
-    title: "Response Time",
-    body: "I reply within 24 hours",
+    title: "Article corrections",
+    body: "Include an article URL and your software versions for tutorial questions.",
   },
   {
-    title: "Availability",
-    body: "Available for new projects",
+    title: "Signup preferences",
+    body: "Use this form to request changes to an article-update signup or ask for its removal.",
   },
 ];
 

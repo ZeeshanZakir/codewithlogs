@@ -1,0 +1,88 @@
+Fix “npm.ps1 Cannot Be Loaded” in Windows PowerShell
+Status: DRAFT | Proposed slug: windows-npm-ps1-blocked
+Technical evidence: PARTIAL — actual PowerShell 7.6.5 test on Windows 10 Pro.
+Not published; no Windows 11, Windows PowerShell 5.1 or managed-policy result.
+
+## Exact observed error and environment
+Observed 2026-10-21 (Asia/Karachi reporting date):
+npm: File C:\Program Files\nodejs\npm.ps1 cannot be loaded because running scripts is disabled on this system.
+
+Actual host: Windows 10 Pro 10.0.19045 x64, PowerShell 7.6.5, Node v22.18.0,
+npm 10.9.3. The full message and policy-scope output are in
+reports/phase3/tests/windows/02-npm-ps1-before.log and 01-policy-scope.log.
+The failure happened in an isolated child process, not a user's reported incident.
+
+## Problem and root cause
+PowerShell resolved the npm PowerShell launcher. The child process's Restricted
+execution policy prevented that script from running. This is distinct from a
+missing Node executable, a dependency conflict or a registry/network failure.
+An unsigned-script error under RemoteSigned can have a different cause.
+
+## Diagnose your actual session
+Run in the failing PowerShell window:
+
+$PSVersionTable.PSVersion
+Get-Command npm -All | Select-Object CommandType, Source, Definition
+Get-Command npm.cmd -All | Select-Object CommandType, Source
+Get-ExecutionPolicy -List
+Get-ExecutionPolicy
+node --version
+
+If node also cannot be found, diagnose PATH first. Inspect aliases/functions as
+well as executable paths. Do not infer effective policy from one scope alone.
+
+## Tested narrow solution: select the allowed Windows launcher
+Where your administrator permits this npm workflow:
+
+npm.cmd --version
+
+Actual output under the same Restricted child-process policy:
+10.9.3
+
+For an existing trusted project:
+
+npm.cmd run
+npm.cmd run build
+
+The first command lists its scripts; build requires an existing build script.
+These are project commands, not evidence that any arbitrary application builds.
+npm.cmd does not change execution policy or grant administrator permissions.
+If another application-control rule blocks it, use the supported administrator
+workflow rather than trying to evade the control.
+
+## Reproduce the exact tested case without a persistent policy change
+In a disposable local environment with pwsh and the normal Node launchers installed:
+
+pwsh.exe -NoProfile -ExecutionPolicy Restricted -Command 'npm --version; if (-not $?) { exit 1 }'
+pwsh.exe -NoProfile -ExecutionPolicy Restricted -Command 'npm.cmd --version; exit $LASTEXITCODE'
+
+The first failed and the second exited 0 on the recorded host. Group Policy may
+override a process setting; if the first command does not fail, do not manufacture
+a matching error. Save actual results. The child policy ends with that process.
+The repeatable project runner is scripts/test-windows-guides.ps1.
+
+## Alternatives and security
+Selecting an allowed Command Prompt profile changes launcher interpretation, not
+an organization's rules. On a personally administered machine, a deliberate
+CurrentUser RemoteSigned policy may suit a chosen workflow, but it requires review
+of the effective scopes and downloaded-script/signature behavior. It is NOT a
+tested alternative here. Do not globally set Bypass/Unrestricted, bulk-unblock
+scripts, disable antivirus or run the whole editor as administrator as a routine fix.
+
+## Verify and avoid false conclusions
+Confirm which npm.cmd path ran, its version, exit code and a harmless trusted
+project command. Reopen the editor and repeat. Version output verifies launcher
+startup; it does not establish registry access, package compatibility or deployment.
+No screenshots were captured; the linked logs are the actual evidence.
+
+## Remaining verification
+Windows 11, Windows PowerShell 5.1, managed policies and a real project install
+under the affected user's approved workflow remain untested. Keep DRAFT until
+the intended support claim is reviewed and publication explicitly approved.
+
+## References and related reading
+https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_execution_policies
+https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_command_precedence
+https://docs.npmjs.com/downloading-and-installing-node-js-and-npm/
+Related public article: https://codewithlogs.com/blog/what-is-code-with-logs
+Local companion draft: 02-node-not-recognized-windows-11.txt (not a public URL).

@@ -9,10 +9,11 @@
       "originalTitle": "Common Vercel Deployment Errors and Their Solutions",
       "proposedTitle": "Common Vercel Deployment Errors: a Windows-to-production diagnostic checklist",
       "originalBodySha256": "54a6d74040a8cb1ba9c577ce07636539381e0d05ab874e3b3feced336726bef7",
-      "draftBodySha256": "bd88c6ef05241f9e188a7adab5d3e66eff84b5a35d3664e0cfe1b0c47f81c782",
+      "draftBodySha256": "5f5d21571eb380b5a9a9207ccff446a27c01c16918a1e79e11c6b22b2c2da202",
       "draftFile": "reports/priority-article-revisions/common-vercel-deployment-errors-solutions.txt",
       "publicationApproved": false,
-      "wholeGuideVerified": false
+      "wholeGuideVerified": false,
+      "editorialReviewStatus": "DRAFT"
     },
     {
       "slug": "debug-production-errors-nextjs",
@@ -21,10 +22,11 @@
       "originalTitle": "How I Debug Production Errors in Next.js",
       "proposedTitle": "How to Debug Production Errors in Next.js: capture, isolate, reproduce",
       "originalBodySha256": "f570effbde2768592c9ba7357a6400e900beee750bcc8af52d017203ad3811fa",
-      "draftBodySha256": "130ec0e11d045bfe389bdbc089649ba3f920961fb3b4cdd4f607476888a110d0",
+      "draftBodySha256": "29592e03f1e6cd36bc5877ddcf3638f5891aa3fe668188e224c4bda8f8a2d54b",
       "draftFile": "reports/priority-article-revisions/debug-production-errors-nextjs.txt",
       "publicationApproved": false,
-      "wholeGuideVerified": false
+      "wholeGuideVerified": false,
+      "editorialReviewStatus": "DRAFT"
     },
     {
       "slug": "deploy-nextjs-to-vercel-guide",
@@ -33,10 +35,11 @@
       "originalTitle": "How to Deploy a Next.js App to Vercel — Complete Step-by-Step Guide (2026)",
       "proposedTitle": "Deploy a Next.js App to Vercel: preflight, preview and production checks",
       "originalBodySha256": "1c115b6f22e8e1eb326da7eb0864b4483fdfa2bf7125a7a36b46e085f6a727e2",
-      "draftBodySha256": "41877adc0d96a69e7d14a91b49bdfa85cd33fa476389bd7c7a25c8f1cc3f518f",
+      "draftBodySha256": "2ab1b16b1195fe8d6515e0adeea9714bd7f51c592f446307c6ed63737115e1a6",
       "draftFile": "reports/priority-article-revisions/deploy-nextjs-to-vercel-guide.txt",
       "publicationApproved": false,
-      "wholeGuideVerified": false
+      "wholeGuideVerified": false,
+      "editorialReviewStatus": "DRAFT"
     },
     {
       "slug": "nextjs-authentication-without-nextauth",
@@ -45,10 +48,11 @@
       "originalTitle": "How I Built Authentication in Next.js Without NextAuth",
       "proposedTitle": "Authentication in Next.js Without NextAuth: complete Supabase SSR example",
       "originalBodySha256": "7f7bf7e026f47a3c32abb0bb9a4f972bfc0f527727bee6b4a45ea213ce437abf",
-      "draftBodySha256": "3bb760b99c6cc1042e2b9c29c138cde75ec185fb90eae4033a33c5029d50452c",
+      "draftBodySha256": "05f5056d8b8b7f09b01865a402925c33d5528a6fef8f502d63d397578726f03d",
       "draftFile": "reports/priority-article-revisions/nextjs-authentication-without-nextauth.txt",
       "publicationApproved": false,
-      "wholeGuideVerified": false
+      "wholeGuideVerified": false,
+      "editorialReviewStatus": "DRAFT"
     },
     {
       "slug": "nextjs-folder-structure-large-projects",
@@ -57,10 +61,11 @@
       "originalTitle": "My Complete Next.js Folder Structure for Large Projects",
       "proposedTitle": "A Next.js Folder Structure You Can Debug: routes, aliases and security boundaries",
       "originalBodySha256": "48262e1191692553f503f1893bae3f68ead4ee0d718b0aac94a3a716cc0fc5d8",
-      "draftBodySha256": "6058cb88f0e82b84d849ff826644b28f3f85590ba986e48875680082cdd5813c",
+      "draftBodySha256": "bc2afef3790614e475523a91b65e6011491cdc8ac7004c2dac0f368dbc5ac1a6",
       "draftFile": "reports/priority-article-revisions/nextjs-folder-structure-large-projects.txt",
       "publicationApproved": false,
-      "wholeGuideVerified": false
+      "wholeGuideVerified": false,
+      "editorialReviewStatus": "READY FOR EDITORIAL REVIEW"
     }
   ]
 }

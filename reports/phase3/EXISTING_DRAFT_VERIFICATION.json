@@ -1,0 +1,245 @@
+{
+  "reviewDate": "2026-10-21",
+  "timezone": "Asia/Karachi",
+  "sourceVersionChecks": "18 embedded source files match the fixture; 26 fixture source hashes unchanged; pinned manifest/lockfile and independent fixture type/build checks passed.",
+  "windows11": "Unavailable on this host; not tested.",
+  "linux": "WSL enumeration exited 1 and reported usage; no usable Linux runtime established. No Docker executable found. No installation attempted.",
+  "reviews": [
+    {
+      "slug": "common-vercel-deployment-errors-solutions",
+      "draftFile": "reports/priority-article-revisions/common-vercel-deployment-errors-solutions.txt",
+      "editorialReviewStatus": "DRAFT",
+      "publicationStatus": "DRAFT — local only",
+      "wholeGuideVerified": false,
+      "testedEnvironment": {
+        "node": "v22.18.0",
+        "os": "Windows 10 Pro",
+        "release": "10.0.19045",
+        "architecture": "x64",
+        "next": "16.2.6",
+        "react": "19.2.4",
+        "typescript": "5.9.3",
+        "supabaseSsr": "0.12.7",
+        "supabaseJs": "2.118.0"
+      },
+      "passingEvidence": "reports/phase3/tests/existing-fixture-confirmation.json",
+      "historicalFailureEvidence": "reports/priority-article-tests/results.json",
+      "embeddedFiles": [],
+      "remaining": [
+        "Vercel deployment and configured limits",
+        "Linux case-sensitive build",
+        "Out-of-memory remedy",
+        "Production static/404 behavior"
+      ],
+      "securityCritical": "No independent live service or new security assertion certified.",
+      "draftSha256": "5f5d21571eb380b5a9a9207ccff446a27c01c16918a1e79e11c6b22b2c2da202"
+    },
+    {
+      "slug": "debug-production-errors-nextjs",
+      "draftFile": "reports/priority-article-revisions/debug-production-errors-nextjs.txt",
+      "editorialReviewStatus": "DRAFT",
+      "publicationStatus": "DRAFT — local only",
+      "wholeGuideVerified": false,
+      "testedEnvironment": {
+        "node": "v22.18.0",
+        "os": "Windows 10 Pro",
+        "release": "10.0.19045",
+        "architecture": "x64",
+        "next": "16.2.6",
+        "react": "19.2.4",
+        "typescript": "5.9.3",
+        "supabaseSsr": "0.12.7",
+        "supabaseJs": "2.118.0"
+      },
+      "passingEvidence": "reports/phase3/tests/existing-fixture-confirmation.json",
+      "historicalFailureEvidence": "reports/priority-article-tests/results.json",
+      "embeddedFiles": [
+        {
+          "article": "debug-production-errors-nextjs.txt",
+          "file": "src/app/failure/error.tsx",
+          "matchesFixture": true
+        }
+      ],
+      "remaining": [
+        "Browser hydration mismatch/fix",
+        "Boundary fallback and retry click",
+        "Approved host log search",
+        "Mutation retry/idempotency"
+      ],
+      "securityCritical": "No independent live service or new security assertion certified.",
+      "draftSha256": "29592e03f1e6cd36bc5877ddcf3638f5891aa3fe668188e224c4bda8f8a2d54b"
+    },
+    {
+      "slug": "nextjs-authentication-without-nextauth",
+      "draftFile": "reports/priority-article-revisions/nextjs-authentication-without-nextauth.txt",
+      "editorialReviewStatus": "DRAFT",
+      "publicationStatus": "DRAFT — local only",
+      "wholeGuideVerified": false,
+      "testedEnvironment": {
+        "node": "v22.18.0",
+        "os": "Windows 10 Pro",
+        "release": "10.0.19045",
+        "architecture": "x64",
+        "next": "16.2.6",
+        "react": "19.2.4",
+        "typescript": "5.9.3",
+        "supabaseSsr": "0.12.7",
+        "supabaseJs": "2.118.0"
+      },
+      "passingEvidence": "reports/phase3/tests/existing-fixture-confirmation.json",
+      "historicalFailureEvidence": "reports/priority-article-tests/results.json",
+      "embeddedFiles": [
+        {
+          "article": "nextjs-authentication-without-nextauth.txt",
+          "file": "src/lib/supabase/config.ts",
+          "matchesFixture": true
+        },
+        {
+          "article": "nextjs-authentication-without-nextauth.txt",
+          "file": "src/lib/supabase/client.ts",
+          "matchesFixture": true
+        },
+        {
+          "article": "nextjs-authentication-without-nextauth.txt",
+          "file": "src/lib/supabase/server.ts",
+          "matchesFixture": true
+        },
+        {
+          "article": "nextjs-authentication-without-nextauth.txt",
+          "file": "src/lib/supabase/proxy.ts",
+          "matchesFixture": true
+        },
+        {
+          "article": "nextjs-authentication-without-nextauth.txt",
+          "file": "src/proxy.ts",
+          "matchesFixture": true
+        },
+        {
+          "article": "nextjs-authentication-without-nextauth.txt",
+          "file": "src/app/login/actions.ts",
+          "matchesFixture": true
+        },
+        {
+          "article": "nextjs-authentication-without-nextauth.txt",
+          "file": "src/app/login/page.tsx",
+          "matchesFixture": true
+        },
+        {
+          "article": "nextjs-authentication-without-nextauth.txt",
+          "file": "src/lib/authorization.ts",
+          "matchesFixture": true
+        },
+        {
+          "article": "nextjs-authentication-without-nextauth.txt",
+          "file": "src/lib/notes.ts",
+          "matchesFixture": true
+        },
+        {
+          "article": "nextjs-authentication-without-nextauth.txt",
+          "file": "src/app/dashboard/actions.ts",
+          "matchesFixture": true
+        },
+        {
+          "article": "nextjs-authentication-without-nextauth.txt",
+          "file": "src/app/dashboard/page.tsx",
+          "matchesFixture": true
+        },
+        {
+          "article": "nextjs-authentication-without-nextauth.txt",
+          "file": "src/app/api/private/route.ts",
+          "matchesFixture": true
+        },
+        {
+          "article": "nextjs-authentication-without-nextauth.txt",
+          "file": "schema.sql",
+          "matchesFixture": true
+        }
+      ],
+      "remaining": [
+        "Live login/logout and refreshed cookies",
+        "JWT expiry/forged-token validation",
+        "Two-user database RLS",
+        "Abuse controls and recovery flows"
+      ],
+      "securityCritical": "Mocks and anonymous SDK calls do not validate real token/session/RLS boundaries.",
+      "draftSha256": "05f5056d8b8b7f09b01865a402925c33d5528a6fef8f502d63d397578726f03d"
+    },
+    {
+      "slug": "deploy-nextjs-to-vercel-guide",
+      "draftFile": "reports/priority-article-revisions/deploy-nextjs-to-vercel-guide.txt",
+      "editorialReviewStatus": "DRAFT",
+      "publicationStatus": "DRAFT — local only",
+      "wholeGuideVerified": false,
+      "testedEnvironment": {
+        "node": "v22.18.0",
+        "os": "Windows 10 Pro",
+        "release": "10.0.19045",
+        "architecture": "x64",
+        "next": "16.2.6",
+        "react": "19.2.4",
+        "typescript": "5.9.3",
+        "supabaseSsr": "0.12.7",
+        "supabaseJs": "2.118.0"
+      },
+      "passingEvidence": "reports/phase3/tests/existing-fixture-confirmation.json",
+      "historicalFailureEvidence": "reports/priority-article-tests/results.json",
+      "embeddedFiles": [],
+      "remaining": [
+        "Actual Vercel preview",
+        "DNS/TLS and remote image checks",
+        "Database network configuration"
+      ],
+      "securityCritical": "No real network/credential/configuration changes tested.",
+      "draftSha256": "2ab1b16b1195fe8d6515e0adeea9714bd7f51c592f446307c6ed63737115e1a6"
+    },
+    {
+      "slug": "nextjs-folder-structure-large-projects",
+      "draftFile": "reports/priority-article-revisions/nextjs-folder-structure-large-projects.txt",
+      "editorialReviewStatus": "READY FOR EDITORIAL REVIEW",
+      "publicationStatus": "DRAFT — local only",
+      "wholeGuideVerified": false,
+      "testedEnvironment": {
+        "node": "v22.18.0",
+        "os": "Windows 10 Pro",
+        "release": "10.0.19045",
+        "architecture": "x64",
+        "next": "16.2.6",
+        "react": "19.2.4",
+        "typescript": "5.9.3",
+        "supabaseSsr": "0.12.7",
+        "supabaseJs": "2.118.0"
+      },
+      "passingEvidence": "reports/phase3/tests/existing-fixture-confirmation.json",
+      "historicalFailureEvidence": "reports/priority-article-tests/results.json",
+      "embeddedFiles": [
+        {
+          "article": "nextjs-folder-structure-large-projects.txt",
+          "file": "tsconfig.json",
+          "matchesFixture": true
+        },
+        {
+          "article": "nextjs-folder-structure-large-projects.txt",
+          "file": "src/components/Status.tsx",
+          "matchesFixture": true
+        },
+        {
+          "article": "nextjs-folder-structure-large-projects.txt",
+          "file": "src/app/page.tsx",
+          "matchesFixture": true
+        },
+        {
+          "article": "nextjs-folder-structure-large-projects.txt",
+          "file": "src/components/BuildLabel.tsx",
+          "matchesFixture": true
+        }
+      ],
+      "remaining": [
+        "Windows 11 and Linux remain outside tested scope",
+        "No bundle or productivity measurement claimed",
+        "Auth/RLS reference remains a separately unverified example"
+      ],
+      "securityCritical": "No independent live service or new security assertion certified.",
+      "draftSha256": "bc2afef3790614e475523a91b65e6011491cdc8ac7004c2dac0f368dbc5ac1a6"
+    }
+  ]
+}

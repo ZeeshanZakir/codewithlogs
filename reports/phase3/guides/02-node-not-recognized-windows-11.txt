@@ -1,0 +1,98 @@
+Fix “‘node’ Is Not Recognized” on Windows 11
+Status: DRAFT | Proposed slug: windows-node-not-recognized
+Windows 11 remains UNTESTED. The process-PATH case below passed on Windows 10 Pro.
+
+## Error, problem and affected environment
+Actual observed PowerShell message:
+node: The term 'node' is not recognized as a name of a cmdlet, function, script file, or executable program.
+
+Evidence date: 2026-10-21; Windows 10 Pro 10.0.19045 x64, PowerShell 7.6.5,
+Node v22.18.0. Windows 11 is the intended reader environment, not a tested claim.
+Command Prompt has different wording; WSL/remote/container installations are separate.
+
+## Root cause: distinguish discovery from installation
+A shell cannot find a command on its search path. Node may be absent, its directory
+may be missing from this process's PATH, an old editor may retain an earlier
+environment, or another installation may win. The tested case removed confirmed
+Node directories from one process PATH; it did not repair an MSI installation.
+
+## Inspect before changing anything
+In the failing PowerShell session:
+
+Get-Command node -All -ErrorAction SilentlyContinue |
+  Select-Object CommandType, Source, Definition
+where.exe node
+$env:Path -split ';'
+
+Use the installer's/version manager's known location. For a standard system MSI,
+this candidate is common but must be checked:
+
+$nodeCandidate = Join-Path $env:ProgramFiles 'nodejs\node.exe'
+Test-Path -LiteralPath $nodeCandidate
+# Run only when that check is True:
+& $nodeCandidate --version
+
+A custom install or managed symlink can be elsewhere. Do not add a guessed path.
+
+## Solution A: refresh a stale parent environment
+Completely close the terminal host and all VS Code windows, reopen from Start,
+then create a new shell. A new terminal inside an old editor can inherit stale
+PATH. This is a diagnostic branch, not a tested stale-editor repair in this run.
+
+## Solution B: restore the confirmed command directory
+If a known executable works directly but a fresh shell cannot discover node,
+repair the existing installer/version-manager configuration. If intentionally
+editing User Path, save the original, add the confirmed DIRECTORY containing
+node.exe, preserve other entries and reopen the parent host. Do not paste a full
+replacement PATH or add the executable filename itself. Persistent User Path edits
+were not performed in these tests.
+
+For a temporary process-only diagnostic, with an actual existing directory:
+
+$nodeDirectory = Split-Path -Parent $nodeCandidate
+$previousPath = $env:Path
+try {
+  if (-not (Test-Path -LiteralPath $nodeCandidate)) { throw 'Confirm the installation path first.' }
+  $env:Path = $nodeDirectory + ';' + $previousPath
+  node --version
+  node -p "process.execPath"
+} finally { $env:Path = $previousPath }
+
+The direct executable/restored-process-PATH case was tested by the runner; this
+illustrates the same directory/discovery distinction without a permanent setting.
+
+## Controlled reproduction and actual result
+From this repository root, run the isolated PowerShell runner:
+
+& ./scripts/test-windows-guides.ps1
+
+It records every discovered node.exe directory, removes only those directories
+from its process PATH, starts a fresh child, captures the actual command-not-found
+message, runs the real executable directly, restores PATH in finally and checks a
+fresh child again. Both the direct path and restored lookup exited 0 and reported:
+v22.18.0
+
+Evidence: reports/phase3/tests/windows/node-path-before.log,
+node-absolute-path.log and node-path-after.log. No installation was removed.
+
+## Solution C and alternatives
+If the executable is absent, use the supported official installer or the existing
+version manager to install a compatible Node release. Avoid combining a new MSI
+with an existing manager without understanding PATH ownership. For multiple
+results, compare process.execPath and use the manager's selection mechanism.
+Administrator mode is not a PATH diagnosis. No reinstall or manager migration
+was tested, and the installed release is not claimed to be the latest release.
+
+## Verification and security
+In a new host, run node --version, node -p "process.execPath" and:
+node -e "console.log('node command discovery works')"
+Then test the trusted project separately. Do not share full environment dumps
+containing secrets. A successful version command does not certify an app build.
+No screenshots were captured. Windows 11/installer/stale-host/manager cases must
+be verified or explicitly narrowed before editorial approval and publication.
+
+## References and internal links
+https://learn.microsoft.com/en-us/windows/dev-environment/javascript/nodejs-on-windows
+https://docs.npmjs.com/downloading-and-installing-node-js-and-npm/
+Related public guide: https://codewithlogs.com/blog/common-vercel-deployment-errors-solutions
+Related logging background: https://codewithlogs.com/blog/what-is-code-with-logs

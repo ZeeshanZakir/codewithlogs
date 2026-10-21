@@ -1,0 +1,302 @@
+{
+  "checkedAt": "2026-10-21T15:52:53.509Z",
+  "environment": {
+    "os": "Windows 10 Pro",
+    "release": "10.0.19045",
+    "architecture": "x64",
+    "node": "v22.18.0",
+    "typescript": "5.9.3"
+  },
+  "counts": {
+    "passed": 57,
+    "failed": 0
+  },
+  "checks": [
+    {
+      "name": "Decoder example: npm-eresolve",
+      "passed": true,
+      "milliseconds": 2.13
+    },
+    {
+      "name": "Decoder example: npm-eperm",
+      "passed": true,
+      "milliseconds": 0.53
+    },
+    {
+      "name": "Decoder example: powershell-npm-policy",
+      "passed": true,
+      "milliseconds": 0.09
+    },
+    {
+      "name": "Decoder example: node-not-recognized",
+      "passed": true,
+      "milliseconds": 0.01
+    },
+    {
+      "name": "Decoder example: git-not-recognized",
+      "passed": true,
+      "milliseconds": 0.01
+    },
+    {
+      "name": "Decoder example: next-hydration",
+      "passed": true,
+      "milliseconds": 0.01
+    },
+    {
+      "name": "Decoder example: next-module",
+      "passed": true,
+      "milliseconds": 0.07
+    },
+    {
+      "name": "Decoder example: vercel-deployment",
+      "passed": true,
+      "milliseconds": 0.07
+    },
+    {
+      "name": "CMD and PowerShell Node command lookup variants",
+      "passed": true,
+      "milliseconds": 0.17
+    },
+    {
+      "name": "CMD and PowerShell Git command lookup variants",
+      "passed": true,
+      "milliseconds": 0.04
+    },
+    {
+      "name": "npm ANSI styling and CRLF are normalized",
+      "passed": true,
+      "milliseconds": 4
+    },
+    {
+      "name": "PowerShell signature needs a launcher and policy context",
+      "passed": true,
+      "milliseconds": 0.11
+    },
+    {
+      "name": "Vercel wrapper requires platform context; named codes match",
+      "passed": true,
+      "milliseconds": 0.1
+    },
+    {
+      "name": "Multiple signatures stay distinct with deterministic ordering",
+      "passed": true,
+      "milliseconds": 0.02
+    },
+    {
+      "name": "Unsupported errors get no invented guidance",
+      "passed": true,
+      "milliseconds": 0.04
+    },
+    {
+      "name": "Empty, control-only and oversized input fail safely",
+      "passed": true,
+      "milliseconds": 0.19
+    },
+    {
+      "name": "Matching does not interpolate hostile log text into a report",
+      "passed": true,
+      "milliseconds": 0.14
+    },
+    {
+      "name": "React hydration wording variants",
+      "passed": true,
+      "milliseconds": 0.03
+    },
+    {
+      "name": "Resolver wording variants and unqualified failure",
+      "passed": true,
+      "milliseconds": 0.03
+    },
+    {
+      "name": "Every rule has scoped guidance and allowlisted references",
+      "passed": true,
+      "milliseconds": 0.45
+    },
+    {
+      "name": "Inspector empty, oversized and malformed JSON",
+      "passed": true,
+      "milliseconds": 0.5
+    },
+    {
+      "name": "Dependency groups and scripts are summarized without running",
+      "passed": true,
+      "milliseconds": 0.97
+    },
+    {
+      "name": "Version pattern: 1.2.3",
+      "passed": true,
+      "milliseconds": 0.01
+    },
+    {
+      "name": "Version pattern: 0.0.1-alpha.0+build.1",
+      "passed": true,
+      "milliseconds": 0
+    },
+    {
+      "name": "Version pattern: ^0.2.3",
+      "passed": true,
+      "milliseconds": 0
+    },
+    {
+      "name": "Version pattern: ~1.2.3",
+      "passed": true,
+      "milliseconds": 0
+    },
+    {
+      "name": "Version pattern: *",
+      "passed": true,
+      "milliseconds": 0
+    },
+    {
+      "name": "Version pattern: 1.2",
+      "passed": true,
+      "milliseconds": 0
+    },
+    {
+      "name": "Version pattern: 1.x",
+      "passed": true,
+      "milliseconds": 0
+    },
+    {
+      "name": "Version pattern: >=18 <23",
+      "passed": true,
+      "milliseconds": 0.09
+    },
+    {
+      "name": "Version pattern: 1.0.0 - 2.0.0",
+      "passed": true,
+      "milliseconds": 0
+    },
+    {
+      "name": "Version pattern: ^1 || ^2",
+      "passed": true,
+      "milliseconds": 0
+    },
+    {
+      "name": "Version pattern: latest",
+      "passed": true,
+      "milliseconds": 0.02
+    },
+    {
+      "name": "Version pattern: file:../local",
+      "passed": true,
+      "milliseconds": 0
+    },
+    {
+      "name": "Version pattern: link:../local",
+      "passed": true,
+      "milliseconds": 0.01
+    },
+    {
+      "name": "Version pattern: workspace:*",
+      "passed": true,
+      "milliseconds": 0
+    },
+    {
+      "name": "Version pattern: npm:other@^1",
+      "passed": true,
+      "milliseconds": 0
+    },
+    {
+      "name": "Version pattern: git+https://example.invalid/repo.git#main",
+      "passed": true,
+      "milliseconds": 0
+    },
+    {
+      "name": "Version pattern: owner/repo#tag",
+      "passed": true,
+      "milliseconds": 0
+    },
+    {
+      "name": "Version pattern: https://example.invalid/pkg.tgz",
+      "passed": true,
+      "milliseconds": 0
+    },
+    {
+      "name": "Version pattern: (empty)",
+      "passed": true,
+      "milliseconds": 0
+    },
+    {
+      "name": "Version pattern: some invalid range ???",
+      "passed": true,
+      "milliseconds": 0.01
+    },
+    {
+      "name": "Invalid field types produce useful diagnostics rather than crashes",
+      "passed": true,
+      "milliseconds": 0.1
+    },
+    {
+      "name": "Top-level dependency and scripts containers are checked",
+      "passed": true,
+      "milliseconds": 0.35
+    },
+    {
+      "name": "Own version is not confused with a dependency range",
+      "passed": true,
+      "milliseconds": 0.1
+    },
+    {
+      "name": "Duplicate prod/dev declarations and non-npm effects are disclosed",
+      "passed": true,
+      "milliseconds": 0.1
+    },
+    {
+      "name": "Floating, non-registry and unknown patterns receive scoped guidance",
+      "passed": true,
+      "milliseconds": 0.08
+    },
+    {
+      "name": "Adversarial engines maps are bounded",
+      "passed": true,
+      "milliseconds": 1.82
+    },
+    {
+      "name": "Script portability and suspicious literal patterns are heuristic warnings",
+      "passed": true,
+      "milliseconds": 0.13
+    },
+    {
+      "name": "packageManager, type and engines are checked without claiming runtime compatibility",
+      "passed": true,
+      "milliseconds": 0.13
+    },
+    {
+      "name": "Large collections and display values stay bounded and disclose omissions",
+      "passed": true,
+      "milliseconds": 0.75
+    },
+    {
+      "name": "Prototype keys and HTML/script strings remain inert",
+      "passed": true,
+      "milliseconds": 0.14
+    },
+    {
+      "name": "Nested unrelated data and duplicate JSON key limitation follow native parsing",
+      "passed": true,
+      "milliseconds": 0.11
+    },
+    {
+      "name": "Control characters are removed from displayed configuration strings",
+      "passed": true,
+      "milliseconds": 0.06
+    },
+    {
+      "name": "Copy reports explicitly state their limits",
+      "passed": true,
+      "milliseconds": 0.05
+    },
+    {
+      "name": "New client analysis contains no transport, storage or execution APIs",
+      "passed": true,
+      "milliseconds": 1.05
+    },
+    {
+      "name": "Clipboard handler is user-triggered and catches unavailable permissions",
+      "passed": true,
+      "milliseconds": 0.16
+    }
+  ],
+  "limitations": "Actual pure logic tests and source-boundary assertions, not browser interaction, npm dependency resolution, Windows 11, live deployments or proof of every suggested fix."
+}

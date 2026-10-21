@@ -1,4 +1,5 @@
 Authentication in Next.js Without NextAuth: complete Supabase SSR example
+Editorial workflow: DRAFT — additional technical evidence required.
 REVISION DRAFT — not published. Retain /blog/nextjs-authentication-without-nextauth.
 
 ## Scope and security boundary

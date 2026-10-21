@@ -1,4 +1,5 @@
 A Next.js Folder Structure You Can Debug: routes, aliases and security boundaries
+Editorial workflow: READY FOR EDITORIAL REVIEW — bounded local Next.js 16.2.6/Windows 10 scope.
 REVISION DRAFT — not published. Retain /blog/nextjs-folder-structure-large-projects.
 
 ## What this structure is for

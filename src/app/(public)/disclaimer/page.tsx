@@ -5,6 +5,7 @@ import { siteUrl } from "@/lib/site-url";
 const lastUpdated = "May 23, 2026";
 
 export const metadata: Metadata = {
+  alternates: { canonical: `${siteUrl}/disclaimer` },
   title: "Disclaimer",
   description:
     "Disclaimer for codewithlogs.com covering educational content, affiliate disclosures, earnings statements, third-party links, and limitations related to errors and omissions.",

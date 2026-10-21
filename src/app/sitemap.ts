@@ -6,7 +6,7 @@ export const revalidate = 60;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const posts = await getAllPosts(false);
-  const toolSlugs = ["base64", "cron-builder", "css-minifier", "json-formatter", "jwt-decoder", "password-generator", "regex-tester", "token-counter", "word-counter"];
+  const toolSlugs = ["error-decoder", "package-json-inspector", "base64", "cron-builder", "css-minifier", "json-formatter", "jwt-decoder", "password-generator", "regex-tester", "token-counter", "word-counter"];
   const routes = ["/", "/about", "/blog", "/contact", "/gallery", "/disclaimer", "/privacy-policy", "/services", "/terms", "/tools", "/editorial-policy"];
   const staticPages: MetadataRoute.Sitemap = routes.map((route) => ({
     url: route === "/" ? siteUrl + "/" : siteUrl + route,

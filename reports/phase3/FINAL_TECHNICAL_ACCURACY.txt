@@ -1,0 +1,78 @@
+CODEWITHLOGS PHASE 3 — FIVE EXISTING DRAFTS
+Review date: 2026-10-21, Asia/Karachi
+No production article was changed. Editorial readiness is not publication approval
+or a verified label on the published article.
+
+EVIDENCE CHECKS
+- All 18 embedded complete code files match their executable fixture source.
+- All 26 saved fixture source hashes match; no source drift detected.
+- Fresh confirmation: 15 passing build/type/application-boundary/HTTP cases.
+- Earlier six distinct negative/casing cases remain in the original logs. Together
+  the retained initial/confirmation evidence covers 21 distinct case IDs.
+- Actual environment: Windows 10 Pro 10.0.19045 x64, Node 22.18.0, Next 16.2.6,
+  React/React DOM 19.2.4, TypeScript 5.9.3, Supabase SSR 0.12.7 / JS 2.118.0.
+- Windows 11 was not available through the inspected tools. WSL enumeration
+  exited 1 with usage output; no usable Linux environment was established.
+  Docker was not found. No VM/distribution was installed and no Linux test claimed.
+
+1. COMMON VERCEL DEPLOYMENT ERRORS — DRAFT
+Passed: actual missing-import, alias and number-type build failures followed by
+restored successful builds; separate lint rejection while Next 16 build passes;
+two-hop Windows Git tracked-case correction; public build-time versus dynamic
+server runtime environment checks.
+Verified command scope: local pinned Next/TypeScript/npm fixture; Git index on
+Windows. PowerShell memory adjustment is reviewed but not a tested OOM fix.
+Untested: Vercel settings/limits/deployments, Linux build, out-of-memory repair,
+production static-export/404 behavior. No whole-guide verified statement is made.
+Decision: useful local corrections, insufficient evidence for the broader hosting
+troubleshooting scope; remain DRAFT pending targeted tests or narrowing.
+
+2. DEBUG PRODUCTION ERRORS IN NEXT.JS — DRAFT
+Passed: real local production request hides the private server-error marker in
+the response while the server log retains it; typed segment boundary compiles;
+environment timing behavior and independent fixture types/build pass.
+Untested: browser hydration, rendered fallback/retry interaction, mutation
+idempotency and a real hosted digest search/retention workflow.
+Security: mocked/HTTP checks do not prove a browser recovery or safe mutation
+retry. Root layouts/event handlers require their own correctly scoped handling.
+Decision: remain DRAFT; retain explicit unsupported-environment limitations.
+
+3. AUTHENTICATION WITHOUT NEXTAUTH — DRAFT
+Passed: complete pinned clients/proxy/actions/schema source compiles; actual
+guard/action/data modules deny anonymous calls and ignore a forged form owner
+under MOCKED identity/data transport; real SDK no-session HTTP API returns 401,
+dashboard redirects and auth responses are private/no-store. SDK cardinality
+behavior tests use SIMULATED HTTP responses and are labelled as such.
+Untested security-critical boundaries: live user login/logout, signed/expired/
+forged token handling, refresh cookie rotation, cross-user database RLS, recovery,
+abuse controls and shared-cache isolation under real sessions.
+Decision: remain DRAFT. No claim that mocks validate JWTs or SQL policies. The
+website's real NextAuth and MongoDB setup remains untouched.
+
+4. DEPLOY NEXT.JS TO VERCEL — DRAFT
+Passed: local preflight/fixture build/types and synthetic environment timing.
+Reviewed corrections: separate lint; deliberate secret/environment scope; no
+routine global database allowlist; scoped image pattern and project-specific DNS.
+Untested: actual Vercel preview, remote image allow/deny, DNS/TLS, database network
+path, runtime/account settings and production promotion. None was attempted.
+Decision: remain DRAFT; a local build does not verify external deployment steps.
+
+5. NEXT.JS FOLDER STRUCTURE — READY FOR EDITORIAL REVIEW
+Bounded scope: the documented local Next 16.2.6/TypeScript alias/import example
+and organizational explanation on the recorded Windows 10 host.
+Passed: exact alias failure reproduced, corrected source mapping builds, expected
+component renders, types pass, included source files match the fixture.
+No performance/productivity gains or Windows 11/Linux result is claimed. Security
+discussion points readers to boundary checks; it does not certify the separate
+Supabase auth/RLS example. Those explicit limits are appropriate for this guide's
+bounded structure/alias teaching task rather than a missing core live-auth proof.
+Decision: READY FOR EDITORIAL REVIEW within stated scope; still a local DRAFT,
+not approved to publish or labelled verified on the website.
+
+TRACKING
+EXISTING_DRAFT_VERIFICATION.json records per-draft hashes, readiness, gaps and
+embedded-file checks. The original local revision manifest now carries the same
+editorial status. All production statuses and bodies remain unchanged.
+Test records: tests/existing-fixture-confirmation.json,
+tests/embedded-code-comparison.json and tests/existing-fixture-integrity.json.
+Full original fixture logs remain in reports/priority-article-tests/.

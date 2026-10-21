@@ -17,7 +17,7 @@ async function check(route) {
       const anchors = [...body.matchAll(/href="#([^"]+)"/g)].map(match => match[1]);
       result.h1Count = (body.match(/<h1[ >]/g) || []).length;
       result.canonical = /<link[^>]*rel="canonical"/.test(body);
-      result.verificationStatusVisible = body.includes("Windows verification pending");
+      result.verificationStatusVisible = /data-review-status="(unverified|partially-verified|verified)"/.test(body);
       result.missingTOCTargets = [...new Set(anchors.filter(id => !ids.includes(id)))];
       const scripts = [...body.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)];
       result.structuredDataValid = scripts.length > 0 && scripts.every(match => {

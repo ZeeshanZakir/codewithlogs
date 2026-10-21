@@ -5,6 +5,7 @@ import { siteUrl } from "@/lib/site-url";
 const lastUpdated = "May 23, 2026";
 
 export const metadata: Metadata = {
+  alternates: { canonical: `${siteUrl}/terms` },
   title: "Terms of Service",
   description:
     "Terms of Service for codewithlogs.com covering website use, intellectual property, user conduct, limitations of liability, and governing law.",

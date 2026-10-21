@@ -1,0 +1,90 @@
+{
+  "testedAt": "2026-10-21T14:42:54.401Z",
+  "environment": {
+    "node": "v22.18.0",
+    "os": "Windows 10 Pro",
+    "release": "10.0.19045",
+    "architecture": "x64",
+    "next": "16.2.6",
+    "react": "19.2.4",
+    "typescript": "5.9.3",
+    "supabaseSsr": "0.12.7",
+    "supabaseJs": "2.118.0"
+  },
+  "results": [
+    {
+      "id": "imports-types-alias-corrected-build",
+      "passed": true,
+      "exitCode": 0
+    },
+    {
+      "id": "fixture-typecheck",
+      "passed": true,
+      "exitCode": 0
+    },
+    {
+      "id": "anonymous-direct-action-and-data-denied",
+      "passed": true,
+      "mode": "Mocked identity and data transport; actual guard/action modules."
+    },
+    {
+      "id": "identity-not-taken-from-form",
+      "passed": true,
+      "mode": "Mocked transport; not a database RLS test."
+    },
+    {
+      "id": "identity-error-fails-closed",
+      "passed": true
+    },
+    {
+      "id": "supabase-single-returns-error-object",
+      "passed": true,
+      "mode": "Real SDK with simulated HTTP response; not a database test."
+    },
+    {
+      "id": "supabase-maybe-single-accepts-empty",
+      "passed": true,
+      "mode": "Real SDK with simulated HTTP response; not a database test."
+    },
+    {
+      "id": "fixed-alias-renders",
+      "passed": true
+    },
+    {
+      "id": "public-env-is-build-time",
+      "passed": true
+    },
+    {
+      "id": "dynamic-server-env-is-runtime",
+      "passed": true
+    },
+    {
+      "id": "anonymous-direct-http-api-denied",
+      "passed": true,
+      "mode": "Real Next + Supabase SDK; no session, synthetic loopback configuration, no live Supabase project."
+    },
+    {
+      "id": "auth-response-not-publicly-cacheable",
+      "passed": true
+    },
+    {
+      "id": "anonymous-dashboard-redirect",
+      "passed": true
+    },
+    {
+      "id": "production-server-error-redacted",
+      "passed": true
+    },
+    {
+      "id": "server-error-retains-original-log",
+      "passed": true
+    }
+  ],
+  "limitations": [
+    "No Windows 11 or Linux runtime tested.",
+    "No Vercel deployment, DNS or hosting limits verified.",
+    "No real Supabase project, account login/refresh or database RLS test.",
+    "No browser hydration, error fallback interaction or retry-click test.",
+    "Whole article revisions remain DRAFT; evidence applies only to named fixture cases."
+  ]
+}

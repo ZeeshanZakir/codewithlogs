@@ -1,0 +1,43 @@
+{
+  "checkedAt": "2026-10-21T15:52:54.272Z",
+  "counts": {
+    "passed": 8,
+    "failed": 0
+  },
+  "checks": [
+    {
+      "name": "Decoder example -> explicit submit -> result -> clear callbacks",
+      "passed": true
+    },
+    {
+      "name": "Decoder unsupported input and edits invalidate an old result",
+      "passed": true
+    },
+    {
+      "name": "Decoder selector loads each example without automatic execution",
+      "passed": true
+    },
+    {
+      "name": "Inspector sample -> submit -> grouped output -> clear callbacks",
+      "passed": true
+    },
+    {
+      "name": "Inspector malformed JSON produces input guidance and no stale output",
+      "passed": true
+    },
+    {
+      "name": "Hostile pasted script remains displayed text without evaluation",
+      "passed": true
+    },
+    {
+      "name": "Copy success uses only an explicit click and supplied text (mock clipboard)",
+      "passed": true
+    },
+    {
+      "name": "Copy permission rejection and unavailable API offer a manual fallback (mocks)",
+      "passed": true
+    }
+  ],
+  "method": "Actual TSX event callbacks in a controlled hook host; mocked clipboard and animation scheduling. No DOM or real browser.",
+  "limitations": "Does not verify hydration, real focus, keyboard navigation, layout/mobile rendering, real clipboard permissions, browser network behavior or screen readers."
+}

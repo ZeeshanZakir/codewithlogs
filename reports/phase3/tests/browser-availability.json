@@ -1,0 +1,13 @@
+{
+  "reviewDate": "2026-10-21",
+  "status": "UNAVAILABLE",
+  "reason": "Browser tool denied tab access under URL policy; no workaround attempted.",
+  "manualChecks": [
+    "mobile layout",
+    "keyboard and focus",
+    "form interactions",
+    "copy buttons",
+    "screen reader",
+    "Core Web Vitals"
+  ]
+}

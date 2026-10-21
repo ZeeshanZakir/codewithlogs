@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 import { LegalPageTemplate } from "@/components/legal/LegalPageTemplate";
 import { siteUrl } from "@/lib/site-url";
-const lastUpdated = "May 23, 2026";
+const lastUpdated = "October 21, 2026";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
@@ -21,6 +21,14 @@ export const metadata: Metadata = {
 };
 
 const sections = [
+  {
+    id: "article-update-signups",
+    title: "Article Update Signups",
+    content: <>
+      <p>The article-update form stores your email address, selected update preferences, signup source and signup date in the site database. A homepage signup selects article updates and does not opt you into promotions. Existing preferences are not silently changed by submitting an already registered address.</p>
+      <p>Signup records interest in updates; automatic newsletter delivery and an automated unsubscribe link are not currently offered. To request a preference change or removal of your signup, use the <a href="/contact" className="font-medium text-primary underline underline-offset-4">contact page</a>. Do not include passwords or sensitive account information in your request.</p>
+    </>,
+  },
   {
     id: "owner-and-scope",
     title: "Owner Identification and Scope",

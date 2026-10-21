@@ -1,0 +1,26 @@
+[
+  {
+    "id": "cwl-peer-plugin@1.0.0",
+    "name": "cwl-peer-plugin",
+    "version": "1.0.0",
+    "size": 251,
+    "unpackedSize": 185,
+    "shasum": "5b9a5ac36349b6565cd084f98a3bf33890a0e870",
+    "integrity": "sha512-vX8tGebhxZmL/1XB27nU8XWfQtGc4GbYsltisZK89mx7bkvMcx1w3wPFdpBzTDcUwDSQkUqkU2KhO3tAvQFEig==",
+    "filename": "cwl-peer-plugin-1.0.0.tgz",
+    "files": [
+      {
+        "path": "index.js",
+        "size": 51,
+        "mode": 420
+      },
+      {
+        "path": "package.json",
+        "size": 134,
+        "mode": 420
+      }
+    ],
+    "entryCount": 2,
+    "bundled": []
+  }
+]

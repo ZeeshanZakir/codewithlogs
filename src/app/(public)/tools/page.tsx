@@ -4,22 +4,36 @@ import { ArrowRight, Braces, Clock, Code2, FileSearch, Hash, Key, KeyRound, Type
 import { siteUrl } from "@/lib/site-url";
 
 export const metadata: Metadata = {
-  title: "Best Developer Tools — Free Online Utilities | CodeWithLogs",
+  title: "Developer Tools — Error Decoder & JSON Utilities | CodeWithLogs",
   description:
-    "Explore free online developer tools from Code With Logs, including a JSON Formatter & Validator, Password Generator, Word Counter, CSS Minifier, Base64 Encoder/Decoder, and more utilities coming soon.",
+    "Decode development errors, inspect package.json, format JSON and review data with browser-based developer tools from CodeWithLogs.",
   alternates: {
     canonical: `${siteUrl}/tools`,
   },
   openGraph: {
-    title: "Best Developer Tools — Free Online Utilities | Code With Logs",
+    title: "Developer Tools — Error Decoder & JSON Utilities | CodeWithLogs",
     description:
-      "Explore free online developer tools from Code With Logs, including a JSON Formatter & Validator, Password Generator, Word Counter, CSS Minifier, Base64 Encoder/Decoder, and more utilities coming soon.",
+      "Decode development errors, inspect package.json, format JSON and review data with browser-based developer tools from CodeWithLogs.",
     url: `${siteUrl}/tools`,
     type: "website",
   },
 };
 
 const availableTools = [
+  {
+    name: "Developer Error Decoder",
+    description: "Match npm, Windows, Git, Next.js and Vercel error signatures with scoped diagnostic checklists and official references.",
+    href: "/tools/error-decoder",
+    icon: FileSearch,
+    badge: "Local analysis",
+  },
+  {
+    name: "package.json Inspector",
+    description: "Review dependency patterns, configuration and npm scripts as text. No installation, script execution or compatibility claims.",
+    href: "/tools/package-json-inspector",
+    icon: Braces,
+    badge: "Local analysis",
+  },
   {
     name: "JSON Formatter",
     description:
@@ -123,7 +137,7 @@ export default function ToolsPage() {
             <div className="space-y-2">
               <h2 className="text-3xl font-bold tracking-tight text-text">Available now</h2>
               <p className="text-base leading-8 text-text/65">
-                Production-ready utilities you can use immediately without any signup.
+                Choose a utility, review its scope, and use it without signing up.
               </p>
             </div>
 
@@ -159,7 +173,7 @@ export default function ToolsPage() {
             </div>
           </section>
 
-          <section className="space-y-6">
+          {comingSoonTools.length > 0 && <section className="space-y-6">
             <div className="space-y-2">
               <h2 className="text-3xl font-bold tracking-tight text-text">Coming soon</h2>
               <p className="text-base leading-8 text-text/65">
@@ -193,7 +207,7 @@ export default function ToolsPage() {
                 );
               })}
             </div>
-          </section>
+          </section>}
         </div>
       </section>
     </div>

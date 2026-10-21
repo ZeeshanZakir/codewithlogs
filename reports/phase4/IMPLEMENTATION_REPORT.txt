@@ -1,0 +1,157 @@
+CODEWITHLOGS 2.0 — PHASE 4: DEVELOPER TOOLS AND ORGANIC SEO
+Review date: 2026-10-21 (Asia/Karachi)
+Branch: redesign/adsense-readiness
+Scope: local implementation and validation only. No push or deployment.
+
+IMPLEMENTED ROUTES
+/tools/error-decoder
+- Eight hand-authored rule families: npm ERESOLVE, npm EPERM, PowerShell npm.ps1
+  policy errors, Node/Git command lookup, hydration mismatch, module resolution,
+  and Vercel build wrappers / NO_OUTPUT_DIRECTORY / FUNCTION_INVOCATION_TIMEOUT.
+- Fixed signatures identify symptoms, not proven root causes. A generic build
+  exit code without Vercel context does not become a Vercel diagnosis. Multiple
+  matches are retained deterministically; unsupported messages get no invented fix.
+- Each result includes explanation, possible causes, diagnostics, commands,
+  security cautions, evidence/limits, official sources and relevant internal links.
+- Input capped at 20,000 characters; terminal formatting/control characters are
+  normalized. Text is never rendered as HTML or used as executable code/regex.
+- Clipboard actions are explicit, catch permission/API failures, and copy static
+  guidance rather than the original visitor log. Commands are never executed.
+
+/tools/package-json-inspector
+- Local JSON.parse with malformed/non-object input handling and typed field checks.
+- Summaries for dependencies, devDependencies, peerDependencies and optional
+  dependencies. Counts reflect declarations, not an installed dependency tree.
+- Pattern categories for exact versions, caret/tilde/partial ranges, tags, local
+  paths, Git/remote sources, aliases and workspace protocols. Compound ranges are
+  not evaluated. Floating/non-registry/unrecognized values receive scoped notes.
+- Own version, private, type, packageManager and engines fields receive basic
+  checks. Duplicate prod/dev declarations and overrides/workspaces are noted.
+- Script text is inert. Common install/prepare hooks, POSIX environment assignment
+  and a few deletion/elevation/download-execution patterns prompt review. This is
+  neither a complete shell analyzer nor a security verdict. Dependency lifecycle
+  hooks not present in the pasted manifest cannot be inspected.
+- 100,000-character input cap; up to 200 entries per dependency/engines field,
+  80 scripts and 1,000 characters per displayed string. Omissions are disclosed.
+- No registry calls, package installation, script execution, lockfile resolution,
+  vulnerability scanning, complete schema validation or compatibility guarantee.
+  Native JSON parsing keeps the last duplicate key; this limitation is explicit.
+
+PRIVACY / ACCESSIBILITY / DESIGN
+Both tools keep input in component memory; analysis adds no transport, storage,
+cookie or URL API. Existing site analytics remain and are disclosed. Browsers may
+independently restore page state; no memory-erasure guarantee is made. Visitors
+are asked to remove secrets. Only a deliberate Copy uses clipboard access, and
+the package report warns that displayed private names/script text are included.
+
+The workbench uses existing off-white/charcoal/teal styles with a restrained
+editorial header, labelled controls, visible focus, polite status messages,
+result-focus scheduling, native forms/details, wrapping controls, responsive
+tables and code. Styles are scoped in one CSS module; CMS/admin styling is not
+changed. No new runtime or test dependency was introduced.
+
+SEO / DISCOVERY
+- Unique descriptive title, description, canonical and Open Graph metadata on
+  both new routes; the tool index now describes and links both utilities first.
+- Server-rendered instructions, worked example signatures, scope/limitations,
+  official references and related existing guides are readable before JavaScript.
+- Added both tools to the existing sitemap, retaining all previous entries.
+- Visible breadcrumbs plus BreadcrumbList and WebApplication JSON-LD, free offer
+  and DeveloperApplication category. No fake ratings, reviews or usage claims.
+  JSON-LD shape was checked locally; Google rich-result eligibility was not claimed.
+- Tools cross-link to each other and useful existing Next.js articles. Those
+  articles are explicitly labelled as unverified published versions; draft test
+  evidence never silently upgrades the old published content.
+- No new query-driven SEO pages, keyword variants, redirects, or fake dates.
+- Reference checking corrected an unavailable npm semver-doc URL to the maintained
+  npm/node-semver reference before final build. Other references use primary docs.
+
+TEST RESULTS
+Production build: PASS (Next.js 16.2.6; 35 generated static pages).
+TypeScript: PASS (npx tsc --noEmit).
+ESLint: PASS, 0 errors / 10 existing warnings; reports/phase4/eslint.json.
+Tool logic/security: 57 PASS; tool-tests.json.
+Component event units: eight PASS with controlled hooks and clipboard mocks;
+interaction-unit-tests.json. These are not browser tests.
+Existing route suite: 70 checks, 41 public articles, zero failures or unresolved
+internal links; reports/route-validation.json. Four search checks passed with
+private/draft results excluded and literal query treatment preserved.
+New route/SEO/integrity: 26 PASS; route-seo-tests.json. Checks cover both public
+routes, metadata/canonicals, crawlable docs, labels/limits, sitemap/index links,
+structured-data shape, query non-reflection and prior-file preservation.
+All 58 stored article records match the saved preservation baseline. All 93
+checked prior draft/evidence/fixture/root-dependency files match Phase 4 hashes.
+Existing unrelated lint warnings were retained; no new rule was disabled.
+
+The first lint pass found one test-loader variable name and three JSX apostrophes;
+these were corrected. The first route/SEO test expected the same exact disclaimer
+wording on both tools; the assertion was corrected to recognize their equivalent
+explicit unverified wording. The final full checks above passed.
+
+Browser/mobile: NOT RUN. The prior browser tool URL-policy restriction remains
+unresolved. No workaround was attempted. BROWSER_MANUAL_REVIEW.txt distinguishes
+actual callback/HTTP tests from real hydration, focus, keyboard, clipboard,
+layout, network and assistive-technology tests still needed. No screenshot,
+Lighthouse result, field Core Web Vitals or mobile performance score was invented.
+Initial script decoded sizes are recorded as local diagnostics, not a score.
+
+ARTICLE QUALITY / PRESERVATION
+ARTICLE_LANGUAGE_REVIEW.txt reviews all ten Phase 3 drafts for clarity, technical
+scope and unsupported experience claims, with per-draft remaining work. Their
+bodies, manifests, statuses and verification logs were preserved byte-for-byte.
+No external plagiarism certification or human experience claim was made.
+
+Remaining evidence:
+- Vercel errors/deployment drafts: approved preview, hosted settings, Linux casing,
+  actual timeout/OOM/static routing cases where claimed.
+- Debugging draft: actual browser hydration mismatch/fix, boundary retry and host
+  log correlation. HTTP error transport is a different test.
+- Authentication draft: live disposable-provider login/logout, cookie refresh,
+  expired/forged JWTs, two-user RLS, cache isolation and abuse/recovery flows.
+- Folder structure: bounded editorial readiness retained; no security/performance
+  certification was added.
+- Windows drafts: Windows 11, PowerShell 5.1/managed policy, stale-host/installer
+  cases; actual VS Code integrated-terminal executable/cwd failure and correction.
+- EPERM decoder guidance has documentation review, not a local EPERM repair test.
+  Matching tests do not turn this or any other checklist into a verified remedy.
+
+ADSENSE READINESS — BLOCKED, NOT READY FOR RESUBMISSION
+These tools add useful local functionality and crawlable original explanations.
+They do not resolve the remaining public content-quality issues by themselves.
+The published priority articles still contain the earlier audit findings because
+their corrected drafts have not been approved for publication. Auth/RLS/inventory
+security guidance needs priority review. Retain useful Next.js/Supabase/deployment
+content; no niche-only archiving or automatic merges are authorized.
+
+Owner verification remains for authorship/About statements, existing testimonials
+and permissions, contact and newsletter operations, audience-appropriate analytics
+and ad consent, real mobile/accessibility behavior and Search Console coverage.
+See reports/phase3/ADSENSE_READINESS_AUDIT.txt for the unchanged detailed backlog.
+No article-count/word-count threshold or AdSense approval guarantee is asserted.
+
+LOCAL REVIEW / REPRODUCTION
+  npm run build
+  npm run start -- --hostname 127.0.0.1 --port 3000
+Open http://127.0.0.1:3000/tools/error-decoder and
+http://127.0.0.1:3000/tools/package-json-inspector.
+In another shell:
+  npx tsc --noEmit
+  npm run lint
+  node scripts/test-phase4-tools.mjs
+  node scripts/test-phase4-interactions.mjs
+  node scripts/audit-editorial.mjs --refresh
+  node scripts/validate-redesign.mjs http://127.0.0.1:3000
+  node scripts/validate-phase4.mjs
+The editorial refresh reads records and updates local reports only; it does not
+edit stored content. Route/SEO scripts restrict validation to localhost. No new
+API endpoint or database migration was added. Stop the server with Ctrl+C.
+
+MODIFIED FILES / NEXT ACTIONS
+MODIFIED_FILES.txt compares the Phase 4 start snapshot with final files, separating
+this phase from earlier uncommitted work. Baseline.json is file hashes, not a
+content/database export. Reports summarize real observations and explicit gaps.
+Next: perform the manual browser checklist; review the two tools' rule content;
+finish the isolated article tests with owner-approved resources. Request separate
+approval before publication, push, preview deployment or production deployment.
+No push, publish, delete, archive, redirect, production database write, AdSense
+submission or deployment was performed by Phase 4.

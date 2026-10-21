@@ -1,0 +1,57 @@
+[
+  {
+    "file": "reports/phase3/guides/01-npm-ps1-cannot-be-loaded.txt",
+    "slug": "windows-npm-ps1-blocked",
+    "status": "DRAFT",
+    "published": false,
+    "publiclyServed": false,
+    "verificationScope": "PARTIALLY TESTED: process-policy/launcher case",
+    "sha256": "8a2f5fc39424df20011b1ed511e62c37f5364d51902408debaf8d59b1ea1acc8",
+    "screenshots": [],
+    "authorReviewRequired": true
+  },
+  {
+    "file": "reports/phase3/guides/02-node-not-recognized-windows-11.txt",
+    "slug": "windows-node-not-recognized",
+    "status": "DRAFT",
+    "published": false,
+    "publiclyServed": false,
+    "verificationScope": "PARTIALLY TESTED on Windows 10; Windows 11 untested",
+    "sha256": "d3012bb36c324f0077f1f817df64c0218d95d18fb84fc7199d1a20a4eebc785f",
+    "screenshots": [],
+    "authorReviewRequired": true
+  },
+  {
+    "file": "reports/phase3/guides/03-npm-eresolve-dependency-conflicts.txt",
+    "slug": "windows-npm-eresolve",
+    "status": "DRAFT",
+    "published": false,
+    "publiclyServed": false,
+    "verificationScope": "Local offline conflict/fix/lock repeat passed",
+    "sha256": "c595938c55719aad8851a2e0fe8485093fcde3d04687f3bd5682085650a0a94a",
+    "screenshots": [],
+    "authorReviewRequired": true
+  },
+  {
+    "file": "reports/phase3/guides/04-vscode-integrated-terminal-not-opening.txt",
+    "slug": "vscode-terminal-wont-launch",
+    "status": "DRAFT",
+    "published": false,
+    "publiclyServed": false,
+    "verificationScope": "UNVERIFIED integrated terminal; external control only",
+    "sha256": "3eac2416b3d23ff49c20b17c422f944253aa113b586b5b07e95b6911d0929e72",
+    "screenshots": [],
+    "authorReviewRequired": true
+  },
+  {
+    "file": "reports/phase3/guides/05-git-not-recognized-windows-terminal.txt",
+    "slug": "windows-git-not-recognized",
+    "status": "DRAFT",
+    "published": false,
+    "publiclyServed": false,
+    "verificationScope": "PARTIALLY TESTED process PATH; host UI untested",
+    "sha256": "707e1fbd60c6d178d7cdee7130e0f5db8189a59482e18c32c51ea2f3e80a2106",
+    "screenshots": [],
+    "authorReviewRequired": true
+  }
+]

@@ -26,8 +26,8 @@
     }
   ],
   "origin": "http://127.0.0.1:3000",
-  "checkedAt": "2026-10-21T14:21:58.622Z",
-  "totalChecks": 68,
+  "checkedAt": "2026-10-21T15:54:15.100Z",
+  "totalChecks": 70,
   "publicArticleCount": 41,
   "sitemapHasPrivateRoutes": false,
   "unresolvedLinks": [],
@@ -36,128 +36,127 @@
     {
       "route": "/sitemap.xml",
       "status": 200,
-      "milliseconds": 230
-    },
-    {
-      "route": "/blog",
-      "status": 200,
-      "milliseconds": 185
+      "milliseconds": 45
     },
     {
       "route": "/",
       "status": 200,
-      "milliseconds": 187
+      "milliseconds": 109
+    },
+    {
+      "route": "/blog",
+      "status": 200,
+      "milliseconds": 108
     },
     {
       "route": "/about",
       "status": 200,
-      "milliseconds": 189
+      "milliseconds": 123
     },
     {
       "route": "/contact",
       "status": 200,
-      "milliseconds": 178
-    },
-    {
-      "route": "/privacy-policy",
-      "status": 200,
-      "milliseconds": 180
+      "milliseconds": 35
     },
     {
       "route": "/terms",
       "status": 200,
-      "milliseconds": 181
+      "milliseconds": 34
+    },
+    {
+      "route": "/privacy-policy",
+      "status": 200,
+      "milliseconds": 36
     },
     {
       "route": "/robots.txt",
       "status": 200,
-      "milliseconds": 36
+      "milliseconds": 19
     },
     {
       "route": "/editorial-policy",
       "status": 200,
-      "milliseconds": 51
+      "milliseconds": 26
     },
     {
       "route": "/disclaimer",
       "status": 200,
-      "milliseconds": 52
-    },
-    {
-      "route": "/gallery",
-      "status": 200,
-      "milliseconds": 49
+      "milliseconds": 27
     },
     {
       "route": "/tools",
       "status": 200,
-      "milliseconds": 54
+      "milliseconds": 17
+    },
+    {
+      "route": "/gallery",
+      "status": 200,
+      "milliseconds": 28
     },
     {
       "route": "/services",
       "status": 200,
-      "milliseconds": 57
+      "milliseconds": 31
+    },
+    {
+      "route": "/tools/package-json-inspector",
+      "status": 200,
+      "milliseconds": 13
+    },
+    {
+      "route": "/tools/error-decoder",
+      "status": 200,
+      "milliseconds": 14
     },
     {
       "route": "/tools/base64",
       "status": 200,
-      "milliseconds": 35
+      "milliseconds": 17
     },
     {
       "route": "/tools/css-minifier",
       "status": 200,
-      "milliseconds": 35
-    },
-    {
-      "route": "/tools/cron-builder",
-      "status": 200,
-      "milliseconds": 35
+      "milliseconds": 29
     },
     {
       "route": "/tools/json-formatter",
       "status": 200,
-      "milliseconds": 36
+      "milliseconds": 29
+    },
+    {
+      "route": "/tools/cron-builder",
+      "status": 200,
+      "milliseconds": 30
     },
     {
       "route": "/tools/jwt-decoder",
       "status": 200,
-      "milliseconds": 36
+      "milliseconds": 23
     },
     {
       "route": "/tools/password-generator",
       "status": 200,
-      "milliseconds": 37
-    },
-    {
-      "route": "/tools/token-counter",
-      "status": 200,
-      "milliseconds": 34
+      "milliseconds": 23
     },
     {
       "route": "/tools/regex-tester",
       "status": 200,
-      "milliseconds": 35
+      "milliseconds": 23
     },
     {
       "route": "/tools/word-counter",
       "status": 200,
-      "milliseconds": 35
+      "milliseconds": 861
     },
     {
-      "route": "/blog/ai-semantic-search-nextjs-website",
+      "route": "/tools/token-counter",
       "status": 200,
-      "milliseconds": 7281,
-      "h1Count": 1,
-      "canonical": true,
-      "verificationStatusVisible": true,
-      "missingTOCTargets": [],
-      "structuredDataValid": true,
-      "codeCopyControls": 3
+      "milliseconds": 862
     },
     {
       "route": "/blog/ai-memory-systems-short-term-long-term",
       "status": 200,
-      "milliseconds": 7507,
+      "milliseconds": 6023,
       "h1Count": 1,
       "canonical": true,
       "verificationStatusVisible": true,
@@ -168,7 +167,7 @@
     {
       "route": "/blog/pgvector-tutorial-supabase-vector-database",
       "status": 200,
-      "milliseconds": 7890,
+      "milliseconds": 1975,
       "h1Count": 1,
       "canonical": true,
       "verificationStatusVisible": true,
@@ -177,31 +176,9 @@
       "codeCopyControls": 7
     },
     {
-      "route": "/blog/ai-customer-support-agent-with-memory",
-      "status": 200,
-      "milliseconds": 1258,
-      "h1Count": 1,
-      "canonical": true,
-      "verificationStatusVisible": true,
-      "missingTOCTargets": [],
-      "structuredDataValid": true,
-      "codeCopyControls": 4
-    },
-    {
-      "route": "/blog/multi-agent-ai-architecture-that-works",
-      "status": 200,
-      "milliseconds": 1552,
-      "h1Count": 1,
-      "canonical": true,
-      "verificationStatusVisible": true,
-      "missingTOCTargets": [],
-      "structuredDataValid": true,
-      "codeCopyControls": 2
-    },
-    {
       "route": "/blog/ai-tool-calling-tutorial-api-examples",
       "status": 200,
-      "milliseconds": 1556,
+      "milliseconds": 1980,
       "h1Count": 1,
       "canonical": true,
       "verificationStatusVisible": true,
@@ -210,9 +187,53 @@
       "codeCopyControls": 5
     },
     {
+      "route": "/blog/ai-semantic-search-nextjs-website",
+      "status": 200,
+      "milliseconds": 2757,
+      "h1Count": 1,
+      "canonical": true,
+      "verificationStatusVisible": true,
+      "missingTOCTargets": [],
+      "structuredDataValid": true,
+      "codeCopyControls": 3
+    },
+    {
+      "route": "/blog/multi-agent-ai-architecture-that-works",
+      "status": 200,
+      "milliseconds": 1343,
+      "h1Count": 1,
+      "canonical": true,
+      "verificationStatusVisible": true,
+      "missingTOCTargets": [],
+      "structuredDataValid": true,
+      "codeCopyControls": 2
+    },
+    {
+      "route": "/blog/ai-customer-support-agent-with-memory",
+      "status": 200,
+      "milliseconds": 1717,
+      "h1Count": 1,
+      "canonical": true,
+      "verificationStatusVisible": true,
+      "missingTOCTargets": [],
+      "structuredDataValid": true,
+      "codeCopyControls": 4
+    },
+    {
+      "route": "/blog/reduce-ai-api-costs-prompt-caching",
+      "status": 200,
+      "milliseconds": 1732,
+      "h1Count": 1,
+      "canonical": true,
+      "verificationStatusVisible": true,
+      "missingTOCTargets": [],
+      "structuredDataValid": true,
+      "codeCopyControls": 2
+    },
+    {
       "route": "/blog/rag-vs-fine-tuning-which-to-choose",
       "status": 200,
-      "milliseconds": 1095,
+      "milliseconds": 1232,
       "h1Count": 1,
       "canonical": true,
       "verificationStatusVisible": true,
@@ -223,7 +244,7 @@
     {
       "route": "/blog/model-context-protocol-tutorial-real-project",
       "status": 200,
-      "milliseconds": 1116,
+      "milliseconds": 1243,
       "h1Count": 1,
       "canonical": true,
       "verificationStatusVisible": true,
@@ -232,31 +253,9 @@
       "codeCopyControls": 3
     },
     {
-      "route": "/blog/reduce-ai-api-costs-prompt-caching",
-      "status": 200,
-      "milliseconds": 1118,
-      "h1Count": 1,
-      "canonical": true,
-      "verificationStatusVisible": true,
-      "missingTOCTargets": [],
-      "structuredDataValid": true,
-      "codeCopyControls": 2
-    },
-    {
-      "route": "/blog/claude-code-vs-github-copilot-review",
-      "status": 200,
-      "milliseconds": 1473,
-      "h1Count": 1,
-      "canonical": true,
-      "verificationStatusVisible": true,
-      "missingTOCTargets": [],
-      "structuredDataValid": true,
-      "codeCopyControls": 0
-    },
-    {
       "route": "/blog/openai-responses-api-tutorial-first-ai-agent",
       "status": 200,
-      "milliseconds": 1484,
+      "milliseconds": 1246,
       "h1Count": 1,
       "canonical": true,
       "verificationStatusVisible": true,
@@ -267,7 +266,7 @@
     {
       "route": "/blog/n8n-openai-ai-workflows",
       "status": 200,
-      "milliseconds": 1495,
+      "milliseconds": 1198,
       "h1Count": 1,
       "canonical": true,
       "verificationStatusVisible": true,
@@ -276,31 +275,20 @@
       "codeCopyControls": 3
     },
     {
-      "route": "/blog/building-saas-admin-dashboard-from-scratch",
+      "route": "/blog/claude-code-vs-github-copilot-review",
       "status": 200,
-      "milliseconds": 1570,
+      "milliseconds": 1214,
       "h1Count": 1,
       "canonical": true,
       "verificationStatusVisible": true,
       "missingTOCTargets": [],
       "structuredDataValid": true,
-      "codeCopyControls": 4
-    },
-    {
-      "route": "/blog/common-vercel-deployment-errors-solutions",
-      "status": 200,
-      "milliseconds": 1583,
-      "h1Count": 1,
-      "canonical": true,
-      "verificationStatusVisible": true,
-      "missingTOCTargets": [],
-      "structuredDataValid": true,
-      "codeCopyControls": 2
+      "codeCopyControls": 0
     },
     {
       "route": "/blog/openai-structured-outputs-complete-guide",
       "status": 200,
-      "milliseconds": 1587,
+      "milliseconds": 1217,
       "h1Count": 1,
       "canonical": true,
       "verificationStatusVisible": true,
@@ -311,7 +299,7 @@
     {
       "route": "/blog/reduce-nextjs-website-loading-time",
       "status": 200,
-      "milliseconds": 1022,
+      "milliseconds": 1720,
       "h1Count": 1,
       "canonical": true,
       "verificationStatusVisible": true,
@@ -320,9 +308,20 @@
       "codeCopyControls": 4
     },
     {
-      "route": "/blog/nextjs-folder-structure-large-projects",
+      "route": "/blog/building-saas-admin-dashboard-from-scratch",
       "status": 200,
-      "milliseconds": 1294,
+      "milliseconds": 1723,
+      "h1Count": 1,
+      "canonical": true,
+      "verificationStatusVisible": true,
+      "missingTOCTargets": [],
+      "structuredDataValid": true,
+      "codeCopyControls": 4
+    },
+    {
+      "route": "/blog/common-vercel-deployment-errors-solutions",
+      "status": 200,
+      "milliseconds": 1724,
       "h1Count": 1,
       "canonical": true,
       "verificationStatusVisible": true,
@@ -333,7 +332,7 @@
     {
       "route": "/blog/supabase-row-level-security-real-examples",
       "status": 200,
-      "milliseconds": 1295,
+      "milliseconds": 1683,
       "h1Count": 1,
       "canonical": true,
       "verificationStatusVisible": true,
@@ -342,53 +341,31 @@
       "codeCopyControls": 6
     },
     {
-      "route": "/blog/nextjs-authentication-without-nextauth",
+      "route": "/blog/nextjs-folder-structure-large-projects",
       "status": 200,
-      "milliseconds": 1455,
+      "milliseconds": 1703,
       "h1Count": 1,
       "canonical": true,
       "verificationStatusVisible": true,
       "missingTOCTargets": [],
       "structuredDataValid": true,
-      "codeCopyControls": 5
+      "codeCopyControls": 2
     },
     {
       "route": "/blog/debug-production-errors-nextjs",
       "status": 200,
-      "milliseconds": 1467,
+      "milliseconds": 1703,
       "h1Count": 1,
       "canonical": true,
       "verificationStatusVisible": true,
       "missingTOCTargets": [],
       "structuredDataValid": true,
       "codeCopyControls": 2
-    },
-    {
-      "route": "/blog/sync-supabase-google-sheets-automatically",
-      "status": 200,
-      "milliseconds": 1467,
-      "h1Count": 1,
-      "canonical": true,
-      "verificationStatusVisible": true,
-      "missingTOCTargets": [],
-      "structuredDataValid": true,
-      "codeCopyControls": 2
-    },
-    {
-      "route": "/blog/what-is-n8",
-      "status": 200,
-      "milliseconds": 1145,
-      "h1Count": 1,
-      "canonical": true,
-      "verificationStatusVisible": true,
-      "missingTOCTargets": [],
-      "structuredDataValid": true,
-      "codeCopyControls": 0
     },
     {
       "route": "/blog/supabase-errors-production-fixes",
       "status": 200,
-      "milliseconds": 1153,
+      "milliseconds": 1684,
       "h1Count": 1,
       "canonical": true,
       "verificationStatusVisible": true,
@@ -397,9 +374,53 @@
       "codeCopyControls": 3
     },
     {
+      "route": "/blog/sync-supabase-google-sheets-automatically",
+      "status": 200,
+      "milliseconds": 1689,
+      "h1Count": 1,
+      "canonical": true,
+      "verificationStatusVisible": true,
+      "missingTOCTargets": [],
+      "structuredDataValid": true,
+      "codeCopyControls": 2
+    },
+    {
+      "route": "/blog/nextjs-authentication-without-nextauth",
+      "status": 200,
+      "milliseconds": 1709,
+      "h1Count": 1,
+      "canonical": true,
+      "verificationStatusVisible": true,
+      "missingTOCTargets": [],
+      "structuredDataValid": true,
+      "codeCopyControls": 5
+    },
+    {
+      "route": "/blog/what-is-typescript",
+      "status": 200,
+      "milliseconds": 1350,
+      "h1Count": 1,
+      "canonical": true,
+      "verificationStatusVisible": true,
+      "missingTOCTargets": [],
+      "structuredDataValid": true,
+      "codeCopyControls": 0
+    },
+    {
+      "route": "/blog/what-is-n8",
+      "status": 200,
+      "milliseconds": 1355,
+      "h1Count": 1,
+      "canonical": true,
+      "verificationStatusVisible": true,
+      "missingTOCTargets": [],
+      "structuredDataValid": true,
+      "codeCopyControls": 0
+    },
+    {
       "route": "/blog/inventory-management-system-nextjs-supabase",
       "status": 200,
-      "milliseconds": 1155,
+      "milliseconds": 2135,
       "h1Count": 1,
       "canonical": true,
       "verificationStatusVisible": true,
@@ -408,9 +429,20 @@
       "codeCopyControls": 6
     },
     {
+      "route": "/blog/how-to-become-an-ai-engineer",
+      "status": 200,
+      "milliseconds": 1342,
+      "h1Count": 1,
+      "canonical": true,
+      "verificationStatusVisible": true,
+      "missingTOCTargets": [],
+      "structuredDataValid": true,
+      "codeCopyControls": 0
+    },
+    {
       "route": "/blog/what-is-an-api",
       "status": 200,
-      "milliseconds": 1105,
+      "milliseconds": 1344,
       "h1Count": 1,
       "canonical": true,
       "verificationStatusVisible": true,
@@ -421,62 +453,7 @@
     {
       "route": "/blog/mongodb-vs-postgresql",
       "status": 200,
-      "milliseconds": 1114,
-      "h1Count": 1,
-      "canonical": true,
-      "verificationStatusVisible": true,
-      "missingTOCTargets": [],
-      "structuredDataValid": true,
-      "codeCopyControls": 0
-    },
-    {
-      "route": "/blog/what-is-typescript",
-      "status": 200,
-      "milliseconds": 1115,
-      "h1Count": 1,
-      "canonical": true,
-      "verificationStatusVisible": true,
-      "missingTOCTargets": [],
-      "structuredDataValid": true,
-      "codeCopyControls": 0
-    },
-    {
-      "route": "/blog/cloud-computing-explained",
-      "status": 200,
-      "milliseconds": 1043,
-      "h1Count": 1,
-      "canonical": true,
-      "verificationStatusVisible": true,
-      "missingTOCTargets": [],
-      "structuredDataValid": true,
-      "codeCopyControls": 0
-    },
-    {
-      "route": "/blog/what-is-code-with-logs",
-      "status": 200,
-      "milliseconds": 1045,
-      "h1Count": 1,
-      "canonical": true,
-      "verificationStatusVisible": true,
-      "missingTOCTargets": [],
-      "structuredDataValid": true,
-      "codeCopyControls": 2
-    },
-    {
-      "route": "/blog/how-to-become-an-ai-engineer",
-      "status": 200,
-      "milliseconds": 1047,
-      "h1Count": 1,
-      "canonical": true,
-      "verificationStatusVisible": true,
-      "missingTOCTargets": [],
-      "structuredDataValid": true,
-      "codeCopyControls": 0
-    },
-    {
-      "route": "/blog/can-ai-replace-programmers",
-      "status": 200,
-      "milliseconds": 1067,
+      "milliseconds": 1721,
       "h1Count": 1,
       "canonical": true,
       "verificationStatusVisible": true,
@@ -487,7 +464,7 @@
     {
       "route": "/blog/cybersecurity-for-beginners",
       "status": 200,
-      "milliseconds": 1071,
+      "milliseconds": 1098,
       "h1Count": 1,
       "canonical": true,
       "verificationStatusVisible": true,
@@ -496,9 +473,20 @@
       "codeCopyControls": 0
     },
     {
-      "route": "/blog/ai-productivity-guide",
+      "route": "/blog/what-is-code-with-logs",
       "status": 200,
-      "milliseconds": 1073,
+      "milliseconds": 1100,
+      "h1Count": 1,
+      "canonical": true,
+      "verificationStatusVisible": true,
+      "missingTOCTargets": [],
+      "structuredDataValid": true,
+      "codeCopyControls": 2
+    },
+    {
+      "route": "/blog/cloud-computing-explained",
+      "status": 200,
+      "milliseconds": 1740,
       "h1Count": 1,
       "canonical": true,
       "verificationStatusVisible": true,
@@ -507,20 +495,9 @@
       "codeCopyControls": 0
     },
     {
-      "route": "/blog/what-is-typescript-why-developers-switching",
+      "route": "/blog/can-ai-replace-programmers",
       "status": 200,
-      "milliseconds": 979,
-      "h1Count": 1,
-      "canonical": true,
-      "verificationStatusVisible": true,
-      "missingTOCTargets": [],
-      "structuredDataValid": true,
-      "codeCopyControls": 4
-    },
-    {
-      "route": "/blog/mongodb-vs-postgresql-which-database-2026",
-      "status": 200,
-      "milliseconds": 992,
+      "milliseconds": 1276,
       "h1Count": 1,
       "canonical": true,
       "verificationStatusVisible": true,
@@ -531,7 +508,62 @@
     {
       "route": "/blog/chatgpt-vs-claude-vs-gemini",
       "status": 200,
-      "milliseconds": 997,
+      "milliseconds": 1279,
+      "h1Count": 1,
+      "canonical": true,
+      "verificationStatusVisible": true,
+      "missingTOCTargets": [],
+      "structuredDataValid": true,
+      "codeCopyControls": 0
+    },
+    {
+      "route": "/blog/ai-productivity-guide",
+      "status": 200,
+      "milliseconds": 1652,
+      "h1Count": 1,
+      "canonical": true,
+      "verificationStatusVisible": true,
+      "missingTOCTargets": [],
+      "structuredDataValid": true,
+      "codeCopyControls": 0
+    },
+    {
+      "route": "/blog/deploy-nextjs-to-vercel-guide",
+      "status": 200,
+      "milliseconds": 1067,
+      "h1Count": 1,
+      "canonical": true,
+      "verificationStatusVisible": true,
+      "missingTOCTargets": [],
+      "structuredDataValid": true,
+      "codeCopyControls": 2
+    },
+    {
+      "route": "/blog/mongodb-vs-postgresql-which-database-2026",
+      "status": 200,
+      "milliseconds": 1079,
+      "h1Count": 1,
+      "canonical": true,
+      "verificationStatusVisible": true,
+      "missingTOCTargets": [],
+      "structuredDataValid": true,
+      "codeCopyControls": 0
+    },
+    {
+      "route": "/blog/what-is-typescript-why-developers-switching",
+      "status": 200,
+      "milliseconds": 1668,
+      "h1Count": 1,
+      "canonical": true,
+      "verificationStatusVisible": true,
+      "missingTOCTargets": [],
+      "structuredDataValid": true,
+      "codeCopyControls": 4
+    },
+    {
+      "route": "/blog/cursor-vs-github-copilot-2026",
+      "status": 200,
+      "milliseconds": 1311,
       "h1Count": 1,
       "canonical": true,
       "verificationStatusVisible": true,
@@ -542,7 +574,7 @@
     {
       "route": "/blog/what-is-serverless-computing-should-you-use-it",
       "status": 200,
-      "milliseconds": 1160,
+      "milliseconds": 1315,
       "h1Count": 1,
       "canonical": true,
       "verificationStatusVisible": true,
@@ -553,7 +585,7 @@
     {
       "route": "/blog/react-vs-vue-vs-svelte-2026",
       "status": 200,
-      "milliseconds": 1207,
+      "milliseconds": 2016,
       "h1Count": 1,
       "canonical": true,
       "verificationStatusVisible": true,
@@ -562,31 +594,9 @@
       "codeCopyControls": 1
     },
     {
-      "route": "/blog/deploy-nextjs-to-vercel-guide",
-      "status": 200,
-      "milliseconds": 1215,
-      "h1Count": 1,
-      "canonical": true,
-      "verificationStatusVisible": true,
-      "missingTOCTargets": [],
-      "structuredDataValid": true,
-      "codeCopyControls": 2
-    },
-    {
       "route": "/blog/get-first-freelance-client-web-developer",
       "status": 200,
-      "milliseconds": 954,
-      "h1Count": 1,
-      "canonical": true,
-      "verificationStatusVisible": true,
-      "missingTOCTargets": [],
-      "structuredDataValid": true,
-      "codeCopyControls": 0
-    },
-    {
-      "route": "/blog/cursor-vs-github-copilot-2026",
-      "status": 200,
-      "milliseconds": 962,
+      "milliseconds": 1653,
       "h1Count": 1,
       "canonical": true,
       "verificationStatusVisible": true,
@@ -597,28 +607,28 @@
     {
       "route": "/api",
       "status": 401,
-      "milliseconds": 28
+      "milliseconds": 40
     },
     {
       "route": "/api/debug",
       "status": 401,
-      "milliseconds": 9
+      "milliseconds": 10
     },
     {
       "route": "/api/test-db",
       "status": 401,
-      "milliseconds": 10
+      "milliseconds": 11
     },
     {
       "route": "/admin/dashboard",
       "status": 307,
-      "milliseconds": 26,
+      "milliseconds": 34,
       "location": "https://codewithlogs.com/admin/login?callbackUrl=%2Fadmin%2Fdashboard"
     },
     {
       "route": "/blog/codewithlogs-nonexistent-validation-slug",
       "status": 404,
-      "milliseconds": 376
+      "milliseconds": 512
     }
   ],
   "limitations": "HTTP/server-rendered markup checks only. These do not verify browser interactions, visual layout, clipboard permissions, real-user Core Web Vitals, tutorial solutions, authenticated admin mutations, or form delivery."

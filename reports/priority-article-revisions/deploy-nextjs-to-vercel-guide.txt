@@ -1,4 +1,5 @@
 Deploy a Next.js App to Vercel: preflight, preview and production checks
+Editorial workflow: DRAFT — additional technical evidence required.
 REVISION DRAFT — not published. Retain /blog/deploy-nextjs-to-vercel-guide.
 
 ## What this walkthrough establishes

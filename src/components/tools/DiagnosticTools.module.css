@@ -1,0 +1,74 @@
+.page { max-width: 1120px; margin: 0 auto; padding: 32px 24px 80px; }
+.breadcrumbs { display: flex; flex-wrap: wrap; gap: 9px; font-size: 13px; color: #62695f; margin-bottom: 42px; }
+.breadcrumbs a:hover, .reading a:hover { text-decoration: underline; }
+.hero { max-width: 800px; margin-bottom: 30px; }
+.eyebrow { color: var(--primary); font: 600 11px/1.7 monospace; text-transform: uppercase; letter-spacing: 1.5px; }
+.hero h1 { font-size: clamp(32px, 5vw, 52px); font-weight: 650; line-height: 1.12; letter-spacing: -1.8px; margin: 15px 0 20px; }
+.hero p { font-size: 17px; line-height: 1.8; color: #51594e; }
+.privacy { display: flex; flex-wrap: wrap; gap: 8px 24px; padding: 13px 0; border-top: 1px solid #dedfd6; border-bottom: 1px solid #dedfd6; font: 12px/1.7 monospace; color: #38644a; margin-bottom: 28px; }
+.workspace { background: #fff; border: 1px solid #dedfd6; border-radius: 12px; padding: 28px; min-width: 0; }
+.workspace label { display: block; font-size: 17px; font-weight: 650; margin-bottom: 9px; }
+.help { font-size: 13px; line-height: 1.75; color: #62695f; margin-bottom: 16px; }
+.input { width: 100%; min-height: 260px; resize: vertical; padding: 18px; border: 1px solid #b6beb3; background: #fcfcfa; border-radius: 6px; font: 13px/1.85 ui-monospace, monospace; color: #202923; tab-size: 2; }
+.workspace :where(textarea, select, button):focus-visible, .page :where(summary, a):focus-visible { outline: 2px solid #216347; outline-offset: 4px; }
+.count { color: #62695f; font: 11px/1.6 monospace; margin-top: 8px; text-align: right; }
+.actions { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+.button { min-height: 44px; border: 1px solid #adb6a8; border-radius: 5px; padding: 10px 16px; background: #fff; color: #202923; font-size: 13px; font-weight: 600; cursor: pointer; }
+.primary { background: #216347; border-color: #216347; color: #fff; }
+.button:hover { filter: brightness(.95); }
+.button:disabled { opacity: .5; cursor: not-allowed; }
+.sample { margin-top: 20px; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.sample select { max-width: 100%; padding: 10px; border: 1px solid #b6beb3; border-radius: 4px; font-size: 13px; min-height: 44px; }
+.sample label { font-size: 13px; margin: 0; }
+.result { margin-top: 30px; min-width: 0; }
+.result:focus { outline: 2px solid #216347; outline-offset: 8px; }
+.result h2 { font-size: 23px; font-weight: 650; letter-spacing: -.5px; }
+.result h3 { font-size: 19px; font-weight: 650; margin: 0 0 12px; }
+.result h4 { font-size: 14px; font-weight: 650; margin: 20px 0 8px; }
+.result p, .result li { font-size: 14px; line-height: 1.85; }
+.match { padding: 24px; border: 1px solid #dedfd6; background: #fff; border-left: 3px solid #216347; border-radius: 4px; margin-top: 20px; min-width: 0; overflow-wrap: anywhere; }
+.match ul, .match ol { padding-left: 22px; }
+.match li + li { margin-top: 8px; }
+.notice { background: #f0f3eb; border: 1px solid #d7dfce; padding: 15px 18px; font-size: 13px; line-height: 1.8; margin-top: 16px; border-radius: 4px; overflow-wrap: anywhere; }
+.caution { background: #fff8ea; border-color: #e6d9b8; }
+.code { display: block; white-space: pre-wrap; overflow-wrap: anywhere; padding: 18px; background: #202923; color: #f1f2ed; border-radius: 5px; font: 12px/1.9 ui-monospace, monospace; margin: 12px 0; }
+.copy { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.copy span, .status { font-size: 12px; color: #51594e; line-height: 1.8; }
+.status { min-height: 24px; margin-top: 10px; }
+.links { display: flex; flex-direction: column; align-items: flex-start; gap: 9px; margin-top: 16px; }
+.links a { color: #216347; text-decoration: underline; text-underline-offset: 3px; font-size: 13px; }
+.summary { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border: 1px solid #dedfd6; background: white; margin: 20px 0; }
+.summary > div { padding: 16px; border: 1px solid #edf0e8; overflow-wrap: anywhere; }
+.summary dt { font-size: 11px; color: #62695f; margin-bottom: 6px; }
+.summary dd { font-size: 14px; font-weight: 600; }
+.findings { list-style: none; padding: 0; margin-top: 12px; }
+.findings li { padding: 12px 0; border-bottom: 1px solid #dedfd6; overflow-wrap: anywhere; }
+.badge { display: inline-block; padding: 2px 7px; border: 1px solid #d6dcca; border-radius: 3px; font: 10px/1.7 monospace; text-transform: uppercase; margin: 0 8px 4px 0; color: #4f583e; }
+.tableWrap { overflow-x: auto; border: 1px solid #dedfd6; border-radius: 5px; margin: 12px 0 24px; }
+.table { width: 100%; text-align: left; border-collapse: collapse; font-size: 12px; background: #fff; table-layout: fixed; }
+.table th, .table td { padding: 12px; border-bottom: 1px solid #dedfd6; vertical-align: top; overflow-wrap: anywhere; }
+.table th { background: #f1f2ed; font-weight: 600; }
+.script { padding: 16px 0; border-bottom: 1px solid #dedfd6; overflow-wrap: anywhere; }
+.script h4 { margin-top: 0; }
+.reading { margin-top: 60px; padding-top: 32px; border-top: 1px solid #dedfd6; }
+.reading > h2 { font-size: 27px; font-weight: 650; letter-spacing: -.7px; margin-bottom: 15px; }
+.reading p, .reading li { font-size: 15px; line-height: 1.9; color: #51594e; max-width: 80ch; }
+.reading p + p { margin-top: 14px; }
+.reading a { color: #216347; text-decoration: underline; text-underline-offset: 3px; }
+.reading h3 { font-size: 18px; font-weight: 650; margin: 28px 0 9px; }
+.reading ul, .reading ol { padding-left: 23px; }
+.reading details { padding: 18px 0; border-bottom: 1px solid #dedfd6; }
+.reading summary { font-size: 16px; font-weight: 600; cursor: pointer; min-height: 30px; }
+.reading details p { margin-top: 12px; }
+.reading pre { white-space: pre-wrap; overflow-wrap: anywhere; font: 12px/1.8 monospace; margin-top: 12px; padding: 14px; background: #f1f2ed; }
+@media (max-width: 600px) {
+  .page { padding: 24px 18px 56px; }
+  .breadcrumbs { margin-bottom: 28px; }
+  .workspace { padding: 18px; }
+  .hero h1 { letter-spacing: -1px; }
+  .hero p { font-size: 15px; }
+  .match { padding: 18px; }
+  .summary { grid-template-columns: minmax(0, 1fr); }
+  .table th, .table td { padding: 9px 7px; }
+  .input { padding: 12px; font-size: 12px; }
+}

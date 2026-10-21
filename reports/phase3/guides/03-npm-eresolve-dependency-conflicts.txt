@@ -1,0 +1,112 @@
+Fix npm ERESOLVE Dependency Conflicts by Repairing the Peer Contract
+Status: DRAFT | Proposed slug: windows-npm-eresolve
+Tested scope: npm 10.9.3 offline resolver with real local package tarballs on
+Windows 10 Pro 10.0.19045 x64 / Node v22.18.0, 2026-10-21.
+
+## Exact observed error
+npm error code ERESOLVE
+npm error ERESOLVE unable to resolve dependency tree
+npm error Found: cwl-peer-host@1.0.0
+npm error peer cwl-peer-host@"^2.0.0" from cwl-peer-plugin@1.0.0
+
+This is an actual npm result from a deliberately conflicting isolated package
+graph. The package names are local teaching fixtures, not public npm packages.
+No registry response, successful output or benchmark was invented or mocked.
+
+## What the message means
+The application asked for host 1.0.0 while its plugin declared support for host
+^2.0.0. npm could not satisfy both contracts. Deleting a cache or lockfile cannot
+make version 1 satisfy that range. A peer-range conflict also differs from a
+network timeout, missing npm launcher or filesystem permission error.
+
+## Diagnose a real project
+From its intended root in PowerShell:
+
+node --version
+npm.cmd --version
+Get-Content package.json
+npm.cmd ls --all
+npm.cmd explain <actual-package-name>
+
+Replace the angle-bracket argument with the name in your error before running
+explain. Read “Found”, the required peer range and which package requests it.
+ls may exit nonzero for an invalid tree; save its output. Review workspace roots,
+the lockfile and npm configuration before assuming the conflict is at the top level.
+Do not post private registry credentials or full environment variables in a bug report.
+
+## Reproduce the complete isolated case
+Run from the CodeWithLogs repository root:
+
+node scripts/test-eresolve.mjs
+
+The runner uses the installed npm CLI and a fresh ignored fixture directory. It
+creates and packs these three tiny packages with npm pack --offline --ignore-scripts:
+
+host1/package.json:
+{ "name": "cwl-peer-host", "version": "1.0.0", "main": "index.js" }
+host1/index.js:
+exports.version = '1.0.0';
+
+host2/package.json:
+{ "name": "cwl-peer-host", "version": "2.0.0", "main": "index.js" }
+host2/index.js:
+exports.version = '2.0.0';
+
+plugin/package.json:
+{ "name": "cwl-peer-plugin", "version": "1.0.0", "main": "index.js",
+  "peerDependencies": { "cwl-peer-host": "^2.0.0" } }
+plugin/index.js:
+module.exports = require('cwl-peer-host').version;
+
+The app initially depends on the host1 and plugin TARBALLS by file: path, not
+workspace symlinks. The script records npm install's real ERESOLVE, then changes
+only the direct host dependency to the host2 tarball. The complete generator,
+commands and actual results are in scripts/test-eresolve.mjs and
+reports/phase3/tests/eresolve/results.json. Nothing is downloaded or published.
+
+## Solution A: align supported versions
+In the fixture the working change is host 1.0.0 -> 2.0.0 to satisfy the plugin's
+declared peer range. After changing the manifest the actual commands were:
+
+npm.cmd install --offline --ignore-scripts --no-audit --no-fund
+npm.cmd ls --all
+npm.cmd ci --offline --ignore-scripts --no-audit --no-fund
+
+Actual install output: added 2 packages in 2s.
+The tree check and lockfile repeat exited 0, and loading the installed plugin
+returned 2.0.0. That duration is a single observed fixture result, not a speed claim.
+The --offline option works here because all dependencies are local tarballs; do
+not expect it to fetch an uncached package in a normal project.
+
+For a real project select a vendor-supported version combination, update the
+specific dependency and its lockfile deliberately, then run the project's tests,
+types, lint and production build. Satisfying declared ranges alone does not prove
+runtime compatibility or justify an unrelated framework major upgrade.
+
+## Solution B: select a compatible plugin release or remove an unused plugin
+If the host must remain on its current major, find a plugin release whose official
+peer range supports it. Inspect that release's manifest, migration guidance and
+release notes; do not guess a version number. If the plugin is unused, remove its
+imports/configuration and dependency in a reviewed branch, then test behavior.
+These alternatives have not been exercised against a real application here.
+
+## Why force and legacy-peer-deps are not the demonstrated fix
+npm's error text suggests these escape options, but they can allow a graph without
+enforcing the intended peer relationship. This test used neither. A temporary
+exception needs a documented compatibility reason and tests; it is not evidence
+that the conflict was repaired. Do not delete a lockfile to conceal the mismatch.
+Install scripts can execute code: the synthetic fixture disables them deliberately.
+
+## Verification, limitations and related reading
+Repeat the original failing install, inspect the final tree, run npm ci with the
+same lockfile and execute relevant application behavior. This case is verified
+only for these local packages/npm version. Windows 11, Linux, registry resolution
+and a real React/Next dependency migration remain untested. No screenshots captured.
+Store as DRAFT pending editorial review and owner publication approval.
+
+https://docs.npmjs.com/cli/v10/using-npm/config#legacy-peer-deps
+https://docs.npmjs.com/cli/v10/configuring-npm/package-json#peerdependencies
+https://docs.npmjs.com/cli/v10/commands/npm-explain
+https://docs.npmjs.com/cli/v10/commands/npm-ci
+Related public guide: https://codewithlogs.com/blog/common-vercel-deployment-errors-solutions
+Related project organization: https://codewithlogs.com/blog/nextjs-folder-structure-large-projects

@@ -1,4 +1,5 @@
 Common Vercel Deployment Errors: a Windows-to-production diagnostic checklist
+Editorial workflow: DRAFT — additional technical evidence required.
 REVISION DRAFT — not published. Retain /blog/common-vercel-deployment-errors-solutions.
 Existing article record, title and publication status are unchanged.
 

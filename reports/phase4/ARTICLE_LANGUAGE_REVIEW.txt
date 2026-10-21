@@ -1,0 +1,80 @@
+CODEWITHLOGS PHASE 4 — ARTICLE LANGUAGE AND EVIDENCE REVIEW
+Review date: 2026-10-21 (Asia/Karachi)
+
+Scope: the five corrected priority drafts and the five Phase 3 Windows guides.
+This is a local editorial review, not approval to change public articles. No
+article, publication status, verification record, test log or draft was changed.
+Source hashes are checked against the Phase 4 boundary snapshot.
+
+GENERAL FINDINGS
+The drafts use concrete failure conditions, separate causes from symptoms, and
+identify actual environments and untested alternatives. Unsupported personal
+stories, universal repair claims and invented screenshots are absent from the
+reviewed drafts. Prose is professional and technically cautious. The code examples
+and observed outputs are attributed to local fixtures rather than past incidents.
+
+No external plagiarism comparison was performed. This review cannot certify
+originality across the web or establish the author's first-hand experience. The
+original teaching fixtures provide specific reproducible material; author approval
+and evidence remain necessary. Existing public article bodies retain their Phase 3
+audit issues because corrected drafts have not been approved for publication.
+
+PER-DRAFT REVIEW / BEFORE PUBLICATION
+1. Common Vercel Deployment Errors
+   The numbered failure categories and change-one-thing workflow are readable.
+   Distinguishes Windows index casing from an untested Linux build; avoids plan
+   limit generalizations. Keep local-versus-hosted evidence adjacent to remedies.
+   Remaining: actual Vercel, Linux, OOM and static/404 coverage; DRAFT.
+2. Debug Production Errors in Next.js
+   Clear distinction between server exceptions, HTTP errors and browser failures.
+   The boundary is not called a root-cause fix. Replace repository workflow notes
+   with a downloadable, versioned companion fixture if later publishing for readers
+   who do not have this repository. Browser retry/hydration/log review remain;
+   DRAFT. No recovery-time or monitoring success claim is supported.
+3. Authentication Without NextAuth
+   Distinguishes identity from authorization and explicitly labels mocks. The word
+   "complete" in its local title refers to example files, not a complete production
+   identity product; consider a narrower reader-facing title before publication.
+   Do not remove the untested live-session/RLS warning. DRAFT pending provider tests.
+4. Deploy Next.js to Vercel
+   Direct preflight/preview steps and accurate PowerShell command forms. It avoids
+   timing promises and generic database allow-all guidance. Keep deployment steps
+   labeled unverified until an approved preview is observed. DRAFT.
+5. Next.js Folder Structure
+   Explains conventions versus preferences without arbitrary scale/productivity
+   claims. READY FOR EDITORIAL REVIEW remains bounded to recorded local imports,
+   alias and build evidence; security companion examples are not certified.
+   No status or evidence promotion was made in Phase 4.
+6. npm.ps1 Cannot Be Loaded
+   Strong exact-error opening and scoped npm.cmd alternative. Keeps managed-policy
+   and persistent-policy caveats clear. Windows 11, Windows PowerShell 5.1 and
+   managed policies remain untested; DRAFT.
+7. Node Not Recognized on Windows 11
+   Separates discovery, installation and stale parent processes. The Windows 11
+   title is an intended audience, not tested support; retain the prominent Windows
+   10-only notice or narrow the title at editorial review. DRAFT.
+8. npm ERESOLVE
+   Useful original three-package fixture and real failure/repair records; describes
+   local tarballs accurately. The observed "2s" output is explicitly one result,
+   not a benchmark. Registry/framework migrations and other OSs remain untested.
+   Remove internal process commentary only in a separately approved publication
+   edit; do not transform the fixture into a real-world incident claim. DRAFT.
+9. VS Code Integrated Terminal
+   Carefully distinguishes a documentation target symptom from an observed error.
+   "Expected output" is a test criterion, not a successful UI result. The planned
+   executable/cwd reproductions must actually run before verification. DRAFT.
+10. Git Not Recognized in Windows Terminal
+   Correctly separates a terminal host, shell command lookup and repository auth.
+   The process PATH test does not prove a Windows Terminal restart/install repair.
+   Preserve the scope note and avoid claiming Windows 11 coverage. DRAFT.
+
+RECOMMENDATIONS
+- Keep error/cause/check/fix/verify sections; remove editorial history from final
+  reader-facing versions only through an approved content update.
+- Publish a portable fixture package or explicit repository access instructions
+  when guides refer to local scripts. Do not link to nonexistent public downloads.
+- Confirm named author attribution, actual supported versions and security review.
+- Preserve current public URLs and article records; no merge/archive/redirect is
+  proposed or performed here. No arbitrary length or article-count goal applies.
+- Review the missing tests listed in reports/phase3/FINAL_TECHNICAL_ACCURACY.txt
+  and guides/manifest.json. Phase 4's tool matching tests do not fill those gaps.

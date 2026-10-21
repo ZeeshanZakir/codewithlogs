@@ -1,0 +1,148 @@
+
+
+
+Copyright (c) Microsoft Corporation. All rights reserved.
+
+
+
+
+
+Usage: wsl.exe [Argument]
+
+
+
+
+
+Arguments:
+
+
+
+
+
+    --install <Options>
+
+
+        Install Windows Subsystem for Linux features. If no options are specified,
+
+
+        the recommended features will be installed along with the default distribution.
+
+
+
+
+
+        To view the default distribution as well as a list of other valid distributions,
+
+
+        use 'wsl --list --online'.
+
+
+
+
+
+        Options:
+
+
+            --distribution, -d [Argument]
+
+
+                Specifies the distribution to be downloaded and installed by name.
+
+
+
+
+
+                Arguments:
+
+
+                    A valid distribution name (not case sensitive).
+
+
+
+
+
+                Examples:
+
+
+                    wsl --install -d Ubuntu
+
+
+                    wsl --install --distribution Debian
+
+
+
+
+
+            --inbox
+
+
+                Install the optional Windows feature instead of the version available via the Microsoft Store.
+
+
+
+
+
+            --no-distribution
+
+
+                Do not install a distribution (cannot be used with --distribution).
+
+
+
+
+
+            --no-launch, -n
+
+
+                Do not launch the distribution after install.
+
+
+
+
+
+            --web-download
+
+
+                Download the most recent version of WSL from the internet instead of the Microsoft Store.
+
+
+
+
+
+    --list, -l [Options]
+
+
+        Lists distributions.
+
+
+
+
+
+        Options:
+
+
+            --online, -o
+
+
+                Displays a list of available distributions for install with 'wsl --install'.
+
+
+
+
+
+    --status
+
+
+        Show the status of Windows Subsystem for Linux.
+
+
+
+
+
+    --help
+
+
+        Display usage information.
+
+
+

@@ -1,0 +1,55 @@
+PHASE 4 — BROWSER / MOBILE REVIEW REQUIREMENTS
+Date: 2026-10-21 (Asia/Karachi)
+
+Status: NOT RUN in a real browser for this phase.
+The available browser session previously refused local tab access under its URL
+policy (reports/phase3/tests/browser-availability.json). No policy workaround,
+alternate automation channel, raw browser debugging or alternate-host attempt was
+used. The restriction was not claimed resolved in Phase 4. No browser screenshot,
+mobile rendering, keyboard result or real clipboard-permission test is asserted.
+
+Automated coverage actually available:
+- 57 pure logic/security cases using the actual TypeScript tool modules.
+- Eight actual TSX event-callback cases in a controlled hook host: examples,
+  submission, unsupported/malformed input, stale result removal, Clear, and mocked
+  clipboard success/unavailable/permission rejection. These are unit tests, not DOM
+  or browser tests. Animation scheduling and clipboard are mocked.
+- Local production HTTP, semantic markup, label/input linkage, metadata,
+  structured-data shape, script availability, sitemap and route/link checks.
+- Responsive CSS reviewed at <=600px, wrapping controls/tables/long code, minimum
+  button heights, labelled textareas, polite status messages and focus outlines.
+  Source review cannot prove rendered accessibility or responsive behavior.
+
+OWNER / NEXT AVAILABLE BROWSER CHECKLIST
+Start npm run start -- --hostname 127.0.0.1 --port 3000 after npm run build.
+Open /tools/error-decoder and /tools/package-json-inspector.
+1. At 360px/390px, tablet and desktop widths, inspect nav, dropdowns, button
+   wrapping, textarea, long dependency names/specifications and code. Confirm no
+   whole-page horizontal overflow, zoom usability, readable text and contrast.
+2. Use Tab/Shift+Tab and Enter/Space. Confirm Skip to content, visible focus,
+   sample selection, analysis submission, result focus and Clear. Ensure screen
+   reader labels and result announcements are useful without duplicate noise.
+3. Load all eight decoder examples, submit, inspect evidence/limits and links.
+   Paste an unknown message, then edit a matched input: results must disappear
+   rather than remain a stale diagnosis. Try ANSI text and 20,000-character input.
+4. Inspect the package sample, malformed JSON, null/array input, invalid map
+   types, a peer conflict declaration, duplicate prod/dev names, lifecycle hook,
+   workspace/alias sources, a long name and more than 200 dependency entries.
+   Check that totals, omitted-row notices and limits match what is displayed.
+5. Exercise Copy using a permitted secure context and with clipboard permissions
+   denied. Confirm copied static checklists exclude original error logs; package
+   reports intentionally include displayed package names/scripts. Failure should
+   offer manual selection and should not throw an uncaught error.
+6. Inspect network/storage while using a uniquely marked synthetic input (not a
+   real secret). Analysis should make no upload, storage or URL mutation. Separate
+   existing site analytics/page requests from tool analysis. Do not infer absence
+   of all site requests merely because these tools use no transport APIs.
+7. Confirm client hydration without console errors and correct output after
+   client-side navigation/back/reload. Browser-managed page-state restoration can
+   retain values independently; do not advertise memory erasure guarantees.
+8. Disable JavaScript and confirm documentation/references remain readable.
+9. Run a real accessibility/mobile performance audit if available. Record browser,
+   OS, viewport, test date and actual findings. Local response times and JS byte
+   counts in route-seo-tests.json are not Core Web Vitals or mobile scores.
+
+Do not deploy, push, publish articles or submit to AdSense as part of this review.

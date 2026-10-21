@@ -1,0 +1,967 @@
+{
+  "checkedAt": "2026-10-21T15:26:25.019Z",
+  "origin": "http://127.0.0.1:3000",
+  "pages": [
+    {
+      "route": "/about",
+      "status": 200,
+      "title": "About CodeWithLogs &amp; Zeeshan Zakir | CodeWithLogs",
+      "hasCanonical": true,
+      "h1Count": 1,
+      "reviewStatuses": [],
+      "affiliateDisclosure": false,
+      "sponsoredLinkCount": 0,
+      "analyticsConfigured": true,
+      "purpose": "Public information/navigation page; source review applies"
+    },
+    {
+      "route": "/",
+      "status": 200,
+      "title": "Windows Developer Troubleshooting | CodeWithLogs",
+      "hasCanonical": true,
+      "h1Count": 1,
+      "reviewStatuses": [
+        "unverified"
+      ],
+      "affiliateDisclosure": false,
+      "sponsoredLinkCount": 0,
+      "analyticsConfigured": true,
+      "purpose": "Public information/navigation page; source review applies"
+    },
+    {
+      "route": "/contact",
+      "status": 200,
+      "title": "Contact &amp; Article Corrections | CodeWithLogs",
+      "hasCanonical": true,
+      "h1Count": 1,
+      "reviewStatuses": [],
+      "affiliateDisclosure": false,
+      "sponsoredLinkCount": 0,
+      "analyticsConfigured": true,
+      "purpose": "Public information/navigation page; source review applies"
+    },
+    {
+      "route": "/blog",
+      "status": 200,
+      "title": "Troubleshooting Guides &amp; Article Archive | CodeWithLogs",
+      "hasCanonical": true,
+      "h1Count": 1,
+      "reviewStatuses": [
+        "unverified"
+      ],
+      "affiliateDisclosure": false,
+      "sponsoredLinkCount": 0,
+      "analyticsConfigured": true,
+      "purpose": "Public information/navigation page; source review applies"
+    },
+    {
+      "route": "/gallery",
+      "status": 200,
+      "title": "Gallery | CodeWithLogs",
+      "hasCanonical": true,
+      "h1Count": 1,
+      "reviewStatuses": [],
+      "affiliateDisclosure": false,
+      "sponsoredLinkCount": 0,
+      "analyticsConfigured": true,
+      "purpose": "Public information/navigation page; source review applies"
+    },
+    {
+      "route": "/disclaimer",
+      "status": 200,
+      "title": "Disclaimer | CodeWithLogs",
+      "hasCanonical": true,
+      "h1Count": 1,
+      "reviewStatuses": [],
+      "affiliateDisclosure": false,
+      "sponsoredLinkCount": 0,
+      "analyticsConfigured": true,
+      "purpose": "Public information/navigation page; source review applies"
+    },
+    {
+      "route": "/privacy-policy",
+      "status": 200,
+      "title": "Privacy Policy | CodeWithLogs",
+      "hasCanonical": true,
+      "h1Count": 1,
+      "reviewStatuses": [],
+      "affiliateDisclosure": false,
+      "sponsoredLinkCount": 0,
+      "analyticsConfigured": true,
+      "purpose": "Public information/navigation page; source review applies"
+    },
+    {
+      "route": "/services",
+      "status": 200,
+      "title": "Web Development Services That Ship Fast | CodeWithLogs",
+      "hasCanonical": true,
+      "h1Count": 1,
+      "reviewStatuses": [],
+      "affiliateDisclosure": false,
+      "sponsoredLinkCount": 0,
+      "analyticsConfigured": true,
+      "purpose": "Existing commercial page; verify claims/testimonials"
+    },
+    {
+      "route": "/terms",
+      "status": 200,
+      "title": "Terms of Service | CodeWithLogs",
+      "hasCanonical": true,
+      "h1Count": 1,
+      "reviewStatuses": [],
+      "affiliateDisclosure": false,
+      "sponsoredLinkCount": 0,
+      "analyticsConfigured": true,
+      "purpose": "Public information/navigation page; source review applies"
+    },
+    {
+      "route": "/tools/base64",
+      "status": 200,
+      "title": "Base64 Encoder/Decoder — Free Online Tool | Code With Logs | CodeWithLogs",
+      "hasCanonical": true,
+      "h1Count": 1,
+      "reviewStatuses": [],
+      "affiliateDisclosure": false,
+      "sponsoredLinkCount": 0,
+      "analyticsConfigured": true,
+      "purpose": "Interactive developer utility; brevity alone is not thin content"
+    },
+    {
+      "route": "/editorial-policy",
+      "status": 200,
+      "title": "Editorial &amp; Verification Policy | CodeWithLogs",
+      "hasCanonical": true,
+      "h1Count": 1,
+      "reviewStatuses": [],
+      "affiliateDisclosure": false,
+      "sponsoredLinkCount": 0,
+      "analyticsConfigured": true,
+      "purpose": "Public information/navigation page; source review applies"
+    },
+    {
+      "route": "/tools",
+      "status": 200,
+      "title": "Best Developer Tools — Free Online Utilities | CodeWithLogs | CodeWithLogs",
+      "hasCanonical": true,
+      "h1Count": 1,
+      "reviewStatuses": [],
+      "affiliateDisclosure": false,
+      "sponsoredLinkCount": 0,
+      "analyticsConfigured": true,
+      "purpose": "Public information/navigation page; source review applies"
+    },
+    {
+      "route": "/tools/css-minifier",
+      "status": 200,
+      "title": "Best CSS Minifier — Free Online CSS Minify &amp; Beautify Tool | CodeWithLogs | CodeWithLogs",
+      "hasCanonical": true,
+      "h1Count": 1,
+      "reviewStatuses": [],
+      "affiliateDisclosure": false,
+      "sponsoredLinkCount": 0,
+      "analyticsConfigured": true,
+      "purpose": "Interactive developer utility; brevity alone is not thin content"
+    },
+    {
+      "route": "/tools/cron-builder",
+      "status": 200,
+      "title": "Cron Expression Builder &amp; Parser — Free Cron Job Generator | CodeWithLogs | CodeWithLogs",
+      "hasCanonical": true,
+      "h1Count": 1,
+      "reviewStatuses": [],
+      "affiliateDisclosure": false,
+      "sponsoredLinkCount": 0,
+      "analyticsConfigured": true,
+      "purpose": "Interactive developer utility; brevity alone is not thin content"
+    },
+    {
+      "route": "/tools/json-formatter",
+      "status": 200,
+      "title": "Best JSON Formatter &amp; Validator Online — Free Tool | Code With Logs | CodeWithLogs",
+      "hasCanonical": true,
+      "h1Count": 1,
+      "reviewStatuses": [],
+      "affiliateDisclosure": false,
+      "sponsoredLinkCount": 0,
+      "analyticsConfigured": true,
+      "purpose": "Interactive developer utility; brevity alone is not thin content"
+    },
+    {
+      "route": "/tools/jwt-decoder",
+      "status": 200,
+      "title": "JWT Decoder — Free Online Tool | Code With Logs | CodeWithLogs",
+      "hasCanonical": true,
+      "h1Count": 1,
+      "reviewStatuses": [],
+      "affiliateDisclosure": false,
+      "sponsoredLinkCount": 0,
+      "analyticsConfigured": true,
+      "purpose": "Interactive developer utility; brevity alone is not thin content"
+    },
+    {
+      "route": "/tools/password-generator",
+      "status": 200,
+      "title": "Password Generator — Free Strong Password Tool | CodeWithLogs | CodeWithLogs",
+      "hasCanonical": true,
+      "h1Count": 1,
+      "reviewStatuses": [],
+      "affiliateDisclosure": false,
+      "sponsoredLinkCount": 0,
+      "analyticsConfigured": true,
+      "purpose": "Interactive developer utility; brevity alone is not thin content"
+    },
+    {
+      "route": "/tools/regex-tester",
+      "status": 200,
+      "title": "Regex Tester — Test &amp; Debug Regular Expressions Online | CodeWithLogs | CodeWithLogs",
+      "hasCanonical": true,
+      "h1Count": 1,
+      "reviewStatuses": [],
+      "affiliateDisclosure": false,
+      "sponsoredLinkCount": 0,
+      "analyticsConfigured": true,
+      "purpose": "Interactive developer utility; brevity alone is not thin content"
+    },
+    {
+      "route": "/tools/token-counter",
+      "status": 200,
+      "title": "Token Counter for GPT, Claude &amp; Gemini — Free AI Token Calculator | CodeWithLogs | CodeWithLogs",
+      "hasCanonical": true,
+      "h1Count": 1,
+      "reviewStatuses": [],
+      "affiliateDisclosure": false,
+      "sponsoredLinkCount": 0,
+      "analyticsConfigured": true,
+      "purpose": "Interactive developer utility; brevity alone is not thin content"
+    },
+    {
+      "route": "/tools/word-counter",
+      "status": 200,
+      "title": "Best Word Counter — Free Online Word &amp; Character Count Tool | CodeWithLogs | CodeWithLogs",
+      "hasCanonical": true,
+      "h1Count": 1,
+      "reviewStatuses": [],
+      "affiliateDisclosure": false,
+      "sponsoredLinkCount": 0,
+      "analyticsConfigured": true,
+      "purpose": "Interactive developer utility; brevity alone is not thin content"
+    },
+    {
+      "route": "/blog/ai-tool-calling-tutorial-api-examples",
+      "status": 200,
+      "title": "AI Tool Calling Explained with Real API Examples | CodeWithLogs",
+      "hasCanonical": true,
+      "h1Count": 1,
+      "reviewStatuses": [
+        "unverified"
+      ],
+      "affiliateDisclosure": false,
+      "sponsoredLinkCount": 0,
+      "analyticsConfigured": true,
+      "purpose": "Existing educational article; content audit applies"
+    },
+    {
+      "route": "/blog/pgvector-tutorial-supabase-vector-database",
+      "status": 200,
+      "title": "Vector Databases Explained with Supabase pgvector | CodeWithLogs",
+      "hasCanonical": true,
+      "h1Count": 1,
+      "reviewStatuses": [
+        "unverified"
+      ],
+      "affiliateDisclosure": false,
+      "sponsoredLinkCount": 0,
+      "analyticsConfigured": true,
+      "purpose": "Existing educational article; content audit applies"
+    },
+    {
+      "route": "/blog/ai-semantic-search-nextjs-website",
+      "status": 200,
+      "title": "How I Added AI Search to My Next.js Website | CodeWithLogs",
+      "hasCanonical": true,
+      "h1Count": 1,
+      "reviewStatuses": [
+        "unverified"
+      ],
+      "affiliateDisclosure": false,
+      "sponsoredLinkCount": 0,
+      "analyticsConfigured": true,
+      "purpose": "Existing educational article; content audit applies"
+    },
+    {
+      "route": "/blog/ai-memory-systems-short-term-long-term",
+      "status": 200,
+      "title": "AI Memory Systems: Short-Term vs Long-Term Memory | CodeWithLogs",
+      "hasCanonical": true,
+      "h1Count": 1,
+      "reviewStatuses": [
+        "unverified"
+      ],
+      "affiliateDisclosure": false,
+      "sponsoredLinkCount": 0,
+      "analyticsConfigured": true,
+      "purpose": "Existing educational article; content audit applies"
+    },
+    {
+      "route": "/blog/ai-customer-support-agent-with-memory",
+      "status": 200,
+      "title": "Building an AI Customer Support Agent with Memory | CodeWithLogs",
+      "hasCanonical": true,
+      "h1Count": 1,
+      "reviewStatuses": [
+        "unverified"
+      ],
+      "affiliateDisclosure": false,
+      "sponsoredLinkCount": 0,
+      "analyticsConfigured": true,
+      "purpose": "Existing educational article; content audit applies"
+    },
+    {
+      "route": "/blog/reduce-ai-api-costs-prompt-caching",
+      "status": 200,
+      "title": "How I Reduced AI API Costs by 80% Using Prompt Caching | CodeWithLogs",
+      "hasCanonical": true,
+      "h1Count": 1,
+      "reviewStatuses": [
+        "unverified"
+      ],
+      "affiliateDisclosure": false,
+      "sponsoredLinkCount": 0,
+      "analyticsConfigured": true,
+      "purpose": "Existing educational article; content audit applies"
+    },
+    {
+      "route": "/blog/rag-vs-fine-tuning-which-to-choose",
+      "status": 200,
+      "title": "RAG vs Fine-Tuning: Which One Should You Choose? | CodeWithLogs",
+      "hasCanonical": true,
+      "h1Count": 1,
+      "reviewStatuses": [
+        "unverified"
+      ],
+      "affiliateDisclosure": false,
+      "sponsoredLinkCount": 0,
+      "analyticsConfigured": true,
+      "purpose": "Existing educational article; content audit applies"
+    },
+    {
+      "route": "/blog/multi-agent-ai-architecture-that-works",
+      "status": 200,
+      "title": "Building Multi-Agent AI Systems That Actually Work | CodeWithLogs",
+      "hasCanonical": true,
+      "h1Count": 1,
+      "reviewStatuses": [
+        "unverified"
+      ],
+      "affiliateDisclosure": false,
+      "sponsoredLinkCount": 0,
+      "analyticsConfigured": true,
+      "purpose": "Existing educational article; content audit applies"
+    },
+    {
+      "route": "/blog/claude-code-vs-github-copilot-review",
+      "status": 200,
+      "title": "Claude Code vs GitHub Copilot: Real Developer Review | CodeWithLogs",
+      "hasCanonical": true,
+      "h1Count": 1,
+      "reviewStatuses": [
+        "unverified"
+      ],
+      "affiliateDisclosure": false,
+      "sponsoredLinkCount": 0,
+      "analyticsConfigured": true,
+      "purpose": "Existing educational article; content audit applies"
+    },
+    {
+      "route": "/blog/n8n-openai-ai-workflows",
+      "status": 200,
+      "title": "Building AI Workflows with n8n and OpenAI | CodeWithLogs",
+      "hasCanonical": true,
+      "h1Count": 1,
+      "reviewStatuses": [
+        "unverified"
+      ],
+      "affiliateDisclosure": false,
+      "sponsoredLinkCount": 0,
+      "analyticsConfigured": true,
+      "purpose": "Existing educational article; content audit applies"
+    },
+    {
+      "route": "/blog/openai-responses-api-tutorial-first-ai-agent",
+      "status": 200,
+      "title": "How I Built My First AI Agent Using OpenAI Responses API | CodeWithLogs",
+      "hasCanonical": true,
+      "h1Count": 1,
+      "reviewStatuses": [
+        "unverified"
+      ],
+      "affiliateDisclosure": false,
+      "sponsoredLinkCount": 0,
+      "analyticsConfigured": true,
+      "purpose": "Existing educational article; content audit applies"
+    },
+    {
+      "route": "/blog/model-context-protocol-tutorial-real-project",
+      "status": 200,
+      "title": "MCP (Model Context Protocol) Explained with a Real Project | CodeWithLogs",
+      "hasCanonical": true,
+      "h1Count": 1,
+      "reviewStatuses": [
+        "unverified"
+      ],
+      "affiliateDisclosure": false,
+      "sponsoredLinkCount": 0,
+      "analyticsConfigured": true,
+      "purpose": "Existing educational article; content audit applies"
+    },
+    {
+      "route": "/blog/building-saas-admin-dashboard-from-scratch",
+      "status": 200,
+      "title": "Building a SaaS Admin Dashboard from Scratch | CodeWithLogs",
+      "hasCanonical": true,
+      "h1Count": 1,
+      "reviewStatuses": [
+        "unverified"
+      ],
+      "affiliateDisclosure": false,
+      "sponsoredLinkCount": 0,
+      "analyticsConfigured": true,
+      "purpose": "Existing educational article; content audit applies"
+    },
+    {
+      "route": "/blog/common-vercel-deployment-errors-solutions",
+      "status": 200,
+      "title": "Common Vercel Deployment Errors and Their Solutions | CodeWithLogs",
+      "hasCanonical": true,
+      "h1Count": 1,
+      "reviewStatuses": [
+        "unverified"
+      ],
+      "affiliateDisclosure": false,
+      "sponsoredLinkCount": 0,
+      "analyticsConfigured": true,
+      "purpose": "Existing educational article; content audit applies"
+    },
+    {
+      "route": "/blog/reduce-nextjs-website-loading-time",
+      "status": 200,
+      "title": "How I Reduced My Next.js Website Loading Time | CodeWithLogs",
+      "hasCanonical": true,
+      "h1Count": 1,
+      "reviewStatuses": [
+        "unverified"
+      ],
+      "affiliateDisclosure": false,
+      "sponsoredLinkCount": 0,
+      "analyticsConfigured": true,
+      "purpose": "Existing educational article; content audit applies"
+    },
+    {
+      "route": "/blog/openai-structured-outputs-complete-guide",
+      "status": 200,
+      "title": "Structured Outputs in OpenAI API: Complete Guide | CodeWithLogs",
+      "hasCanonical": true,
+      "h1Count": 1,
+      "reviewStatuses": [
+        "unverified"
+      ],
+      "affiliateDisclosure": false,
+      "sponsoredLinkCount": 0,
+      "analyticsConfigured": true,
+      "purpose": "Existing educational article; content audit applies"
+    },
+    {
+      "route": "/blog/nextjs-authentication-without-nextauth",
+      "status": 200,
+      "title": "How I Built Authentication in Next.js Without NextAuth | CodeWithLogs",
+      "hasCanonical": true,
+      "h1Count": 1,
+      "reviewStatuses": [
+        "unverified"
+      ],
+      "affiliateDisclosure": false,
+      "sponsoredLinkCount": 0,
+      "analyticsConfigured": true,
+      "purpose": "Existing educational article; content audit applies"
+    },
+    {
+      "route": "/blog/debug-production-errors-nextjs",
+      "status": 200,
+      "title": "How I Debug Production Errors in Next.js | CodeWithLogs",
+      "hasCanonical": true,
+      "h1Count": 1,
+      "reviewStatuses": [
+        "unverified"
+      ],
+      "affiliateDisclosure": false,
+      "sponsoredLinkCount": 0,
+      "analyticsConfigured": true,
+      "purpose": "Existing educational article; content audit applies"
+    },
+    {
+      "route": "/blog/supabase-row-level-security-real-examples",
+      "status": 200,
+      "title": "Supabase Row Level Security Explained with Real Examples (Copy These Policies) | CodeWithLogs",
+      "hasCanonical": true,
+      "h1Count": 1,
+      "reviewStatuses": [
+        "unverified"
+      ],
+      "affiliateDisclosure": false,
+      "sponsoredLinkCount": 0,
+      "analyticsConfigured": true,
+      "purpose": "Existing educational article; content audit applies"
+    },
+    {
+      "route": "/blog/nextjs-folder-structure-large-projects",
+      "status": 200,
+      "title": "My Complete Next.js Folder Structure for Large Projects | CodeWithLogs",
+      "hasCanonical": true,
+      "h1Count": 1,
+      "reviewStatuses": [
+        "unverified"
+      ],
+      "affiliateDisclosure": false,
+      "sponsoredLinkCount": 0,
+      "analyticsConfigured": true,
+      "purpose": "Existing educational article; content audit applies"
+    },
+    {
+      "route": "/blog/inventory-management-system-nextjs-supabase",
+      "status": 200,
+      "title": "How I Built an Inventory Management System Using Next.js and Supabase | CodeWithLogs",
+      "hasCanonical": true,
+      "h1Count": 1,
+      "reviewStatuses": [
+        "unverified"
+      ],
+      "affiliateDisclosure": false,
+      "sponsoredLinkCount": 0,
+      "analyticsConfigured": true,
+      "purpose": "Existing educational article; content audit applies"
+    },
+    {
+      "route": "/blog/what-is-n8",
+      "status": 200,
+      "title": "What Is n8n? The Automation Tool I Wish I&#x27;d Found Before My Zapier Bill Blew Up | CodeWithLogs",
+      "hasCanonical": true,
+      "h1Count": 1,
+      "reviewStatuses": [
+        "unverified"
+      ],
+      "affiliateDisclosure": false,
+      "sponsoredLinkCount": 0,
+      "analyticsConfigured": true,
+      "purpose": "Existing educational article; content audit applies"
+    },
+    {
+      "route": "/blog/supabase-errors-production-fixes",
+      "status": 200,
+      "title": "10 Supabase Errors I Faced in Production (And Their Fixes) | CodeWithLogs",
+      "hasCanonical": true,
+      "h1Count": 1,
+      "reviewStatuses": [
+        "unverified"
+      ],
+      "affiliateDisclosure": false,
+      "sponsoredLinkCount": 0,
+      "analyticsConfigured": true,
+      "purpose": "Existing educational article; content audit applies"
+    },
+    {
+      "route": "/blog/sync-supabase-google-sheets-automatically",
+      "status": 200,
+      "title": "How I Sync Supabase Data with Google Sheets Automatically | CodeWithLogs",
+      "hasCanonical": true,
+      "h1Count": 1,
+      "reviewStatuses": [
+        "unverified"
+      ],
+      "affiliateDisclosure": false,
+      "sponsoredLinkCount": 0,
+      "analyticsConfigured": true,
+      "purpose": "Existing educational article; content audit applies"
+    },
+    {
+      "route": "/blog/what-is-an-api",
+      "status": 200,
+      "title": "What Is an API? The Waiter Analogy That Finally Made It Click for Me | CodeWithLogs",
+      "hasCanonical": true,
+      "h1Count": 1,
+      "reviewStatuses": [
+        "unverified"
+      ],
+      "affiliateDisclosure": false,
+      "sponsoredLinkCount": 0,
+      "analyticsConfigured": true,
+      "purpose": "Existing educational article; content audit applies"
+    },
+    {
+      "route": "/blog/how-to-become-an-ai-engineer",
+      "status": 200,
+      "title": "How to Become an AI Engineer in 2026: A Realistic Roadmap (Not a Hype Reel) | CodeWithLogs",
+      "hasCanonical": true,
+      "h1Count": 1,
+      "reviewStatuses": [
+        "unverified"
+      ],
+      "affiliateDisclosure": false,
+      "sponsoredLinkCount": 0,
+      "analyticsConfigured": true,
+      "purpose": "Existing educational article; content audit applies"
+    },
+    {
+      "route": "/blog/mongodb-vs-postgresql",
+      "status": 200,
+      "title": "MongoDB vs PostgreSQL: Which Database Should You Choose in 2026? | CodeWithLogs",
+      "hasCanonical": true,
+      "h1Count": 1,
+      "reviewStatuses": [
+        "unverified"
+      ],
+      "affiliateDisclosure": false,
+      "sponsoredLinkCount": 0,
+      "analyticsConfigured": true,
+      "purpose": "Existing educational article; content audit applies"
+    },
+    {
+      "route": "/blog/what-is-typescript",
+      "status": 200,
+      "title": "What Is TypeScript? Why Every JavaScript Developer Should Learn It in 2026 | CodeWithLogs",
+      "hasCanonical": true,
+      "h1Count": 1,
+      "reviewStatuses": [
+        "unverified"
+      ],
+      "affiliateDisclosure": false,
+      "sponsoredLinkCount": 0,
+      "analyticsConfigured": true,
+      "purpose": "Existing educational article; content audit applies"
+    },
+    {
+      "route": "/blog/what-is-code-with-logs",
+      "status": 200,
+      "title": "What Is &quot;Code With Logs&quot;? (And Why Every Developer Ends Up Living By Them) | CodeWithLogs",
+      "hasCanonical": true,
+      "h1Count": 1,
+      "reviewStatuses": [
+        "unverified"
+      ],
+      "affiliateDisclosure": false,
+      "sponsoredLinkCount": 0,
+      "analyticsConfigured": true,
+      "purpose": "Existing educational article; content audit applies"
+    },
+    {
+      "route": "/blog/ai-productivity-guide",
+      "status": 200,
+      "title": "The AI Productivity Guide I Wish I&#x27;d Had: Real Workflows, Not Just App Lists | CodeWithLogs",
+      "hasCanonical": true,
+      "h1Count": 1,
+      "reviewStatuses": [
+        "unverified"
+      ],
+      "affiliateDisclosure": false,
+      "sponsoredLinkCount": 0,
+      "analyticsConfigured": true,
+      "purpose": "Existing educational article; content audit applies"
+    },
+    {
+      "route": "/blog/cybersecurity-for-beginners",
+      "status": 200,
+      "title": "Cybersecurity for Beginners: The Simple Habits That Actually Keep You Safe | CodeWithLogs",
+      "hasCanonical": true,
+      "h1Count": 1,
+      "reviewStatuses": [
+        "unverified"
+      ],
+      "affiliateDisclosure": false,
+      "sponsoredLinkCount": 0,
+      "analyticsConfigured": true,
+      "purpose": "Existing educational article; content audit applies"
+    },
+    {
+      "route": "/blog/cloud-computing-explained",
+      "status": 200,
+      "title": "Cloud Computing Explained: What It Actually Is (Without the Buzzwords) | CodeWithLogs",
+      "hasCanonical": true,
+      "h1Count": 1,
+      "reviewStatuses": [
+        "unverified"
+      ],
+      "affiliateDisclosure": false,
+      "sponsoredLinkCount": 0,
+      "analyticsConfigured": true,
+      "purpose": "Existing educational article; content audit applies"
+    },
+    {
+      "route": "/blog/what-is-typescript-why-developers-switching",
+      "status": 200,
+      "title": "What Is TypeScript and Why Every Developer Is Switching to It in 2026 | CodeWithLogs",
+      "hasCanonical": true,
+      "h1Count": 1,
+      "reviewStatuses": [
+        "unverified"
+      ],
+      "affiliateDisclosure": false,
+      "sponsoredLinkCount": 0,
+      "analyticsConfigured": true,
+      "purpose": "Existing educational article; content audit applies"
+    },
+    {
+      "route": "/blog/chatgpt-vs-claude-vs-gemini",
+      "status": 200,
+      "title": "ChatGPT vs Claude vs Gemini in 2026: I Use All Three Daily, Here’s the Honest Comparison | CodeWithLogs",
+      "hasCanonical": true,
+      "h1Count": 1,
+      "reviewStatuses": [
+        "unverified"
+      ],
+      "affiliateDisclosure": false,
+      "sponsoredLinkCount": 0,
+      "analyticsConfigured": true,
+      "purpose": "Existing educational article; content audit applies"
+    },
+    {
+      "route": "/blog/mongodb-vs-postgresql-which-database-2026",
+      "status": 200,
+      "title": "MongoDB vs PostgreSQL — Which Database Should You Use? (2026 Guide) | CodeWithLogs",
+      "hasCanonical": true,
+      "h1Count": 1,
+      "reviewStatuses": [
+        "unverified"
+      ],
+      "affiliateDisclosure": false,
+      "sponsoredLinkCount": 0,
+      "analyticsConfigured": true,
+      "purpose": "Existing educational article; content audit applies"
+    },
+    {
+      "route": "/blog/can-ai-replace-programmers",
+      "status": 200,
+      "title": "Can AI Replace Programmers? An Honest Answer From Someone Who Codes With AI Every Day | CodeWithLogs",
+      "hasCanonical": true,
+      "h1Count": 1,
+      "reviewStatuses": [
+        "unverified"
+      ],
+      "affiliateDisclosure": false,
+      "sponsoredLinkCount": 0,
+      "analyticsConfigured": true,
+      "purpose": "Existing educational article; content audit applies"
+    },
+    {
+      "route": "/blog/what-is-serverless-computing-should-you-use-it",
+      "status": 200,
+      "title": "What Is Serverless Computing and Should You Actually Use It? (2026 Guide) | CodeWithLogs",
+      "hasCanonical": true,
+      "h1Count": 1,
+      "reviewStatuses": [
+        "unverified"
+      ],
+      "affiliateDisclosure": false,
+      "sponsoredLinkCount": 0,
+      "analyticsConfigured": true,
+      "purpose": "Existing educational article; content audit applies"
+    },
+    {
+      "route": "/blog/react-vs-vue-vs-svelte-2026",
+      "status": 200,
+      "title": "React vs Vue vs Svelte — Which JavaScript Framework Should You Learn in 2026? | CodeWithLogs",
+      "hasCanonical": true,
+      "h1Count": 1,
+      "reviewStatuses": [
+        "unverified"
+      ],
+      "affiliateDisclosure": false,
+      "sponsoredLinkCount": 0,
+      "analyticsConfigured": true,
+      "purpose": "Existing educational article; content audit applies"
+    },
+    {
+      "route": "/blog/cursor-vs-github-copilot-2026",
+      "status": 200,
+      "title": "Cursor vs GitHub Copilot — Which Should You Use in 2026? (Honest Comparison) | CodeWithLogs",
+      "hasCanonical": true,
+      "h1Count": 1,
+      "reviewStatuses": [
+        "unverified"
+      ],
+      "affiliateDisclosure": false,
+      "sponsoredLinkCount": 0,
+      "analyticsConfigured": true,
+      "purpose": "Existing educational article; content audit applies"
+    },
+    {
+      "route": "/blog/deploy-nextjs-to-vercel-guide",
+      "status": 200,
+      "title": "How to Deploy a Next.js App to Vercel — Complete Step-by-Step Guide (2026) | CodeWithLogs",
+      "hasCanonical": true,
+      "h1Count": 1,
+      "reviewStatuses": [
+        "unverified"
+      ],
+      "affiliateDisclosure": false,
+      "sponsoredLinkCount": 0,
+      "analyticsConfigured": true,
+      "purpose": "Existing educational article; content audit applies"
+    },
+    {
+      "route": "/blog/get-first-freelance-client-web-developer",
+      "status": 200,
+      "title": "How to Get Your First Freelance Client as a Web Developer (What Actually Worked) | CodeWithLogs",
+      "hasCanonical": true,
+      "h1Count": 1,
+      "reviewStatuses": [
+        "unverified"
+      ],
+      "affiliateDisclosure": false,
+      "sponsoredLinkCount": 0,
+      "analyticsConfigured": true,
+      "purpose": "Existing educational article; content audit applies"
+    }
+  ],
+  "checks": [
+    {
+      "id": "homepage-no-empty-verification-section",
+      "passed": true
+    },
+    {
+      "id": "homepage-no-empty-category-promise",
+      "passed": true
+    },
+    {
+      "id": "tools-no-empty-coming-soon-section",
+      "passed": true
+    },
+    {
+      "id": "published-status-honest",
+      "passed": true
+    },
+    {
+      "id": "signup-privacy-disclosure",
+      "passed": true
+    },
+    {
+      "id": "author-links",
+      "passed": true
+    },
+    {
+      "id": "search-module",
+      "passed": true,
+      "details": {
+        "query": "module",
+        "matches": 4
+      }
+    },
+    {
+      "id": "search-hydration",
+      "passed": true,
+      "details": {
+        "query": "hydration",
+        "matches": 1
+      }
+    },
+    {
+      "id": "search-6543",
+      "passed": true,
+      "details": {
+        "query": "6543",
+        "matches": 1
+      }
+    },
+    {
+      "id": "search-cwl-no-such-result-4829",
+      "passed": true,
+      "details": {
+        "query": "cwl-no-such-result-4829",
+        "matches": 0
+      }
+    },
+    {
+      "id": "newsletter-invalid-request-10",
+      "passed": true,
+      "details": "Invalid input only; no real subscriber created."
+    },
+    {
+      "id": "newsletter-invalid-request-11",
+      "passed": true,
+      "details": "Invalid input only; no real subscriber created."
+    },
+    {
+      "id": "newsletter-invalid-request-12",
+      "passed": true,
+      "details": "Invalid input only; no real subscriber created."
+    },
+    {
+      "id": "draft-not-public-01-npm-ps1-cannot-be-loaded.txt",
+      "passed": true
+    },
+    {
+      "id": "draft-not-public-02-node-not-recognized-windows-11.txt",
+      "passed": true
+    },
+    {
+      "id": "draft-not-public-03-npm-eresolve-dependency-conflicts.txt",
+      "passed": true
+    },
+    {
+      "id": "draft-not-public-04-vscode-integrated-terminal-not-opening.txt",
+      "passed": true
+    },
+    {
+      "id": "draft-not-public-05-git-not-recognized-windows-terminal.txt",
+      "passed": true
+    },
+    {
+      "id": "article-records-preserved",
+      "passed": true,
+      "details": "58 bodies/slugs/statuses/audited metadata match"
+    }
+  ],
+  "authors": {
+    "Zeeshan Zakir": 58
+  },
+  "draftHashes": [
+    {
+      "file": "01-npm-ps1-cannot-be-loaded.txt",
+      "sha256": "8a2f5fc39424df20011b1ed511e62c37f5364d51902408debaf8d59b1ea1acc8"
+    },
+    {
+      "file": "02-node-not-recognized-windows-11.txt",
+      "sha256": "d3012bb36c324f0077f1f817df64c0218d95d18fb84fc7199d1a20a4eebc785f"
+    },
+    {
+      "file": "03-npm-eresolve-dependency-conflicts.txt",
+      "sha256": "c595938c55719aad8851a2e0fe8485093fcde3d04687f3bd5682085650a0a94a"
+    },
+    {
+      "file": "04-vscode-integrated-terminal-not-opening.txt",
+      "sha256": "3eac2416b3d23ff49c20b17c422f944253aa113b586b5b07e95b6911d0929e72"
+    },
+    {
+      "file": "05-git-not-recognized-windows-terminal.txt",
+      "sha256": "707e1fbd60c6d178d7cdee7130e0f5db8189a59482e18c32c51ea2f3e80a2106"
+    }
+  ],
+  "duplicateIntentGroups": [
+    [
+      "what-is-typescript",
+      "what-is-typescript-why-developers-switching",
+      "typescript-for-beginners-why-learn-it"
+    ],
+    [
+      "mongodb-vs-postgresql",
+      "mongodb-vs-postgresql-which-database-2026"
+    ],
+    [
+      "what-are-ai-agents",
+      "what-are-ai-agents-how-they-work"
+    ],
+    [
+      "learn-web-development-free-2026",
+      "best-free-websites-learn-web-development-2026"
+    ]
+  ],
+  "limitations": "Server-rendered HTTP and source/body triage. No external plagiarism audit, browser/mobile interaction, live mail delivery, live auth mutation, real-user vitals or AdSense decision was tested. Source fragments/word counts alone do not classify usefulness."
+}

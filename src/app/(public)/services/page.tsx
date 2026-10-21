@@ -14,6 +14,7 @@ import {
 import { siteUrl } from "@/lib/site-url";
 
 export const metadata: Metadata = {
+  alternates: { canonical: `${siteUrl}/services` },
   title: "Web Development Services That Ship Fast",
   description:
     "Hire a full-stack developer for web apps, SaaS products, backend APIs, and performance optimization. Fast delivery, clean code, and launch-ready builds.",

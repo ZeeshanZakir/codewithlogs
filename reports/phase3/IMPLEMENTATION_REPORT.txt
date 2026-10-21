@@ -1,0 +1,135 @@
+CODEWITHLOGS 2.0 — PHASE 3 HANDOFF
+Review date: 2026-10-21 (Asia/Karachi)
+Branch: redesign/adsense-readiness
+Decision: NOT READY for AdSense resubmission or production deployment.
+
+BOUNDARIES AND PRESERVATION
+No deployment, publication, archive, deletion, redirect, or production database
+write was performed. Read-only inventory checks compare all 58 stored article
+records with the preservation baseline. Existing bodies, slugs, publication
+statuses, CMS, admin, authentication, and database integrations are retained.
+Root dependency manifests were not changed. New guides live outside public/ and
+app routes; all five draft artifact URL requests return 404 in route checks.
+
+FIVE EXISTING DRAFTS
+See FINAL_TECHNICAL_ACCURACY.txt and EXISTING_DRAFT_VERIFICATION.json for each
+article's tested solutions, security-critical gaps, source hashes, and versions.
+1. Common Vercel Deployment Errors: DRAFT. Local build/type/import/casing and
+   environment cases have evidence; actual Vercel/Linux/OOM remedies do not.
+2. How I Debug Production Errors in Next.js: DRAFT. Server error redaction and
+   local HTTP cases passed; hydration, fallback/retry UI and host logs need tests.
+3. Authentication Without NextAuth: DRAFT. Build and isolated boundary checks
+   passed. Mock identities/HTTP responses do not validate live JWTs or RLS.
+4. Deploy Next.js to Vercel: DRAFT. Local production build passed; no preview
+   deployment, DNS/TLS or real service connectivity was tested.
+5. Complete Next.js Folder Structure: READY FOR EDITORIAL REVIEW, limited to the
+   recorded local build/import/alias evidence. Still a local unpublished DRAFT;
+   no whole-guide verified status or publication approval is implied.
+
+Fresh confirmation reran 15 cases; six other distinct negative/casing cases are
+retained in earlier raw logs (21 distinct case IDs across the evidence sets).
+All 18 embedded complete source files match their executable fixture; all 26
+fixture source hashes match the saved baseline. See tests/ for machine records.
+
+FIVE ORIGINAL GUIDES — ALL DRAFT, NOT PUBLIC
+guides/01-npm-ps1-cannot-be-loaded.txt
+  Observed Restricted child-process npm.ps1 failure; npm.cmd succeeds.
+guides/02-node-not-recognized-windows-11.txt
+  Observed process PATH lookup failure; full-path invocation and restored PATH
+  succeed on Windows 10. Windows 11 remains an explicit verification gap.
+guides/03-npm-eresolve-dependency-conflicts.txt
+  Real offline peer conflict reproduced; compatible direct dependency passes
+  install, dependency tree, clean lockfile install and actual module loading.
+guides/04-vscode-integrated-terminal-not-opening.txt
+  External PowerShell control passes; integrated-terminal failure/fix untested.
+guides/05-git-not-recognized-windows-terminal.txt
+  Real process PATH failure and restored lookup tested; Terminal UI untested.
+
+Every guide includes the error/target symptom, environment, cause, reproduction,
+commands, alternatives, security limits, expected output, official references,
+related links, and outstanding verification. No screenshots, personal experience,
+benchmarks, or Windows 11/Linux success were invented. guides/manifest.json
+records hashes and scope. Raw Windows and npm output is under tests/.
+
+OBSERVED ENVIRONMENT
+Windows 10 Pro 10.0.19045 x64; PowerShell 7.6.5; Node 22.18.0; npm 10.9.3;
+Git 2.55.0.windows.4; VS Code 1.142.0. Priority fixture: Next 16.2.6,
+React 19.2.4, TypeScript 5.9.3, Supabase SSR 0.12.7 / JS 2.118.0.
+Windows 11 was unavailable. WSL enumeration exited 1; no usable Linux runtime
+was established, and Docker was not found. No installation was attempted.
+
+EDITORIAL AND UX CHANGES
+- Published article cards/detail pages explicitly show Unverified; draft tests
+  cannot confer verified status on different published bodies. Verification
+  records require a published-body hash, environment, evidence and limitations.
+- Specific summaries and related-reading priorities improve the five priority
+  topics without changing the stored article text or URLs.
+- Homepage hides empty verified/featured sections and links empty specialist
+  categories to useful official references. Tools hides an empty Coming soon
+  heading; no-result text avoids promises of unfinished content.
+- Editorial policy defines draft/unverified/partial/verified scope. Known author
+  bylines link to About; owner credentials still require confirmation.
+- Signup copy and privacy explain preference storage, contact-based changes and
+  absence of automatic email delivery/unsubscribe. No subscriber was created.
+- Contact removes an unsupported response-time promise. Terms, Disclaimer and
+  Services receive canonicals. Mobile navigation uses accurate signup wording.
+
+VALIDATION AND REPRODUCTION
+From the project root:
+  npm run build
+  npx tsc --noEmit
+  npm run lint
+  npm run start -- --hostname 127.0.0.1 --port 3000
+In a second shell, with the server running:
+  node scripts/audit-editorial.mjs --refresh
+  node scripts/validate-redesign.mjs
+  node scripts/audit-phase3.mjs
+Isolated guide checks:
+  & ./scripts/test-windows-guides.ps1
+  node scripts/test-eresolve.mjs
+  node scripts/test-priority-articles.mjs --confirm
+  node scripts/validate-content-recovery.mjs
+
+Build: PASS, 33 generated static pages. TypeScript: PASS. ESLint: 0 errors,
+10 retained warnings (unused symbols, image optimization and hook dependencies).
+Route/content results and final canonical coverage are in VALIDATION_SUMMARY.json.
+Nine existing isolated functional cases passed, including a mocked newsletter
+store; invalid subscriber HTTP requests passed without database writes. Positive
+live signup, mail delivery, preference changes, contact delivery and real admin
+login/session mutation were not executed against production.
+
+Browser interaction was unavailable: the browser tool rejected access under its
+URL policy. No alternate browser automation was used to bypass it. HTTP tests
+are server-rendered route/content checks, not keyboard/mobile/visual evidence.
+Manual responsive, focus, form UX, copy-button, screen-reader and real-user Core
+Web Vitals checks remain necessary. No Lighthouse or field score is claimed.
+
+CONTENT QUALITY AND OWNER ACTIONS
+See ADSENSE_READINESS_AUDIT.txt for the complete prioritized assessment. The
+58-record audit retains 49 IMPROVE and nine potential MERGE classifications,
+with zero ARCHIVE recommendations/actions. A possible merge is an intent review,
+not permission to redirect or remove an article. Useful off-niche content stays.
+
+Highest priority: approve and complete accurate replacements for unsafe or
+incomplete public auth/RLS/inventory guidance; current public bodies are unchanged.
+Then verify live session refresh, expired/forged tokens and two-user RLS in an
+owner-approved isolated project. Test Vercel behavior only with explicit approval
+for a preview deployment. Verify the Windows guides on Windows 11 and the VS Code
+terminal through its UI. Confirm About claims, author credentials, testimonials
+and permissions, contact operations, signup handling, and audience-appropriate
+analytics/ad consent configuration. Review nine overlapping article intents and
+all public outdated claims before resubmission. No article-count or word-count
+threshold, and no guarantee of AdSense approval, is asserted.
+
+MODIFIED FILES
+See MODIFIED_FILES.txt for the complete tracked-change/new-artifact inventory.
+Existing priority drafts changed only their editorial review workflow marker and
+manifest hashes/status; they were not published. Raw prior test reports and root
+audit reports were refreshed by read-only/isolated validation scripts. Generated
+ignored package workspaces are test scratch data, not product dependencies.
+
+LOCAL REVIEW
+Use the start command above and open http://127.0.0.1:3000. Review home, blog,
+each priority article, search, editorial policy, privacy, contact and tools.
+Read the guide files locally; they intentionally have no public routes.
+Stop the local server with Ctrl+C when finished. Nothing has been deployed.

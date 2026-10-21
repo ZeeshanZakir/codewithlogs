@@ -1,0 +1,182 @@
+{
+  "checkedAt": "2026-10-21T15:54:21.926Z",
+  "origin": "http://127.0.0.1:3000",
+  "checks": [
+    {
+      "id": "error-decoder-status",
+      "passed": true
+    },
+    {
+      "id": "error-decoder-h1",
+      "passed": true
+    },
+    {
+      "id": "error-decoder-description",
+      "passed": true
+    },
+    {
+      "id": "error-decoder-canonical",
+      "passed": true
+    },
+    {
+      "id": "error-decoder-indexable",
+      "passed": true
+    },
+    {
+      "id": "error-decoder-sitemap-and-discovery",
+      "passed": true
+    },
+    {
+      "id": "error-decoder-input-label",
+      "passed": true
+    },
+    {
+      "id": "error-decoder-crawlable-docs",
+      "passed": true
+    },
+    {
+      "id": "error-decoder-privacy-and-draft-boundary",
+      "passed": true
+    },
+    {
+      "id": "error-decoder-application-schema",
+      "passed": true
+    },
+    {
+      "id": "error-decoder-breadcrumb-schema",
+      "passed": true
+    },
+    {
+      "id": "error-decoder-query-not-reflected",
+      "passed": true
+    },
+    {
+      "id": "package-json-inspector-status",
+      "passed": true
+    },
+    {
+      "id": "package-json-inspector-h1",
+      "passed": true
+    },
+    {
+      "id": "package-json-inspector-description",
+      "passed": true
+    },
+    {
+      "id": "package-json-inspector-canonical",
+      "passed": true
+    },
+    {
+      "id": "package-json-inspector-indexable",
+      "passed": true
+    },
+    {
+      "id": "package-json-inspector-sitemap-and-discovery",
+      "passed": true
+    },
+    {
+      "id": "package-json-inspector-input-label",
+      "passed": true
+    },
+    {
+      "id": "package-json-inspector-crawlable-docs",
+      "passed": true
+    },
+    {
+      "id": "package-json-inspector-privacy-and-draft-boundary",
+      "passed": true
+    },
+    {
+      "id": "package-json-inspector-application-schema",
+      "passed": true
+    },
+    {
+      "id": "package-json-inspector-breadcrumb-schema",
+      "passed": true
+    },
+    {
+      "id": "package-json-inspector-query-not-reflected",
+      "passed": true
+    },
+    {
+      "id": "phase3-drafts-evidence-fixtures-dependencies-unchanged",
+      "passed": true
+    },
+    {
+      "id": "stored-article-records-preserved",
+      "passed": true
+    }
+  ],
+  "pages": [
+    {
+      "route": "/tools/error-decoder",
+      "status": 200,
+      "localResponseMilliseconds": 13,
+      "htmlBytes": 52130
+    },
+    {
+      "route": "/tools/package-json-inspector",
+      "status": 200,
+      "localResponseMilliseconds": 18,
+      "htmlBytes": 37327
+    }
+  ],
+  "preservedFilesChecked": 93,
+  "changedPreserved": [],
+  "initialScriptAssets": [
+    {
+      "path": "/_next/static/chunks/05cb37z0kpq1b.js",
+      "decodedBytes": 27779
+    },
+    {
+      "path": "/_next/static/chunks/0jalj3rc2ngz..js",
+      "decodedBytes": 31396
+    },
+    {
+      "path": "/_next/static/chunks/0m_p1bxtorv5i.js",
+      "decodedBytes": 226355
+    },
+    {
+      "path": "/_next/static/chunks/0pqt~8bl3ukh4.js",
+      "decodedBytes": 44414
+    },
+    {
+      "path": "/_next/static/chunks/0kwr9olydeggm.js",
+      "decodedBytes": 109784
+    },
+    {
+      "path": "/_next/static/chunks/turbopack-16bh7fdfpd..k.js",
+      "decodedBytes": 10646
+    },
+    {
+      "path": "/_next/static/chunks/0.~.9xgbl0hfo.js",
+      "decodedBytes": 15194
+    },
+    {
+      "path": "/_next/static/chunks/0d3shmwh5_nmn.js",
+      "decodedBytes": 54646
+    },
+    {
+      "path": "/_next/static/chunks/15t97z2ecn3ve.js",
+      "decodedBytes": 9799
+    },
+    {
+      "path": "/_next/static/chunks/0qaj8pu50dspr.js",
+      "decodedBytes": 22186
+    },
+    {
+      "path": "/_next/static/chunks/03~yq9q893hmn.js",
+      "decodedBytes": 112594
+    },
+    {
+      "path": "/_next/static/chunks/0t1et0tty8o9s.js",
+      "decodedBytes": 6546
+    },
+    {
+      "path": "/_next/static/chunks/0m9svue6493yo.js",
+      "decodedBytes": 15980
+    }
+  ],
+  "totalDistinctDecodedScriptBytes": 687319,
+  "limitations": "Local HTTP and source integrity only. Asset sizes include shared site scripts and are decoded bytes, not a mobile performance score or transfer measurement. Structured data was parsed and shape-checked locally, not submitted to Google's Rich Results Test. No actual browser interaction or field Core Web Vitals measured."
+}

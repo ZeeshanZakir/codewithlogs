@@ -1,0 +1,97 @@
+Fix VS Code Integrated Terminal Not Opening
+Status: DRAFT — integrated-terminal failure/fix NOT VERIFIED.
+Proposed slug: vscode-terminal-wont-launch
+
+## Error and evidence boundary
+Identification target from VS Code documentation: “The terminal process failed
+to launch”. The complete notification may identify a missing executable, invalid
+starting folder or access denial. That target phrase is not a captured failure.
+An exit code alone is not a diagnosis, and a process-creation error differs from
+a shell that successfully starts and later exits.
+
+Available software was checked on 2026-10-21: Windows 10 Pro 10.0.19045 x64,
+VS Code 1.142.0 (commit 6d62b1d5dace93a33b3a6d3eca1317bd5e15bcb1),
+PowerShell 7.6.5. Only code --version and external pwsh -NoProfile execution
+were tested. No integrated terminal failure, UI fix, screenshot, Windows 11 or
+Linux result is claimed. Logs: reports/phase3/tests/windows/04-external-shell.log
+and 05-vscode-version.log.
+
+## Problem overview and root causes
+The editor must find a shell executable, use an existing accessible starting
+folder and run its startup configuration. A custom profile may point to an old
+path; terminal.integrated.cwd may name a removed folder; a startup script may
+throw or exit. Extensions and shell integration introduce other variables.
+Local, WSL, container and remote hosts have different paths/settings.
+
+## Diagnose outside the editor first
+In an external PowerShell window:
+
+Get-Command pwsh.exe, powershell.exe, cmd.exe -ErrorAction SilentlyContinue |
+  Select-Object Name, Source
+pwsh.exe -NoProfile
+
+Only run pwsh if it exists. Type exit to leave the nested shell. Alternatives
+for an installed host are powershell.exe -NoProfile or cmd.exe /d. The recorded
+PowerShell 7 control stayed open long enough to execute a command and exited 0;
+this does not prove VS Code's integrated terminal can launch it.
+
+## Solution A: correct the selected executable/profile
+Record User and Workspace settings before editing. Use Terminal: Select Default
+Profile to choose an actually detected installed shell, then create a NEW terminal.
+Inspect terminal.integrated.defaultProfile.windows and profiles.windows; workspace
+settings may override User settings. Do not assume Windows PowerShell and PowerShell
+7 have the same executable or installation path.
+
+For a disposable VS Code profile with the standard Windows PowerShell executable,
+this is a complete diagnostic settings object, provided the path exists:
+
+{
+  "terminal.integrated.profiles.windows": {
+    "PowerShell diagnostic": {
+      "path": "${env:windir}\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+      "args": ["-NoProfile"]
+    }
+  },
+  "terminal.integrated.defaultProfile.windows": "PowerShell diagnostic"
+}
+
+Merge a named entry into an existing profile object rather than replacing other
+settings. For PowerShell 7, use its actual Get-Command path. This configuration
+has been reviewed, not tested through the editor UI in this task.
+
+## Solution B: isolate the starting folder and startup script
+If the message names a nonexistent cwd, remove only the stale cwd override or
+choose an existing accessible local folder. Create a new terminal and record the
+result. If -NoProfile succeeds while the original profile fails, back up the
+startup script, identify the failing statement and correct it. Do not delete all
+profiles or settings.json. A normal npm error after a prompt is a separate problem.
+
+## Alternative isolation: integration and extensions
+Record terminal.integrated.shellIntegration.enabled, temporarily disable it in
+the applicable settings, create a new terminal, compare and restore its prior
+value. If needed compare a disposable clean VS Code profile or extension-disabled
+window. Inspect the Pty Host log for remaining process-creation details and redact
+tokens, usernames and command history before sharing logs. Do not disable endpoint
+protection or run the whole editor as administrator as a universal fix.
+
+## Required reproducible UI test before calling a fix verified
+In an empty disposable workspace/profile, deliberately point a custom terminal
+profile at a nonexistent executable. Capture its actual message, then correct
+only that path and verify a stable prompt twice and after editor restart. In a
+separate fixture set a nonexistent cwd, reproduce and correct that setting.
+Record exact VS Code/shell/OS versions and the final settings diff. Neither
+experiment was run here. Do not substitute JSON validity for a successful launch.
+
+## Expected output and verification
+After a genuine fix, the chosen shell should remain open in the expected folder.
+For PowerShell run Get-Location and $PSVersionTable.PSVersion, then check node
+--version and git --version separately. Their command discovery can fail even
+when the terminal itself works. An expected prompt is a test criterion, not a
+successful result claimed by this draft. No screenshots were fabricated.
+
+## References and related reading
+https://code.visualstudio.com/docs/supporting/troubleshoot-terminal-launch
+https://code.visualstudio.com/docs/terminal/profiles
+Related public logging guide: https://codewithlogs.com/blog/what-is-code-with-logs
+Related public diagnostics: https://codewithlogs.com/blog/debug-production-errors-nextjs
+Local Node/Git companion drafts remain local; no nonexistent public link is emitted.

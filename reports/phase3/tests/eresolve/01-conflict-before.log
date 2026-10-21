@@ -1,0 +1,21 @@
+npm error code ERESOLVE
+npm error ERESOLVE unable to resolve dependency tree
+npm error
+npm error While resolving: cwl-conflict-fixture@1.0.0
+npm error Found: cwl-peer-host@1.0.0
+npm error node_modules/cwl-peer-host
+npm error   cwl-peer-host@"file:../host1/cwl-peer-host-1.0.0.tgz" from the root project
+npm error
+npm error Could not resolve dependency:
+npm error peer cwl-peer-host@"^2.0.0" from cwl-peer-plugin@1.0.0
+npm error node_modules/cwl-peer-plugin
+npm error   cwl-peer-plugin@"file:../plugin/cwl-peer-plugin-1.0.0.tgz" from the root project
+npm error
+npm error Fix the upstream dependency conflict, or retry
+npm error this command with --force or --legacy-peer-deps
+npm error to accept an incorrect (and potentially broken) dependency resolution.
+npm error
+npm error
+npm error For a full report see:
+npm error C:\Users\zeesh\Desktop\codewithlogs\fixtures\windows-guides\runs\eresolve-1792593673710\cache\_logs\2026-10-21T14_41_20_952Z-eresolve-report.txt
+npm error A complete log of this run can be found in: C:\Users\zeesh\Desktop\codewithlogs\fixtures\windows-guides\runs\eresolve-1792593673710\cache\_logs\2026-10-21T14_41_20_952Z-debug-0.log

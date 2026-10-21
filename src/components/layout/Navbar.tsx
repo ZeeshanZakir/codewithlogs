@@ -13,6 +13,6 @@ export function Navbar() {
     <nav className="desktop-nav" aria-label="Main navigation">{navigation.map(({ href, label }) => <Link key={href} href={href} aria-current={pathname === href || pathname.startsWith(`${href}/`) ? "page" : undefined}>{label}</Link>)}</nav>
     <Link href="/#newsletter" className="header-subscribe">Stay in the loop <ArrowUpRight size={15} /></Link>
     <button type="button" className="mobile-toggle" aria-label={open ? "Close navigation" : "Open navigation"} aria-expanded={open} aria-controls="mobile-navigation" onClick={() => setOpen(!open)}>{open ? <X size={23} /> : <Menu size={23} />}</button>
-    {open && <nav id="mobile-navigation" className="mobile-nav" aria-label="Mobile navigation">{navigation.map(({ href, label }) => <Link key={href} href={href} aria-current={pathname === href || pathname.startsWith(`${href}/`) ? "page" : undefined} onClick={() => setOpen(false)}>{label}<ArrowUpRight size={16} /></Link>)}<Link href="/#newsletter" onClick={() => setOpen(false)}>Subscribe to article updates</Link></nav>}
+    {open && <nav id="mobile-navigation" className="mobile-nav" aria-label="Mobile navigation">{navigation.map(({ href, label }) => <Link key={href} href={href} aria-current={pathname === href || pathname.startsWith(`${href}/`) ? "page" : undefined} onClick={() => setOpen(false)}>{label}<ArrowUpRight size={16} /></Link>)}<Link href="/#newsletter" onClick={() => setOpen(false)}>Article update signup</Link></nav>}
   </div></header>;
 }

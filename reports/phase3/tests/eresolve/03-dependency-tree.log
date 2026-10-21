@@ -1,0 +1,5 @@
+cwl-conflict-fixture@1.0.0 C:\Users\zeesh\Desktop\codewithlogs\fixtures\windows-guides\runs\eresolve-1792593673710\app
+├── cwl-peer-host@2.0.0
+└─┬ cwl-peer-plugin@1.0.0
+  └── cwl-peer-host@2.0.0 deduped
+

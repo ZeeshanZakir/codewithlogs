@@ -9,15 +9,51 @@ export const troubleshootingTopics = [
 
 export type TroubleshootingTopicId = typeof troubleshootingTopics[number]["id"];
 type VerificationRecord = {
-  status: "verified";
+  status: "verified" | "partially-verified";
   testedOn: string;
   environment: string;
   evidence: string;
   reviewer: string;
+  publishedBodySha256: string;
+  limitations: string;
 };
 // Add a record only after reproducing the failure and independently validating
 // the fix. Evidence must identify a reviewable test log/fixture, not a claim.
 const verificationRecords: Readonly<Record<string, VerificationRecord>> = {};
+
+export function getArticleReview(slug: string) {
+  const record = getVerification(slug);
+  if (!record) return { status: "unverified", label: "Unverified", detail: "No reproducible test record has been approved for this published version. Check its commands against your software versions before using them." };
+  return {
+    status: record.status,
+    label: record.status === "verified" ? "Verified within stated scope" : "Partially verified",
+    detail: `Tested on ${record.testedOn}: ${record.environment}. Reviewed by ${record.reviewer}. ${record.limitations}`,
+  };
+}
+
+// Draft-fixture evidence never labels an older, different published body.
+const articleSummaries: Readonly<Record<string, string>> = {
+  "what-is-code-with-logs": "Use context-rich logs to trace missing values and failed operations while keeping credentials out of diagnostic output.",
+  "debug-production-errors-nextjs": "Separate browser exceptions from server failures, locate relevant logs and investigate hydration or environment differences. Version review required.",
+  "common-vercel-deployment-errors-solutions": "Compare import, type and environment failures between local builds and deployment. Older commands and platform limits require version review.",
+  "deploy-nextjs-to-vercel-guide": "Follow the repository, environment and hosting setup for a Next.js deployment. Review network-access advice before changing database settings.",
+  "nextjs-folder-structure-large-projects": "Locate routing, shared components and data access, and understand the @/ source alias. Folder organization does not itself enforce authorization.",
+  "nextjs-authentication-without-nextauth": "Understand browser/server cookie clients and session handling. The published authentication example requires security review before adoption.",
+  "supabase-errors-production-fixes": "Investigate row-policy failures, query cardinality, expired sessions and connection limits. Validate permission-sensitive fixes in a disposable project.",
+};
+export function getArticleSummary(post: Pick<BlogPostMeta, "slug" | "excerpt">) {
+  return articleSummaries[post.slug] ?? post.excerpt;
+}
+const relatedReading: Readonly<Record<string, readonly string[]>> = {
+  "common-vercel-deployment-errors-solutions": ["debug-production-errors-nextjs", "nextjs-folder-structure-large-projects", "deploy-nextjs-to-vercel-guide"],
+  "debug-production-errors-nextjs": ["what-is-code-with-logs", "common-vercel-deployment-errors-solutions", "deploy-nextjs-to-vercel-guide"],
+  "deploy-nextjs-to-vercel-guide": ["common-vercel-deployment-errors-solutions", "debug-production-errors-nextjs", "nextjs-folder-structure-large-projects"],
+  "nextjs-folder-structure-large-projects": ["common-vercel-deployment-errors-solutions", "what-is-code-with-logs", "debug-production-errors-nextjs"],
+  "nextjs-authentication-without-nextauth": ["supabase-errors-production-fixes", "supabase-row-level-security-real-examples", "debug-production-errors-nextjs"],
+};
+export function getRelatedReadingSlugs(slug: string): readonly string[] {
+  return relatedReading[slug] ?? [];
+}
 
 export function getVerification(slug: string): VerificationRecord | undefined {
   return Object.prototype.hasOwnProperty.call(verificationRecords, slug) ? verificationRecords[slug] : undefined;

@@ -1,0 +1,92 @@
+[
+  {
+    "article": "debug-production-errors-nextjs.txt",
+    "file": "src/app/failure/error.tsx",
+    "matchesFixture": true
+  },
+  {
+    "article": "nextjs-authentication-without-nextauth.txt",
+    "file": "src/lib/supabase/config.ts",
+    "matchesFixture": true
+  },
+  {
+    "article": "nextjs-authentication-without-nextauth.txt",
+    "file": "src/lib/supabase/client.ts",
+    "matchesFixture": true
+  },
+  {
+    "article": "nextjs-authentication-without-nextauth.txt",
+    "file": "src/lib/supabase/server.ts",
+    "matchesFixture": true
+  },
+  {
+    "article": "nextjs-authentication-without-nextauth.txt",
+    "file": "src/lib/supabase/proxy.ts",
+    "matchesFixture": true
+  },
+  {
+    "article": "nextjs-authentication-without-nextauth.txt",
+    "file": "src/proxy.ts",
+    "matchesFixture": true
+  },
+  {
+    "article": "nextjs-authentication-without-nextauth.txt",
+    "file": "src/app/login/actions.ts",
+    "matchesFixture": true
+  },
+  {
+    "article": "nextjs-authentication-without-nextauth.txt",
+    "file": "src/app/login/page.tsx",
+    "matchesFixture": true
+  },
+  {
+    "article": "nextjs-authentication-without-nextauth.txt",
+    "file": "src/lib/authorization.ts",
+    "matchesFixture": true
+  },
+  {
+    "article": "nextjs-authentication-without-nextauth.txt",
+    "file": "src/lib/notes.ts",
+    "matchesFixture": true
+  },
+  {
+    "article": "nextjs-authentication-without-nextauth.txt",
+    "file": "src/app/dashboard/actions.ts",
+    "matchesFixture": true
+  },
+  {
+    "article": "nextjs-authentication-without-nextauth.txt",
+    "file": "src/app/dashboard/page.tsx",
+    "matchesFixture": true
+  },
+  {
+    "article": "nextjs-authentication-without-nextauth.txt",
+    "file": "src/app/api/private/route.ts",
+    "matchesFixture": true
+  },
+  {
+    "article": "nextjs-authentication-without-nextauth.txt",
+    "file": "schema.sql",
+    "matchesFixture": true
+  },
+  {
+    "article": "nextjs-folder-structure-large-projects.txt",
+    "file": "tsconfig.json",
+    "matchesFixture": true
+  },
+  {
+    "article": "nextjs-folder-structure-large-projects.txt",
+    "file": "src/components/Status.tsx",
+    "matchesFixture": true
+  },
+  {
+    "article": "nextjs-folder-structure-large-projects.txt",
+    "file": "src/app/page.tsx",
+    "matchesFixture": true
+  },
+  {
+    "article": "nextjs-folder-structure-large-projects.txt",
+    "file": "src/components/BuildLabel.tsx",
+    "matchesFixture": true
+  }
+]

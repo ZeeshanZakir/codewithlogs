@@ -11,7 +11,7 @@ import { MDXRenderer } from "@/components/blog/MDXRenderer";
 import { ShareButtons } from "@/components/blog/ShareButtons";
 import { TableOfContents } from "@/components/blog/TableOfContents";
 import { siteUrl } from "@/lib/site-url";
-import { getTroubleshootingTopic, getVerification } from "@/lib/troubleshooting";
+import { getArticleReview, getRelatedReadingSlugs, getTroubleshootingTopic } from "@/lib/troubleshooting";
 
 export const dynamic = "force-static";
 export const revalidate = 60;
@@ -24,7 +24,8 @@ async function getAugmentedRelatedPosts(currentSlug: string, category: string, l
   const topic = current ? getTroubleshootingTopic(current) : undefined;
   const sameTopic = topic ? allPosts.filter((post) => post.slug !== currentSlug && getTroubleshootingTopic(post) === topic) : [];
   const sameCategory = await getRelatedPosts(category, currentSlug, limit);
-  const ordered = [...sameTopic, ...sameCategory, ...allPosts.filter((post) => post.slug !== currentSlug)];
+  const companions = getRelatedReadingSlugs(currentSlug).flatMap((slug) => allPosts.find((post) => post.slug === slug) ?? []);
+  const ordered = [...companions, ...sameTopic, ...sameCategory, ...allPosts.filter((post) => post.slug !== currentSlug)];
   return [...new Map(ordered.map((post) => [post.slug, post])).values()].slice(0, limit);
 }
 export async function generateStaticParams() { return []; }
@@ -42,7 +43,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const post = await getPostBySlug((await params).slug);
   if (!post) notFound();
   const relatedPosts = await getAugmentedRelatedPosts(post.slug, post.category);
-  const verification = getVerification(post.slug);
+  const review = getArticleReview(post.slug);
   const shareUrl = `${siteUrl}/blog/${post.slug}`;
   const initials = post.author.split(" ").map((part) => part[0]).join("").slice(0, 2).toUpperCase();
   const structuredData = {
@@ -55,8 +56,8 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   return <div className="journal-container article-page">
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, "\\u003c") }} />
     <nav aria-label="Breadcrumb" className="article-breadcrumb"><Link href="/">Home</Link><span aria-hidden="true">/</span><Link href="/blog"><ArrowLeft size={15} /> Guides & archive</Link><span aria-hidden="true">/</span><span aria-current="page">{post.title}</span></nav>
-    <header className="article-header"><p className="eyebrow">{post.category} / {post.readTime}</p><h1>{post.title}</h1><p className="article-deck">{post.excerpt}</p><div className="article-byline"><span className="author-initials" aria-hidden="true">{initials}</span><div><span className="author-name">{post.author}</span><p>Published <time dateTime={post.date}>{format(new Date(post.date), "MMMM d, yyyy")}</time><span aria-hidden="true"> · </span>{post.readTime}</p></div></div></header>
-    <section className="article-verification" aria-label="Article verification status"><span className="review-status">{verification ? "Windows-verified" : "Windows verification pending"}</span><p>{verification ? `Tested on ${verification.testedOn} · ${verification.environment} · Reviewed by ${verification.reviewer}` : "This existing article does not yet have a recorded Windows test environment or independently verified fix."}</p><Link href="/editorial-policy">How we verify guides</Link></section>
+    <header className="article-header"><p className="eyebrow">{post.category} / {post.readTime}</p><h1>{post.title}</h1><p className="article-deck">{post.excerpt}</p><div className="article-byline"><span className="author-initials" aria-hidden="true">{initials}</span><div><span className="author-name">{post.author === "Zeeshan Zakir" ? <Link href="/about">{post.author}</Link> : post.author}</span><p>Published <time dateTime={post.date}>{format(new Date(post.date), "MMMM d, yyyy")}</time><span aria-hidden="true"> · </span>{post.readTime}</p></div></div></header>
+    <section className="article-verification" aria-label="Article verification status" data-review-status={review.status}><span className="review-status">{review.label}</span><p>{review.detail}</p><Link href="/editorial-policy">How we verify guides</Link></section>
     <div className="article-layout">
       <article className="article-main" aria-label={post.title}>
         <div className="article-cover"><Image src={post.coverImage} alt={post.title} width={1600} height={900} sizes="(max-width: 1024px) 100vw, 740px" priority /></div>
