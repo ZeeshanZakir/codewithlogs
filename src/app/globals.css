@@ -311,7 +311,7 @@ a {
 .search-hint a { text-decoration: underline; text-underline-offset: 3px; color: var(--primary); }
 .troubleshooting-home .field-note { transform: none; background: #edf3f0; border-color: #d5e3df; box-shadow: 6px 6px 0 #e5ece7; }
 .troubleshooting-home .field-note-title { font-size: 29px; line-height: 1.25; }
-.troubleshooting-home .topic-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.troubleshooting-home .topic-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .troubleshooting-home .topic-link { padding-inline: 22px; }
 .troubleshooting-home .topic-link:first-child { padding-left: 0; }
 .troubleshooting-home .topic-link:last-child { padding-right: 0; }

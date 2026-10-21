@@ -1,0 +1,41 @@
+PHASE 5 READINESS: NOT READY FOR ADSENSE RESUBMISSION
+
+The new Search Console analysis confirms demand, not technical correctness or
+review approval. The five largest requested opportunities retain older public
+bodies because owner publication approval has not been granted. Their local
+revisions do not repair production automatically.
+
+P0 CONTENT / SECURITY
+- Inventory's invalid aggregate lock and incomplete permission/retry example need
+  an approved replacement supported by real SQL/concurrent API tests.
+- Published RLS/admin-helper and authentication examples need complete privilege,
+  negative-access and live session testing. Unverified labels are not a repair.
+- Supabase cardinality/connection/session claims and old Next/Vercel guidance need
+  the documented corrections plus evidence for each remaining service claim.
+- Author anecdotes, performance/cost results and credentials need owner records
+  or approved neutral wording; no external plagiarism or human-experience proof
+  has been manufactured. Useful off-niche articles remain subject to quality review.
+
+P1 TRUST / UX / OPERATION
+- Real contact/newsletter operation, preference removal, consent/CMP configuration,
+  author/About statements, testimonials/permissions and historical credential
+  rotation remain owner verification items.
+- Actual browser/mobile, assistive technology, tool clipboard/network and hydration
+  checks remain. No field performance or accessibility score was invented.
+- A useful public companion-code distribution is required before promising a
+  repository/tutorial download; current draft/test files are intentionally private.
+
+P2 SEARCH EVIDENCE / MEASUREMENT
+- Obtain reporting dates, device/country/search-appearance and page-filtered queries.
+  Inspect production canonical/indexing/crawlability using owner access. The local
+  route checks do not verify Google's index or title/snippet selection.
+- The overlapping TypeScript/comparison/AI-agent/learning groups remain manual
+  differentiation candidates. No automatic merging or niche-only archival.
+- Measure comparable periods only after separate publication/deployment approval.
+  No CTR forecast, ranking target, mass-generated query page or guaranteed approval.
+
+What improved: approved focus reflected locally, deterministic tools preserved,
+actual input provenance, five specific revisions, complete proposed security
+fixtures, honest scope, better topic/internal links, valid retained canonicals and
+structured data, and preserved public URLs/statuses. These are prerequisites and
+useful work, not an AdSense approval prediction. See OWNER_REVIEW_CHECKLIST.txt.

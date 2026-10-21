@@ -1,0 +1,133 @@
+Deploy Next.js to Vercel: Preflight, Preview and Verification
+Status: DRAFT — local preflight evidence only; no hosted deployment was tested.
+Preserve URL: /blog/deploy-nextjs-to-vercel-guide
+Proposed description: Prepare a Next.js app for Vercel with repeatable local checks, scoped environment variables, preview verification and safe domain/database review.
+
+## What a successful deployment needs to prove
+A build finishing does not prove the app can read its intended database, preserve
+sessions or render every public route. This walkthrough separates a repeatable
+local baseline from an approved hosted preview and a later production decision.
+It promises neither a build duration nor a universally free hosting arrangement.
+
+The local fixture uses Next 16.2.6, React 19.2.4, TypeScript 5.9.3 and Node 22.18.0
+on Windows 10 Pro 10.0.19045. Import/type/alias failures and build-versus-runtime
+environment timing have local evidence. No Vercel project, DNS/TLS configuration,
+database network rule or preview deployment was changed or tested.
+
+## 1. Review the intended checkout
+Confirm the repository root, application directory, lockfile, branch and uncommitted
+changes. A monorepo may contain more than one project and package manager. Do not
+delete unrelated lockfiles or upgrade dependencies during a deployment diagnosis.
+
+Read package.json, the repository's setup instructions and the framework's Node
+requirements. The package.json inspector can summarize declarations and scripts,
+but cannot verify peer compatibility or installed versions.
+
+In PowerShell, within the trusted app checkout:
+node --version
+npm.cmd --version
+git status --short
+
+For a clean npm checkout with a consistent package-lock.json:
+npm.cmd ci
+npm.cmd run lint
+npx.cmd tsc --noEmit
+npm.cmd run build
+
+ci recreates installed dependencies and can execute lifecycle scripts. Review
+the project first; do not run it in a checkout another install/build is using.
+Use the actual scripts in the manifest. Next 16's build does not run ESLint.
+Save real output and fix the data/import/configuration contract that fails.
+
+## 2. Inspect what a remote push would expose
+These checks inspect the current repository without changing a remote:
+git check-ignore --no-index .env.local
+git ls-files -- .env.local
+git diff
+git diff --cached
+
+An ignored file can still have been tracked previously. If a credential was
+committed, removal from the working file does not invalidate it; use the owner's
+approved rotation process. Review explicit file lists rather than staging every
+unrelated change. Preserve existing remotes and branch names. A push can trigger
+hosting automatically, so pushing is a separately approved action for this project.
+
+## 3. Review the hosting project before an approved preview
+Confirm the connected repository, project root, framework preset, install/build
+commands, Node version and target environment. Compare the deployment's commit
+with the intended revision. Inspect the configured production branch instead of
+assuming it is main. Review the actual plan's permitted use and current features;
+do not promise that a business application belongs on a particular free plan.
+
+A preview deployment is still a deployment and can expose data or trigger
+integrations. Use approved test credentials and isolated services. Do not create
+one automatically while following this local draft.
+
+## 4. Add only the environment values needed for that target
+Create an inventory of variable names, public/server purpose and environment
+scope. Keep values out of the report. Do not copy every local development secret
+into every hosted environment. A database URI belongs on the server, not behind
+a NEXT_PUBLIC_ prefix or in a diagnostic API response.
+
+Literal public references in client code are set during the build. A runtime
+change does not rewrite that bundle. Dynamic server reads and static rendering
+have different timing. The local fixture demonstrates that distinction with
+synthetic labels; it does not validate a real database connection.
+
+Changing a domain may require separate canonical/site URLs, authentication
+redirect allowlists and provider settings. One SITE_URL variable does not control
+all integrations. A changed public build-time value requires a new approved build.
+
+## 5. Verify the preview with a concrete matrix
+After separate owner approval and deployment, record actual results for:
+- Home, blog, representative dynamic article paths and an intentional missing URL.
+- Canonicals, robots, sitemap, article/breadcrumb structured data and private-route
+  access. A 200 response alone does not establish correct content or authorization.
+- Browser console, client hydration, copy controls, search, mobile layout and focus.
+- Real test-account sign-in/out, private cache isolation and authorized data reads.
+- Forms using approved recipients and isolated records; no real subscriber spam.
+- Remote image allow/deny behavior for the narrowly configured host and path.
+
+Use modern remotePatterns configuration for the installed Next version when
+external images require it. Do not allow every host to make an image warning go
+away. No actual image/network fix was verified in this walkthrough.
+
+## 6. Treat database reachability as a security configuration
+For MongoDB Atlas, inspect the actual database user's privileges, TLS/DNS, network
+access controls and the host's egress arrangement. Do not add 0.0.0.0/0 or invent
+stable Vercel IP ranges as a standard fix. Use an approved narrow network design
+that exists for the selected setup. For Supabase/ORM connections, choose a mode
+compatible with the ORM and prepared statements. No connectivity change was tested.
+
+## 7. Domains and production promotion are separate decisions
+Use the exact DNS records shown for the approved project's domain configuration.
+Do not hardcode a universal A/CNAME target from an old tutorial. Check actual
+hostname routing, HTTPS and redirects after an approved change. Retain an identified
+rollback revision/deployment and verify its compatibility with any schema change.
+
+Do not promote a preview simply because its homepage loaded. Obtain approval
+after its required route, security and data tests pass. Production publication,
+DNS changes and AdSense resubmission are outside this local draft's authorization.
+
+## If a step fails
+Find the first useful build error or request-time log. Module resolution may
+involve missing files, aliases, dependencies or casing. A 500 can have many
+causes; compare configuration without exposing credentials. DEPLOYMENT_NOT_FOUND
+and an app route 404 require different checks. Use the deployment-error guide for
+those signatures, then reproduce one cause before changing several settings.
+
+Related: /blog/common-vercel-deployment-errors-solutions (unverified public body)
+Related: /blog/supabase-errors-production-fixes (unverified public body)
+Related: /blog/debug-production-errors-nextjs (unverified public body)
+Tools: /tools/error-decoder and /tools/package-json-inspector
+This revision remains DRAFT pending a recorded approved preview and owner review.
+
+Official references:
+https://vercel.com/docs/frameworks/full-stack/nextjs
+https://vercel.com/docs/deployments/environments
+https://vercel.com/docs/environment-variables
+https://vercel.com/docs/domains/working-with-domains
+https://nextjs.org/docs/app/guides/upgrading/version-16
+https://nextjs.org/docs/app/guides/environment-variables
+https://nextjs.org/docs/app/api-reference/config/next-config-js/images
+https://www.mongodb.com/docs/atlas/security/ip-access-list/

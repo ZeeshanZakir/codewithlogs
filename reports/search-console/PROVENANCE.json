@@ -1,0 +1,22 @@
+{
+  "importDate": "2026-10-21",
+  "repositoryInputsInitiallyMissing": true,
+  "sourceDirectory": "C:/Users/zeesh/Downloads/codewithlogs.com-Performance-on-Search-2026-10-21",
+  "operation": "Copied unchanged from user-supplied inputs; originals not edited",
+  "reportingWindow": null,
+  "filterMetadata": null,
+  "inputs": [
+    {
+      "path": "reports/search-console/Pages.csv",
+      "sha256": "cc2ec7cd437caf54ffb17cdb8fc825eda77c320987209fa7aa9b5ce2d858e60f",
+      "bytes": 2905,
+      "rows": 42
+    },
+    {
+      "path": "reports/search-console/Queries.csv",
+      "sha256": "b26915a8231cadd6dfeab6b4f1ad3a0e6677df24dd677f7208ed4a867c2b1fed",
+      "bytes": 4408,
+      "rows": 110
+    }
+  ]
+}

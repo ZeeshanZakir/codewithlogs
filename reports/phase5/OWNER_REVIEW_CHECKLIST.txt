@@ -1,0 +1,34 @@
+PHASE 5 OWNER REVIEW — NO ACTION BELOW HAS BEEN AUTOMATICALLY APPROVED
+
+[ ] Confirm Master Strategy v1.0 documentation accurately records the locked niche,
+    primary/supporting topics and change-control rules. Do not alter it casually.
+[ ] Supply Search Console reporting dates and filters plus page-filtered query
+    exports for the five protected URLs. Keep Temp Mail separate.
+[ ] Review all five drafts/manifest and per-article before/after comparison. Confirm
+    neutral titles and scoped descriptions match the deliverable actually available.
+[ ] Review inventory's narrow own-owner sale scope. Approve an isolated test resource
+    before SQL/API execution; test concurrency, retries, rollback, grants and actor
+    boundaries. Do not replace the published article with untested SQL.
+[ ] Execute RLS anonymous/A/B read/write/column-escalation tests in a disposable
+    project, with real user JWTs and documented server version. Review all policies.
+[ ] Complete live Supabase cardinality, refresh/expired/forged token, pooling and
+    email tests where claimed. Distinguish mocks from these outcomes.
+[ ] Separately approve any Vercel preview deployment; verify its actual commit,
+    environment, limits, routing, image behavior, data access and DNS/TLS scope.
+[ ] Complete desktop/mobile/keyboard/screen-reader and tool clipboard/network
+    checks. HTTP/source tests do not validate these interactions or field vitals.
+[ ] Provide an accessible, versioned companion-code location when publishing a
+    guide referring to fixture files. Do not advertise an invented public repo.
+[ ] Confirm byline, About claims, client anecdotes and testimonial permissions.
+    Neutral replacement wording is proposed only where evidence is unavailable.
+[ ] Verify real contact handling, newsletter preferences/removal/delivery scope,
+    analytics/ad consent for the audience, credential rotation and ads.txt ownership.
+[ ] Review Search Console canonical/index status and production crawler access
+    after a separately approved deployment. No indexing submission occurred here.
+[ ] Approve exact article body + title/description changes per preserved slug and
+    publication status before any CMS write. Review a concrete diff, not a blanket
+    authorization inferred from editorial approval.
+[ ] Make a separate deployment/AdSense resubmission decision after blockers close.
+    Tool count, article count, word count and redesign alone do not establish value.
+
+Phase 5 stops at this handoff. Phase 6 does not begin automatically.

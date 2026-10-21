@@ -26,11 +26,11 @@ export const metadata: Metadata = {
     template: "%s | CodeWithLogs",
   },
   description:
-    "Windows developer troubleshooting for Windows 11, VS Code, Node.js, npm, Git, and Next.js. Fix Your Development Errors. Step by Step.",
+    "Modern JavaScript developer troubleshooting and tools for Next.js, Node.js/npm and Supabase. Fix Your Development Errors. Step by Step.",
   openGraph: {
     title: "CodeWithLogs",
     description:
-      "CodeWithLogs: Windows developer troubleshooting. Fix Your Development Errors. Step by Step.",
+      "CodeWithLogs: Modern JavaScript developer troubleshooting and tools. Fix Your Development Errors. Step by Step.",
     url: siteUrl,
     siteName: "CodeWithLogs",
     locale: "en_US",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "CodeWithLogs",
     description:
-      "Windows developer troubleshooting for Windows 11, VS Code, Node.js, npm, Git, and Next.js. Fix Your Development Errors. Step by Step.",
+      "Modern JavaScript developer troubleshooting and tools for Next.js, Node.js/npm and Supabase. Fix Your Development Errors. Step by Step.",
   },
   other: adsensePublisherId ? { "google-adsense-account": adsensePublisherId } : {},
 };

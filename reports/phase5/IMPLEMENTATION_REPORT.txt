@@ -1,0 +1,151 @@
+CODEWITHLOGS PHASE 5 — SEO AND CONTENT QUALITY RECOVERY
+Review date: 2026-10-21 (Asia/Karachi)
+Branch: redesign/adsense-readiness
+Outcome: local deliverables complete; all five revisions remain DRAFT.
+AdSense assessment: NOT READY FOR RESUBMISSION. Phase 6 not started.
+
+STRATEGY
+Created reports/MASTER_STRATEGY.md because it did not exist. It records the owner's
+locked Modern JavaScript Developer Troubleshooting & Tools niche, primary Next.js,
+Node.js/npm and Supabase topics, supporting Windows/VS Code/Git/Vercel coverage,
+editorial evidence rules, tools, SEO priorities, roadmap and approval boundaries.
+Earlier Windows-only reports/evidence remain intact as historical work.
+
+REAL SEARCH CONSOLE DATA
+The required repository CSVs were initially absent. Both user-supplied Downloads
+exports existed; copied unchanged into reports/search-console and SHA-256 checked
+against the originals. Treated CSV strings as data, not instructions. No data
+invented and no Search Console account setting or submission changed.
+
+Main website supplied rows: 9 clicks / 7,334 impressions, calculated CTR 0.1227%.
+Temp Mail supplied row: 24 / 273, kept separate. Five protected priority pages:
+3 / 6,650. The export contains 42 page and 110 query records; quoted newlines and
+escaped quotes are handled. PowerShell Import-Csv independently confirms counts.
+No date range or device/country/search filters were supplied; export date is only
+the file label. Separate page/query exports cannot establish page-query attribution.
+
+SEARCH_CONSOLE_OPPORTUNITIES.txt explains every priority's intent, actual metrics,
+current quality gaps, proposed title/description, relevant queries, links and CTR
+hypotheses. search-console-analysis.json retains the complete parsed evidence,
+host separation, inferred query buckets, hashes and limitations. No CTR lift,
+causal explanation, artificial score or fixed-rank claim has been fabricated.
+
+FIVE REVIEWABLE ARTICLE REVISIONS
+All files are in reports/phase5/drafts, outside public/ and app routes. The
+manifest pairs each proposed title/description with its source slug, record status,
+dates, source body hash, draft hash and owner publication gate.
+
+1. inventory-management-system-nextjs-supabase.txt
+   Replaces a narrative-led proposed opening with a specific stock invariant and
+   narrow owner-only sale design. Includes complete proposed SQL, balance/ledger,
+   restricted RPC, actor/quantity validation, product lock, guarded subtraction,
+   retry key and rollback plan. Corrects invalid aggregate locking and broad sale
+   insertion advice. No full-shop, client outcome, cost or speed claim.
+   SQL/concurrency/authorization untested; stay DRAFT before any extra promotion.
+2. common-vercel-deployment-errors-solutions.txt
+   Evidence-first error index with corrected Next 16 build/lint/environment guidance,
+   two-hop Windows tracked-case check, explicit hosted limits and documentation-
+   scoped DEPLOYMENT_NOT_FOUND/MIDDLEWARE_INVOCATION_FAILED triage. No guessed cache
+   recipe derived from a one-impression query. Local evidence never certifies Vercel.
+3. supabase-row-level-security-real-examples.txt
+   Complete proposed own-row notes schema, operation policies and column grants;
+   explicit update/visibility checks, privileged-role caveats, policy composition,
+   no writable admin flag/helper shortcut, and real anon/A/B test criteria.
+4. supabase-errors-production-fixes.txt
+   Ten symptom-oriented sections correct query cardinality, identity/session,
+   recursion, pooling, upsert, schema, environment and SMTP generalizations.
+   Six real-SDK/constructed-HTTP cases have narrow evidence; live services do not.
+5. deploy-nextjs-to-vercel-guide.txt
+   Safe preflight and approved-preview process with scoped environment inventory,
+   no blind staging/branch/remote changes, no universal DNS or allow-all database
+   recipe, explicit hosted verification matrix and separate promotion approval.
+
+BEFORE_AFTER_COMPARISON.txt and before-after.json document each existing/proposed
+title, source excerpt/status/hash, concrete corrections and draft path. No revised
+article body, metadata title/description or publication status was applied to the
+CMS. No authorship story, screenshot, benchmark or test success was invented.
+
+SAFE LOCAL SEO / NAVIGATION CHANGES
+- Homepage, root metadata, archive copy, About introduction, editorial scope and
+  footer now reflect the approved broader strategy without inventing credentials.
+- Three primary homepage topics: Next.js, Node/npm, Supabase. Supabase filter and
+  classification added; existing Next/npm/Windows/VS Code IDs/URLs retained.
+- Homepage links the existing decoder and inspector directly; no tool was rebuilt.
+  Features existing build-log/debugging background with Unverified status. Did not
+  add inventory/RLS homepage recommendations while their published code needs repair.
+- Card summaries for inventory/RLS now identify the correction/privilege review
+  need. Relevant Supabase/inventory/auth/error reading paths added outside bodies.
+- Article metadata/canonicals/BlogPosting/BreadcrumbList retain the existing public
+  record. No false modification dates, verified labels, ratings or new SEO pages.
+  All proposed article metadata remains review-only in the draft manifest.
+- Reviewed overlapping intent: RLS is the policy example; Supabase errors is the
+  symptom index; inventory is the transaction core; deployment is the release
+  workflow; Vercel errors is troubleshooting. No merge/archive/redirect performed.
+
+TECHNICAL VALIDATION
+Production build PASS (Next 16.2.6; 35 generated static pages).
+Independent TypeScript PASS, including after regeneration of stale dev types.
+ESLint PASS: 0 errors / 10 retained warnings. No rule disabled.
+New isolated fixture tests: 12 PASS with pure/mock/SDK-transport scopes recorded.
+Existing pinned Next fixture confirmation: 15 PASS, fresh logs in Phase 5 directory.
+Content/SEO/provenance: 57 PASS; 103 prior protected files byte-identical.
+Existing route checks: 70, 41 public articles, zero failures/unresolved internal
+links; all four search cases PASS. No private result leakage or draft exposure.
+All 58 article records match the preservation baseline, including bodies/slugs/
+statuses/audited metadata. Original CSV copies match supplied Downloads hashes.
+git diff --check PASS. Root dependency manifests unchanged.
+
+TECHNICAL_VERIFICATION.txt records actual versions, commands, limits and handled
+setup issues. fixtures/phase5-supabase contains complete proposed SQL, executable
+helper/call contracts and TEST_PLAN.txt. SQL was NOT executed: no PostgreSQL runtime
+was established. SDK HTTP and identity/RPC mocks do not validate a database, real
+JWTs, RLS, concurrency, rollback, idempotency, poolers or SMTP.
+
+The existing fixture's missing SDK installation was restored from its unchanged
+lockfile. Its runner gained an optional reports-only output directory to avoid
+overwriting historical evidence. Next itself regenerated malformed development
+type cache files through typegen and a briefly owned local dev server. No source
+was removed and no check was weakened. Earlier Phase 3/4 records remain unchanged.
+
+Browser/mobile interactions were not run: prior browser URL-policy restriction
+remains unresolved and no workaround attempted. Source/HTTP checks do not establish
+rendered mobile behavior, keyboard/focus, real clipboard, screen-reader usability,
+field vitals, live form delivery, Google index state or a search/AdSense result.
+
+REMAINING BLOCKERS / OWNER REVIEW
+Read ADSENSE_READINESS_BLOCKERS.txt and OWNER_REVIEW_CHECKLIST.txt. Highest priority
+is tested correction of the older public stock/RLS/auth examples, followed by
+remaining live service evidence, author/trust/disclosure checks and real browser
+validation. A large impression count is a reason to protect and improve a URL,
+not to publish an untested repair or promise approval. Supply missing Search Console
+filters/page-query exports and verify index/canonical state before measuring changes.
+
+LOCAL REVIEW / REPRODUCTION
+  npm run build
+  npm run start -- --hostname 127.0.0.1 --port 3000
+Review /, /blog?topic=supabase, /blog?topic=windows-setup, /blog?topic=vscode,
+the five protected article URLs, and the two unchanged Phase 4 tools.
+Draft .txt files intentionally have no public routes. Read them locally.
+
+Checks from the project root:
+  node scripts/analyze-search-console.mjs
+  node scripts/test-phase5-fixtures.mjs
+  node scripts/test-priority-articles.mjs --confirm --evidence-dir reports/phase5/priority-fixture-tests
+  npx tsc --noEmit
+  npm run lint
+With the local server running and the read-only inventory refreshed:
+  node scripts/audit-editorial.mjs --refresh
+  node scripts/validate-phase5.mjs
+  node scripts/validate-redesign.mjs http://127.0.0.1:3000
+The fixture SDK requires its existing locked dependencies under
+fixtures/priority-articles; no dependency was added to the root application.
+
+MODIFIED FILES
+See MODIFIED_FILES.txt, computed against the Phase 5 boundary hashes rather than
+confusing earlier uncommitted work with new changes. Ignored dependency/build/cache
+outputs are not source deliverables. Historical evidence stays intact.
+The validation summary is machine-readable in VALIDATION_SUMMARY.json.
+
+No push, deployment, publication, archive, deletion, redirect, production database
+write or AdSense resubmission occurred. Phase 5 ends with this handoff. Any Phase 6,
+CMS write, resource deployment or resubmission requires a separate owner instruction.

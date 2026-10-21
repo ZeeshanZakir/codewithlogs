@@ -1,10 +1,11 @@
 import type { BlogPostMeta } from "@/lib/mdx";
 
 export const troubleshootingTopics = [
-  { id: "windows-setup", title: "Windows Developer Setup", shortTitle: "Windows setup", code: "01", description: "PATH, PowerShell, Git, and the environment your tools depend on." },
-  { id: "vscode", title: "VS Code Troubleshooting", shortTitle: "VS Code", code: "02", description: "Terminal launch failures, extensions, settings, and editor diagnostics." },
-  { id: "node-npm", title: "Node.js and npm Errors", shortTitle: "Node.js & npm", code: "03", description: "Installation failures, dependency conflicts, permissions, and package scripts." },
-  { id: "nextjs", title: "Next.js Error Fixes", shortTitle: "Next.js", code: "04", description: "Build errors, imports, hydration, and differences between development and production." },
+  { id: "nextjs", title: "Next.js Error Fixes", shortTitle: "Next.js debugging", code: "01", description: "Build errors, imports, hydration, and differences between development and production." },
+  { id: "node-npm", title: "Node.js and npm Errors", shortTitle: "Node.js & npm", code: "02", description: "Installation failures, dependency conflicts, permissions, and package scripts." },
+  { id: "supabase", title: "Supabase Troubleshooting", shortTitle: "Supabase", code: "03", description: "Row policies, query results, sessions, and database connection diagnostics." },
+  { id: "windows-setup", title: "Windows Developer Setup", shortTitle: "Windows setup", code: "04", description: "PATH, PowerShell, Git, and the environment your tools depend on." },
+  { id: "vscode", title: "VS Code Troubleshooting", shortTitle: "VS Code", code: "05", description: "Terminal launch failures, extensions, settings, and editor diagnostics." },
 ] as const;
 
 export type TroubleshootingTopicId = typeof troubleshootingTopics[number]["id"];
@@ -40,11 +41,16 @@ const articleSummaries: Readonly<Record<string, string>> = {
   "nextjs-folder-structure-large-projects": "Locate routing, shared components and data access, and understand the @/ source alias. Folder organization does not itself enforce authorization.",
   "nextjs-authentication-without-nextauth": "Understand browser/server cookie clients and session handling. The published authentication example requires security review before adoption.",
   "supabase-errors-production-fixes": "Investigate row-policy failures, query cardinality, expired sessions and connection limits. Validate permission-sensitive fixes in a disposable project.",
+  "supabase-row-level-security-real-examples": "Compare own-row and team access policies. The published examples need grant, privilege and negative-test review before adoption.",
+  "inventory-management-system-nextjs-supabase": "Explore a stock ledger and Next.js/Supabase workflow. The published sale-locking and permission examples need substantial technical correction.",
 };
 export function getArticleSummary(post: Pick<BlogPostMeta, "slug" | "excerpt">) {
   return articleSummaries[post.slug] ?? post.excerpt;
 }
 const relatedReading: Readonly<Record<string, readonly string[]>> = {
+  "inventory-management-system-nextjs-supabase": ["supabase-row-level-security-real-examples", "supabase-errors-production-fixes", "nextjs-authentication-without-nextauth"],
+  "supabase-row-level-security-real-examples": ["supabase-errors-production-fixes", "nextjs-authentication-without-nextauth", "inventory-management-system-nextjs-supabase"],
+  "supabase-errors-production-fixes": ["supabase-row-level-security-real-examples", "debug-production-errors-nextjs", "common-vercel-deployment-errors-solutions"],
   "common-vercel-deployment-errors-solutions": ["debug-production-errors-nextjs", "nextjs-folder-structure-large-projects", "deploy-nextjs-to-vercel-guide"],
   "debug-production-errors-nextjs": ["what-is-code-with-logs", "common-vercel-deployment-errors-solutions", "deploy-nextjs-to-vercel-guide"],
   "deploy-nextjs-to-vercel-guide": ["common-vercel-deployment-errors-solutions", "debug-production-errors-nextjs", "nextjs-folder-structure-large-projects"],
@@ -64,11 +70,13 @@ export function isTopicId(value: string): value is TroubleshootingTopicId {
 }
 
 export function getTroubleshootingTopic(post: Pick<BlogPostMeta, "slug" | "title" | "category" | "tags">): TroubleshootingTopicId | undefined {
+  if (["inventory-management-system-nextjs-supabase", "supabase-row-level-security-real-examples", "supabase-errors-production-fixes"].includes(post.slug)) return "supabase";
   const explicit = troubleshootingTopics.find((topic) => topic.title === post.category || post.tags.includes(topic.id));
   if (explicit) return explicit.id;
   const existingNextGuides = ["common-vercel-deployment-errors-solutions", "debug-production-errors-nextjs", "deploy-nextjs-to-vercel-guide", "nextjs-folder-structure-large-projects", "nextjs-authentication-without-nextauth", "reduce-nextjs-website-loading-time"];
   if (existingNextGuides.includes(post.slug)) return "nextjs";
   const title = post.title.toLowerCase();
+  if (/supabase/.test(title) || post.category.toLowerCase() === "supabase") return "supabase";
   if (/vs code|vscode|visual studio code/.test(title) && /error|fail|terminal|not |troubleshoot/.test(title)) return "vscode";
   if (/windows|powershell/.test(title) || /git.*(error|path|not recognized)/.test(title)) return "windows-setup";
   if (/npm|node\.js|nodejs/.test(title) && /error|install|fail|eperm|eaddrinuse|eresolve/.test(title)) return "node-npm";

@@ -1,0 +1,72 @@
+[
+  {
+    "slug": "common-vercel-deployment-errors-solutions",
+    "sourceTitle": "Common Vercel Deployment Errors and Their Solutions",
+    "sourceStatus": "scheduled",
+    "sourceExcerpt": "The build works locally and fails on Vercel — we've all been there. Ten deployment errors I've hit and the exact fix for each one.",
+    "sourceBodySha256": "54a6d74040a8cb1ba9c577ce07636539381e0d05ab874e3b3feced336726bef7",
+    "proposedTitle": "Vercel Deployment Errors: Build Failures, Missing Deployments and Runtime Checks",
+    "proposedDescription": "Find the first useful Vercel error, distinguish build and runtime failures, and diagnose imports, environment values and missing deployments safely.",
+    "revisionFile": "reports/phase5/drafts/common-vercel-deployment-errors-solutions.txt",
+    "revisionSha256": "10ba5caeabe0cb8d4031ec126105c04668b0d350ee5bc43baccc70bca0561286",
+    "before": "Personal frequency claims; one-hop casing correction; Next build-runs-lint error; universal environment timing and limit assumptions; deployment and application 404s blurred.",
+    "after": "Evidence-first error index; tested two-hop index correction; separate Next 16 lint/types/build; public/static/dynamic environment timing; deployment-not-found and middleware checklists; no fixed-plan promise. Hosted repairs untested.",
+    "published": false
+  },
+  {
+    "slug": "deploy-nextjs-to-vercel-guide",
+    "sourceTitle": "How to Deploy a Next.js App to Vercel — Complete Step-by-Step Guide (2026)",
+    "sourceStatus": "scheduled",
+    "sourceExcerpt": "Deploying to Vercel is the simplest deployment story in web development. Here's every step, including environment variables, custom domains, and what to do when something goes wrong.",
+    "sourceBodySha256": "1c115b6f22e8e1eb326da7eb0864b4483fdfa2bf7125a7a36b46e085f6a727e2",
+    "proposedTitle": "Deploy Next.js to Vercel: Preflight, Preview and Verification",
+    "proposedDescription": "Prepare a Next.js app for Vercel with repeatable local checks, scoped environment variables, preview verification and safe domain/database review.",
+    "revisionFile": "reports/phase5/drafts/deploy-nextjs-to-vercel-guide.txt",
+    "revisionSha256": "0d30c1bd961caa78593fa6d14cacecf2a0f541e867e3a362667647106e608e64",
+    "before": "Blind staging/branch/remote changes; copy-all-environment values; unsupported hosting/timing claims; generic DNS records; routine Atlas allow-all network advice.",
+    "after": "Trusted checkout preflight; independent checks; scoped variable inventory; approved-preview matrix; narrow network review and project-specific DNS; separate promotion approval. No hosted verification claimed.",
+    "published": false
+  },
+  {
+    "slug": "inventory-management-system-nextjs-supabase",
+    "sourceTitle": "How I Built an Inventory Management System Using Next.js and Supabase",
+    "sourceStatus": "published",
+    "sourceExcerpt": "I built a complete inventory system for a client with Next.js and Supabase. The schema, the race-condition mistake, and what I'd do differently.",
+    "sourceBodySha256": "e89beed91de6dd0046ae5f0adaaee90898ddf70af6eebacc524f5e64e33dda31",
+    "proposedTitle": "Build an Inventory System with Next.js and Supabase: Stock Safety",
+    "proposedDescription": "Design a small inventory core with a stock balance, movement ledger, ownership checks and retry keys. Includes an explicit concurrency test plan.",
+    "revisionFile": "reports/phase5/drafts/inventory-management-system-nextjs-supabase.txt",
+    "revisionSha256": "7214ced46d4e0cec95bb12f06d0b52ab0759671c075ae685400781f1deb16598",
+    "before": "Unconfirmed client/outcome narrative; invalid aggregate FOR UPDATE; incomplete ownership, quantity and retry boundaries; direct sale-insert policy and unmeasured performance/cost claims.",
+    "after": "Narrow sale-core tutorial; complete proposed balance/ledger/RPC with actor checks, stable row lock, guarded subtraction, retry key and rollback semantics; complete helper and negative/concurrency matrix. SQL unexecuted.",
+    "published": false
+  },
+  {
+    "slug": "supabase-errors-production-fixes",
+    "sourceTitle": "10 Supabase Errors I Faced in Production (And Their Fixes)",
+    "sourceStatus": "scheduled",
+    "sourceExcerpt": "Ten real Supabase errors from my production apps — RLS violations, JWT expiry, connection limits — with the exact fixes that worked.",
+    "sourceBodySha256": "04a02de82a01f7731cb71a7b4df0a17a2b9b4ac30bfe36ab60a074a4044ce0ca",
+    "proposedTitle": "Supabase Errors: RLS, Query Cardinality and Connection Troubleshooting",
+    "proposedDescription": "Diagnose Supabase RLS failures, single/maybeSingle results, session errors, connection exhaustion and schema problems without unsafe shortcuts.",
+    "revisionFile": "reports/phase5/drafts/supabase-errors-production-fixes.txt",
+    "revisionSha256": "da7071f1698e219c87db79697cb983ec2d99a6ecef096adeb45b3ac5d70f0352",
+    "before": "Unconfirmed production stories and causal percentages; single-throws assumption; incomplete maybeSingle cardinality; universal token/port guidance; broad helper/upsert/migration/SMTP advice.",
+    "after": "Ten symptom-based sections; six real-SDK/constructed-HTTP cases; mock/live distinction; scoped session/pooling/schema/email diagnostics; no privileged browser shortcut; related RLS and deployment links.",
+    "published": false
+  },
+  {
+    "slug": "supabase-row-level-security-real-examples",
+    "sourceTitle": "Supabase Row Level Security Explained with Real Examples (Copy These Policies)",
+    "sourceStatus": "scheduled",
+    "sourceExcerpt": "Row Level Security finally clicked for me after one scary near-miss. Real policies you can copy — todos, blogs, teams, and admin roles.",
+    "sourceBodySha256": "dd8ec4888f24c380b42ce03565886aaad4e1eb39a70a529f128c9147ebc0fc11",
+    "proposedTitle": "Supabase RLS Examples: Own-Row Access, Updates and Safe Grants",
+    "proposedDescription": "Understand Supabase RLS with a small own-row notes schema, explicit read/write policies, column grants and an anonymous/A/B test matrix.",
+    "revisionFile": "reports/phase5/drafts/supabase-row-level-security-real-examples.txt",
+    "revisionSha256": "187125caebffe71c5a7dd224cd2461b356c71662a9576d435b20982ff09e09dd",
+    "before": "Absolute bypass claims; partial schema/grants; unsafe/incomplete admin helper and writable role boundary; missing complete update and identity test explanation; unsupported speed story.",
+    "after": "Complete proposed own-row schema/policies/column grants; explicit USING/WITH CHECK and policy composition; privileged-role limits; no administrator helper; real anon/A/B acceptance matrix. SQL unexecuted.",
+    "published": false
+  }
+]

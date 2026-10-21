@@ -1,0 +1,54 @@
+PHASE 5 BEFORE / AFTER CONTENT COMPARISON
+Review date: 2026-10-21 (Asia/Karachi)
+All after versions are local DRAFT proposals. No published body/status was changed.
+
+URL: https://codewithlogs.com/blog/common-vercel-deployment-errors-solutions
+Stored status: scheduled (unchanged)
+Existing title: Common Vercel Deployment Errors and Their Solutions
+Proposed title: Vercel Deployment Errors: Build Failures, Missing Deployments and Runtime Checks
+Proposed description: Find the first useful Vercel error, distinguish build and runtime failures, and diagnose imports, environment values and missing deployments safely.
+Before: Personal frequency claims; one-hop casing correction; Next build-runs-lint error; universal environment timing and limit assumptions; deployment and application 404s blurred.
+After: Evidence-first error index; tested two-hop index correction; separate Next 16 lint/types/build; public/static/dynamic environment timing; deployment-not-found and middleware checklists; no fixed-plan promise. Hosted repairs untested.
+Review file: reports/phase5/drafts/common-vercel-deployment-errors-solutions.txt
+Evidence: DRAFT; wholeGuideVerified=false. See TECHNICAL_VERIFICATION.txt.
+
+URL: https://codewithlogs.com/blog/deploy-nextjs-to-vercel-guide
+Stored status: scheduled (unchanged)
+Existing title: How to Deploy a Next.js App to Vercel — Complete Step-by-Step Guide (2026)
+Proposed title: Deploy Next.js to Vercel: Preflight, Preview and Verification
+Proposed description: Prepare a Next.js app for Vercel with repeatable local checks, scoped environment variables, preview verification and safe domain/database review.
+Before: Blind staging/branch/remote changes; copy-all-environment values; unsupported hosting/timing claims; generic DNS records; routine Atlas allow-all network advice.
+After: Trusted checkout preflight; independent checks; scoped variable inventory; approved-preview matrix; narrow network review and project-specific DNS; separate promotion approval. No hosted verification claimed.
+Review file: reports/phase5/drafts/deploy-nextjs-to-vercel-guide.txt
+Evidence: DRAFT; wholeGuideVerified=false. See TECHNICAL_VERIFICATION.txt.
+
+URL: https://codewithlogs.com/blog/inventory-management-system-nextjs-supabase
+Stored status: published (unchanged)
+Existing title: How I Built an Inventory Management System Using Next.js and Supabase
+Proposed title: Build an Inventory System with Next.js and Supabase: Stock Safety
+Proposed description: Design a small inventory core with a stock balance, movement ledger, ownership checks and retry keys. Includes an explicit concurrency test plan.
+Before: Unconfirmed client/outcome narrative; invalid aggregate FOR UPDATE; incomplete ownership, quantity and retry boundaries; direct sale-insert policy and unmeasured performance/cost claims.
+After: Narrow sale-core tutorial; complete proposed balance/ledger/RPC with actor checks, stable row lock, guarded subtraction, retry key and rollback semantics; complete helper and negative/concurrency matrix. SQL unexecuted.
+Review file: reports/phase5/drafts/inventory-management-system-nextjs-supabase.txt
+Evidence: DRAFT; wholeGuideVerified=false. See TECHNICAL_VERIFICATION.txt.
+
+URL: https://codewithlogs.com/blog/supabase-errors-production-fixes
+Stored status: scheduled (unchanged)
+Existing title: 10 Supabase Errors I Faced in Production (And Their Fixes)
+Proposed title: Supabase Errors: RLS, Query Cardinality and Connection Troubleshooting
+Proposed description: Diagnose Supabase RLS failures, single/maybeSingle results, session errors, connection exhaustion and schema problems without unsafe shortcuts.
+Before: Unconfirmed production stories and causal percentages; single-throws assumption; incomplete maybeSingle cardinality; universal token/port guidance; broad helper/upsert/migration/SMTP advice.
+After: Ten symptom-based sections; six real-SDK/constructed-HTTP cases; mock/live distinction; scoped session/pooling/schema/email diagnostics; no privileged browser shortcut; related RLS and deployment links.
+Review file: reports/phase5/drafts/supabase-errors-production-fixes.txt
+Evidence: DRAFT; wholeGuideVerified=false. See TECHNICAL_VERIFICATION.txt.
+
+URL: https://codewithlogs.com/blog/supabase-row-level-security-real-examples
+Stored status: scheduled (unchanged)
+Existing title: Supabase Row Level Security Explained with Real Examples (Copy These Policies)
+Proposed title: Supabase RLS Examples: Own-Row Access, Updates and Safe Grants
+Proposed description: Understand Supabase RLS with a small own-row notes schema, explicit read/write policies, column grants and an anonymous/A/B test matrix.
+Before: Absolute bypass claims; partial schema/grants; unsafe/incomplete admin helper and writable role boundary; missing complete update and identity test explanation; unsupported speed story.
+After: Complete proposed own-row schema/policies/column grants; explicit USING/WITH CHECK and policy composition; privileged-role limits; no administrator helper; real anon/A/B acceptance matrix. SQL unexecuted.
+Review file: reports/phase5/drafts/supabase-row-level-security-real-examples.txt
+Evidence: DRAFT; wholeGuideVerified=false. See TECHNICAL_VERIFICATION.txt.
+

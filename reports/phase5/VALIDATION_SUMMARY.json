@@ -1,0 +1,125 @@
+{
+  "reviewDate": "2026-10-21",
+  "timezone": "Asia/Karachi",
+  "branch": "redesign/adsense-readiness",
+  "productionBuild": {
+    "passed": true,
+    "next": "16.2.6",
+    "generatedStaticPages": 35
+  },
+  "typescript": {
+    "passed": true,
+    "command": "npx tsc --noEmit",
+    "generatedDevTypesRegeneratedByNext": true
+  },
+  "eslint": {
+    "errors": 0,
+    "warnings": 10
+  },
+  "newFixtureTests": {
+    "passed": 12,
+    "environment": {
+      "os": "Windows 10 Pro",
+      "release": "10.0.19045",
+      "architecture": "x64",
+      "node": "v22.18.0",
+      "supabaseJs": "2.118.0"
+    },
+    "scope": [
+      "No network requests or real Supabase project used. The fake host's fetch implementation returns constructed HTTP responses.",
+      "Identity and RPC unit cases are mocks. They do not verify tokens, SQL privileges, RLS, concurrency, rollback or idempotency.",
+      "SQL fixtures are NOT EXECUTED. No PostgreSQL version, Windows 11, Linux or Vercel environment was tested."
+    ]
+  },
+  "freshPriorityFixtureConfirmation": {
+    "passed": 15,
+    "environment": {
+      "node": "v22.18.0",
+      "os": "Windows 10 Pro",
+      "release": "10.0.19045",
+      "architecture": "x64",
+      "next": "16.2.6",
+      "react": "19.2.4",
+      "typescript": "5.9.3",
+      "supabaseSsr": "0.12.7",
+      "supabaseJs": "2.118.0"
+    }
+  },
+  "contentSeoChecks": {
+    "passed": 57,
+    "priorFilesPreserved": 103
+  },
+  "routeChecks": {
+    "count": 70,
+    "publicArticles": 41,
+    "failures": [],
+    "unresolvedLinks": [],
+    "searchCases": [
+      {
+        "query": "module",
+        "status": 200,
+        "privateLeak": false,
+        "passed": true
+      },
+      {
+        "query": "^.*$",
+        "status": 200,
+        "privateLeak": false,
+        "passed": true
+      },
+      {
+        "query": "",
+        "status": 400,
+        "privateLeak": false,
+        "passed": true
+      },
+      {
+        "query": "overlength",
+        "status": 400,
+        "privateLeak": false,
+        "passed": true
+      }
+    ]
+  },
+  "storedArticleRecordsPreserved": 58,
+  "phase5ArticleDrafts": 5,
+  "allDraftsUnpublished": true,
+  "browser": {
+    "run": false,
+    "reason": "Earlier browser local-tab URL-policy refusal unresolved; no workaround attempted"
+  },
+  "sql": {
+    "executed": false,
+    "testedPostgresVersion": null
+  },
+  "sourceData": {
+    "pageRows": 42,
+    "queryRows": 110,
+    "reportingWindow": null,
+    "main": {
+      "rows": 41,
+      "clicks": 9,
+      "impressions": 7334,
+      "calculatedCtrPercent": 0.12271611671666213
+    },
+    "tempMail": {
+      "rows": 1,
+      "clicks": 24,
+      "impressions": 273,
+      "calculatedCtrPercent": 8.791208791208792
+    }
+  },
+  "newRootDependencies": 0,
+  "productionActions": {
+    "push": false,
+    "deploy": false,
+    "publish": false,
+    "archive": false,
+    "deleteContent": false,
+    "redirect": false,
+    "databaseWrite": false,
+    "adsenseResubmission": false
+  },
+  "adsenseReadiness": "NOT READY",
+  "phase6Started": false
+}

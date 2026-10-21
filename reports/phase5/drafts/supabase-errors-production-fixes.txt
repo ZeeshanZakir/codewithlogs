@@ -1,0 +1,141 @@
+Supabase Errors: RLS, Query Cardinality and Connection Troubleshooting
+Status: DRAFT — SDK transport tests are limited; live SQL/auth/network fixes unverified.
+Preserve URL: /blog/supabase-errors-production-fixes
+Proposed description: Diagnose Supabase RLS failures, single/maybeSingle results, session errors, connection exhaustion and schema problems without unsafe shortcuts.
+
+## Identify the failing layer first
+Keep the error code, operation, table or route, timestamp and relevant versions.
+Separate a denied SQL operation, a PostgREST response, an Auth failure and a
+browser network exception. They require different evidence. A 500 response or
+“Failed to fetch” does not prove a missing environment variable.
+
+Use a redacted log. Never include access/refresh tokens, passwords, connection
+strings or customer rows. This guide does not recount personal production incidents.
+
+## Environment and evidence
+Local SDK tests use supabase-js 2.118.0 on Node 22.18.0 / Windows 10 Pro 10.0.19045.
+The separate SSR fixture pins Next 16.2.6 / React 19.2.4 / supabase/ssr 0.12.7.
+The cardinality tests feed deliberately constructed HTTP responses into the real
+SDK. They establish client response handling only, not PostgreSQL cardinality,
+real RLS, production Auth, SMTP or pooler behavior. Read the Phase 5 technical
+report for actual outcomes. No live database version or other OS was tested.
+
+## 1. “new row violates row-level security policy”
+Check which identity and role reached the table, the operation and the proposed
+row. INSERT/UPDATE can fail a WITH CHECK expression; privileges can also deny an
+operation. A React filter and a signed-in UI are not evidence that access is safe.
+Use the own-row RLS example and test the API as anon, A and B. Do not disable RLS
+or move a privileged key into the browser. A denied SELECT may simply hide rows.
+
+## 2. “infinite recursion detected in policy for relation profiles”
+Inspect the policies and functions consulted by that policy. Querying the same
+protected relation from its own rule can recurse. Do not paste an unrestricted
+security-definer helper as a universal repair. Review schema ownership, grants,
+name resolution and every helper argument. A new policy can also combine with
+existing permissive rules in unexpected ways. No recursive-policy fix was run here.
+
+## 3. Session missing, expired or rejected
+Inspect Auth errors and the request's cookie/header flow without printing tokens.
+Use the pinned SSR client and refresh response correctly for the installed Next
+version; Next 16 uses proxy.ts. A layout redirect does not authorize every Server
+Action or Route Handler. Validate identity at the operation boundary and preserve
+private/no-store behavior for session-dependent responses. Session expiry and
+refresh configuration vary; do not assume an exact one-hour lifetime.
+Live login, logout, refresh and forged/expired token tests remain required.
+
+## 4. single() and maybeSingle(): inspect data and error
+single() expects one row. maybeSingle() allows zero or one, not multiple. An
+ordinary SDK call returns an error field for a cardinality failure; it does not
+necessarily throw. throwOnError changes the handling contract.
+
+Complete companion calls:
+```js
+// Complete SDK calls for a disposable cwl_cardinality table with an integer id.
+// A transport-level test does not prove table constraints or live RLS behavior.
+export async function inspectSingle(supabase) {
+  const { data, error } = await supabase.from("cwl_cardinality").select("id").single();
+  return { data, error };
+}
+export async function inspectMaybeSingle(supabase) {
+  const { data, error } = await supabase.from("cwl_cardinality").select("id").maybeSingle();
+  return { data, error };
+}
+```
+
+Expected live behavior to verify:
+zero visible rows: single has an error; maybeSingle gives data=null/error=null
+one visible row: both return that object
+two visible rows: both reject the one-object assumption with an error
+
+The local transport tests exercise all six response cases using SDK 2.118.0.
+They do not create a real table. A hidden row due to RLS can look like absence;
+investigate identity and visibility before inserting a replacement record.
+Use maybeSingle only when absence is valid business behavior. Adding limit(1)
+can conceal duplicate data when the real invariant requires uniqueness.
+
+## 5. “remaining connection slots are reserved”
+Distinguish direct PostgreSQL/ORM connections from supabase-js HTTP calls. Review
+connection counts, idle transactions and the actual deployment's connection mode.
+Direct, session-pooler and transaction-pooler choices have different capabilities.
+Prepared statements and ORM settings need a mode-compatible configuration. Copy
+the intended string from the approved project's connection settings; a blanket
+“always use port 6543” rule is insufficient. Never post the string in a report.
+No connection exhaustion, prepared-statement or pooler repair was tested here.
+
+## 6. “duplicate key value violates unique constraint”
+Find the named constraint and the duplicate operation. A signup trigger and app
+code may both create the same profile, but that is only one possible cause. Choose
+one owner for creation or design an explicit idempotent operation. An upsert can
+update existing fields and still needs correct RLS and allowed columns; do not
+use it blindly on roles, ownership or unrelated uniqueness failures. After a
+network timeout, check whether the first operation committed before retrying it.
+
+## 7. “Failed to fetch” after deployment
+Use the browser network trace to distinguish DNS/TLS, blocked requests, extensions,
+CORS and an unreachable endpoint from application configuration. Compare required
+environment-variable names and selected project host, not secret values. A literal
+NEXT_PUBLIC_ reference in client code is set at build time. Updating a public value
+requires a separately approved new build; it cannot rewrite an old client bundle.
+Do not expose private credentials with a public prefix to work around a failure.
+
+## 8. “relation public.something does not exist”
+Check the connected project/schema, exact identifier casing, applied migrations
+and schema exposure. Development and production may differ. Prepare a reviewed
+migration and rollback plan against a disposable copy before any approved release.
+Do not issue a production db push as a diagnostic shortcut. A schema-cache error
+and a missing underlying table are related but distinct observations.
+
+## 9. “column reference id is ambiguous”
+Qualify table columns and distinguish PL/pgSQL variables, parameters and output
+column names. Prefixing parameters helps naming, but it does not prevent every
+collision by itself. The inventory example uses table aliases and explicit
+parameters; its SQL still needs execution. Make one change and repeat the exact
+query, checking returned data as well as the absence of an error.
+
+## 10. Confirmation or recovery email is not delivered
+Review the provider's Auth/SMTP logs, recipient status, rate limits, redirect
+allowlist and SMTP configuration. A resolved client call is not proof of delivery.
+Built-in service restrictions and custom-provider limits depend on configuration;
+do not promise a universal quota or silent-failure behavior. Use approved test
+recipients and never claim recovery succeeded without receiving and exercising
+the link. No email was sent by this phase.
+
+## Verify a narrow correction
+Reproduce the specific failure, make a focused change in an isolated project,
+repeat it and check negative access cases. Keep grants, JWT state, actual versions
+and outputs with the test. The current SDK transport and application mocks do not
+make the whole guide verified. All live service remedies remain DRAFT.
+
+Related: /blog/supabase-row-level-security-real-examples (unverified published body)
+Related: /blog/nextjs-authentication-without-nextauth (unverified published body)
+Related: /blog/common-vercel-deployment-errors-solutions (unverified published body)
+Tools: /tools/error-decoder and /tools/package-json-inspector
+
+Official references:
+https://supabase.com/docs/reference/javascript/single
+https://supabase.com/docs/reference/javascript/maybesingle
+https://supabase.com/docs/guides/auth/server-side/nextjs
+https://supabase.com/docs/guides/database/connecting-to-postgres
+https://supabase.com/docs/guides/database/postgres/row-level-security
+https://supabase.com/docs/guides/auth/auth-smtp
+https://nextjs.org/docs/app/guides/environment-variables

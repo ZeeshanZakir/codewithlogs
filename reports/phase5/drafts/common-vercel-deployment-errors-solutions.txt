@@ -1,0 +1,118 @@
+Vercel Deployment Errors: Build Failures, Missing Deployments and Runtime Checks
+Status: DRAFT — local build cases have evidence; hosted repairs remain untested.
+Preserve URL: /blog/common-vercel-deployment-errors-solutions
+Proposed description: Find the first useful Vercel error, distinguish build and runtime failures, and diagnose imports, environment values and missing deployments safely.
+
+## Find the failure that matters
+“Command npm run build exited with 1” says the process failed, not why. Open the
+failed deployment's build log and work upward to the first actionable message.
+For an already-built app returning errors, inspect the relevant invocation logs.
+Record the deployment commit, environment, route, timestamp and runtime versions.
+Redact tokens and environment values before sharing the log.
+
+The companion fixture uses Next 16.2.6, React 19.2.4, TypeScript 5.9.3 and Node
+22.18.0 on Windows 10 Pro 10.0.19045. Local import/type/alias failures, tracked-case
+correction and build/runtime environment behavior have recorded evidence. No
+Vercel deployment, Linux build, DNS change or platform-limit repair was executed.
+The platform codes below are documentation examples, not observed live incidents.
+
+## Module not found: check the actual import
+For “Module not found: Can't resolve ...”, decide whether the import is a local
+file, configured alias or package. Check spelling, exact tracked case, manifest
+and lockfile before installing anything. A Node-only dependency entering client
+code can also produce resolver errors.
+
+In PowerShell, from the trusted checkout:
+git ls-files -- src/components
+npm.cmd ls --depth=0
+
+For a deliberate case-only correction, if the actual files use these names and
+the temporary name is unused:
+git mv src/components/button.tsx src/components/button-case-temp.tsx
+git mv src/components/button-case-temp.tsx src/components/Button.tsx
+git diff --cached --name-status
+
+Update imports to match. This two-hop index correction was tested on Windows;
+case-sensitive Linux compilation remains a separate test. Do not stage, push or
+deploy an unrelated working tree as part of checking an import.
+
+## Type errors and lint failures are separate checks
+Reproduce the deployment command locally with the repository's intended Node and
+package-manager versions. next dev is not the complete production check.
+
+npx.cmd tsc --noEmit
+npm.cmd run lint
+npm.cmd run build
+
+Next 16 does not run ESLint as part of next build. The isolated fixture records
+an explicit-any lint failure while the build passes. Correct the invalid code;
+do not adapt old ignoreDuringBuilds advice or hide failures with ignoreBuildErrors.
+A successful local build is evidence about that checkout, not hosted configuration.
+
+## Missing environment values: distinguish build time from request time
+Inspect required variable names, target environment and branch scope. A literal
+NEXT_PUBLIC_ value in client code is bundled at build time. A dynamic server route
+can read a runtime value; static rendering may execute earlier. Not every variable
+is universally “baked in” at the same moment.
+
+The fixture builds one synthetic public label, starts with a different runtime
+label and compares the results. It never prints real credentials. Add only values
+needed for the approved deployment. Never prefix database secrets publicly. A
+public build-time change needs a separately approved new build/deployment.
+
+## DEPLOYMENT_NOT_FOUND is not the same as an app route 404
+Confirm the exact deployment URL exists in the intended project/account and has
+not been removed. Compare the intended deployment, domain assignment and access
+context. A deleted or incorrect deployment URL cannot be fixed by changing a
+Next.js page component. If the deployment exists but only one app path is 404,
+investigate routing/static output instead. No hosted reproduction was performed.
+
+## MIDDLEWARE_INVOCATION_FAILED and request-time failures
+Inspect the exception in the relevant invocation log and the code actually
+deployed. Review request interception, matcher scope, configuration and runtime
+capabilities. Next 16 uses proxy.ts naming; older examples may use middleware.ts.
+The platform's legacy-named error does not justify blindly renaming project files.
+Reproduce a minimal request in an approved preview before proposing a remedy.
+Do not return secret error details to visitors or disable authorization as a test.
+
+## Timeouts, memory and output settings
+For a function timeout, identify the slow operation and compare current configured
+limits for the actual runtime/plan. There is no universal ten-second rule here.
+For “JavaScript heap out of memory”, inspect build inputs and memory usage; a
+larger heap is not proof that the cause was fixed. No OOM remedy was executed.
+
+For NO_OUTPUT_DIRECTORY, confirm the project root/framework/build/output settings
+against the framework's deployment mode. Do not point Vercel at an arbitrary
+directory simply to bypass the error. A static export and a Next server deployment
+have different routing and request-time capabilities.
+
+## App path 404 or “successful” deployment showing old content
+Check the deployed commit and domain target before debugging browser cache.
+Preview and Production are distinct environments; the configured production
+branch need not be named main. With static export, an omitted path cannot be
+generated on demand. For a server deployment, inspect generateStaticParams,
+dynamicParams, cache settings and interception behavior for the installed version.
+Do not apply force-dynamic to the entire site without understanding the page.
+
+## Verify the smallest correction
+In the local fixture, reproduce the named failure, restore the intended source
+and rerun its command. The recorded local cases do not certify the hosted sections.
+For hosted verification, obtain separate approval for a preview, compare its
+commit/environment, repeat the failing URL/operation and check unrelated routes.
+Keep DRAFT until the claims are narrowed or the missing cases have real evidence.
+
+Related: /blog/deploy-nextjs-to-vercel-guide (existing unverified body)
+Related: /blog/debug-production-errors-nextjs (existing unverified body)
+Related: /blog/nextjs-folder-structure-large-projects (existing unverified body)
+Tools: /tools/error-decoder and /tools/package-json-inspector
+
+Official references:
+https://vercel.com/docs/deployments/troubleshoot-a-build
+https://vercel.com/docs/errors/deployment_not_found
+https://vercel.com/docs/errors/middleware_invocation_failed
+https://vercel.com/docs/errors/no_output_directory
+https://vercel.com/docs/functions/limitations
+https://nextjs.org/docs/messages/module-not-found
+https://nextjs.org/docs/app/guides/upgrading/version-16
+https://nextjs.org/docs/app/guides/environment-variables
+https://git-scm.com/docs/git-mv

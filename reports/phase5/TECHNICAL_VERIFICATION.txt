@@ -1,0 +1,101 @@
+CODEWITHLOGS PHASE 5 — TECHNICAL VERIFICATION
+Review date: 2026-10-21 (Asia/Karachi)
+
+OBSERVED ENVIRONMENT
+Windows 10 Pro 10.0.19045 x64; Node 22.18.0. Isolated priority fixture:
+Next.js 16.2.6, React 19.2.4, TypeScript 5.9.3, Supabase SSR 0.12.7 and
+supabase-js 2.118.0. Versions are installed/tested versions, not newest-release
+claims. No Windows 11, Linux, Vercel preview or live Supabase project was tested.
+No PostgreSQL/psql/pg_ctl/Docker executable was found on PATH; the standard
+Program Files/PostgreSQL directory was absent. No server was provisioned.
+
+FIVE REVISION DECISIONS — ALL REMAIN LOCAL DRAFT
+Inventory: JavaScript input/auth-boundary/serialization/error/replay handling has
+isolated evidence; SQL is unexecuted. No stock-concurrency, rollback, idempotency,
+owner/grant or RLS verification is claimed. Complete disposable test plan supplied.
+Vercel errors: fresh local corrected build, types, alias rendering and environment
+checks passed. Earlier negative/casing evidence is retained unchanged. Platform
+codes/settings, Linux casing, timeout/OOM/output-directory remedies remain untested.
+RLS examples: complete proposed schema/grants/policies reviewed against official
+docs. No SQL parser/server/API execution. Anon/A/B/column-privilege/constraint and
+direct-call tests remain mandatory. No production-security certification.
+Supabase errors: real SDK six-case cardinality contract checks passed against
+constructed HTTP. Live zero/one/two rows, RLS visibility, sessions, poolers,
+migrations and SMTP remain untested. Data/error behavior is not database proof.
+Deployment: fresh local preflight/build evidence passed; no hosted preview,
+network rule, remote image, DNS/TLS or promotion test was performed.
+
+FRESH PHASE 5 TESTS
+1. scripts/test-phase5-fixtures.mjs: 12 cases PASS.
+   Two pure input-validation groups; mock identity denials; real SDK RPC request
+   serialization with constructed HTTP and a mocked identity; malformed/error
+   response rejection; mock replay handling; six single/maybeSingle response cases.
+   Real SDK 2.118.0 behavior was observed. Fetch was replaced with a constructed
+   Response provider for a fake host: no real HTTP database request occurred.
+   RPC serialization contains product, quantity and retry key, not trusted owner
+   input. A mock replay response does not prove SQL idempotency.
+   Evidence: fixture-tests.json. Complete source under fixtures/phase5-supabase.
+
+2. Existing priority fixture confirmation: 15 named cases PASS, saved separately
+   under priority-fixture-tests/confirmation-results.json and raw build/server logs.
+   Command: node scripts/test-priority-articles.mjs --confirm --evidence-dir
+   reports/phase5/priority-fixture-tests
+   Passing groups: corrected import/type/alias build; fixture TypeScript; mocked
+   anonymous/form-identity/error authorization boundaries; two SDK response
+   contracts; rendered alias; public build-time versus dynamic server-time label;
+   anonymous private HTTP 401; private/no-store response; dashboard login redirect;
+   production server-error redaction with original synthetic marker in server log.
+   The no-session HTTP route uses a real local Next/Supabase SDK with synthetic
+   loopback configuration. It does not validate real tokens, sessions or RLS.
+   Earlier six negative/casing case IDs remain historical, not freshly rerun here.
+
+3. Content/SEO suite: 57 PASS; content-seo-tests.json.
+   Checks five exact draft/source hashes and unchanged statuses, local-only 404s,
+   canonical URLs, original article structured-data titles/no invented modification
+   date, real internal targets, approved topic/navigation focus, Supabase matching,
+   unchanged existing tool SEO, embedded-code parity and 58-record preservation.
+   All 103 selected earlier draft/evidence/fixture/dependency files match the
+   Phase 5 baseline. SQL structure assertions are text checks, not SQL execution.
+
+4. Existing route suite: 70 checks; 41 public article routes; zero failures or
+   unresolved internal links. Four search cases PASS, including literal regex-like
+   input, valid content search and rejected empty/overlong input. No draft leakage.
+   Evidence: reports/route-validation.json. Protected endpoints retain 401 and the
+   admin dashboard retains its login redirect. No authenticated mutation performed.
+
+5. Production build PASS: Next 16.2.6; 35 static pages generated. TypeScript PASS
+   independently with npx tsc --noEmit and during build. ESLint: 0 errors, ten
+   retained warnings; no rule disabled. Root package.json/lockfile unchanged.
+   git diff --check passed. No new runtime/test dependency was added to the site.
+
+SEARCH DATA / CONTENT INTEGRITY
+CSV parser handles quoted newlines/doubled quotes, checks five columns, numeric
+metrics and exported rounded CTR against clicks/impressions. Original/copy SHA-256
+matches for both supplied files. Standard PowerShell Import-Csv independently
+confirms 41 main-site rows, 9 clicks, 7,334 impressions and 110 query records.
+No query-to-page join, missing date window or CTR improvement was invented.
+Code blocks embedded in the inventory/RLS/cardinality revisions match fixture
+files exactly. Whole-guide verification is false for every Phase 5 draft.
+
+LOCAL SETUP ISSUES HANDLED
+The existing isolated fixture directory lacked its required SDK module. Restored
+its existing locked dependencies with npm ci --ignore-scripts --no-audit --no-fund;
+no root dependency or lockfile change. New fixture outputs use an optional
+reports-only evidence directory so prior reports are preserved.
+
+The first TypeScript run found malformed trailing text in .next/dev/types/routes
+and validator generated artifacts. Consulted installed Next CLI/typegen guidance,
+ran next typegen and briefly started an owned local next dev on port 3017 to let
+Next regenerate its development types. Stopped that server, then TypeScript/build
+passed. No source deletion, weakened compiler check or manual generated-file
+patch was used. The corruption's underlying cause was not established.
+
+BROWSER / SECURITY / SERVICE LIMITS
+No real browser/mobile interaction test ran: prior local-tab URL-policy refusal
+remains unresolved; no workaround attempted. Phase 4 tools were not reimplemented
+and earlier evidence was preserved. Their public routes/metadata still pass HTTP
+checks. Reuse the Phase 4 manual keyboard, mobile, clipboard, network and hydration
+checklist with the Phase 5 homepage/topic changes added.
+No real-user Core Web Vitals, Google index state, CTR lift, AdSense decision,
+external originality scan, live login, real email or database mutation was tested.
+No screenshots, test successes, author experience or security outcomes fabricated.

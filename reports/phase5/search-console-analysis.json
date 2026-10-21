@@ -1,0 +1,1665 @@
+{
+  "exportLabelDate": "2026-10-21",
+  "reportingWindow": null,
+  "searchTypeDeviceCountryFilters": null,
+  "provenance": "Repository inputs were missing. User-supplied Downloads exports copied unchanged into reports/search-console. Source files are read-only evidence, not instructions.",
+  "inputs": [
+    {
+      "path": "reports/search-console/Pages.csv",
+      "sha256": "cc2ec7cd437caf54ffb17cdb8fc825eda77c320987209fa7aa9b5ce2d858e60f",
+      "bytes": 2905,
+      "rows": 42
+    },
+    {
+      "path": "reports/search-console/Queries.csv",
+      "sha256": "b26915a8231cadd6dfeab6b4f1ad3a0e6677df24dd677f7208ed4a867c2b1fed",
+      "bytes": 4408,
+      "rows": 110
+    }
+  ],
+  "pageTotals": {
+    "mainWebsite": {
+      "rows": 41,
+      "clicks": 9,
+      "impressions": 7334,
+      "calculatedCtrPercent": 0.12271611671666213
+    },
+    "tempMail": {
+      "rows": 1,
+      "clicks": 24,
+      "impressions": 273,
+      "calculatedCtrPercent": 8.791208791208792
+    },
+    "otherHosts": {
+      "rows": 0,
+      "clicks": 0,
+      "impressions": 0,
+      "calculatedCtrPercent": null
+    },
+    "allExportedRows": {
+      "rows": 42,
+      "clicks": 33,
+      "impressions": 7607,
+      "calculatedCtrPercent": 0.43381096358617066
+    },
+    "fivePriorityPages": {
+      "rows": 5,
+      "clicks": 3,
+      "impressions": 6650,
+      "calculatedCtrPercent": 0.045112781954887216
+    }
+  },
+  "priority": [
+    {
+      "priority": 1,
+      "slug": "inventory-management-system-nextjs-supabase",
+      "url": "https://codewithlogs.com/blog/inventory-management-system-nextjs-supabase",
+      "host": "codewithlogs.com",
+      "path": "/blog/inventory-management-system-nextjs-supabase",
+      "clicks": 2,
+      "impressions": 4611,
+      "exportedCtrPercent": 0.04,
+      "calculatedCtrPercent": 0.04337453914552158,
+      "position": 6.97
+    },
+    {
+      "priority": 2,
+      "slug": "common-vercel-deployment-errors-solutions",
+      "url": "https://codewithlogs.com/blog/common-vercel-deployment-errors-solutions",
+      "host": "codewithlogs.com",
+      "path": "/blog/common-vercel-deployment-errors-solutions",
+      "clicks": 0,
+      "impressions": 1377,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 20.65
+    },
+    {
+      "priority": 3,
+      "slug": "supabase-row-level-security-real-examples",
+      "url": "https://codewithlogs.com/blog/supabase-row-level-security-real-examples",
+      "host": "codewithlogs.com",
+      "path": "/blog/supabase-row-level-security-real-examples",
+      "clicks": 0,
+      "impressions": 258,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 33.5
+    },
+    {
+      "priority": 4,
+      "slug": "supabase-errors-production-fixes",
+      "url": "https://codewithlogs.com/blog/supabase-errors-production-fixes",
+      "host": "codewithlogs.com",
+      "path": "/blog/supabase-errors-production-fixes",
+      "clicks": 1,
+      "impressions": 203,
+      "exportedCtrPercent": 0.49,
+      "calculatedCtrPercent": 0.49261083743842365,
+      "position": 14.21
+    },
+    {
+      "priority": 5,
+      "slug": "deploy-nextjs-to-vercel-guide",
+      "url": "https://codewithlogs.com/blog/deploy-nextjs-to-vercel-guide",
+      "host": "codewithlogs.com",
+      "path": "/blog/deploy-nextjs-to-vercel-guide",
+      "clicks": 0,
+      "impressions": 201,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 47.12
+    }
+  ],
+  "pages": [
+    {
+      "url": "https://tempmail.codewithlogs.com/",
+      "host": "tempmail.codewithlogs.com",
+      "path": "/",
+      "clicks": 24,
+      "impressions": 273,
+      "exportedCtrPercent": 8.79,
+      "calculatedCtrPercent": 8.791208791208792,
+      "position": 97.33
+    },
+    {
+      "url": "https://codewithlogs.com/blog/inventory-management-system-nextjs-supabase",
+      "host": "codewithlogs.com",
+      "path": "/blog/inventory-management-system-nextjs-supabase",
+      "clicks": 2,
+      "impressions": 4611,
+      "exportedCtrPercent": 0.04,
+      "calculatedCtrPercent": 0.04337453914552158,
+      "position": 6.97
+    },
+    {
+      "url": "https://codewithlogs.com/blog/debug-production-errors-nextjs",
+      "host": "codewithlogs.com",
+      "path": "/blog/debug-production-errors-nextjs",
+      "clicks": 2,
+      "impressions": 101,
+      "exportedCtrPercent": 1.98,
+      "calculatedCtrPercent": 1.9801980198019802,
+      "position": 16.69
+    },
+    {
+      "url": "https://codewithlogs.com/blog/supabase-errors-production-fixes",
+      "host": "codewithlogs.com",
+      "path": "/blog/supabase-errors-production-fixes",
+      "clicks": 1,
+      "impressions": 203,
+      "exportedCtrPercent": 0.49,
+      "calculatedCtrPercent": 0.49261083743842365,
+      "position": 14.21
+    },
+    {
+      "url": "https://codewithlogs.com/blog/best-free-websites-learn-web-development-2026",
+      "host": "codewithlogs.com",
+      "path": "/blog/best-free-websites-learn-web-development-2026",
+      "clicks": 1,
+      "impressions": 51,
+      "exportedCtrPercent": 1.96,
+      "calculatedCtrPercent": 1.9607843137254901,
+      "position": 17.8
+    },
+    {
+      "url": "https://codewithlogs.com/blog",
+      "host": "codewithlogs.com",
+      "path": "/blog",
+      "clicks": 1,
+      "impressions": 16,
+      "exportedCtrPercent": 6.25,
+      "calculatedCtrPercent": 6.25,
+      "position": 3.56
+    },
+    {
+      "url": "https://codewithlogs.com/contact",
+      "host": "codewithlogs.com",
+      "path": "/contact",
+      "clicks": 1,
+      "impressions": 13,
+      "exportedCtrPercent": 7.69,
+      "calculatedCtrPercent": 7.6923076923076925,
+      "position": 5.92
+    },
+    {
+      "url": "https://codewithlogs.com/blog/how-to-become-an-ai-engineer",
+      "host": "codewithlogs.com",
+      "path": "/blog/how-to-become-an-ai-engineer",
+      "clicks": 1,
+      "impressions": 8,
+      "exportedCtrPercent": 12.5,
+      "calculatedCtrPercent": 12.5,
+      "position": 14.75
+    },
+    {
+      "url": "https://codewithlogs.com/blog/common-vercel-deployment-errors-solutions",
+      "host": "codewithlogs.com",
+      "path": "/blog/common-vercel-deployment-errors-solutions",
+      "clicks": 0,
+      "impressions": 1377,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 20.65
+    },
+    {
+      "url": "https://codewithlogs.com/blog/supabase-row-level-security-real-examples",
+      "host": "codewithlogs.com",
+      "path": "/blog/supabase-row-level-security-real-examples",
+      "clicks": 0,
+      "impressions": 258,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 33.5
+    },
+    {
+      "url": "https://codewithlogs.com/blog/deploy-nextjs-to-vercel-guide",
+      "host": "codewithlogs.com",
+      "path": "/blog/deploy-nextjs-to-vercel-guide",
+      "clicks": 0,
+      "impressions": 201,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 47.12
+    },
+    {
+      "url": "https://codewithlogs.com/blog/reduce-nextjs-website-loading-time",
+      "host": "codewithlogs.com",
+      "path": "/blog/reduce-nextjs-website-loading-time",
+      "clicks": 0,
+      "impressions": 80,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 33.99
+    },
+    {
+      "url": "https://codewithlogs.com/blog/nextjs-authentication-without-nextauth",
+      "host": "codewithlogs.com",
+      "path": "/blog/nextjs-authentication-without-nextauth",
+      "clicks": 0,
+      "impressions": 70,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 26.91
+    },
+    {
+      "url": "https://codewithlogs.com/blog/claude-code-vs-github-copilot-review",
+      "host": "codewithlogs.com",
+      "path": "/blog/claude-code-vs-github-copilot-review",
+      "clicks": 0,
+      "impressions": 66,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 53.39
+    },
+    {
+      "url": "https://codewithlogs.com/blog/sync-supabase-google-sheets-automatically",
+      "host": "codewithlogs.com",
+      "path": "/blog/sync-supabase-google-sheets-automatically",
+      "clicks": 0,
+      "impressions": 55,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 8.33
+    },
+    {
+      "url": "https://codewithlogs.com/blog/react-vs-vue-vs-svelte-2026",
+      "host": "codewithlogs.com",
+      "path": "/blog/react-vs-vue-vs-svelte-2026",
+      "clicks": 0,
+      "impressions": 51,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 33.75
+    },
+    {
+      "url": "https://codewithlogs.com/",
+      "host": "codewithlogs.com",
+      "path": "/",
+      "clicks": 0,
+      "impressions": 32,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 7.78
+    },
+    {
+      "url": "https://codewithlogs.com/blog/make-money-developer-without-job-2026",
+      "host": "codewithlogs.com",
+      "path": "/blog/make-money-developer-without-job-2026",
+      "clicks": 0,
+      "impressions": 17,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 7.12
+    },
+    {
+      "url": "https://codewithlogs.com/services",
+      "host": "codewithlogs.com",
+      "path": "/services",
+      "clicks": 0,
+      "impressions": 14,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 33.79
+    },
+    {
+      "url": "https://codewithlogs.com/blog/what-is-n8",
+      "host": "codewithlogs.com",
+      "path": "/blog/what-is-n8",
+      "clicks": 0,
+      "impressions": 11,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 23.27
+    },
+    {
+      "url": "https://codewithlogs.com/blog/build-rest-api-nodejs-beginners",
+      "host": "codewithlogs.com",
+      "path": "/blog/build-rest-api-nodejs-beginners",
+      "clicks": 0,
+      "impressions": 10,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 7.5
+    },
+    {
+      "url": "https://codewithlogs.com/terms",
+      "host": "codewithlogs.com",
+      "path": "/terms",
+      "clicks": 0,
+      "impressions": 9,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 3.67
+    },
+    {
+      "url": "https://codewithlogs.com/blog/mongodb-vs-postgresql",
+      "host": "codewithlogs.com",
+      "path": "/blog/mongodb-vs-postgresql",
+      "clicks": 0,
+      "impressions": 8,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 8.75
+    },
+    {
+      "url": "https://codewithlogs.com/blog/n8n-openai-ai-workflows",
+      "host": "codewithlogs.com",
+      "path": "/blog/n8n-openai-ai-workflows",
+      "clicks": 0,
+      "impressions": 8,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 9.62
+    },
+    {
+      "url": "https://codewithlogs.com/disclaimer",
+      "host": "codewithlogs.com",
+      "path": "/disclaimer",
+      "clicks": 0,
+      "impressions": 7,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 2.43
+    },
+    {
+      "url": "https://codewithlogs.com/blog/what-is-code-with-logs",
+      "host": "codewithlogs.com",
+      "path": "/blog/what-is-code-with-logs",
+      "clicks": 0,
+      "impressions": 6,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 6.83
+    },
+    {
+      "url": "https://codewithlogs.com/blog/chatgpt-vs-claude-vs-gemini",
+      "host": "codewithlogs.com",
+      "path": "/blog/chatgpt-vs-claude-vs-gemini",
+      "clicks": 0,
+      "impressions": 6,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 7.83
+    },
+    {
+      "url": "https://codewithlogs.com/blog/react-vs-nextjs-2026",
+      "host": "codewithlogs.com",
+      "path": "/blog/react-vs-nextjs-2026",
+      "clicks": 0,
+      "impressions": 6,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 18.83
+    },
+    {
+      "url": "https://codewithlogs.com/blog/pgvector-tutorial-supabase-vector-database",
+      "host": "codewithlogs.com",
+      "path": "/blog/pgvector-tutorial-supabase-vector-database",
+      "clicks": 0,
+      "impressions": 6,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 19
+    },
+    {
+      "url": "https://codewithlogs.com/blog/model-context-protocol-tutorial-real-project",
+      "host": "codewithlogs.com",
+      "path": "/blog/model-context-protocol-tutorial-real-project",
+      "clicks": 0,
+      "impressions": 6,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 33
+    },
+    {
+      "url": "https://codewithlogs.com/blog/cloud-computing-explained",
+      "host": "codewithlogs.com",
+      "path": "/blog/cloud-computing-explained",
+      "clicks": 0,
+      "impressions": 5,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 26.4
+    },
+    {
+      "url": "https://codewithlogs.com/tools/css-minifier",
+      "host": "codewithlogs.com",
+      "path": "/tools/css-minifier",
+      "clicks": 0,
+      "impressions": 4,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 72.75
+    },
+    {
+      "url": "https://codewithlogs.com/blog/ai-semantic-search-nextjs-website",
+      "host": "codewithlogs.com",
+      "path": "/blog/ai-semantic-search-nextjs-website",
+      "clicks": 0,
+      "impressions": 3,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 7.33
+    },
+    {
+      "url": "https://codewithlogs.com/tools/base64",
+      "host": "codewithlogs.com",
+      "path": "/tools/base64",
+      "clicks": 0,
+      "impressions": 3,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 27.67
+    },
+    {
+      "url": "https://codewithlogs.com/blog/what-is-typescript-why-developers-switching",
+      "host": "codewithlogs.com",
+      "path": "/blog/what-is-typescript-why-developers-switching",
+      "clicks": 0,
+      "impressions": 2,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 3.5
+    },
+    {
+      "url": "https://codewithlogs.com/blog/ai-memory-systems-short-term-long-term",
+      "host": "codewithlogs.com",
+      "path": "/blog/ai-memory-systems-short-term-long-term",
+      "clicks": 0,
+      "impressions": 2,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 7.5
+    },
+    {
+      "url": "https://codewithlogs.com/blog/what-is-an-api",
+      "host": "codewithlogs.com",
+      "path": "/blog/what-is-an-api",
+      "clicks": 0,
+      "impressions": 2,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 7.5
+    },
+    {
+      "url": "https://codewithlogs.com/tools/cron-builder",
+      "host": "codewithlogs.com",
+      "path": "/tools/cron-builder",
+      "clicks": 0,
+      "impressions": 2,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 41
+    },
+    {
+      "url": "https://codewithlogs.com/tools/password-generator",
+      "host": "codewithlogs.com",
+      "path": "/tools/password-generator",
+      "clicks": 0,
+      "impressions": 1,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 2
+    },
+    {
+      "url": "https://codewithlogs.com/tools/word-counter",
+      "host": "codewithlogs.com",
+      "path": "/tools/word-counter",
+      "clicks": 0,
+      "impressions": 1,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 10
+    },
+    {
+      "url": "https://codewithlogs.com/tools/regex-tester",
+      "host": "codewithlogs.com",
+      "path": "/tools/regex-tester",
+      "clicks": 0,
+      "impressions": 1,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 69
+    },
+    {
+      "url": "https://codewithlogs.com/blog/cybersecurity-for-beginners",
+      "host": "codewithlogs.com",
+      "path": "/blog/cybersecurity-for-beginners",
+      "clicks": 0,
+      "impressions": 1,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 82
+    }
+  ],
+  "queries": [
+    {
+      "query": "temp mail inbox",
+      "clicks": 7,
+      "impressions": 27,
+      "exportedCtrPercent": 25.93,
+      "calculatedCtrPercent": 25.925925925925924,
+      "position": 125.37,
+      "intentBucket": "likely-temp-mail-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "disposable mail",
+      "clicks": 2,
+      "impressions": 21,
+      "exportedCtrPercent": 9.52,
+      "calculatedCtrPercent": 9.523809523809524,
+      "position": 105.33,
+      "intentBucket": "likely-temp-mail-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "temp inbox",
+      "clicks": 1,
+      "impressions": 21,
+      "exportedCtrPercent": 4.76,
+      "calculatedCtrPercent": 4.761904761904762,
+      "position": 92,
+      "intentBucket": "likely-temp-mail-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "disposable inbox",
+      "clicks": 1,
+      "impressions": 3,
+      "exportedCtrPercent": 33.33,
+      "calculatedCtrPercent": 33.33333333333333,
+      "position": 89.33,
+      "intentBucket": "likely-temp-mail-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "disposable mail inbox",
+      "clicks": 1,
+      "impressions": 3,
+      "exportedCtrPercent": 33.33,
+      "calculatedCtrPercent": 33.33333333333333,
+      "position": 161.67,
+      "intentBucket": "likely-temp-mail-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "disposable mail with password",
+      "clicks": 1,
+      "impressions": 1,
+      "exportedCtrPercent": 100,
+      "calculatedCtrPercent": 100,
+      "position": 60,
+      "intentBucket": "likely-temp-mail-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "temp mail inbox free",
+      "clicks": 1,
+      "impressions": 1,
+      "exportedCtrPercent": 100,
+      "calculatedCtrPercent": 100,
+      "position": 63,
+      "intentBucket": "likely-temp-mail-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "build inventory management system next.js supabase tutorial free",
+      "clicks": 0,
+      "impressions": 4415,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 6.88,
+      "intentBucket": "likely-developer-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "claude code vs github copilot",
+      "clicks": 0,
+      "impressions": 26,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 59.58,
+      "intentBucket": "likely-developer-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "throwaway email with password",
+      "clicks": 0,
+      "impressions": 17,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 92.53,
+      "intentBucket": "likely-temp-mail-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "temp mail disposable",
+      "clicks": 0,
+      "impressions": 12,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 93.58,
+      "intentBucket": "likely-temp-mail-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "throwaway email",
+      "clicks": 0,
+      "impressions": 11,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 92.91,
+      "intentBucket": "likely-temp-mail-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "temporary email inbox",
+      "clicks": 0,
+      "impressions": 11,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 96.45,
+      "intentBucket": "likely-temp-mail-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "temporary inbox",
+      "clicks": 0,
+      "impressions": 10,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 84.4,
+      "intentBucket": "likely-temp-mail-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "supabase row level security guide",
+      "clicks": 0,
+      "impressions": 8,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 78.62,
+      "intentBucket": "likely-developer-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "disposable email with password",
+      "clicks": 0,
+      "impressions": 7,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 87.43,
+      "intentBucket": "likely-temp-mail-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "temp email inbox",
+      "clicks": 0,
+      "impressions": 7,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 97.43,
+      "intentBucket": "likely-temp-mail-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "throwawaymail",
+      "clicks": 0,
+      "impressions": 5,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 72.2,
+      "intentBucket": "likely-temp-mail-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "github copilot vs claude code",
+      "clicks": 0,
+      "impressions": 4,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 56.25,
+      "intentBucket": "likely-developer-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "css minification test",
+      "clicks": 0,
+      "impressions": 4,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 72.75,
+      "intentBucket": "likely-developer-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "tempmail disposable",
+      "clicks": 0,
+      "impressions": 4,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 77.25,
+      "intentBucket": "likely-temp-mail-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "throwaway mail",
+      "clicks": 0,
+      "impressions": 4,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 84.5,
+      "intentBucket": "likely-temp-mail-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "temp mail with password",
+      "clicks": 0,
+      "impressions": 4,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 85,
+      "intentBucket": "likely-temp-mail-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "temporary email with password",
+      "clicks": 0,
+      "impressions": 4,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 94.25,
+      "intentBucket": "likely-temp-mail-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "disposable email with inbox",
+      "clicks": 0,
+      "impressions": 4,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 94.5,
+      "intentBucket": "likely-temp-mail-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "disposable email inbox",
+      "clicks": 0,
+      "impressions": 4,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 95,
+      "intentBucket": "likely-temp-mail-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "temporary disposable mail",
+      "clicks": 0,
+      "impressions": 4,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 96,
+      "intentBucket": "likely-temp-mail-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "deployment_not_found",
+      "clicks": 0,
+      "impressions": 3,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 28.33,
+      "intentBucket": "likely-developer-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "react vs vue vs svelte",
+      "clicks": 0,
+      "impressions": 3,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 31,
+      "intentBucket": "likely-developer-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "best web development learning websites mdn freecodecamp the odin project \nweb.dev 2026",
+      "clicks": 0,
+      "impressions": 3,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 40,
+      "intentBucket": "likely-developer-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "disposible mail",
+      "clicks": 0,
+      "impressions": 3,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 91.67,
+      "intentBucket": "likely-temp-mail-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "temp email with inbox",
+      "clicks": 0,
+      "impressions": 3,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 92.67,
+      "intentBucket": "likely-temp-mail-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "temporary email with inbox",
+      "clicks": 0,
+      "impressions": 3,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 93,
+      "intentBucket": "likely-temp-mail-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "best free resources to learn web development 2026",
+      "clicks": 0,
+      "impressions": 2,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 10,
+      "intentBucket": "likely-developer-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "supabase row level security auth.uid() policy example",
+      "clicks": 0,
+      "impressions": 2,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 10,
+      "intentBucket": "likely-developer-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "how to schedule nightly exports from supabase to a shared google sheet",
+      "clicks": 0,
+      "impressions": 2,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 11,
+      "intentBucket": "likely-developer-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "javascript inventory",
+      "clicks": 0,
+      "impressions": 2,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 27.5,
+      "intentBucket": "likely-developer-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "svelte vs. react vs. vue",
+      "clicks": 0,
+      "impressions": 2,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 30,
+      "intentBucket": "likely-developer-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "react vs. vue vs. svelte",
+      "clicks": 0,
+      "impressions": 2,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 32.5,
+      "intentBucket": "likely-developer-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "claude github review",
+      "clicks": 0,
+      "impressions": 2,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 50,
+      "intentBucket": "likely-developer-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "claude code github review",
+      "clicks": 0,
+      "impressions": 2,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 56.5,
+      "intentBucket": "likely-developer-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "github claude review",
+      "clicks": 0,
+      "impressions": 2,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 59,
+      "intentBucket": "likely-developer-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "row level security supabase",
+      "clicks": 0,
+      "impressions": 2,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 65.5,
+      "intentBucket": "likely-developer-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "false positive the scanner flagged contact submissions rls as broken \nbecause anon can't insert. that's actually correct by design submissions go \nthrough the send-contact-email edge function using service role",
+      "clicks": 0,
+      "impressions": 2,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 81.5,
+      "intentBucket": "likely-developer-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "disposablemail",
+      "clicks": 0,
+      "impressions": 2,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 91,
+      "intentBucket": "likely-temp-mail-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "inbox temp mail",
+      "clicks": 0,
+      "impressions": 2,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 91.5,
+      "intentBucket": "likely-temp-mail-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "temp inbox mail",
+      "clicks": 0,
+      "impressions": 2,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 96.5,
+      "intentBucket": "likely-temp-mail-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "disposable temp mail",
+      "clicks": 0,
+      "impressions": 2,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 131,
+      "intentBucket": "likely-temp-mail-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "easiest way?",
+      "clicks": 0,
+      "impressions": 1,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 5,
+      "intentBucket": "unattributed-ambiguous",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "warp server error: thread killed by timeout manager",
+      "clicks": 0,
+      "impressions": 1,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 5,
+      "intentBucket": "likely-developer-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "where is next_public_supabase_url",
+      "clicks": 0,
+      "impressions": 1,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 7,
+      "intentBucket": "likely-developer-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "it says error",
+      "clicks": 0,
+      "impressions": 1,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 8,
+      "intentBucket": "unattributed-ambiguous",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "supabase maybesingle returns error if more than one row docs",
+      "clicks": 0,
+      "impressions": 1,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 9,
+      "intentBucket": "likely-developer-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "another problem",
+      "clicks": 0,
+      "impressions": 1,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 10,
+      "intentBucket": "unattributed-ambiguous",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "temp mail free temporary",
+      "clicks": 0,
+      "impressions": 1,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 10,
+      "intentBucket": "likely-temp-mail-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "vue vs svelte 2026",
+      "clicks": 0,
+      "impressions": 1,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 11,
+      "intentBucket": "likely-developer-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "vercel_force_no_build_cache",
+      "clicks": 0,
+      "impressions": 1,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 12,
+      "intentBucket": "likely-developer-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "infinite recursion detected in policy for relation \"profiles\"",
+      "clicks": 0,
+      "impressions": 1,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 14,
+      "intentBucket": "likely-developer-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "javascript resources",
+      "clicks": 0,
+      "impressions": 1,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 15,
+      "intentBucket": "likely-developer-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "vercel something went wrong",
+      "clicks": 0,
+      "impressions": 1,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 15,
+      "intentBucket": "likely-developer-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "next js inventory management github",
+      "clicks": 0,
+      "impressions": 1,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 16,
+      "intentBucket": "likely-developer-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "code: deployment_not_found",
+      "clicks": 0,
+      "impressions": 1,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 17,
+      "intentBucket": "likely-developer-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "web development",
+      "clicks": 0,
+      "impressions": 1,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 21,
+      "intentBucket": "likely-developer-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "middleware_invocation_failed",
+      "clicks": 0,
+      "impressions": 1,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 25,
+      "intentBucket": "likely-developer-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "svelte vs react vs vue",
+      "clicks": 0,
+      "impressions": 1,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 27,
+      "intentBucket": "likely-developer-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "claude code github code review",
+      "clicks": 0,
+      "impressions": 1,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 28,
+      "intentBucket": "likely-developer-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "supabase pgvector official docs",
+      "clicks": 0,
+      "impressions": 1,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 28,
+      "intentBucket": "likely-developer-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "vercel deployment error",
+      "clicks": 0,
+      "impressions": 1,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 28,
+      "intentBucket": "likely-developer-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "new row violates row-level security policy for table supabase",
+      "clicks": 0,
+      "impressions": 1,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 30,
+      "intentBucket": "likely-developer-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "supabase pgvector official",
+      "clicks": 0,
+      "impressions": 1,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 35,
+      "intentBucket": "likely-developer-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "supabase docs row level security",
+      "clicks": 0,
+      "impressions": 1,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 38,
+      "intentBucket": "likely-developer-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "vercel problem",
+      "clicks": 0,
+      "impressions": 1,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 42,
+      "intentBucket": "likely-developer-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "temporary throwaway email",
+      "clicks": 0,
+      "impressions": 1,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 43,
+      "intentBucket": "likely-temp-mail-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "claude github code review",
+      "clicks": 0,
+      "impressions": 1,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 44,
+      "intentBucket": "likely-developer-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "new row violates row level security policy",
+      "clicks": 0,
+      "impressions": 1,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 45,
+      "intentBucket": "likely-developer-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "temp mail with recovery key",
+      "clicks": 0,
+      "impressions": 1,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 45,
+      "intentBucket": "likely-temp-mail-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "temporary email with attachments",
+      "clicks": 0,
+      "impressions": 1,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 45,
+      "intentBucket": "likely-temp-mail-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "new row violates row-level security policy",
+      "clicks": 0,
+      "impressions": 1,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 47,
+      "intentBucket": "likely-developer-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "github copilot vs claude max",
+      "clicks": 0,
+      "impressions": 1,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 48,
+      "intentBucket": "likely-developer-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "throway email",
+      "clicks": 0,
+      "impressions": 1,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 48,
+      "intentBucket": "likely-temp-mail-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "use claude code with github copilot",
+      "clicks": 0,
+      "impressions": 1,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 54,
+      "intentBucket": "likely-developer-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "claude or github copilot",
+      "clicks": 0,
+      "impressions": 1,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 56,
+      "intentBucket": "likely-developer-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "github copilot with claude",
+      "clicks": 0,
+      "impressions": 1,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 58,
+      "intentBucket": "likely-developer-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "copilot vs claude code",
+      "clicks": 0,
+      "impressions": 1,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 59,
+      "intentBucket": "likely-developer-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "claude review github",
+      "clicks": 0,
+      "impressions": 1,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 61,
+      "intentBucket": "likely-developer-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "claude dev github",
+      "clicks": 0,
+      "impressions": 1,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 63,
+      "intentBucket": "likely-developer-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "github vs claude code",
+      "clicks": 0,
+      "impressions": 1,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 65,
+      "intentBucket": "likely-developer-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "supabase row level security",
+      "clicks": 0,
+      "impressions": 1,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 67,
+      "intentBucket": "likely-developer-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "www temp mail org http throwawaymail com",
+      "clicks": 0,
+      "impressions": 1,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 67,
+      "intentBucket": "likely-temp-mail-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "react vs vue vs svelte comparison 2026",
+      "clicks": 0,
+      "impressions": 1,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 74,
+      "intentBucket": "likely-developer-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "temp inbox com",
+      "clicks": 0,
+      "impressions": 1,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 74,
+      "intentBucket": "likely-temp-mail-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "temp mail disposable email",
+      "clicks": 0,
+      "impressions": 1,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 75,
+      "intentBucket": "likely-temp-mail-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "dummyinbox",
+      "clicks": 0,
+      "impressions": 1,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 76,
+      "intentBucket": "likely-temp-mail-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "temp mail for code",
+      "clicks": 0,
+      "impressions": 1,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 86,
+      "intentBucket": "likely-temp-mail-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "disposable temporary mail",
+      "clicks": 0,
+      "impressions": 1,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 89,
+      "intentBucket": "likely-temp-mail-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "disposable emails",
+      "clicks": 0,
+      "impressions": 1,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 90,
+      "intentBucket": "likely-temp-mail-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "disposabel mail",
+      "clicks": 0,
+      "impressions": 1,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 91,
+      "intentBucket": "likely-temp-mail-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "temp mail 2",
+      "clicks": 0,
+      "impressions": 1,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 94,
+      "intentBucket": "likely-temp-mail-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "temp mail nada",
+      "clicks": 0,
+      "impressions": 1,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 94,
+      "intentBucket": "likely-temp-mail-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "temporary disposable email",
+      "clicks": 0,
+      "impressions": 1,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 94,
+      "intentBucket": "likely-temp-mail-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "inbox temporary email",
+      "clicks": 0,
+      "impressions": 1,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 96,
+      "intentBucket": "likely-temp-mail-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "temp mail with recovery code",
+      "clicks": 0,
+      "impressions": 1,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 96,
+      "intentBucket": "likely-temp-mail-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "temporary inboxes",
+      "clicks": 0,
+      "impressions": 1,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 96,
+      "intentBucket": "likely-temp-mail-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "disposable email with sending",
+      "clicks": 0,
+      "impressions": 1,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 97,
+      "intentBucket": "likely-temp-mail-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "temporary emails with password",
+      "clicks": 0,
+      "impressions": 1,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 97,
+      "intentBucket": "likely-temp-mail-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "throwaway email inbox",
+      "clicks": 0,
+      "impressions": 1,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 97,
+      "intentBucket": "likely-temp-mail-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "disposable temporary",
+      "clicks": 0,
+      "impressions": 1,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 98,
+      "intentBucket": "likely-temp-mail-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "temp mail in box",
+      "clicks": 0,
+      "impressions": 1,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 98,
+      "intentBucket": "likely-temp-mail-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "view message temp-mail.org 2019",
+      "clicks": 0,
+      "impressions": 1,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 99,
+      "intentBucket": "likely-temp-mail-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    },
+    {
+      "query": "disposable tempmail",
+      "clicks": 0,
+      "impressions": 1,
+      "exportedCtrPercent": 0,
+      "calculatedCtrPercent": 0,
+      "position": 172,
+      "intentBucket": "likely-temp-mail-intent",
+      "attribution": "Intent inference only; query export has no hostname/page dimension."
+    }
+  ],
+  "queryIntentTotals": {
+    "likely-temp-mail-intent": {
+      "rows": 55,
+      "clicks": 14,
+      "impressions": 228,
+      "calculatedCtrPercent": 6.140350877192982
+    },
+    "likely-developer-intent": {
+      "rows": 52,
+      "clicks": 0,
+      "impressions": 4521,
+      "calculatedCtrPercent": 0
+    },
+    "unattributed-ambiguous": {
+      "rows": 3,
+      "clicks": 0,
+      "impressions": 3,
+      "calculatedCtrPercent": 0
+    }
+  },
+  "limitations": [
+    "Two separate dimension exports cannot join queries to pages or conclusively assign query hosts.",
+    "Export date is not the reporting date range. No dates/filter metadata, country/device or search-appearance export was supplied.",
+    "Totals are sums of supplied rows, not asserted Search Console property totals. Page/query dimensions need not reconcile; anonymization/aggregation/filters may differ.",
+    "Average position is an aggregate across impressions, not a fixed rank. No position average was fabricated by averaging page averages.",
+    "No before/after CTR lift, benchmark target or causal explanation is established. No content publication or search change has occurred."
+  ]
+}

@@ -1,0 +1,273 @@
+{
+  "testedAt": "2026-10-21T16:46:03.806Z",
+  "checks": [
+    {
+      "id": "prior-drafts-evidence-fixtures-dependencies-preserved",
+      "passed": true
+    },
+    {
+      "id": "all-58-records-preserved",
+      "passed": true
+    },
+    {
+      "id": "five-distinct-priority-drafts",
+      "passed": true
+    },
+    {
+      "id": "input-integrity-reports/search-console/Pages.csv",
+      "passed": true
+    },
+    {
+      "id": "input-integrity-reports/search-console/Queries.csv",
+      "passed": true
+    },
+    {
+      "id": "original-export-copy-Pages",
+      "passed": true
+    },
+    {
+      "id": "original-export-copy-Queries",
+      "passed": true
+    },
+    {
+      "id": "observed-page-opportunities-exact",
+      "passed": true
+    },
+    {
+      "id": "main-and-temp-mail-separated",
+      "passed": true
+    },
+    {
+      "id": "approved-primary-focus",
+      "passed": true
+    },
+    {
+      "id": "supporting-topic-urls-retained",
+      "passed": true
+    },
+    {
+      "id": "no-new-inventory-rls-home-promotion",
+      "passed": true
+    },
+    {
+      "id": "draft-integrity-common-vercel-deployment-errors-solutions",
+      "passed": true
+    },
+    {
+      "id": "source-record-and-url-common-vercel-deployment-errors-solutions",
+      "passed": true
+    },
+    {
+      "id": "public-canonical-and-status-common-vercel-deployment-errors-solutions",
+      "passed": true
+    },
+    {
+      "id": "proposed-title-not-applied-common-vercel-deployment-errors-solutions",
+      "passed": true
+    },
+    {
+      "id": "article-schema-preserved-common-vercel-deployment-errors-solutions",
+      "passed": true
+    },
+    {
+      "id": "draft-not-served-common-vercel-deployment-errors-solutions",
+      "passed": true
+    },
+    {
+      "id": "draft-internal-targets-exist-common-vercel-deployment-errors-solutions",
+      "passed": true
+    },
+    {
+      "id": "draft-integrity-deploy-nextjs-to-vercel-guide",
+      "passed": true
+    },
+    {
+      "id": "source-record-and-url-deploy-nextjs-to-vercel-guide",
+      "passed": true
+    },
+    {
+      "id": "public-canonical-and-status-deploy-nextjs-to-vercel-guide",
+      "passed": true
+    },
+    {
+      "id": "proposed-title-not-applied-deploy-nextjs-to-vercel-guide",
+      "passed": true
+    },
+    {
+      "id": "article-schema-preserved-deploy-nextjs-to-vercel-guide",
+      "passed": true
+    },
+    {
+      "id": "draft-not-served-deploy-nextjs-to-vercel-guide",
+      "passed": true
+    },
+    {
+      "id": "draft-internal-targets-exist-deploy-nextjs-to-vercel-guide",
+      "passed": true
+    },
+    {
+      "id": "draft-integrity-inventory-management-system-nextjs-supabase",
+      "passed": true
+    },
+    {
+      "id": "source-record-and-url-inventory-management-system-nextjs-supabase",
+      "passed": true
+    },
+    {
+      "id": "public-canonical-and-status-inventory-management-system-nextjs-supabase",
+      "passed": true
+    },
+    {
+      "id": "proposed-title-not-applied-inventory-management-system-nextjs-supabase",
+      "passed": true
+    },
+    {
+      "id": "article-schema-preserved-inventory-management-system-nextjs-supabase",
+      "passed": true
+    },
+    {
+      "id": "draft-not-served-inventory-management-system-nextjs-supabase",
+      "passed": true
+    },
+    {
+      "id": "draft-internal-targets-exist-inventory-management-system-nextjs-supabase",
+      "passed": true
+    },
+    {
+      "id": "draft-integrity-supabase-errors-production-fixes",
+      "passed": true
+    },
+    {
+      "id": "source-record-and-url-supabase-errors-production-fixes",
+      "passed": true
+    },
+    {
+      "id": "public-canonical-and-status-supabase-errors-production-fixes",
+      "passed": true
+    },
+    {
+      "id": "proposed-title-not-applied-supabase-errors-production-fixes",
+      "passed": true
+    },
+    {
+      "id": "article-schema-preserved-supabase-errors-production-fixes",
+      "passed": true
+    },
+    {
+      "id": "draft-not-served-supabase-errors-production-fixes",
+      "passed": true
+    },
+    {
+      "id": "draft-internal-targets-exist-supabase-errors-production-fixes",
+      "passed": true
+    },
+    {
+      "id": "draft-integrity-supabase-row-level-security-real-examples",
+      "passed": true
+    },
+    {
+      "id": "source-record-and-url-supabase-row-level-security-real-examples",
+      "passed": true
+    },
+    {
+      "id": "public-canonical-and-status-supabase-row-level-security-real-examples",
+      "passed": true
+    },
+    {
+      "id": "proposed-title-not-applied-supabase-row-level-security-real-examples",
+      "passed": true
+    },
+    {
+      "id": "article-schema-preserved-supabase-row-level-security-real-examples",
+      "passed": true
+    },
+    {
+      "id": "draft-not-served-supabase-row-level-security-real-examples",
+      "passed": true
+    },
+    {
+      "id": "draft-internal-targets-exist-supabase-row-level-security-real-examples",
+      "passed": true
+    },
+    {
+      "id": "embedded-complete-source-inventory.sql",
+      "passed": true
+    },
+    {
+      "id": "embedded-complete-source-sale-client.mjs",
+      "passed": true
+    },
+    {
+      "id": "embedded-complete-source-rls-notes.sql",
+      "passed": true
+    },
+    {
+      "id": "embedded-complete-source-cardinality.mjs",
+      "passed": true
+    },
+    {
+      "id": "old-topic-ids-and-supabase-valid",
+      "passed": true
+    },
+    {
+      "id": "priority-supabase-classification",
+      "passed": true
+    },
+    {
+      "id": "related-reading-navigable-and-public",
+      "passed": true
+    },
+    {
+      "id": "sql-fixture-structure-only-not-execution",
+      "passed": true
+    },
+    {
+      "id": "existing-tool-seo-/tools/error-decoder",
+      "passed": true
+    },
+    {
+      "id": "existing-tool-seo-/tools/package-json-inspector",
+      "passed": true
+    }
+  ],
+  "count": 57,
+  "priorFilesChecked": 103,
+  "snapshots": [
+    {
+      "slug": "common-vercel-deployment-errors-solutions",
+      "status": 200,
+      "bodyPreserved": true,
+      "sourceStatus": "scheduled",
+      "revisionStatus": "DRAFT"
+    },
+    {
+      "slug": "deploy-nextjs-to-vercel-guide",
+      "status": 200,
+      "bodyPreserved": true,
+      "sourceStatus": "scheduled",
+      "revisionStatus": "DRAFT"
+    },
+    {
+      "slug": "inventory-management-system-nextjs-supabase",
+      "status": 200,
+      "bodyPreserved": true,
+      "sourceStatus": "published",
+      "revisionStatus": "DRAFT"
+    },
+    {
+      "slug": "supabase-errors-production-fixes",
+      "status": 200,
+      "bodyPreserved": true,
+      "sourceStatus": "scheduled",
+      "revisionStatus": "DRAFT"
+    },
+    {
+      "slug": "supabase-row-level-security-real-examples",
+      "status": 200,
+      "bodyPreserved": true,
+      "sourceStatus": "scheduled",
+      "revisionStatus": "DRAFT"
+    }
+  ],
+  "limitations": "HTTP/content/hash/structure checks only. SQL text guards do not parse or execute SQL. No browser, live database, Google indexing, CTR change or security certification."
+}

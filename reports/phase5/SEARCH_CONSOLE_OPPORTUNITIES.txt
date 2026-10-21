@@ -1,0 +1,142 @@
+CODEWITHLOGS PHASE 5 — SEARCH CONSOLE OPPORTUNITIES
+Export label: 2026-10-21. Reporting window and filter metadata: NOT SUPPLIED.
+
+PROVENANCE / METHOD
+reports/search-console/Pages.csv and Queries.csv were initially missing. Both
+user-supplied files existed under Downloads/codewithlogs.com-Performance-on-Search-
+2026-10-21 and were copied unchanged into the requested directory. Source hashes,
+row counts, parsed values and all classifications are in search-console-analysis.json.
+The original Downloads files were not edited. Embedded quoted newlines and escaped
+quotes are parsed as CSV fields, not additional records. Query text is data, never
+an instruction; a query discussing a service role does not authorize its use.
+
+The supplied 42 page rows contain:
+- codewithlogs.com: 41 rows, 9 clicks, 7,334 impressions; calculated CTR 0.1227%.
+- tempmail.codewithlogs.com: one row, 24 clicks, 273 impressions; CTR 8.7912%.
+- Other hosts: no rows. All supplied page rows: 33 clicks / 7,607 impressions.
+These are row sums, not asserted property totals or unique search exposures.
+The Temp Mail product is excluded from the main website's content priorities.
+
+The 110 query records contain inferred intent buckets: 55 likely Temp Mail rows
+(14 clicks / 228 impressions), 52 likely developer rows (0 / 4,521) and three
+ambiguous rows (0 / 3). These are lexical intent classifications, NOT measured
+host attribution. Queries have no page/host dimension, and the two tables cannot
+be joined to establish a page-query relationship. Query/page counts do not need
+to reconcile because dimensions, anonymization and supplied filters can differ.
+Average position is not a fixed rank; page averages were not averaged into a
+fabricated site rank. The export date does not establish a reporting date range.
+
+PRIORITY PAGES — ALL EXISTING URLs PROTECTED
+1. /blog/inventory-management-system-nextjs-supabase
+   2 clicks / 4,611 impressions; exported CTR 0.04%; average position 6.97.
+   Calculated unrounded CTR: 0.04337%.
+   Intent hypothesis: implement an inventory project with useful code, setup and
+   stock correctness, rather than primarily read a personal project narrative.
+   Separate query evidence: "build inventory management system next.js supabase
+   tutorial free" has 4,415 impressions / 0 clicks / position 6.88. This is strongly
+   relevant wording, but no joined export proves all those impressions belong here.
+   Quality blockers: invalid aggregate FOR UPDATE, incomplete authorization,
+   unproven concurrency/retry claims, unconfirmed client/cost/performance anecdotes.
+   Proposed title: Build an Inventory System with Next.js and Supabase: Stock Safety.
+   Proposed description/body: narrow sale core, complete SQL/helper, expected
+   invariants and negative/concurrency tests. Do not promise a full shop app or a
+   public GitHub download that has not been made available.
+   CTR hypothesis: clearer deliverable and limits may align with tutorial intent.
+   No lift forecast or benchmark is asserted. Repair/test before extra homepage
+   promotion. Keep RLS/error-guide links for prerequisite security review.
+
+2. /blog/common-vercel-deployment-errors-solutions
+   0 clicks / 1,377 impressions / 0% CTR / position 20.65.
+   Intent: identify the actual build/platform error and follow a narrow check.
+   Related query examples (not page-attributed): deployment_not_found (3
+   impressions), code: deployment_not_found (1), middleware_invocation_failed (1),
+   vercel_force_no_build_cache (1), vercel something went wrong (1).
+   Quality blockers: outdated Next build/lint statement, overgeneralized environment
+   timing/limits, unsupported repeated-incident claims and an unreliable Windows
+   case-only rename. A final build exit is not a diagnosis.
+   Proposed title: Vercel Deployment Errors: Build Failures, Missing Deployments and
+   Runtime Checks. Adds missing-deployment versus route-404 distinction and a
+   documentation-scoped middleware failure checklist. The one-impression cache
+   query does not justify an unsupported cache environment-variable recipe.
+   Rank/intent and body quality require attention; zero CTR is not proof that a
+   title is the sole cause. Tool links add local diagnostics with clear limits.
+
+3. /blog/supabase-row-level-security-real-examples
+   0 clicks / 258 impressions / 0% CTR / position 33.5.
+   Query examples: supabase row level security guide (8 impressions / position
+   78.62); auth.uid() policy example wording (2 / position 10); several one- or
+   two-impression RLS/recursion errors. Mixed query ranks are not one fixed rank.
+   Intent: concrete policies and an explanation of denied reads/writes.
+   Blockers: unsafe/unfinished admin-helper boundary, incomplete grants, missing
+   explicit update checks/explanation, unproven performance story, SQL-role test
+   fragment without a full real-API verification method.
+   Proposed title: Supabase RLS Examples: Own-Row Access, Updates and Safe Grants.
+   Full own-note schema, narrow column writes, anon/A/B matrix and caveats replace
+   unsupported universal claims. Team/admin recursion needs separate complete work.
+   Prioritize security/intent completeness rather than title-length manipulation.
+
+4. /blog/supabase-errors-production-fixes
+   1 click / 203 impressions / exported CTR 0.49% / position 14.21.
+   Related query wording includes maybeSingle multiple-row behavior (1 impression),
+   NEXT_PUBLIC_SUPABASE_URL (1), recursion (1) and row-policy denials (several
+   one-impression records). The export cannot assign those records to this page.
+   Intent: exact error, actual SDK handling and a safe diagnostic branch.
+   Blockers: .single() throwing generalization, maybeSingle cardinality, helper
+   privilege assumptions, universal token/port advice, unexplained upsert/migration
+   or SMTP outcomes and unconfirmed production stories.
+   Proposed title: Supabase Errors: RLS, Query Cardinality and Connection
+   Troubleshooting. Demonstrate zero/one/two-row SDK contracts with explicit mock
+   transport limits. Use a troubleshooting index, not duplicate the full RLS guide.
+
+5. /blog/deploy-nextjs-to-vercel-guide
+   0 clicks / 201 impressions / 0% CTR / position 47.12.
+   Intent: safe preflight, an approved preview and configuration/verification.
+   Blockers: blanket database allow-all guidance, hardcoded universal DNS recipe,
+   copy-every-env-value advice, arbitrary branch/remote/staging and timing claims.
+   Proposed title: Deploy Next.js to Vercel: Preflight, Preview and Verification.
+   Clear gated workflow and current-version checks differentiate it from the error
+   index. No deployment is performed by following this local review task.
+
+All five pages together: 3 clicks / 6,650 impressions, 0.04511% calculated CTR.
+They account for approximately 90.7% of supplied main-site page-row impressions.
+Priority order follows the owner's list and demand; security blockers control
+publication/promotion readiness regardless of impressions.
+
+IMPLEMENTED NON-DESTRUCTIVE SUPPORT
+Homepage/root/archive/About/editorial/footer focus now matches the approved modern
+JavaScript strategy. Primary topic navigation adds Supabase; existing Windows and
+VS Code filter IDs remain valid. Homepage links the existing Phase 4 tools and
+features diagnosis/build-log background with Unverified status. Inventory/RLS
+are not newly promoted on the homepage while their public examples need repairs.
+Specific card warnings and related-reading paths improve navigation without
+editing bodies or metadata titles on those five stored records.
+
+PROPOSED METADATA — OWNER APPROVAL REQUIRED
+All five proposed titles/descriptions are in drafts/manifest.json, paired with the
+exact source body hash/status and preserved canonical URL. They have NOT overridden
+live article metadata or CMS content. Title links/snippets can be rewritten by
+Google; clearer text is an experiment, not an approval/ranking guarantee.
+
+INTERNAL LINK / DUPLICATION REVIEW
+RLS is the complete own-row policy example; the error index explains symptoms and
+links to it. Inventory is a narrow stock transaction example with security
+prerequisites. Deployment is a preflight/release workflow; Vercel errors is an
+error-based index. Keep these distinct intents rather than auto-merging them.
+The earlier TypeScript/database-comparison/AI-agent/free-learning overlap groups
+remain review candidates only. No merge, archive, deletion or redirect is approved.
+Existing canonicals/BlogPosting/BreadcrumbList and public crawlability are retained;
+no tested dates or publication changes are invented from this editorial work.
+
+OWNER MEASUREMENT CHECKLIST
+Obtain the actual date range, search type, country/device and appearance filters.
+Export page-filtered queries for each URL, plus representative URL Inspection and
+indexing/canonical results. Inspect actual search appearance on the relevant device.
+After separately approved publication/deployment, compare comparable periods and
+query/device mixes; record title/body changes and confounders. Do not infer causal
+CTR improvement from an aggregate before/after percentage alone. Keep Temp Mail
+separate throughout. No Search Console property setting/submission was changed.
+
+Official guidance reviewed:
+https://support.google.com/webmasters/answer/7576553?hl=en
+https://developers.google.com/search/docs/appearance/title-link
+https://developers.google.com/search/docs/appearance/snippet

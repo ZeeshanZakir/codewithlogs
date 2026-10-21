@@ -1,0 +1,61 @@
+PHASE 5 SQL / API VERIFICATION PLAN — NOT EXECUTED
+No psql/postgres/pg_ctl/Docker executable was discovered on this host PATH.
+No cloud database was provisioned or modified. SQL text review is not execution.
+
+Use an owner-approved EMPTY disposable Supabase project; never the site database.
+Record PostgreSQL version (select version()), Supabase settings/key type, client,
+Node, OS and Next versions, date/timezone and redacted request/response logs.
+Create real test users A and B through approved provider flows; use their actual
+JWTs with the publishable/anon application key. Never put service_role in a browser.
+Review each schema/function owner, trusted role privileges and search_path before
+applying inventory.sql or rls-notes.sql. Distinct table names avoid existing tables,
+but this is not a migration plan. Do not run either against an existing schema.
+
+INVENTORY
+As trusted setup owner only, seed each product with equal initial_stock/stock and
+the actual owner's auth.users UUID. Begin with one unit for A, another product for
+B. The ordinary application has SELECT and narrow RPC execute only, no table writes.
+1. Anonymous RPC and direct table writes: denied. A cannot sell/read B's product.
+2. Null/bad UUID at API boundary, zero/negative/fractional/>10000 quantities and
+   null request keys: rejected; no balance/ledger change.
+3. A sells one unit: one ledger delta -1 and stock 0. Query authoritative rows.
+4. Fresh seeded product: start two concurrent API requests (same A, different
+   request UUIDs, quantity 1). Require exactly one successful sale, other failure,
+   stock 0 and one movement. Repeat many times with fresh products/keys, not by
+   resetting rows during a concurrent run. Save actual outcomes.
+5. Same request ID/payload twice and concurrently: one movement, replay response
+   refers to the original movement/balance. Different payload with that ID: denied.
+6. Reuse an owner request key across two products concurrently: one insert must
+   fail its unique constraint; its earlier stock update must roll back. Verify both
+   balances and the one authoritative movement. Do not swallow that SQL exception.
+7. Force a ledger-insert failure in a separate disposable fixture and demonstrate
+   balance rollback. This is a controlled test, not a production schema alteration.
+8. Attempt direct insert/update/delete as authenticated/anon; all forbidden writes
+   must remain forbidden. Review PUBLIC/role grants and all exposed RPC functions.
+9. Check stock = initial_stock + SUM(delta), using a LEFT JOIN and coalesce for
+   untouched products. Replays return historical balance_after, not necessarily
+   today's stock. Reread the product for current stock after other transactions.
+10. Restock, refund, team membership, barcode UI, taxes/prices and realtime are
+    intentionally absent. Do not market this narrow sale fixture as a complete app.
+
+RLS NOTES
+Use the actual API as anon, A and B; a SQL-console owner often bypasses RLS.
+1. A/B can insert body only, then select/update body/delete their own rows.
+2. A selecting B returns no visible row. A updating/deleting B must affect zero
+   rows, without B's data appearing. A denial may be empty data rather than error.
+3. A cannot supply owner_id/id on insert or update owner_id: column grants deny it.
+4. Anonymous table access denied by grants. Direct API calls enforce the same rules.
+5. Enumerate grants/policies and test a freshly added permissive policy in a separate
+   isolated copy to understand OR composition. Never add an allow-all policy here.
+6. No admin flag or definer helper exists in this sample. Team/admin/recursive-policy
+   examples need their own schema and tests; they are not implied by own-row success.
+
+CARDINALITY
+On a separate disposable table cwl_cardinality(id integer primary key), run zero,
+one and two-row single/maybeSingle cases with real grants/RLS identities. Compare
+data/error/status with the transport tests; distinguish RLS-hidden rows from
+nonexistent rows. No automatic maybeSingle/limit(1) fix for an invariant expecting
+one unique record. Test .throwOnError separately if the app uses it.
+
+Record actual outcomes and keep DRAFT if a prerequisite, negative test or expected
+invariant is unproven. Mocks/SDK-contract tests are insufficient for SQL certification.

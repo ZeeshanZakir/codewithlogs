@@ -1,0 +1,58 @@
+PHASE 5 FILE INVENTORY
+Root: C:/Users/zeesh/Desktop/codewithlogs
+SHA-256 compared with Phase 5 baseline. CSV import happened just before snapshot
+and is explicitly included as NEW INPUT. Earlier uncommitted work retained.
+Ignored restored fixture dependencies and regenerated Next build/dev caches omitted.
+
+NEW         fixtures/phase5-supabase/cardinality.mjs
+NEW         fixtures/phase5-supabase/inventory.sql
+NEW         fixtures/phase5-supabase/rls-notes.sql
+NEW         fixtures/phase5-supabase/sale-client.mjs
+NEW         fixtures/phase5-supabase/TEST_PLAN.txt
+MODIFIED    reports/CONTENT_AUDIT.txt
+MODIFIED    reports/content-audit.json
+MODIFIED    reports/content-preservation-latest.json
+NEW         reports/MASTER_STRATEGY.md
+NEW         reports/phase5/ADSENSE_READINESS_BLOCKERS.txt
+NEW         reports/phase5/baseline.json
+NEW         reports/phase5/BEFORE_AFTER_COMPARISON.txt
+NEW         reports/phase5/before-after.json
+NEW         reports/phase5/content-seo-tests.json
+NEW         reports/phase5/drafts/common-vercel-deployment-errors-solutions.txt
+NEW         reports/phase5/drafts/deploy-nextjs-to-vercel-guide.txt
+NEW         reports/phase5/drafts/inventory-management-system-nextjs-supabase.txt
+NEW         reports/phase5/drafts/manifest.json
+NEW         reports/phase5/drafts/supabase-errors-production-fixes.txt
+NEW         reports/phase5/drafts/supabase-row-level-security-real-examples.txt
+NEW         reports/phase5/eslint.json
+NEW         reports/phase5/fixture-tests.json
+NEW         reports/phase5/IMPLEMENTATION_REPORT.txt
+NEW         reports/phase5/MODIFIED_FILES.txt
+NEW         reports/phase5/OWNER_REVIEW_CHECKLIST.txt
+NEW         reports/phase5/priority-fixture-tests/06-fixed-production-build.log
+NEW         reports/phase5/priority-fixture-tests/07-fixed-typecheck.log
+NEW         reports/phase5/priority-fixture-tests/14-server.log
+NEW         reports/phase5/priority-fixture-tests/confirmation-results.json
+NEW         reports/phase5/SEARCH_CONSOLE_OPPORTUNITIES.txt
+NEW         reports/phase5/search-console-analysis.json
+NEW         reports/phase5/TECHNICAL_VERIFICATION.txt
+NEW         reports/phase5/VALIDATION_SUMMARY.json
+MODIFIED    reports/priority-articles.json
+MODIFIED    reports/route-validation.json
+NEW INPUT   reports/search-console/Pages.csv
+NEW         reports/search-console/PROVENANCE.json
+NEW INPUT   reports/search-console/Queries.csv
+NEW         scripts/analyze-search-console.mjs
+NEW         scripts/test-phase5-fixtures.mjs
+MODIFIED    scripts/test-priority-articles.mjs
+NEW         scripts/validate-phase5.mjs
+MODIFIED    src/app/(public)/about/page.tsx
+MODIFIED    src/app/(public)/blog/page.tsx
+MODIFIED    src/app/(public)/editorial-policy/page.tsx
+MODIFIED    src/app/(public)/page.tsx
+MODIFIED    src/app/globals.css
+MODIFIED    src/app/layout.tsx
+MODIFIED    src/components/layout/Footer.tsx
+MODIFIED    src/lib/troubleshooting.ts
+
+No source/content files removed. No root dependency manifest changes.

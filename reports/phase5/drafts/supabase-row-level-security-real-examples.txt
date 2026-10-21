@@ -1,0 +1,138 @@
+Supabase RLS Examples: Own-Row Access, Updates and Safe Grants
+Status: DRAFT — complete SQL example has not been executed against PostgreSQL.
+Preserve URL: /blog/supabase-row-level-security-real-examples
+Proposed description: Understand Supabase RLS with a small own-row notes schema, explicit read/write policies, column grants and an anonymous/A/B test matrix.
+
+## What RLS should enforce
+A query filter in a React component is a convenience, not an access boundary.
+This example requires user A to read and edit A's notes while user B cannot access
+them, even through direct API requests. It intentionally has no administrator
+flag, team role, recursive membership helper or privileged browser key.
+
+RLS controls which rows an ordinary role can use. Object and column privileges
+also matter. A request can fail because a grant is missing before its row policy
+is relevant. Conversely, a broad grant alone does not supply the required policy.
+An enabled table with no applicable policy normally denies row access for roles
+subject to RLS. Owners/superusers/BYPASSRLS roles have special behavior; test the
+application's real role rather than assuming the SQL editor proves protection.
+
+## Versions and verification scope
+Companion JavaScript checks use supabase-js 2.118.0 / Node 22.18.0 on Windows 10
+Pro. The SSR example elsewhere pins Next 16.2.6 / supabase/ssr 0.12.7. Those SDK
+or build results do not validate this SQL. PostgreSQL/Supabase API RLS execution,
+Windows 11 and Linux are untested here. Record the disposable project's exact
+PostgreSQL version and real authenticated API identities before marking it tested.
+
+## Complete own-row schema and privileges
+Apply the following only in an approved empty disposable Supabase project, as a
+trusted setup owner. It creates separate teaching tables, not a production migration.
+
+```sql
+-- DRAFT, NOT EXECUTED. Empty disposable Supabase project only.
+begin;
+create table public.cwl_rls_notes (
+  id uuid primary key default gen_random_uuid(),
+  owner_id uuid not null default auth.uid() references auth.users(id),
+  body text not null check (char_length(body) between 1 and 1000)
+);
+create index cwl_rls_notes_owner_idx on public.cwl_rls_notes(owner_id);
+alter table public.cwl_rls_notes enable row level security;
+revoke all on public.cwl_rls_notes from public, anon, authenticated;
+grant select, delete on public.cwl_rls_notes to authenticated;
+grant insert (body), update (body) on public.cwl_rls_notes to authenticated;
+create policy cwl_notes_read on public.cwl_rls_notes for select to authenticated
+  using ((select auth.uid()) = owner_id);
+create policy cwl_notes_insert on public.cwl_rls_notes for insert to authenticated
+  with check ((select auth.uid()) = owner_id);
+create policy cwl_notes_update on public.cwl_rls_notes for update to authenticated
+  using ((select auth.uid()) = owner_id)
+  with check ((select auth.uid()) = owner_id);
+create policy cwl_notes_delete on public.cwl_rls_notes for delete to authenticated
+  using ((select auth.uid()) = owner_id);
+commit;
+```
+
+For this sample, INSERT accepts body only. owner_id is assigned from auth.uid().
+UPDATE can change body only. A client cannot promote itself or transfer ownership
+by including another column. Existing broad grants must be inspected when adapting
+the example: adding a narrow column grant does not undo a separate broad grant.
+
+USING determines which existing rows qualify. WITH CHECK constrains the proposed
+row on INSERT/UPDATE. PostgreSQL has fallback behavior when some clauses are
+omitted; writing both on an update policy makes this example's intention explicit.
+An update path also needs the relevant row visibility/SELECT policy and privileges.
+
+## Use a real application identity
+With the authenticated browser/SSR client for A, a minimal call is:
+
+```js
+const { data, error } = await supabase
+  .from('cwl_rls_notes')
+  .insert({ body: 'Check the owner boundary' })
+  .select('id, body')
+  .single();
+if (error) throw new Error('Note could not be created');
+console.log(data.id);
+```
+
+This snippet assumes a correctly configured authenticated client; it is not a
+full sign-in flow. Keep private keys and raw provider errors out of browser logs.
+Use the public application key with a user's session. A service-role test can
+bypass the boundary you intended to verify.
+
+## Expected results and the required test matrix
+These are acceptance criteria, not captured database results:
+- Anonymous SELECT/INSERT/UPDATE/DELETE: denied by the specified grants.
+- A inserts body, then reads/updates/deletes A's row: allowed within constraints.
+- B selecting A's ID: no visible row. Updating/deleting it: zero affected rows.
+- A inserting an owner_id or updating it: denied by column privileges.
+- A body longer than 1,000 characters or empty body: constraint failure.
+
+Check data, error and affected rows. A policy-filtered SELECT can return an empty
+array without an error; that is not proof the row is absent. Test each operation
+directly through the API as A and B, then confirm the unchanged row using the
+authorized owner. Do not log in as an administrative database role and call it
+an authenticated API test. TEST_PLAN.txt contains the full matrix to record.
+
+## Diagnose “new row violates row-level security policy”
+Record the table, requested operation, whether a session is attached and the
+policy's role/expressions. Compare the resulting row with WITH CHECK. Also inspect
+object grants and defaults. Do not disable RLS, add USING(true) everywhere or use
+a service-role key in a browser to make the request pass.
+
+For updates, inspect both old-row visibility and new-row checks. A zero-row update
+may indicate a hidden row, wrong ID or concurrent change. Reread with the correct
+identity and select the affected rows deliberately instead of claiming success
+because error is null.
+
+## Avoid recursive and role-escalation helpers
+A profiles policy that queries profiles again can recurse. That does not justify
+adding an unrestricted definer function to an exposed schema. Review the actual
+policy graph and move authorization data to a deliberate controlled design where
+appropriate. Any definer helper needs a trusted owner, fixed name resolution,
+narrow EXECUTE grants and tests for unauthorized arguments. No such helper is
+included or claimed tested in this guide.
+
+A writable is_admin or role field is an authorization problem even if its row is
+owned by the user. Keep privileged assignments out of ordinary update grants and
+client-editable metadata. Verify attempted escalation through the API.
+
+## Review all policies together
+Permissive policies combine with OR. Adding a permissive allow-all rule can undo
+a restrictive-looking example. Restrictive policies further constrain applicable
+permissive policies; they do not independently create access. Inspect all policies,
+role memberships, grants, exposed views and functions before making a security claim.
+No performance improvement or administrator-proof guarantee is established here.
+
+Related: /blog/supabase-errors-production-fixes (existing unverified body)
+Related: /blog/inventory-management-system-nextjs-supabase (existing unverified body)
+Related: /blog/nextjs-authentication-without-nextauth (existing unverified body)
+Before publication: execute the anonymous/A/B matrix, record actual outputs and
+obtain security/editorial review and owner approval. Keep this revision DRAFT.
+
+Official references:
+https://www.postgresql.org/docs/current/ddl-rowsecurity.html
+https://www.postgresql.org/docs/current/sql-createpolicy.html
+https://www.postgresql.org/docs/current/sql-grant.html
+https://supabase.com/docs/guides/database/postgres/row-level-security
+https://supabase.com/docs/guides/auth/server-side/nextjs
