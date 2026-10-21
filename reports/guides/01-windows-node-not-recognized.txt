@@ -1,0 +1,62 @@
+Node is not recognized on Windows: diagnose installation, PATH and stale terminals
+Status: DRAFT — documentation reviewed; failure/fix matrix NOT executed. Not for publication.
+Proposed slug: windows-node-not-recognized | Category: Windows Developer Setup
+
+THE EXACT PROBLEM AND ENVIRONMENT
+This guide targets native Windows 11, using Windows PowerShell 5.1 or PowerShell 7 in Windows Terminal or VS Code. It does not configure Node inside WSL, containers or a remote development host.
+Identification messages include PowerShell's “The term 'node' is not recognized” and Command Prompt's “'node' is not recognized as an internal or external command”. These are identification targets, not captured test output.
+Node release, installation method, CPU architecture, Windows edition/build, shell version and VS Code version must be recorded before verification. No tested versions are claimed here. The website build environment's Node 22.18.0 is not evidence that this installation repair was tested.
+
+WHY IT HAPPENS
+Command discovery cannot find an executable named node. Separate three cases: Node is absent; its containing directory is absent from this process's PATH; or an old terminal/editor inherited PATH before installation. A fourth case is a different Node installation resolving first. A WSL installation does not supply a native Windows executable automatically.
+
+DIAGNOSE BEFORE CHANGING ANYTHING
+Run in the failing PowerShell terminal:
+
+$PSVersionTable.PSVersion
+Get-Command node -All -ErrorAction SilentlyContinue |
+  Select-Object CommandType, Source, Definition
+where.exe node
+$env:Path -split ';'
+
+Get-Command can expose aliases/functions as well as applications; where.exe checks executable search paths. An empty result differs from an unexpected older executable. PATH output can expose local usernames; redact it before sharing.
+
+If using the standard system-wide MSI installation, check this candidate explicitly:
+
+$nodeCandidate = Join-Path $env:ProgramFiles 'nodejs\node.exe'
+Test-Path -LiteralPath $nodeCandidate
+# Run only if the preceding check is True:
+& $nodeCandidate --version
+
+That is a candidate path, not a universal location. For a custom installer or version manager, obtain the actual installation location from that tool. Do not add a guessed path.
+
+REPRODUCING THE PATH FAILURE SAFELY
+In a disposable Windows VM/account with a known Node installation, open PowerShell and record the resolved executable. Save the current process PATH, remove only the independently confirmed Node directory from that process's PATH, then try node again. Do not edit persistent User/Machine PATH for this experiment. Record all remaining Get-Command results: another installed Node can prevent reproduction. Restore the saved process PATH immediately after recording the failure. A stale-terminal variant instead compares a shell opened before installation with a fresh shell opened after installation. These are separate causes and need separate evidence.
+
+THE FIX, SELECTED BY THE DIAGNOSIS
+1. If the confirmed executable works directly but ordinary node fails, completely close the terminal host and all VS Code windows. Reopen the editor from Start, then create a new terminal. A new terminal inside an old editor may inherit the editor's stale environment.
+2. If a fresh editor still cannot discover Node, repair the original installer configuration or version-manager setup. For an MSI-managed installation, use the installer's PATH feature if available. Alternatively open Windows “Edit environment variables for your account”, preserve the current value, and add the confirmed directory containing node.exe to User Path. Add the directory, not node.exe; leave existing entries intact. Restart the host again.
+3. If the executable is missing, install Node using the official distribution or the existing version manager. Choose a supported release compatible with the project's engines/lockfile. Avoid layering an MSI install over a version manager without understanding which owns PATH.
+4. If the wrong executable wins, inspect all reported paths and use the installation manager's documented selection/removal process. Do not delete executables blindly or paste an entire replacement PATH.
+
+VERIFY THE REPAIR
+In a genuinely fresh PowerShell host:
+
+Get-Command node -All | Select-Object CommandType, Source
+node --version
+node -p "process.execPath"
+node -e "console.log('node command discovery works')"
+npm.cmd --version
+
+Success requires the intended executable path, the chosen version and the final JavaScript message. npm.cmd tests the Windows launcher separately from npm.ps1 policy; a policy error is a different problem. In an existing trusted project, use its documented install/build checks rather than changing dependencies during a PATH diagnosis.
+
+ALTERNATIVES, VERSIONS AND COMMON MISTAKES
+A full executable path is a diagnostic workaround, not a portable project configuration. WSL and VS Code Remote need checks inside their own host. Version managers may expose a managed symlink; repair that manager rather than adding a specific version directory permanently. Restarting only the shell may not refresh its parent process. Running as administrator does not repair a missing PATH entry by itself. Do not equate successful --version with a successful application build.
+
+VERIFICATION REQUIRED BEFORE PUBLICATION
+Capture original error, process command resolution, install method and exact versions. Test missing PATH, stale host and competing installations separately; repeat the selected fix in a fresh VM. Record before/after evidence and a named reviewer. No screenshots, logs or outcomes should be invented. Preserve any original environment settings for rollback.
+
+OFFICIAL REFERENCES (reviewed 2026-10-21)
+Microsoft native Windows Node setup: https://learn.microsoft.com/en-us/windows/dev-environment/javascript/nodejs-on-windows
+npm installation and version checks: https://docs.npmjs.com/downloading-and-installing-node-js-and-npm/
+PowerShell command precedence and explicit paths: https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_command_precedence

@@ -1,0 +1,138 @@
+Deploy a Next.js App to Vercel: preflight, preview and production checks
+REVISION DRAFT — not published. Retain /blog/deploy-nextjs-to-vercel-guide.
+
+## What this walkthrough establishes
+The local fixture exercises import/type/alias failures and client-versus-server
+environment timing on Next.js 16.2.6. The actual tested OS, Node and dependencies
+are recorded in reports/priority-article-tests/results.json. No Vercel project,
+DNS record, database network rule or production deployment was changed. Hosted
+steps below are an unverified checklist for an owner-approved deployment.
+
+The earlier personal deployment-time story, guaranteed build duration and broad
+claims about being the easiest platform are omitted from this proposed revision.
+Readers need a reproducible process and clear limits, not unsupported timings.
+
+## 1. Establish a repeatable local baseline
+Use the repository's lockfile and the Node version supported by its framework and
+dependencies. Do not upgrade packages during an unrelated deployment diagnosis.
+In a clean approved checkout, inspect package.json and run:
+
+node --version
+npm.cmd --version
+npm.cmd ci
+npm.cmd run lint
+npx.cmd tsc --noEmit
+npm.cmd run build
+
+ci requires a consistent existing lockfile and recreates installed dependencies;
+run it in the intended checkout, not while another install/build is using it.
+For Next.js 16, lint is a separate command, not part of next build. A successful
+local run is necessary evidence but does not prove hosted configuration is correct.
+
+If reproducing the sample errors instead of using a live project:
+
+Push-Location fixtures/priority-articles
+try { npm.cmd ci } finally { Pop-Location }
+node scripts/test-priority-articles.mjs
+
+The runner preserves the fixture's source, deliberately breaks a missing import,
+type and alias, saves logs and restores a passing build. It never deploys.
+
+## 2. Review what will leave your machine
+Before connecting any remote, inspect the working tree and ignore rules:
+
+git status --short
+git check-ignore --no-index .env.local
+git ls-files -- .env.local
+git diff
+git diff --cached
+
+The tracked-file check must show no secret env file. Ignoring a file does not
+remove an already-tracked copy or invalidate a leaked credential. If a secret
+was exposed, rotate it using the owner's approved process and review history.
+Use an explicit file list when staging; do not blindly commit every file.
+
+For an existing repository, preserve its branch/remotes. Inspect git remote -v
+locally rather than replacing origin or renaming its branch as a routine step.
+A remote can contain private identifiers; do not post its output publicly. Pushing
+can trigger configured hosting workflows, so review that behavior before doing it.
+CodeWithLogs has not been pushed or deployed by this task.
+
+## 3. Inspect the hosting project before creating a deployment
+For an approved Vercel project, confirm the repository, root directory, framework,
+install/build commands, Node runtime and production branch. A monorepo root is not
+necessarily the folder containing the application. Use the intended lockfile and
+avoid solving inference warnings by deleting unrelated lockfiles.
+
+Preview and Production are distinct environments. Do not assume main is the
+configured production branch or that a successful deployment URL is production.
+Compare the deployed commit and target environment with the requested revision.
+No current UI label, plan entitlement or deployment timing is guaranteed here.
+
+## 4. Classify environment variables by purpose and timing
+Create an inventory with variable name, public/server use and intended environment;
+keep values out of the report. Only add the variables required by that deployment.
+Do not copy local development credentials into a public preview indiscriminately.
+
+A literal process.env.NEXT_PUBLIC_SITE_URL reference in browser code is bundled
+at build time. A new runtime value cannot rewrite that existing client bundle.
+Server-only values are available on the server, but their read timing still
+depends on static build execution versus dynamic requests. Avoid exposing them
+through responses, logs or serialized props.
+
+The fixture compares a build-time public label with a dynamic server route. Its
+labels are synthetic and safe to return. Never adapt the demonstration by returning
+MONGODB_URI, passwords or provider secret keys from an API route.
+
+When an approved public build-time value changes, create a new approved build.
+Scope values correctly for Preview, Production and any branch-specific settings.
+Changing a domain also requires checking canonical/site URLs and auth redirect
+allowlists, rather than assuming one environment variable covers every integration.
+
+## 5. Diagnose common failures with the narrowest relevant check
+Module not found: compare the package manifest, exact tracked casing and alias
+mapping. The companion deployment-errors guide includes a two-hop Git rename.
+
+500 response: inspect sanitized server logs for the real failure. A missing value,
+network denial, upstream error or query failure is not distinguishable from the
+status alone. Do not print the connection string to debug it.
+
+Blank browser page: inspect the browser console and network failures. Browser APIs
+must not execute during server rendering merely because a file says use client.
+
+Remote images: use a deliberately scoped remotePatterns rule for the actual image
+host/path. For example, adapt this placeholder rather than allowing arbitrary hosts:
+
+images: {
+  remotePatterns: [{ protocol: 'https', hostname: 'images.example.com', pathname: '/blog/**' }]
+}
+
+Merge with the existing Next config. The hostname is an example, not a working
+image source. Test allowed and denied image URLs in the approved environment.
+
+Database network access: inspect Atlas access controls, database-user privileges,
+TLS/DNS and the host's actual egress design. The previous routine 0.0.0.0/0 advice
+is removed. Prefer a documented least-privilege network path, such as approved
+fixed egress or private networking when available; availability depends on setup.
+Do not invent stable Vercel IP ranges or broaden access blindly to make an error
+disappear. No database connectivity/security change was tested here.
+
+## 6. Review an approved preview, then plan promotion
+Once separately approved, check public pages, representative article URLs,
+canonical metadata, sitemap/robots, login boundaries, form behavior and mobile
+rendering on the actual preview. Use test accounts/data for mutations. Compare
+the commit and environment again. A homepage 200 does not validate the full site.
+
+For custom domains, follow the exact records shown for that project instead of
+hardcoding a universal A/CNAME target. Verify HTTPS, redirects and hostnames after
+the approved DNS change. Keep a rollback deployment/commit identified. The fixture
+does not exercise DNS, TLS or production promotion. This revision remains DRAFT.
+
+## Official references
+https://vercel.com/docs/frameworks/full-stack/nextjs
+https://vercel.com/docs/deployments/environments
+https://vercel.com/docs/environment-variables
+https://vercel.com/docs/domains/working-with-domains
+https://nextjs.org/docs/app/guides/environment-variables
+https://nextjs.org/docs/app/api-reference/config/next-config-js/images#remotepatterns
+https://www.mongodb.com/docs/atlas/security/ip-access-list/

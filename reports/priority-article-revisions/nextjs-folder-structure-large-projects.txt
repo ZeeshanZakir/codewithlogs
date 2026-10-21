@@ -1,0 +1,162 @@
+A Next.js Folder Structure You Can Debug: routes, aliases and security boundaries
+REVISION DRAFT — not published. Retain /blog/nextjs-folder-structure-large-projects.
+
+## What this structure is for
+A folder tree should help you locate routing, data access and interactive code.
+It is an organizational choice, not proof of scale, security or performance.
+This revision replaces unconfirmed project/file-count anecdotes and arbitrary
+page-length rules with a small executable example and explicit boundaries.
+
+The companion fixture pins Next.js 16.2.6 and TypeScript 5.9.3. Its actual tested
+versions/OS and limited passing cases are in reports/priority-article-tests.
+Windows 11, team productivity and claimed bundle improvements are not tested.
+
+## A small layout that can grow
+
+src/
+  app/
+    layout.tsx
+    page.tsx
+    login/
+      actions.ts
+      page.tsx
+    dashboard/
+      actions.ts
+      page.tsx
+    api/private/route.ts
+    failure/
+      page.tsx
+      error.tsx
+  components/
+    Status.tsx
+    BuildLabel.tsx
+  lib/
+    authorization.ts
+    notes.ts
+    supabase/
+      config.ts
+      client.ts
+      server.ts
+      proxy.ts
+  proxy.ts
+
+This tree matches fixtures/priority-articles/src. The fixture is separate from the
+real website. BuildLabel is interactive/client-boundary code; notes.ts is server
+data access; app files compose routes. A larger app can introduce feature folders
+when multiple files actually share a domain. Empty abstractions are not required.
+
+## Routing conventions versus preferences
+A page.tsx exposes a page. A route.ts exposes handlers; layouts compose nested
+UI. Colocating helpers in app is allowed; “app is for routing only” is a team
+preference rather than a framework prohibition. A folder in parentheses is a
+route group and does not add a URL segment. A private _components folder can
+express intent for colocated components; a regular helper file also does not
+become a route merely by being present.
+
+Do not create two route groups that resolve to the same URL. Route groups also
+do not grant authorization. Next.js 16's proxy.ts naming is version-specific;
+an old middleware.ts path in a tree needs a version note, not a blind rename in
+an unrelated project. The fixture's proxy handles session refresh only.
+
+## Make the alias match the source root
+The fixture's complete configuration is:
+
+File: tsconfig.json
+```json
+{
+  "compilerOptions": {
+    "target": "ES2017", "lib": ["dom", "dom.iterable", "esnext"],
+    "strict": true, "noEmit": true, "skipLibCheck": true, "esModuleInterop": true,
+    "module": "esnext", "moduleResolution": "bundler", "resolveJsonModule": true,
+    "isolatedModules": true, "jsx": "react-jsx", "incremental": true,
+    "plugins": [{ "name": "next" }], "paths": { "@/*": ["./src/*"] }
+  },
+  "include": ["next-env.d.ts", "src/**/*.ts", "src/**/*.tsx", ".next/types/**/*.ts"],
+  "exclude": ["node_modules"]
+}
+```
+
+The important mapping is @/* to ./src/*. TypeScript reads that relative to the
+configuration file; ensure the actual source layout matches it. Keep strict,
+module and JSX settings suitable for the project instead of copying only the
+paths fragment over an entire existing config.
+
+Here are the complete minimal component and importing page:
+
+File: src/components/Status.tsx
+```tsx
+export function Status() {
+  return <p>Alias resolution works.</p>;
+}
+```
+File: src/app/page.tsx
+```tsx
+import { Status } from "@/components/Status";
+import { BuildLabel } from "@/components/BuildLabel";
+
+export default function Page() {
+  return <main><h1>CodeWithLogs article fixture</h1><Status /><BuildLabel /></main>;
+}
+```
+File: src/components/BuildLabel.tsx
+```tsx
+"use client";
+
+export function BuildLabel() {
+  return <p>Public build label: {process.env.NEXT_PUBLIC_FIXTURE_LABEL}</p>;
+}
+```
+
+## Reproduce “Can't resolve '@/components/Status'”
+In the isolated fixture only, change the alias target to ./nonexistent/*. Run
+the fixture build and capture the actual missing-module error. Restore ./src/*
+and rebuild. The automated runner performs that change/restore pair and records
+the logs. It also separately tests a nonexistent import and a type error so a
+correct alias is not confused with a missing file or an invalid type contract.
+
+From the repository root:
+
+Push-Location fixtures/priority-articles
+try { npm.cmd ci } finally { Pop-Location }
+node scripts/test-priority-articles.mjs
+
+Check the named passing result, restored config and final build rather than
+claiming that a folder tree alone fixes every module error. For case-only Windows
+renames, inspect git ls-files and use an unused temporary name between the old
+and new names. The companion deployment-errors guide shows the exact sequence.
+Only index correction was tested here; case-sensitive Linux compilation remains.
+
+## Keep browser code and server authority separate
+Server Components are the default. Client Components can be prerendered and then
+hydrated, so do not read window during initial render without a suitable design.
+Use server-only on modules containing protected data access; avoid re-exporting
+server secrets through a shared client-facing barrel. Barrel exports themselves
+are not universally slow or unsafe: inspect actual dependencies/bundles before
+making performance claims.
+
+The Supabase example has separate client/server modules because cookie access
+and runtime capabilities differ. This is a concrete boundary, not a mandate that
+all projects use Supabase or that the existing CodeWithLogs backend be migrated.
+
+## Put authorization next to the operation
+A parent layout can redirect a visitor, but direct Server Action/API/data calls
+must still verify the current identity and permissions. The fixture's addNote
+action obtains the user on the server and ignores a forged form owner. Its read
+filters on that identity. SQL RLS is an additional database layer, not simulated
+by the UI. See the complete authentication revision and its untested live-provider
+requirements before adopting that sample.
+
+## Verify this organization helps your project
+Run lint, types and build after moving files. Follow one route's imports through
+its data access and mutation paths; check that private modules do not enter client
+bundles. Repeat the original broken import and confirm its exact resolution.
+Use actual navigation/security tests, not a rule such as “under 100 lines” or a
+claim that a particular tree made the build faster. This revision remains DRAFT
+until reviewed; only the fixture's specifically logged cases have test evidence.
+
+## Official references
+https://nextjs.org/docs/app/getting-started/project-structure
+https://nextjs.org/docs/app/guides/authentication
+https://nextjs.org/docs/app/getting-started/server-and-client-components
+https://nextjs.org/docs/messages/module-not-found
+https://www.typescriptlang.org/tsconfig/paths.html

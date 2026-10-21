@@ -94,7 +94,7 @@ const availableTools = [
   },
 ];
 
-const comingSoonTools: Array<{ name: string; icon: any }> = [];
+const comingSoonTools: Array<{ name: string; icon: typeof Braces }> = [];
 
 export default function ToolsPage() {
   return (

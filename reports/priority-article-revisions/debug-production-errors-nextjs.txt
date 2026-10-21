@@ -1,0 +1,133 @@
+How to Debug Production Errors in Next.js: capture, isolate, reproduce
+REVISION DRAFT — not published. Retain /blog/debug-production-errors-nextjs.
+The original personal title/record remain unchanged until an approved content edit.
+
+## Start with a report you can investigate
+Record the URL/path, time with timezone, affected operation, deployment commit,
+browser version and exact error. Keep tokens, passwords and personal payloads out
+of shared logs. Ask whether the error happens before interaction, after a click,
+or only for a signed-in account. “Application error” alone is not a root cause.
+
+This revision supplies a local Next.js 16.2.6 fixture. Named passing cases in
+reports/priority-article-tests/results.json establish only those local behaviors.
+No claims about past client incidents, recovery times or monitoring outcomes are
+retained without author evidence. Windows 11 and browser retry behavior are not
+established by a Windows 10 HTTP test.
+
+## 1. Decide where to look
+A browser exception requires the browser console/network trace and relevant
+client code. A Server Component failure requires server-side logs. In production,
+Next.js sanitizes Server Component error details and can include a digest for
+correlation. That does not mean production has no stack traces: the server can
+retain the original error while the visitor receives a generic response.
+
+Record time, path and deployment alongside the digest. A host's search/indexing
+and log retention vary, so do not promise that every digest search returns a full
+trace. A Route Handler's expected 400/401 response is different from a rendering
+exception. Inspect HTTP status and response content before assuming a frontend bug.
+
+## 2. Reproduce one server failure locally
+The complete fixture contains this route:
+
+// src/app/failure/page.tsx
+export const dynamic = 'force-dynamic';
+export default function FailurePage(): never {
+  throw new Error('fixture_server_failure_private_marker');
+}
+
+The dynamic route throws on a request, not during static generation. The runner
+builds and starts it locally, requests /failure, checks that the private marker
+is absent from the response and present in server logs, and records the result.
+It uses synthetic data. Do not reproduce this in a public production route.
+
+From the repository root:
+
+Push-Location fixtures/priority-articles
+try { npm.cmd ci } finally { Pop-Location }
+node scripts/test-priority-articles.mjs
+
+The runner also deliberately breaks fixture imports/types/aliases, restores the
+files and saves each build log. It never modifies the blog database. Check that
+the recorded results all passed; merely having a log file is not evidence of a fix.
+
+## 3. Add a typed segment error boundary
+The fixture's complete boundary is maintained at:
+
+File: src/app/failure/error.tsx
+```tsx
+"use client";
+
+import { useEffect } from "react";
+
+export default function Failure({ error, reset }: {
+  error: Error & { digest?: string }; reset: () => void;
+}) {
+  useEffect(() => {
+    console.error("fixture_segment_failed", { digest: error.digest });
+  }, [error]);
+  return <section><h2>This section could not load.</h2>
+    {error.digest && <p>Reference: {error.digest}</p>}
+    <button type="button" onClick={reset}>Try again</button>
+  </section>;
+}
+```
+
+The component is a Client Component. Logging occurs in an effect, not during
+render. The message avoids echoing raw server exception details to visitors.
+reset is provided by the pinned version; the installed Next.js 16.2.6 declarations
+also expose unstable_retry. Review the relevant version's API before switching
+retry semantics. This test compiles the boundary and checks the error transport;
+it does not click Try again or prove browser recovery.
+
+An error.tsx boundary does not catch errors in its own segment's layout above it.
+Use a suitable parent boundary or global-error.tsx for root-layout failures; the
+global boundary has document markup requirements. Event-handler and expected API
+errors also need their own handling rather than assuming every exception reaches
+the segment boundary.
+
+## 4. Check environment differences explicitly
+Compare dependency versions, runtime Node version and the names/scope of required
+variables. Compare presence and purpose, not secret values in a screenshot. The
+fixture proves public client values remain from the build while a dynamic server
+route reads its synthetic value at runtime. Static output has different timing.
+See the deployment guide for environment scopes and approval gates.
+
+## 5. Hydration: make the initial trees match
+Common causes include nondeterministic render output, timezone formatting,
+invalid HTML nesting and DOM changes before hydration. Client Components can be
+prerendered on the server; adding use client alone does not make window available
+during all rendering. Move browser-only operations to an effect or event handler,
+or isolate an appropriate client-only component after checking the tradeoff.
+
+Use deterministic initial content for a clock, followed by an explicit client
+update, rather than computing a different timestamp during each initial render.
+Do not blanket-suppress hydration warnings as a repair. Compare an extension-free
+browser only as an isolation step, not proof that all user reports are extensions.
+
+Run development mode to inspect its diagnostic overlay. Run build/start separately
+to reproduce production behavior; the production server is not the development
+overlay. A browser hydration fixture is still required for this section, so no
+hydration fix is marked tested in this revision.
+
+## 6. Verify the actual recovery
+Fix the root cause and repeat the exact failing operation. Check unrelated routes
+and anonymous/authenticated access. Error boundaries improve failure presentation;
+they do not repair a failed upstream service or make a mutation safe to retry.
+For mutations, design idempotency and confirm whether the first request committed
+before retrying. Do not display a success message merely because an error vanished.
+
+Monitoring integration is optional and provider-specific. Configure source-map
+access, privacy filters, event context and retention deliberately. No paid tool,
+setup duration or claimed support reduction is required to understand this method.
+
+## Remaining evidence before publication
+Repeat on Windows 11 if claiming that environment; exercise the browser fallback
+and retry; test a minimal hydration mismatch/fix; review actual hosting logs in an
+approved preview. The local server-error checks cannot certify these missing cases.
+Keep DRAFT until those claims are narrowed or supported and publication is approved.
+
+## Official references
+https://nextjs.org/docs/app/api-reference/file-conventions/error
+https://nextjs.org/docs/app/getting-started/error-handling
+https://nextjs.org/docs/messages/react-hydration-error
+https://nextjs.org/docs/app/guides/environment-variables

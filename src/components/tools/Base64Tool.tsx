@@ -59,7 +59,7 @@ function StatChip({ label, value }: { label: string; value: string }) {
 export function Base64Tool() {
   const [activeTab, setActiveTab] = useState<Base64Tab>("text");
   const [textInput, setTextInput] = useState("");
-  const [textOutput, setTextOutput] = useState("");
+  const [storedTextOutput, setTextOutput] = useState("");
   const [textMode, setTextMode] = useState<TextMode>("idle");
   const [fileBase64, setFileBase64] = useState("");
   const [fileInputBytes, setFileInputBytes] = useState(0);
@@ -69,6 +69,8 @@ export function Base64Tool() {
   const [errorMessage, setErrorMessage] = useState("");
   const [copied, setCopied] = useState(false);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
+
+  const textOutput = textMode === "encoded" ? encodeTextToBase64(textInput, urlSafe) : storedTextOutput;
 
   const displayedFileBase64 = useMemo(() => applyUrlSafeMode(fileBase64, urlSafe), [fileBase64, urlSafe]);
   const base64Hint = activeTab === "text" && looksLikeBase64(textInput);
@@ -196,13 +198,6 @@ export function Base64Tool() {
     }
   }
 
-  useEffect(() => {
-    if (textMode !== "encoded") {
-      return;
-    }
-
-    setTextOutput(encodeTextToBase64(textInput, urlSafe));
-  }, [textInput, textMode, urlSafe]);
 
   return (
     <div className="space-y-10">

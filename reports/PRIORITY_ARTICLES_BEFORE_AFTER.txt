@@ -1,0 +1,170 @@
+CODEWITHLOGS — FIVE PRIORITY ARTICLE REVISIONS: BEFORE / AFTER
+All changes below describe LOCAL REVISION DRAFTS, not edits to published bodies.
+Every stored URL, record, title and publication status is preserved. No archive,
+redirect, deletion, CMS insertion or deployment is authorized or performed.
+The previous niche-only 46-article archival proposal is superseded and unapproved.
+
+Evidence: priority-article-tests/results.json (18 initial checks) and
+priority-article-tests/confirmation-results.json (15 focused checks).
+There are 21 distinct passing case IDs across both runs. Expected negative builds
+are recorded failures followed by restored successful builds; they are intentional.
+Logs contain synthetic fixture data, not production secrets.
+
+COMMON VERIFICATION LIMITS
+Actual machine: Windows 10 Pro 10.0.19045 x64; Node v22.18.0; Next 16.2.6;
+React/React DOM 19.2.4; TypeScript 5.9.3; Supabase SSR 0.12.7 / JS 2.118.0.
+The fixture lockfile records remaining dependency versions. No Windows 11 or
+Linux runtime, actual Vercel deployment, live Supabase login/refresh/RLS, browser
+hydration or retry interaction has been tested. Whole-article status stays DRAFT.
+
+1. COMMON VERCEL DEPLOYMENT ERRORS
+URL: /blog/common-vercel-deployment-errors-solutions
+Draft: priority-article-revisions/common-vercel-deployment-errors-solutions.txt
+
+Before: claimed next build runs lint and offered ignoreDuringBuilds advice.
+After: Next 16 commands separate ESLint, TypeScript and production build; no
+suppression is proposed as a repair.
+Evidence: separate-eslint-error-reproduced and next16-build-does-not-run-eslint.
+
+Before: one-step case rename without verifying Git's tracked spelling.
+After: inspect index, use two distinct rename hops, check final import/index case.
+Evidence: windows-two-hop-git-casing. Limit: a Linux build is still needed.
+
+Before: module errors attributed mainly to casing; missing dependency/alias
+diagnosis was incomplete.
+After: identify package versus local versus alias imports; supply exact mapping.
+Evidence: missing-import-reproduced, alias-error-reproduced and corrected build.
+
+Before: POSIX inline NODE_OPTIONS command presented without shell scope.
+After: labelled PowerShell example preserves/restores the prior value, warns
+about conflicting flags and is explicitly not a tested memory repair.
+
+Before: broad all-vars-baked-in statement and fixed hosting timeout assumptions.
+After: distinguish literal public client bundling from server execution timing;
+refer to project/runtime-specific limits instead of a universal numeric promise.
+Evidence: public-env-is-build-time and dynamic-server-env-is-runtime; host limits
+are documentation-reviewed only.
+
+Before: static-export/generateStaticParams behavior conflated and personal
+deployment incidents/timing assertions treated as evidence.
+After: separate export/server behavior, dynamic/cache settings and proxy matching;
+remove unsupported anecdotes from the proposed body. No traffic/title change.
+Remaining: Linux, real hosting limits, memory failure and production 404 fixtures.
+
+2. HOW I DEBUG PRODUCTION ERRORS IN NEXT.JS
+URL: /blog/debug-production-errors-nextjs
+Draft: priority-article-revisions/debug-production-errors-nextjs.txt
+
+Before: implied production has no usable stack traces and every digest lookup
+returns a complete hosting trace.
+After: distinguish sanitized client transport from original server logs; qualify
+hosting indexing/retention and use time/path/commit for correlation.
+Evidence: production-server-error-redacted and server-error-retains-original-log.
+
+Before: error.tsx had untyped props and console.error during render.
+After: complete typed Client Component, effect-based structured digest logging,
+safe fallback and pinned-version reset behavior. Source is included in the draft.
+Evidence: corrected production build and fixture-typecheck. Fallback clicks and
+actual browser recovery are NOT tested.
+
+Before: production build/start instruction was tied to dev-overlay behavior.
+After: explicitly separate the development overlay from production reproduction.
+
+Before: use-client/hydration advice lacked a complete deterministic fixture and
+personal monitoring/recovery claims had no evidence.
+After: clarify prerendering, deterministic initial UI and browser-only operations;
+mark hydration/monitoring outcomes unverified, remove unsupported personal timing.
+Remaining: browser hydration fixture, retry/idempotency tests, approved host logs.
+
+3. AUTHENTICATION WITHOUT NEXTAUTH
+URL: /blog/nextjs-authentication-without-nextauth
+Draft: priority-article-revisions/nextjs-authentication-without-nextauth.txt
+
+Before: updateSession was imported but not supplied; middleware conventions were
+not pinned to a Next version.
+After: complete browser/server/config/proxy helpers and src/proxy.ts, pinned SDK
+versions, narrow matcher, request/response cookie propagation and cache headers.
+Evidence: fixture build/types, anonymous API/dashboard checks and private/no-store
+response check. Actual refreshed-cookie issuance remains untested.
+
+Before: layout-only protection and “one layer is enough” guidance.
+After: guard every protected read/action/API entry point; derive owner on server;
+add minimal RLS schema and explicit grants/revokes for the sample operations.
+Evidence: anonymous-direct-action-and-data-denied, identity-not-taken-from-form,
+identity-error-fails-closed. Identity/data transport is mocked in those tests;
+SQL policies are not tested by the mocks.
+
+Before: FormData casts and provider error text in redirect query; no complete
+login/dashboard/action/schema fixture.
+After: presence/type validation, fixed redirects, generic failure codes, complete
+login/logout/read/insert source and a disposable-project schema.
+
+Before: universal one-hour expiry and getUser-as-only-valid-method claims.
+After: configurable expiry and distinction between getUser fresh user lookup,
+getClaims verified-token identity and untrusted getSession user data.
+
+Before: claimed six prior projects/production experience without artifacts.
+After: neutral teaching text, exact local test scope and no fabricated history.
+Remaining: real account sign-in/confirmation/logout, token expiry/rotation,
+two-user RLS/forged-token checks, browser workflow and abuse controls. Not verified.
+The WEBSITE'S existing NextAuth/MongoDB setup is untouched.
+
+4. DEPLOY A NEXT.JS APP TO VERCEL
+URL: /blog/deploy-nextjs-to-vercel-guide
+Draft: priority-article-revisions/deploy-nextjs-to-vercel-guide.txt
+
+Before: git add ., branch rename and remote replacement were routine setup steps.
+After: review tracked/ignored secrets and staged diffs, preserve existing remotes
+and branch settings, explain that pushes can trigger deployments.
+
+Before: copy every .env.local value into hosting without environment distinction.
+After: name/purpose/scope inventory; keep preview/production values deliberate;
+distinguish public build values from dynamic server reads and static execution.
+Evidence: local public/server environment timing cases. Hosting scopes remain
+documentation-reviewed, not a performed deployment.
+
+Before: routine Atlas 0.0.0.0/0 allowlisting and generic Vercel IP-range advice.
+After: remove that recommendation; inspect actual egress, least-privilege network
+access, TLS/DNS and credentials. No network setting or real connection was changed.
+
+Before: images.domains-style advice, generic DNS targets, main-as-production and
+fixed build-duration claims.
+After: scoped remotePatterns example, follow actual project-provided DNS records,
+inspect configured production branch and deployed commit; omit timing promises.
+
+Before: local build not clearly separated from external deployment validation.
+After: explicit lint/types/build preflight and preview/production approval gates.
+Evidence: website and fixture local production builds. Remaining: actual preview,
+image allow/deny checks, DNS/TLS, network access, provider settings and promotion.
+
+5. COMPLETE NEXT.JS FOLDER STRUCTURE
+URL: /blog/nextjs-folder-structure-large-projects
+Draft: priority-article-revisions/nextjs-folder-structure-large-projects.txt
+
+Before: app-is-routing-only, arbitrary line limits and one preferred tree stated
+as broadly applicable rules; performance improvement claims lacked measurements.
+After: distinguish framework conventions from team preferences; give the real
+executable fixture tree and avoid unmeasured productivity/bundle claims.
+
+Before: alias fragment had no reproducible failure/repair demonstration.
+After: complete tsconfig and component/importing-page source; break and restore
+the mapping, inspect exact casing and compare missing-file/type failures.
+Evidence: alias-error-reproduced, corrected build, fixed-alias-renders.
+
+Before: group layout presented as the place auth is checked once.
+After: route groups are organization only; require data/action/API authorization.
+Evidence: the actual fixture action/read guards tested with mocked transport and
+anonymous SDK HTTP request. No actual RLS security claim is inferred.
+
+Before: client/server separation and barrel performance treated as universal rules.
+After: explain prerendering, server-only imports, runtime-specific clients and
+measuring actual dependency/bundle effects before making performance claims.
+Remaining: larger-project migration, bundle measurements and Windows 11/Linux
+behavior. These are neither fabricated nor prerequisites for keeping the URL.
+
+PUBLICATION REVIEW
+The complete replacement drafts include source references and all identified
+limitations. Source bodies/hashes remain the original database values. Owner
+approval is required before applying any replacement to the CMS, regardless of
+passing local cases. Approval for the homepage's continued development is not
+treated as approval to publish revised articles or deploy the site.

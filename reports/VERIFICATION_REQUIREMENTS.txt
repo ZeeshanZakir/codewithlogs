@@ -1,0 +1,77 @@
+CODEWITHLOGS — DRAFT VERIFICATION AND PUBLICATION REQUIREMENTS
+
+Current state: five complete local drafts; zero new articles inserted, published,
+archived, deleted or added to the verified registry. Homepage pending-verification
+sections remain honest because there is no newly verified published guide.
+The website's successful build/HTTP checks do NOT verify these tutorial solutions.
+
+COMMON EVIDENCE PACK FOR EACH GUIDE
+1. Disposable Windows 11 fixture: edition, release/build, architecture, local or
+   remote host, shell edition/version, relevant tool versions and install method.
+   Include a versioned fixture/config and lockfile if packages are involved.
+2. Original failure: complete message, exact command/click path, starting settings
+   and command resolution. Redact secrets and personal paths. Screenshots are
+   optional and must be captured from the actual test if used.
+3. Cause isolation: change one variable, preserve initial settings, record why
+   another plausible cause does not explain this fixture.
+4. Fix: exact diff/settings change, commands, actual output and exit codes.
+   Avoid logging unrelated environment variables or production credentials.
+5. Repeat on a clean fixture; record supported alternatives and failure boundaries.
+   No benchmark/experience claim without underlying records and author confirmation.
+6. Named technical review and author review; source references checked for pinned
+   versions. Owner approval is separately REQUIRED before CMS insertion/publication.
+
+GUIDE-SPECIFIC ACCEPTANCE MATRIX
+
+01 Node PATH — reports/guides/01-windows-node-not-recognized.txt
+Cases: missing process PATH, stale editor parent, competing installation.
+Pass: original command fails for isolated cause; intended node.exe resolves in a
+fresh host; version, process.execPath and JavaScript execution all agree. Check
+npm.cmd independently. Record custom/version-manager versus MSI differences.
+Rollback: saved process/User Path or original installer selection; no broad reset.
+Not done: failure reproduction, installation repair, repeat Windows VM run.
+
+02 npm.ps1 — reports/guides/02-windows-npm-ps1-blocked.txt
+Cases: script selected under blocking policy; allowed npm.cmd; managed-policy limit.
+Pass: actual original policy error; effective/scoped policies and launcher paths
+recorded; permitted npm.cmd reports matching version and runs a harmless local
+fixture script. No global security weakening or administrator-mode workaround.
+Compare Windows PowerShell and PowerShell 7 only if both are claimed as supported.
+Not done: controlled policy fixture, command-launcher failure/fix capture.
+
+03 Git PATH — reports/guides/03-windows-git-not-recognized.txt
+Cases: Git Bash works / PowerShell fails; stale editor; alternate Git installation.
+Pass: intended native Git resolves in fresh PowerShell and VS Code; isolated init
+and status work without remote access or account changes; installer option recorded.
+Not done: installer repair, original failing shell capture, clean-host repetition.
+
+04 Git line endings — reports/guides/04-windows-git-line-endings.txt
+Cases: CRLF conversion notice, mixed endings, intended LF source and CRLF cmd/bat.
+Pass: actual Git warning/version captured; i/w/attr states explained; staged bytes
+match agreed policy; binary files unchanged; clean checkout and real project checks
+pass. Linux script checks also require shebang/interpreter and executable mode.
+Not done: disposable normalization fixture, staged-byte assertions, Linux execution.
+
+05 VS Code terminal — reports/guides/05-vscode-terminal-wont-launch.txt
+Cases: nonexistent executable, invalid cwd, profile startup failure; integration
+isolation only if implicated. Distinguish process creation from later shell exit.
+Pass: actual error and settings diff captured; intended shell opens twice and
+after editor restart; temporary settings restored; both empty and intended workspace
+checked. Record any managed endpoint restrictions without trying to bypass them.
+Not done: disposable editor-profile reproduction and final terminal interaction.
+
+EXISTING ARTICLES: SAFETY REVIEW BEFORE PROMOTION
+Inventory: replace invalid aggregate locking with a complete serialized design;
+test concurrent sales, zero/negative quantities, authorization and rollback.
+Supabase RLS/auth/admin: test anonymous, user A, user B and admin directly against
+actions/data/RPC boundaries, not only through UI. Review function grants/search_path,
+mutable admin roles and session validation for the pinned versions.
+Sheets: prove view access matches intended RLS; implement pagination and empty result
+replacement; never expose sensitive reporting views to anonymous readers casually.
+Performance/cost reviews: original run artifacts required for existing numerical
+claims, otherwise author-approved neutral wording. Do not substitute invented data.
+
+UNCHANGED APPROVAL GATES
+No production deployment, AdSense resubmission, article publication, archiving,
+deletion, redirects or consolidation is authorized. The current recommendations
+are a review package. No count or checklist guarantees AdSense approval.

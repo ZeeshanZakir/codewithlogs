@@ -97,8 +97,8 @@ export function JwtDecoderSeoContent() {
             </h3>
             <p className="mt-2 text-base leading-8 text-text/70">
               Yes. The header and payload are only base64url encoded, not encrypted. Anyone can
-              decode them. The signature ensures that the token hasn't been tampered with, but it
-              doesn't hide the content.
+              decode them. The signature ensures that the token hasn&apos;t been tampered with, but it
+              doesn&apos;t hide the content.
             </p>
           </div>
           <div className="rounded-[24px] border border-black/6 bg-white p-6">

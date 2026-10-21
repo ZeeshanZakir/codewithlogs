@@ -1,0 +1,48 @@
+CODEWITHLOGS — LINT ERROR PRIORITY AND RESOLUTION
+
+Baseline: reports/eslint-results.json, 54 errors / 15 warnings.
+Current: reports/eslint-recovery.json, 0 errors / 10 warnings.
+No rule was disabled to obtain this result. No new dependency was installed.
+
+P1 — RENDER/STATE CORRECTNESS: 13 errors
+4 set-state-in-render: JWT and regex memo derivations changed state while rendering.
+  Derive data and error together; error feedback clears with the input naturally.
+5 static-components: nested JWT tab/view components moved to module scope, with
+  copy state/handler explicitly passed rather than recreating component types.
+3 set-state-in-effect: Base64 output and cron expression derived from current
+  inputs; gallery selection initialized through carousel startIndex and updated
+  by carousel selection events. No redundant synchronous effect setters remain.
+1 immutability: regex no longer mutates a memoized RegExp across renders;
+  matchAll safely advances through global zero-width matches.
+
+P2 — TYPE AND MUTABILITY CLARITY: 9 errors
+7 explicit any: Lucide icon typed; admin category compared without unsafe cast;
+  JWT JSON uses guarded object records and typed claim checks; regex group access
+  uses its real optional group type.
+2 prefer-const: cron's mutable Date object and MongoDB's shared cache binding use
+  const; their intended object mutations/cache reuse are preserved.
+
+P3 — JSX LITERAL ESCAPING: 32 errors
+Escaped apostrophes/quotes only in JSX text nodes in affected tool educational
+components. Rendered wording is unchanged; source data/articles are untouched.
+
+SAFETY/VALIDATION
+Full ESLint and TypeScript checks pass with no errors. Production build passes.
+Nine isolated functional checks cover JWT validation/Unicode/expiry, Base64
+round-trips, regex groups/global/invalid/zero-width cases and newsletter branches.
+These do not constitute a full browser pass or authenticated admin mutation test.
+
+TEN WARNINGS REMAIN, IN PRIORITY ORDER
+1. PasswordGeneratorTool.tsx: effect dependency on handleGenerate. Fix should
+   preserve one-time generation, randomness, option updates and history; blindly
+   adding an unstable callback can change behavior. Deferred for focused review.
+2. CodeLineView.tsx: scroll-sync effect dependency. Needs callback/lifecycle review
+   and input/output scroll interaction checks. Deferred; not suppressed.
+3. Five no-img-element warnings: GalleryLightbox (2), GalleryMasonry,
+   GalleryUploadForm and Base64Tool. User upload/data-URL previews need appropriate
+   sizing and compatibility checks before replacing with next/image.
+4. Two unused imports in admin/actions.ts and one unused max parameter in cron.ts.
+   Low-impact cleanup remains; existing authorization/actions unchanged.
+
+The user requested repair of 54 errors; all 54 are resolved. Warnings are recorded
+separately rather than changing unrelated working behavior just to silence them.

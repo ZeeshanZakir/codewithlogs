@@ -6,10 +6,10 @@ export function RegexTesterSeoContent() {
       <div className="space-y-4">
         <h2 className="text-3xl font-bold tracking-tight text-text">What Is a Regular Expression?</h2>
         <p className="max-w-4xl text-base leading-8 text-text/70">
-          A regular expression (regex) is a sequence of characters that defines a search pattern. They're used for validation, search-and-replace operations, and parsing text in applications.
+          A regular expression (regex) is a sequence of characters that defines a search pattern. They&apos;re used for validation, search-and-replace operations, and parsing text in applications.
         </p>
         <p className="max-w-4xl text-base leading-8 text-text/70">
-          Regex patterns are supported in almost every programming language and text editor, making them an essential tool for developers. If you're working with JSON data, check out our <Link href="/tools/json-formatter" className="text-primary font-semibold hover:underline">JSON Formatter</Link> to clean and inspect your payloads.
+          Regex patterns are supported in almost every programming language and text editor, making them an essential tool for developers. If you&apos;re working with JSON data, check out our <Link href="/tools/json-formatter" className="text-primary font-semibold hover:underline">JSON Formatter</Link> to clean and inspect your payloads.
         </p>
       </div>
 
@@ -61,17 +61,17 @@ export function RegexTesterSeoContent() {
           <div className="rounded-[24px] border border-black/6 bg-white p-6">
             <h3 className="text-lg font-semibold text-text">Which regex flavor does this use?</h3>
             <p className="mt-2 text-base leading-8 text-text/70">
-              JavaScript's native RegExp engine (ECMAScript), the same engine used in Node.js and browsers.
+              JavaScript&apos;s native RegExp engine (ECMAScript), the same engine used in Node.js and browsers.
             </p>
           </div>
           <div className="rounded-[24px] border border-black/6 bg-white p-6">
             <h3 className="text-lg font-semibold text-text">Is my test text uploaded anywhere?</h3>
             <p className="mt-2 text-base leading-8 text-text/70">
-              No, everything runs locally in your browser using JavaScript's RegExp object.
+              No, everything runs locally in your browser using JavaScript&apos;s RegExp object.
             </p>
           </div>
           <div className="rounded-[24px] border border-black/6 bg-white p-6">
-            <h3 className="text-lg font-semibold text-text">Why doesn't my pattern match anything?</h3>
+            <h3 className="text-lg font-semibold text-text">Why doesn&apos;t my pattern match anything?</h3>
             <p className="mt-2 text-base leading-8 text-text/70">
               Check your flags (e.g. missing the g flag for global search) and escape special characters like . or ( if you mean them literally.
             </p>

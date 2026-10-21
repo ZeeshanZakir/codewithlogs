@@ -1,0 +1,532 @@
+[
+  {
+    "rank": 1,
+    "slug": "common-vercel-deployment-errors-solutions",
+    "title": "Common Vercel Deployment Errors and Their Solutions",
+    "url": "https://codewithlogs.com/blog/common-vercel-deployment-errors-solutions",
+    "status": "scheduled",
+    "category": "Vercel",
+    "action": "IMPROVE",
+    "reason": "Retain URL and useful material; correct article-specific quality gaps. Niche fit is not an archival criterion.",
+    "mergeWith": [],
+    "specificFindings": [
+      "Excellent exact-error search intent. next build no longer runs lint in Next 16; memory command is POSIX-specific and file-casing fix needs tracked-path verification. Avoid fixed plan limits and distinguish static export from dynamic generation."
+    ],
+    "localRevisionDraft": "reports/priority-article-revisions/common-vercel-deployment-errors-solutions.txt",
+    "assessment": {
+      "originality": "Provenance not independently established; no external plagiarism audit or AI-authorship inference. No confirmed duplicate-intent group; this is not proof of uniqueness.",
+      "usefulness": "Excellent exact-error search intent.",
+      "completeness": "2 fenced examples; complete fixture and expected outputs still require review.",
+      "technicalAccuracy": "Static review, not execution certification. Excellent exact-error search intent. next build no longer runs lint in Next 16; memory command is POSIX-specific and file-casing fix needs tracked-path verification. Avoid fixed plan limits and distinguish static export from dynamic generation.",
+      "duplication": "No consolidation proposed; related supporting topics can legitimately overlap.",
+      "searchIntent": "Assess the title's own reader task independently of new Windows category placement. Priority problem-solving/educational candidate.",
+      "firstHandEvidence": "No linked reproducible artifact or verification-registry entry establishes personal claims. Request author records; missing repository evidence does not establish that the experience is false."
+    },
+    "windowsVerification": "NOT VERIFIED",
+    "bodyPreserved": true,
+    "wordCount": 1081,
+    "headings": [
+      "1. \"Module not found: Can't resolve './components/Button'\"",
+      "2. Type errors that only fail in the cloud",
+      "3. Environment variables that are undefined in production",
+      "4. \"Task timed out after 10 seconds\"",
+      "5. The serverless function size limit",
+      "6. \"Dynamic server usage: couldn't be rendered statically because it used cookies\"",
+      "7. \"JavaScript heap out of memory\"",
+      "8. Dynamic routes that 404 only in production",
+      "9. ESLint errors blocking the deploy",
+      "10. The deploy \"succeeded\" but nothing changed",
+      "The prevention routine that replaced most of these"
+    ],
+    "codeBlocks": 2,
+    "officialLinks": [],
+    "links": [],
+    "evidenceToReview": [
+      "An API route or server action gets killed mid-work. The Hobby plan gives serverless functions limited execution time, and my first instinct — \"the limit is too low\" — was usually wrong. The limit was exposing a slow query or an unindexed table that local testing, with its tiny da"
+    ],
+    "missing": [
+      "Exact supported versions and reproducible fixture where applicable.",
+      "Traceable evidence for author/personal claims.",
+      "No relevant official technical link detected; domain detection is only a signal."
+    ],
+    "bodySha256": "54a6d74040a8cb1ba9c577ce07636539381e0d05ab874e3b3feced336726bef7",
+    "rationale": "Exact errors and direct Windows-to-Linux casing intent; correct Next 16 lint and shell guidance.",
+    "effort": "Medium",
+    "trafficEvidence": "Search Console unavailable; ranking reflects editorial utility/correctability, not measured traffic."
+  },
+  {
+    "rank": 2,
+    "slug": "debug-production-errors-nextjs",
+    "title": "How I Debug Production Errors in Next.js",
+    "url": "https://codewithlogs.com/blog/debug-production-errors-nextjs",
+    "status": "scheduled",
+    "category": "Next.js",
+    "action": "IMPROVE",
+    "reason": "Retain URL and useful material; correct article-specific quality gaps. Niche fit is not an archival criterion.",
+    "mergeWith": [],
+    "specificFindings": [
+      "High-value client/server error triage and hydration causes. error.tsx props are untyped, error logging happens during render, and no complete failing fixture is supplied. Digest/log availability depends on hosting; production overlay claim needs correction."
+    ],
+    "localRevisionDraft": "reports/priority-article-revisions/debug-production-errors-nextjs.txt",
+    "assessment": {
+      "originality": "Provenance not independently established; no external plagiarism audit or AI-authorship inference. No confirmed duplicate-intent group; this is not proof of uniqueness.",
+      "usefulness": "High-value client/server error triage and hydration causes.",
+      "completeness": "2 fenced examples; complete fixture and expected outputs still require review.",
+      "technicalAccuracy": "Static review, not execution certification. High-value client/server error triage and hydration causes. error.tsx props are untyped, error logging happens during render, and no complete failing fixture is supplied. Digest/log availability depends on hosting; production overlay claim needs correction.",
+      "duplication": "No consolidation proposed; related supporting topics can legitimately overlap.",
+      "searchIntent": "Assess the title's own reader task independently of new Windows category placement. Priority problem-solving/educational candidate.",
+      "firstHandEvidence": "No linked reproducible artifact or verification-registry entry establishes personal claims. Request author records; missing repository evidence does not establish that the experience is false."
+    },
+    "windowsVerification": "NOT VERIFIED",
+    "bodyPreserved": true,
+    "wordCount": 920,
+    "headings": [
+      "Why production errors tell you nothing",
+      "Step 1: Figure out which side broke",
+      "Step 2: The digest trick for server errors",
+      "Step 3: Error boundaries so users never see the ugly screen",
+      "Step 4: Fifteen minutes of Sentry setup pays forever",
+      "Step 5: Hunting hydration errors",
+      "Step 6: Log with context, not confetti",
+      "The boring class of bugs: environment differences",
+      "My checklist, in order"
+    ],
+    "codeBlocks": 2,
+    "officialLinks": [],
+    "links": [],
+    "evidenceToReview": [
+      "The pattern that changed for me: I used to learn about bugs from angry messages. Now I've usually deployed the fix before the message arrives. That's not a productivity tip, that's a reputation tip.",
+      "A confession: a good third of my \"production-only\" bugs weren't code at all. A missing environment variable, a different Node version, an API key pointing at a sandbox. Now my first check for any works-locally-breaks-in-prod mystery is a diff of environment variables between loca"
+    ],
+    "missing": [
+      "Exact supported versions and reproducible fixture where applicable.",
+      "Traceable evidence for author/personal claims.",
+      "No relevant official technical link detected; domain detection is only a signal."
+    ],
+    "bodySha256": "f570effbde2768592c9ba7357a6400e900beee750bcc8af52d017203ad3811fa",
+    "rationale": "Useful client/server triage; supply one complete failure/recovery fixture.",
+    "effort": "Medium",
+    "trafficEvidence": "Search Console unavailable; ranking reflects editorial utility/correctability, not measured traffic."
+  },
+  {
+    "rank": 3,
+    "slug": "nextjs-authentication-without-nextauth",
+    "title": "How I Built Authentication in Next.js Without NextAuth",
+    "url": "https://codewithlogs.com/blog/nextjs-authentication-without-nextauth",
+    "status": "scheduled",
+    "category": "Next.js",
+    "action": "IMPROVE",
+    "reason": "Retain URL and useful material; correct article-specific quality gaps. Niche fit is not an archival criterion.",
+    "mergeWith": [],
+    "specificFindings": [
+      "Useful session-cookie workflow but missing updateSession/server-client implementation prevents copy/paste completion. Layout-only protection is insufficient for data/actions; add authorization checks at each boundary and pin proxy/middleware conventions."
+    ],
+    "localRevisionDraft": "reports/priority-article-revisions/nextjs-authentication-without-nextauth.txt",
+    "assessment": {
+      "originality": "Provenance not independently established; no external plagiarism audit or AI-authorship inference. No confirmed duplicate-intent group; this is not proof of uniqueness.",
+      "usefulness": "Useful session-cookie workflow but missing updateSession/server-client implementation prevents copy/paste completion.",
+      "completeness": "5 fenced examples; complete fixture and expected outputs still require review.",
+      "technicalAccuracy": "Static review, not execution certification. Useful session-cookie workflow but missing updateSession/server-client implementation prevents copy/paste completion. Layout-only protection is insufficient for data/actions; add authorization checks at each boundary and pin proxy/middleware conventions.",
+      "duplication": "No consolidation proposed; related supporting topics can legitimately overlap.",
+      "searchIntent": "Assess the title's own reader task independently of new Windows category placement. Priority problem-solving/educational candidate.",
+      "firstHandEvidence": "No linked reproducible artifact or verification-registry entry establishes personal claims. Request author records; missing repository evidence does not establish that the experience is false."
+    },
+    "windowsVerification": "NOT VERIFIED",
+    "bodyPreserved": true,
+    "wordCount": 1021,
+    "headings": [
+      "The mental model first",
+      "Step 1: The two clients",
+      "Step 2: The middleware (the part everyone skips)",
+      "Step 3: Login with a server action",
+      "Step 4: Protecting routes",
+      "The security detail most tutorials get wrong",
+      "Mistakes I made along the way",
+      "What I gave up by skipping NextAuth"
+    ],
+    "codeBlocks": 5,
+    "officialLinks": [],
+    "links": [],
+    "evidenceToReview": [
+      "The first time I built this, I skipped the middleware entirely because the app \"worked without it.\" It did — for exactly one hour per user. That was a fun bug report to receive.",
+      "**Forgetting email confirmation exists.** New Supabase projects require email confirmation by default. I spent forty minutes debugging \"invalid credentials\" for a user who simply hadn't clicked the link in their inbox."
+    ],
+    "missing": [
+      "Exact supported versions and reproducible fixture where applicable.",
+      "Traceable evidence for author/personal claims.",
+      "No relevant official technical link detected; domain detection is only a signal."
+    ],
+    "bodySha256": "7f7bf7e026f47a3c32abb0bb9a4f972bfc0f527727bee6b4a45ea213ce437abf",
+    "rationale": "Useful cookie workflow; supply missing helpers and protect each data/action boundary.",
+    "effort": "High",
+    "trafficEvidence": "Search Console unavailable; ranking reflects editorial utility/correctability, not measured traffic."
+  },
+  {
+    "rank": 4,
+    "slug": "deploy-nextjs-to-vercel-guide",
+    "title": "How to Deploy a Next.js App to Vercel — Complete Step-by-Step Guide (2026)",
+    "url": "https://codewithlogs.com/blog/deploy-nextjs-to-vercel-guide",
+    "status": "scheduled",
+    "category": "Next.js",
+    "action": "IMPROVE",
+    "reason": "Retain URL and useful material; correct article-specific quality gaps. Niche fit is not an archival criterion.",
+    "mergeWith": [],
+    "specificFindings": [
+      "Useful concrete deployment sequence and secret exclusion advice. Broad database network allowlisting is unsafe routine guidance; distinguish build-time public values from runtime server values and supply a pinned failure/recovery exercise."
+    ],
+    "localRevisionDraft": "reports/priority-article-revisions/deploy-nextjs-to-vercel-guide.txt",
+    "assessment": {
+      "originality": "Provenance not independently established; no external plagiarism audit or AI-authorship inference. No confirmed duplicate-intent group; this is not proof of uniqueness.",
+      "usefulness": "Useful concrete deployment sequence and secret exclusion advice.",
+      "completeness": "2 fenced examples; complete fixture and expected outputs still require review.",
+      "technicalAccuracy": "Static review, not execution certification. Useful concrete deployment sequence and secret exclusion advice. Broad database network allowlisting is unsafe routine guidance; distinguish build-time public values from runtime server values and supply a pinned failure/recovery exercise.",
+      "duplication": "No consolidation proposed; related supporting topics can legitimately overlap.",
+      "searchIntent": "Assess the title's own reader task independently of new Windows category placement. Priority problem-solving/educational candidate.",
+      "firstHandEvidence": "No linked reproducible artifact or verification-registry entry establishes personal claims. Request author records; missing repository evidence does not establish that the experience is false."
+    },
+    "windowsVerification": "NOT VERIFIED",
+    "bodyPreserved": true,
+    "wordCount": 1048,
+    "headings": [
+      "Prerequisites",
+      "Step 1 — Push Your Project to GitHub",
+      "Step 2 — Connect to Vercel",
+      "Step 3 — Add Environment Variables",
+      "Step 4 — Deploy",
+      "Step 5 — Set Up Automatic Deployments",
+      "Connecting a Custom Domain",
+      "Troubleshooting Common Issues",
+      "The NEXT_PUBLIC_ Prefix"
+    ],
+    "codeBlocks": 2,
+    "officialLinks": [],
+    "links": [
+      "https://github.com/yourusername/your-repo-name.git",
+      "https://yourproject.vercel.app`",
+      "https://yourdomain.com`."
+    ],
+    "evidenceToReview": [],
+    "missing": [
+      "Exact supported versions and reproducible fixture where applicable.",
+      "Traceable evidence for author/personal claims.",
+      "No relevant official technical link detected; domain detection is only a signal."
+    ],
+    "bodySha256": "1c115b6f22e8e1eb326da7eb0864b4483fdfa2bf7125a7a36b46e085f6a727e2",
+    "rationale": "Preserve setup intent; correct network access advice and environment diagnostics.",
+    "effort": "Medium",
+    "trafficEvidence": "Search Console unavailable; ranking reflects editorial utility/correctability, not measured traffic."
+  },
+  {
+    "rank": 5,
+    "slug": "nextjs-folder-structure-large-projects",
+    "title": "My Complete Next.js Folder Structure for Large Projects",
+    "url": "https://codewithlogs.com/blog/nextjs-folder-structure-large-projects",
+    "status": "published",
+    "category": "Next.js",
+    "action": "IMPROVE",
+    "reason": "Retain URL and useful material; correct article-specific quality gaps. Niche fit is not an archival criterion.",
+    "mergeWith": [],
+    "specificFindings": [
+      "Concrete tree and alias mapping are useful supporting education. Layout-only auth framing is incomplete; distinguish organizational preference from requirements and demonstrate alias/casing errors with pinned Next/TypeScript."
+    ],
+    "localRevisionDraft": "reports/priority-article-revisions/nextjs-folder-structure-large-projects.txt",
+    "assessment": {
+      "originality": "Provenance not independently established; no external plagiarism audit or AI-authorship inference. No confirmed duplicate-intent group; this is not proof of uniqueness.",
+      "usefulness": "Concrete tree and alias mapping are useful supporting education.",
+      "completeness": "2 fenced examples; complete fixture and expected outputs still require review.",
+      "technicalAccuracy": "Static review, not execution certification. Concrete tree and alias mapping are useful supporting education. Layout-only auth framing is incomplete; distinguish organizational preference from requirements and demonstrate alias/casing errors with pinned Next/TypeScript.",
+      "duplication": "No consolidation proposed; related supporting topics can legitimately overlap.",
+      "searchIntent": "Assess the title's own reader task independently of new Windows category placement. Priority problem-solving/educational candidate.",
+      "firstHandEvidence": "No linked reproducible artifact or verification-registry entry establishes personal claims. Request author records; missing repository evidence does not establish that the experience is false."
+    },
+    "windowsVerification": "NOT VERIFIED",
+    "bodyPreserved": true,
+    "wordCount": 969,
+    "headings": [
+      "The full tree",
+      "Rule 1: app/ is for routing, nothing else",
+      "Rule 2: three kinds of components, three homes",
+      "Rule 3: features own their logic",
+      "Rule 4: two Supabase clients, never one",
+      "The mistakes that shaped this structure",
+      "Does a small project need all this?"
+    ],
+    "codeBlocks": 2,
+    "officialLinks": [],
+    "links": [],
+    "evidenceToReview": [
+      "That was the day I stopped and restructured everything. Then, on the next project, I restructured again because my first system had its own problems. The structure below is the third iteration, and it's the one that has actually survived contact with a large codebase. I now start",
+      "**Barrel files everywhere.** I used to put an `index.ts` in every folder re-exporting everything, so imports looked pretty. Then I learned they can drag unrelated code into bundles and slow the dev server on big projects. I removed them from all but `components/ui` and both build"
+    ],
+    "missing": [
+      "Exact supported versions and reproducible fixture where applicable.",
+      "Traceable evidence for author/personal claims.",
+      "No relevant official technical link detected; domain detection is only a signal."
+    ],
+    "bodySha256": "48262e1191692553f503f1893bae3f68ead4ee0d718b0aac94a3a716cc0fc5d8",
+    "rationale": "Useful concrete tree; add alias/casing debugging with pinned versions.",
+    "effort": "Medium",
+    "trafficEvidence": "Search Console unavailable; ranking reflects editorial utility/correctability, not measured traffic."
+  },
+  {
+    "rank": 6,
+    "slug": "supabase-errors-production-fixes",
+    "title": "10 Supabase Errors I Faced in Production (And Their Fixes)",
+    "url": "https://codewithlogs.com/blog/supabase-errors-production-fixes",
+    "status": "scheduled",
+    "category": "Supabase",
+    "action": "IMPROVE",
+    "reason": "Retain URL and useful material; correct article-specific quality gaps. Niche fit is not an archival criterion.",
+    "mergeWith": [],
+    "specificFindings": [
+      "Strong exact-error intent and useful RLS/maybeSingle/connection examples. Security-definer membership helper needs search_path, schema qualification and execute grants review. Supply schemas, authenticated fixtures and failure checks; distinguish returned client errors from thrown exceptions."
+    ],
+    "localRevisionDraft": null,
+    "assessment": {
+      "originality": "Provenance not independently established; no external plagiarism audit or AI-authorship inference. No confirmed duplicate-intent group; this is not proof of uniqueness.",
+      "usefulness": "Strong exact-error intent and useful RLS/maybeSingle/connection examples.",
+      "completeness": "3 fenced examples; complete fixture and expected outputs still require review.",
+      "technicalAccuracy": "Static review, not execution certification. Strong exact-error intent and useful RLS/maybeSingle/connection examples. Security-definer membership helper needs search_path, schema qualification and execute grants review. Supply schemas, authenticated fixtures and failure checks; distinguish returned client errors from thrown exceptions.",
+      "duplication": "No consolidation proposed; related supporting topics can legitimately overlap.",
+      "searchIntent": "Assess the title's own reader task independently of new Windows category placement. Priority problem-solving/educational candidate.",
+      "firstHandEvidence": "No linked reproducible artifact or verification-registry entry establishes personal claims. Request author records; missing repository evidence does not establish that the experience is false."
+    },
+    "windowsVerification": "NOT VERIFIED",
+    "bodyPreserved": true,
+    "wordCount": 1095,
+    "headings": [
+      "1. \"new row violates row-level security policy\"",
+      "2. \"infinite recursion detected in policy for relation\"",
+      "3. \"JWT expired\"",
+      "4. The .single() error: \"JSON object requested, multiple (or no) rows returned\"",
+      "5. \"remaining connection slots are reserved\"",
+      "6. \"duplicate key value violates unique constraint\"",
+      "7. \"Failed to fetch\" right after deploying",
+      "8. \"relation \\\"public.something\\\" does not exist\"",
+      "9. \"column reference \\\"id\\\" is ambiguous\"",
+      "10. Auth emails suddenly not arriving",
+      "The pattern behind all ten"
+    ],
+    "codeBlocks": 3,
+    "officialLinks": [],
+    "links": [],
+    "evidenceToReview": [],
+    "missing": [
+      "Exact supported versions and reproducible fixture where applicable.",
+      "Traceable evidence for author/personal claims.",
+      "No relevant official technical link detected; domain detection is only a signal."
+    ],
+    "bodySha256": "04a02de82a01f7731cb71a7b4df0a17a2b9b4ac30bfe36ab60a074a4044ce0ca",
+    "rationale": "Retain useful exact-error content; complete schemas/auth fixtures and harden helpers.",
+    "effort": "High",
+    "trafficEvidence": "Search Console unavailable; ranking reflects editorial utility/correctability, not measured traffic."
+  },
+  {
+    "rank": 7,
+    "slug": "supabase-row-level-security-real-examples",
+    "title": "Supabase Row Level Security Explained with Real Examples (Copy These Policies)",
+    "url": "https://codewithlogs.com/blog/supabase-row-level-security-real-examples",
+    "status": "scheduled",
+    "category": "Supabase",
+    "action": "IMPROVE",
+    "reason": "Retain URL and useful material; correct article-specific quality gaps. Niche fit is not an archival criterion.",
+    "mergeWith": [],
+    "specificFindings": [
+      "Useful own-row/public/team policy examples. Security-definer helpers need hardened search_path/grants; mutable admin flag protection needs explicit column/trigger design. SET LOCAL tests require a transaction and real identities; distinguish bypass roles and permissive/restrictive policies."
+    ],
+    "localRevisionDraft": null,
+    "assessment": {
+      "originality": "Provenance not independently established; no external plagiarism audit or AI-authorship inference. No confirmed duplicate-intent group; this is not proof of uniqueness.",
+      "usefulness": "Useful own-row/public/team policy examples.",
+      "completeness": "6 fenced examples; complete fixture and expected outputs still require review.",
+      "technicalAccuracy": "Static review, not execution certification. Useful own-row/public/team policy examples. Security-definer helpers need hardened search_path/grants; mutable admin flag protection needs explicit column/trigger design. SET LOCAL tests require a transaction and real identities; distinguish bypass roles and permissive/restrictive policies.",
+      "duplication": "No consolidation proposed; related supporting topics can legitimately overlap.",
+      "searchIntent": "Assess the title's own reader task independently of new Windows category placement. Priority problem-solving/educational candidate.",
+      "firstHandEvidence": "No linked reproducible artifact or verification-registry entry establishes personal claims. Request author records; missing repository evidence does not establish that the experience is false."
+    },
+    "windowsVerification": "NOT VERIFIED",
+    "bodyPreserved": true,
+    "wordCount": 1012,
+    "headings": [
+      "The mental model that makes RLS click",
+      "Example 1: Personal data (the todo pattern)",
+      "Example 2: Public content, private control (the blog pattern)",
+      "Example 3: Team access (and the trap inside it)",
+      "Example 4: The admin override",
+      "Testing policies without losing your mind",
+      "Two things that bite everyone",
+      "Where I've landed"
+    ],
+    "codeBlocks": 6,
+    "officialLinks": [],
+    "links": [],
+    "evidenceToReview": [],
+    "missing": [
+      "Exact supported versions and reproducible fixture where applicable.",
+      "Traceable evidence for author/personal claims.",
+      "No relevant official technical link detected; domain detection is only a signal."
+    ],
+    "bodySha256": "dd8ec4888f24c380b42ce03565886aaad4e1eb39a70a529f128c9147ebc0fc11",
+    "rationale": "Retain useful security education; add two-user denied-access tests and harden helpers.",
+    "effort": "High",
+    "trafficEvidence": "Search Console unavailable; ranking reflects editorial utility/correctability, not measured traffic."
+  },
+  {
+    "rank": 8,
+    "slug": "inventory-management-system-nextjs-supabase",
+    "title": "How I Built an Inventory Management System Using Next.js and Supabase",
+    "url": "https://codewithlogs.com/blog/inventory-management-system-nextjs-supabase",
+    "status": "published",
+    "category": "Next.js",
+    "action": "IMPROVE",
+    "reason": "Retain URL and useful material; correct article-specific quality gaps. Niche fit is not an archival criterion.",
+    "mergeWith": [],
+    "specificFindings": [
+      "High-value stock-ledger/concurrency problem. SELECT aggregate SUM with FOR UPDATE is invalid PostgreSQL locking usage; locking must serialize on a stable product row with all writes following the protocol. Security-definer function and sale insert policy also need quantity/tenant/permission checks. Unverified no-recurrence claim is not proof."
+    ],
+    "localRevisionDraft": null,
+    "assessment": {
+      "originality": "Provenance not independently established; no external plagiarism audit or AI-authorship inference. No confirmed duplicate-intent group; this is not proof of uniqueness.",
+      "usefulness": "High-value stock-ledger/concurrency problem.",
+      "completeness": "6 fenced examples; complete fixture and expected outputs still require review.",
+      "technicalAccuracy": "Static review, not execution certification. High-value stock-ledger/concurrency problem. SELECT aggregate SUM with FOR UPDATE is invalid PostgreSQL locking usage; locking must serialize on a stable product row with all writes following the protocol. Security-definer function and sale insert policy also need quantity/tenant/permission checks. Unverified no-recurrence claim is not proof.",
+      "duplication": "No consolidation proposed; related supporting topics can legitimately overlap.",
+      "searchIntent": "Assess the title's own reader task independently of new Windows category placement. Priority problem-solving/educational candidate.",
+      "firstHandEvidence": "No linked reproducible artifact or verification-registry entry establishes personal claims. Request author records; missing repository evidence does not establish that the experience is false."
+    },
+    "windowsVerification": "NOT VERIFIED",
+    "bodyPreserved": true,
+    "wordCount": 1115,
+    "headings": [
+      "Why I didn't just recommend existing software",
+      "The stack, and why",
+      "Designing the schema (the part I got wrong first)",
+      "The race condition that almost ruined launch week",
+      "Row level security in five minutes",
+      "The frontend: server components did the heavy lifting",
+      "Mistakes I'd avoid next time",
+      "What this actually cost",
+      "Final thoughts"
+    ],
+    "codeBlocks": 6,
+    "officialLinks": [],
+    "links": [],
+    "evidenceToReview": [
+      "Since staff accounts log into the same system, I used Supabase RLS to control access. Cashiers can insert sales but can't delete movements. Only the owner role can do adjustments.",
+      "**Building reports too early.** I spent the first week on a fancy analytics page. The client barely opens it. The daily-sales list — which took two hours to build — is what he checks every night."
+    ],
+    "missing": [
+      "Exact supported versions and reproducible fixture where applicable.",
+      "Traceable evidence for author/personal claims.",
+      "No relevant official technical link detected; domain detection is only a signal."
+    ],
+    "bodySha256": "e89beed91de6dd0046ae5f0adaaee90898ddf70af6eebacc524f5e64e33dda31",
+    "rationale": "Retain distinct concurrency content; invalid aggregate locking and authorization need correction.",
+    "effort": "High",
+    "trafficEvidence": "Search Console unavailable; ranking reflects editorial utility/correctability, not measured traffic."
+  },
+  {
+    "rank": 9,
+    "slug": "build-rest-api-nodejs-beginners",
+    "title": "How to Build a REST API with Node.js — Complete Beginner Guide",
+    "url": "https://codewithlogs.com/blog/build-rest-api-nodejs-beginners",
+    "status": "draft",
+    "category": "MERN",
+    "action": "IMPROVE",
+    "reason": "Retain URL and useful material; correct article-specific quality gaps. Niche fit is not an archival criterion.",
+    "mergeWith": [],
+    "specificFindings": [
+      "Strong complete CRUD starting point with model/routes and environment setup. Add pinned packages, request/response examples, malformed-ID handling, field allowlisting and database-startup failure behavior; unauthenticated sample must be explicitly local learning scope."
+    ],
+    "localRevisionDraft": null,
+    "assessment": {
+      "originality": "Provenance not independently established; no external plagiarism audit or AI-authorship inference. No confirmed duplicate-intent group; this is not proof of uniqueness.",
+      "usefulness": "Strong complete CRUD starting point with model/routes and environment setup.",
+      "completeness": "9 fenced examples; complete fixture and expected outputs still require review.",
+      "technicalAccuracy": "Static review, not execution certification. Strong complete CRUD starting point with model/routes and environment setup. Add pinned packages, request/response examples, malformed-ID handling, field allowlisting and database-startup failure behavior; unauthenticated sample must be explicitly local learning scope.",
+      "duplication": "No consolidation proposed; related supporting topics can legitimately overlap.",
+      "searchIntent": "Assess the title's own reader task independently of new Windows category placement. Priority problem-solving/educational candidate.",
+      "firstHandEvidence": "No linked reproducible artifact or verification-registry entry establishes personal claims. Request author records; missing repository evidence does not establish that the experience is false."
+    },
+    "windowsVerification": "NOT VERIFIED",
+    "bodyPreserved": true,
+    "wordCount": 969,
+    "headings": [
+      "What We're Building",
+      "Setting Up Your Project",
+      "Creating the Server",
+      "The Task Model",
+      "The Routes",
+      "Testing Your API",
+      "Common Mistakes Beginners Make",
+      "What to Build Next"
+    ],
+    "codeBlocks": 9,
+    "officialLinks": [],
+    "links": [
+      "http://localhost:3000/tasks"
+    ],
+    "evidenceToReview": [
+      "Then I built my first one. And the entire concept of how web applications work clicked into place in a way that reading about it never had."
+    ],
+    "missing": [
+      "Exact supported versions and reproducible fixture where applicable.",
+      "Traceable evidence for author/personal claims.",
+      "No relevant official technical link detected; domain detection is only a signal."
+    ],
+    "bodySha256": "08931647c572964200345e06c8d73552230dcc91d809a2ce1d84bc11e0f18cbc",
+    "rationale": "Substantial CRUD draft; complete field/error validation and local-only scope.",
+    "effort": "Medium",
+    "trafficEvidence": "Search Console unavailable; ranking reflects editorial utility/correctability, not measured traffic."
+  },
+  {
+    "rank": 10,
+    "slug": "what-is-code-with-logs",
+    "title": "What Is \"Code With Logs\"? (And Why Every Developer Ends Up Living By Them)",
+    "url": "https://codewithlogs.com/blog/what-is-code-with-logs",
+    "status": "published",
+    "category": "Next.js",
+    "action": "IMPROVE",
+    "reason": "Retain URL and useful material; correct article-specific quality gaps. Niche fit is not an archival criterion.",
+    "mergeWith": [],
+    "specificFindings": [
+      "Useful contextual logging and secret-redaction advice supports the site's identity. Two short snippets do not demonstrate a complete investigation; add a local failing function, correlation context and verification."
+    ],
+    "localRevisionDraft": null,
+    "assessment": {
+      "originality": "Provenance not independently established; no external plagiarism audit or AI-authorship inference. No confirmed duplicate-intent group; this is not proof of uniqueness.",
+      "usefulness": "Useful contextual logging and secret-redaction advice supports the site's identity.",
+      "completeness": "2 fenced examples; complete fixture and expected outputs still require review.",
+      "technicalAccuracy": "Static review, not execution certification. Useful contextual logging and secret-redaction advice supports the site's identity. Two short snippets do not demonstrate a complete investigation; add a local failing function, correlation context and verification.",
+      "duplication": "No consolidation proposed; related supporting topics can legitimately overlap.",
+      "searchIntent": "Assess the title's own reader task independently of new Windows category placement. Priority problem-solving/educational candidate.",
+      "firstHandEvidence": "No linked reproducible artifact or verification-registry entry establishes personal claims. Request author records; missing repository evidence does not establish that the experience is false."
+    },
+    "windowsVerification": "NOT VERIFIED",
+    "bodyPreserved": true,
+    "wordCount": 1527,
+    "headings": [
+      "The core problem logs solve",
+      "The humble `console.log` (a.k.a. everyone's first debugger)",
+      "What actually makes a log *useful*",
+      "Log levels: not everything is an emergency",
+      "The tools worth knowing about",
+      "A simple way to actually debug with logs",
+      "Mistakes I've watched people make (myself included)",
+      "So, what *is* \"code with logs,\" really?"
+    ],
+    "codeBlocks": 2,
+    "officialLinks": [],
+    "links": [],
+    "evidenceToReview": [],
+    "missing": [
+      "Exact supported versions and reproducible fixture where applicable.",
+      "Traceable evidence for author/personal claims.",
+      "No relevant official technical link detected; domain detection is only a signal."
+    ],
+    "bodySha256": "8d25248f3f034c370eb6bda37d74c2ae54e8ee5969e29826ff4a87b2b33ef135",
+    "rationale": "Brand-relevant logging foundation; add a full redacted debugging exercise.",
+    "effort": "Medium",
+    "trafficEvidence": "Search Console unavailable; ranking reflects editorial utility/correctability, not measured traffic."
+  }
+]

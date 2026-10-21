@@ -1,0 +1,71 @@
+Git works in Git Bash but is not recognized in PowerShell
+Status: DRAFT — documentation-backed diagnosis; Windows installation repair not executed.
+Proposed slug: windows-git-not-recognized | Category: Windows Developer Setup
+
+ERROR AND AFFECTED ENVIRONMENT
+Identification target: “The term 'git' is not recognized” in native Windows PowerShell or PowerShell 7, while git --version works in Git Bash. Command Prompt may instead report “'git' is not recognized as an internal or external command”. Record the actual full error; these are not captured results.
+Intended environment: Windows 11, Git for Windows, PowerShell and optionally local VS Code. Record OS/build/architecture, Git installer version and selected PATH option, shell version and VS Code version. No tested versions or installation outcomes are claimed. WSL/Remote/containers are separate installations.
+
+ROOT CAUSE
+Git Bash can find Git through its own startup environment while the native Windows host lacks Git's command directory in PATH. An editor launched before installation can also retain an old environment. If several Git installations exist, one host may resolve a different executable. A GitHub login, repository permission or SSH key cannot fix failure to locate git.exe: command discovery happens first.
+
+DIAGNOSTICS
+In the failing PowerShell terminal:
+
+Get-Command git -All -ErrorAction SilentlyContinue |
+  Select-Object CommandType, Source, Definition
+where.exe git
+$env:Path -split ';'
+
+In the working Git Bash terminal:
+
+type -a git
+git --version
+
+Use these results and the installer's recorded location to locate the native installation. A common system-wide candidate is:
+
+$gitCandidate = Join-Path $env:ProgramFiles 'Git\cmd\git.exe'
+Test-Path -LiteralPath $gitCandidate
+# Only if the preceding result is True:
+& $gitCandidate --version
+
+A per-user, portable or custom installation can live elsewhere. Do not assume this path exists or add Linux-style paths to Windows PATH.
+
+CONTROLLED REPRODUCTION
+In a disposable account/VM with a documented Git for Windows installation, compare Git Bash and PowerShell discovery before repair. A Git-Bash-only installer PATH choice or a process PATH missing the confirmed Git command directory can isolate the difference. Save the original process environment first and change only the disposable process/VM. An existing second Git can mask the reproduction; record every path. This reproduction remains unperformed for this draft.
+
+SOLUTION
+1. Close all VS Code and terminal-host windows, reopen from Start, and rerun the diagnostics. If it now works, the cause was stale process inheritance; no persistent PATH edit is necessary.
+2. If git.exe works directly but a fresh PowerShell still cannot discover Git, rerun/repair the original Git for Windows installer and choose its option that makes Git available to command-line and third-party applications. Labels can change; record the exact option in the tested installer. Preserve unrelated choices.
+3. For an intentional manual/portable setup, open User environment variables and add only the independently confirmed Git command directory to User Path. Preserve all existing entries and restart the host. Prefer the supported command directory, not a blanket addition of Git's internal Unix-tool directories, which can introduce unrelated command collisions.
+4. If the direct executable is missing or damaged, use the official Git for Windows distribution to repair that installation. If a different Git resolves first, resolve that installation conflict deliberately instead of deleting files at random.
+
+VERIFY WITHOUT TOUCHING A REAL REPOSITORY
+In a fresh PowerShell host:
+
+Get-Command git -All | Select-Object CommandType, Source
+git --version
+git --exec-path
+
+Then make an isolated, uniquely named local repository:
+
+$gitFixture = Join-Path $env:TEMP ('cwl-git-check-' + [guid]::NewGuid())
+New-Item -ItemType Directory -Path $gitFixture | Out-Null
+git -C $gitFixture init
+git -C $gitFixture status --short --branch
+
+Expected behavior: initialization and status succeed at the fixture path. No account, remote, commit identity or network is required. Record actual output and native exit codes. Leave the fixture for inspection; do not issue cleanup against a computed path without validating it. This example is a planned test, not an executed one.
+
+ALTERNATIVES AND VERSION LIMITS
+Git Bash is a valid temporary working shell if your project supports it; PowerShell syntax and Bash syntax are not interchangeable. VS Code Source Control detection can also depend on an explicit git.path setting; verify the terminal separately before changing editor configuration. Existing GitHub Desktop or tool-bundled Git does not necessarily establish a system-wide installation. Installer options/locations must be checked for the selected release.
+
+COMMON MISTAKES AND ROLLBACK
+Changing Git username/email or SSH keys for a command-not-found error; opening a new terminal inside an old editor and assuming PATH refreshed; adding git.exe instead of its directory; replacing the whole PATH; adding every Git internal directory; using administrator mode to hide environment differences. Undo only the exact User Path entry or installer selection changed during your test, using the saved original configuration.
+
+VERIFICATION REQUIRED
+Attach before/after discovery in both shells, actual installer choice/path, exact versions and the isolated-repository status output. Repeat from a fresh host and obtain author review before publication.
+
+OFFICIAL REFERENCES (reviewed 2026-10-21)
+Git installation, Windows distribution: https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
+Git for Windows project: https://gitforwindows.org/
+PowerShell command resolution: https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_command_precedence

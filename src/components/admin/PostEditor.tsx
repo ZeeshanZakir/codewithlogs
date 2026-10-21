@@ -287,7 +287,7 @@ export function PostEditor({ initialPost }: PostEditorProps) {
   const [slugTouched, setSlugTouched] = useState(Boolean(initialPost?.slug));
   const [category, setCategory] = useState(initialPost?.category ?? PREDEFINED_CATEGORIES[0]);
   const [isCustomCategory, setIsCustomCategory] = useState(
-    initialPost?.category ? !PREDEFINED_CATEGORIES.includes(initialPost.category as any) : false,
+    initialPost?.category ? !PREDEFINED_CATEGORIES.some((category) => category === initialPost.category) : false,
   );
   const [excerpt, setExcerpt] = useState(initialPost?.excerpt ?? "");
   const [coverImage, setCoverImage] = useState(initialPost?.coverImage ?? "");

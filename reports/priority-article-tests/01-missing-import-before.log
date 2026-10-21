@@ -1,0 +1,20 @@
+▲ Next.js 16.2.6 (Turbopack)
+
+  Creating an optimized production build ...
+
+> Build error occurred
+Error: Turbopack build failed with 1 errors:
+./src/app/page.tsx:1:1
+Module not found: Can't resolve '@/components/DoesNotExist'
+[31m[1m>[0m [90m1 |[0m [36mimport[0m [33mMissing[0m [36mfrom[0m [32m"@/components/DoesNotExist"[0m; [36mexport[0m [36mdefault[0m [36mfunction[0m [33mPage[0m() { [36mreturn[0m <[33mM...[0m
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m2 |[0m
+
+Import map: aliased to relative './src/components/DoesNotExist' inside of [project]/
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+    at <unknown> (./src/app/page.tsx:1:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)

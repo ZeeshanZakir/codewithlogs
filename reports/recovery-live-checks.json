@@ -1,0 +1,44 @@
+{
+  "checkedAt": "2026-10-21T13:49:10.038Z",
+  "checks": [
+    {
+      "name": "Live newsletter invalid request",
+      "status": 400,
+      "passed": true
+    },
+    {
+      "name": "Live newsletter invalid request",
+      "status": 400,
+      "passed": true
+    },
+    {
+      "name": "Live newsletter invalid request",
+      "status": 400,
+      "passed": true
+    },
+    {
+      "name": "Live search 6543",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "name": "Live search a b c d e f g h i j k l m",
+      "status": 400,
+      "passed": true
+    },
+    {
+      "name": "Live search [",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "name": "Homepage rendered GET search and email form controls",
+      "passed": true
+    }
+  ],
+  "articlePreservation": {
+    "count": 58,
+    "unchanged": true
+  },
+  "limitations": "Local production server; read-only search and invalid newsletter POSTs only. No real subscription, email delivery or browser interaction tested."
+}

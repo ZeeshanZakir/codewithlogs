@@ -1,0 +1,174 @@
+[
+  {
+    "path": "C:/Users/zeesh/Desktop/codewithlogs/reports/CONTENT_AUDIT.txt",
+    "status": "modified"
+  },
+  {
+    "path": "C:/Users/zeesh/Desktop/codewithlogs/reports/CONTENT_RECOVERY_REPORT.txt",
+    "status": "added"
+  },
+  {
+    "path": "C:/Users/zeesh/Desktop/codewithlogs/reports/EDITORIAL_ROADMAP.txt",
+    "status": "modified"
+  },
+  {
+    "path": "C:/Users/zeesh/Desktop/codewithlogs/reports/FUNCTIONALITY_AUDIT.txt",
+    "status": "added"
+  },
+  {
+    "path": "C:/Users/zeesh/Desktop/codewithlogs/reports/LINT_RECOVERY.txt",
+    "status": "added"
+  },
+  {
+    "path": "C:/Users/zeesh/Desktop/codewithlogs/reports/SEO_READINESS.txt",
+    "status": "modified"
+  },
+  {
+    "path": "C:/Users/zeesh/Desktop/codewithlogs/reports/TOP_10_IMPROVEMENT_PRIORITIES.txt",
+    "status": "added"
+  },
+  {
+    "path": "C:/Users/zeesh/Desktop/codewithlogs/reports/VERIFICATION_REQUIREMENTS.txt",
+    "status": "added"
+  },
+  {
+    "path": "C:/Users/zeesh/Desktop/codewithlogs/reports/article-review-notes.json",
+    "status": "added"
+  },
+  {
+    "path": "C:/Users/zeesh/Desktop/codewithlogs/reports/content-audit.json",
+    "status": "modified"
+  },
+  {
+    "path": "C:/Users/zeesh/Desktop/codewithlogs/reports/content-preservation-latest.json",
+    "status": "added"
+  },
+  {
+    "path": "C:/Users/zeesh/Desktop/codewithlogs/reports/content-preservation.json",
+    "status": "added"
+  },
+  {
+    "path": "C:/Users/zeesh/Desktop/codewithlogs/reports/content-recovery-modified-files.json",
+    "status": "added"
+  },
+  {
+    "path": "C:/Users/zeesh/Desktop/codewithlogs/reports/content-recovery-tests.json",
+    "status": "added"
+  },
+  {
+    "path": "C:/Users/zeesh/Desktop/codewithlogs/reports/editorial-roadmap.json",
+    "status": "modified"
+  },
+  {
+    "path": "C:/Users/zeesh/Desktop/codewithlogs/reports/eslint-recovery.json",
+    "status": "added"
+  },
+  {
+    "path": "C:/Users/zeesh/Desktop/codewithlogs/reports/guides/01-windows-node-not-recognized.txt",
+    "status": "added"
+  },
+  {
+    "path": "C:/Users/zeesh/Desktop/codewithlogs/reports/guides/02-windows-npm-ps1-blocked.txt",
+    "status": "added"
+  },
+  {
+    "path": "C:/Users/zeesh/Desktop/codewithlogs/reports/guides/03-windows-git-not-recognized.txt",
+    "status": "added"
+  },
+  {
+    "path": "C:/Users/zeesh/Desktop/codewithlogs/reports/guides/04-windows-git-line-endings.txt",
+    "status": "added"
+  },
+  {
+    "path": "C:/Users/zeesh/Desktop/codewithlogs/reports/guides/05-vscode-terminal-wont-launch.txt",
+    "status": "added"
+  },
+  {
+    "path": "C:/Users/zeesh/Desktop/codewithlogs/reports/priority-articles.json",
+    "status": "added"
+  },
+  {
+    "path": "C:/Users/zeesh/Desktop/codewithlogs/reports/recovery-functional-tests.json",
+    "status": "added"
+  },
+  {
+    "path": "C:/Users/zeesh/Desktop/codewithlogs/reports/recovery-live-checks.json",
+    "status": "added"
+  },
+  {
+    "path": "C:/Users/zeesh/Desktop/codewithlogs/reports/route-validation.json",
+    "status": "modified"
+  },
+  {
+    "path": "C:/Users/zeesh/Desktop/codewithlogs/scripts/audit-editorial.mjs",
+    "status": "modified"
+  },
+  {
+    "path": "C:/Users/zeesh/Desktop/codewithlogs/scripts/validate-content-recovery.mjs",
+    "status": "added"
+  },
+  {
+    "path": "C:/Users/zeesh/Desktop/codewithlogs/src/app/(public)/tools/page.tsx",
+    "status": "modified"
+  },
+  {
+    "path": "C:/Users/zeesh/Desktop/codewithlogs/src/app/api/subscribers/route.ts",
+    "status": "modified"
+  },
+  {
+    "path": "C:/Users/zeesh/Desktop/codewithlogs/src/components/admin/PostEditor.tsx",
+    "status": "modified"
+  },
+  {
+    "path": "C:/Users/zeesh/Desktop/codewithlogs/src/components/blog/BlogIndexClient.tsx",
+    "status": "modified"
+  },
+  {
+    "path": "C:/Users/zeesh/Desktop/codewithlogs/src/components/gallery/GalleryLightbox.tsx",
+    "status": "modified"
+  },
+  {
+    "path": "C:/Users/zeesh/Desktop/codewithlogs/src/components/tools/Base64Tool.tsx",
+    "status": "modified"
+  },
+  {
+    "path": "C:/Users/zeesh/Desktop/codewithlogs/src/components/tools/CronBuilderSeoContent.tsx",
+    "status": "modified"
+  },
+  {
+    "path": "C:/Users/zeesh/Desktop/codewithlogs/src/components/tools/CronBuilderTool.tsx",
+    "status": "modified"
+  },
+  {
+    "path": "C:/Users/zeesh/Desktop/codewithlogs/src/components/tools/JwtDecoderSeoContent.tsx",
+    "status": "modified"
+  },
+  {
+    "path": "C:/Users/zeesh/Desktop/codewithlogs/src/components/tools/JwtDecoderTool.tsx",
+    "status": "modified"
+  },
+  {
+    "path": "C:/Users/zeesh/Desktop/codewithlogs/src/components/tools/RegexTesterSeoContent.tsx",
+    "status": "modified"
+  },
+  {
+    "path": "C:/Users/zeesh/Desktop/codewithlogs/src/components/tools/RegexTesterTool.tsx",
+    "status": "modified"
+  },
+  {
+    "path": "C:/Users/zeesh/Desktop/codewithlogs/src/components/tools/TokenCounterSeoContent.tsx",
+    "status": "modified"
+  },
+  {
+    "path": "C:/Users/zeesh/Desktop/codewithlogs/src/lib/cron.ts",
+    "status": "modified"
+  },
+  {
+    "path": "C:/Users/zeesh/Desktop/codewithlogs/src/lib/jwt.ts",
+    "status": "modified"
+  },
+  {
+    "path": "C:/Users/zeesh/Desktop/codewithlogs/src/lib/mongodb.ts",
+    "status": "modified"
+  }
+]

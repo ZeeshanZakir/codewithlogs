@@ -1,0 +1,58 @@
+CODEWITHLOGS — CURRENT IMPROVEMENT PRIORITIES
+
+The owner-selected five lead this list. No traffic forecast, archival approval or CMS mutation is implied. The three Supabase articles remain retention/repair candidates.
+
+1. Common Vercel Deployment Errors and Their Solutions
+https://codewithlogs.com/blog/common-vercel-deployment-errors-solutions
+Stored status: scheduled
+Exact errors and direct Windows-to-Linux casing intent; correct Next 16 lint and shell guidance.
+Local revision: reports/priority-article-revisions/common-vercel-deployment-errors-solutions.txt
+
+2. How I Debug Production Errors in Next.js
+https://codewithlogs.com/blog/debug-production-errors-nextjs
+Stored status: scheduled
+Useful client/server triage; supply one complete failure/recovery fixture.
+Local revision: reports/priority-article-revisions/debug-production-errors-nextjs.txt
+
+3. How I Built Authentication in Next.js Without NextAuth
+https://codewithlogs.com/blog/nextjs-authentication-without-nextauth
+Stored status: scheduled
+Useful cookie workflow; supply missing helpers and protect each data/action boundary.
+Local revision: reports/priority-article-revisions/nextjs-authentication-without-nextauth.txt
+
+4. How to Deploy a Next.js App to Vercel — Complete Step-by-Step Guide (2026)
+https://codewithlogs.com/blog/deploy-nextjs-to-vercel-guide
+Stored status: scheduled
+Preserve setup intent; correct network access advice and environment diagnostics.
+Local revision: reports/priority-article-revisions/deploy-nextjs-to-vercel-guide.txt
+
+5. My Complete Next.js Folder Structure for Large Projects
+https://codewithlogs.com/blog/nextjs-folder-structure-large-projects
+Stored status: published
+Useful concrete tree; add alias/casing debugging with pinned versions.
+Local revision: reports/priority-article-revisions/nextjs-folder-structure-large-projects.txt
+
+6. 10 Supabase Errors I Faced in Production (And Their Fixes)
+https://codewithlogs.com/blog/supabase-errors-production-fixes
+Stored status: scheduled
+Retain useful exact-error content; complete schemas/auth fixtures and harden helpers.
+
+7. Supabase Row Level Security Explained with Real Examples (Copy These Policies)
+https://codewithlogs.com/blog/supabase-row-level-security-real-examples
+Stored status: scheduled
+Retain useful security education; add two-user denied-access tests and harden helpers.
+
+8. How I Built an Inventory Management System Using Next.js and Supabase
+https://codewithlogs.com/blog/inventory-management-system-nextjs-supabase
+Stored status: published
+Retain distinct concurrency content; invalid aggregate locking and authorization need correction.
+
+9. How to Build a REST API with Node.js — Complete Beginner Guide
+https://codewithlogs.com/blog/build-rest-api-nodejs-beginners
+Stored status: draft
+Substantial CRUD draft; complete field/error validation and local-only scope.
+
+10. What Is "Code With Logs"? (And Why Every Developer Ends Up Living By Them)
+https://codewithlogs.com/blog/what-is-code-with-logs
+Stored status: published
+Brand-relevant logging foundation; add a full redacted debugging exercise.

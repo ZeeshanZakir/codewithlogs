@@ -1,0 +1,71 @@
+VS Code terminal will not launch on Windows: isolate the shell, profile and starting folder
+Status: DRAFT — settings fixture and terminal launch behavior have not been tested for this guide.
+Proposed slug: vscode-terminal-wont-launch | Category: VS Code Troubleshooting
+
+ERROR AND ENVIRONMENT
+Targets the local VS Code integrated terminal on Windows 11. Record the complete notification: “The terminal process failed to launch” is a category, not a root cause. An executable-not-found detail, an invalid starting-directory detail, access denied and a process that starts then exits require different fixes. Do not diagnose from an exit code alone.
+Record Windows build, VS Code release/architecture, selected shell executable/version, workspace type, relevant user/workspace settings and enabled terminal extensions. No tested versions, screenshots or captured terminal logs are claimed. Remote SSH/WSL/dev containers require diagnostics on their remote host.
+
+ROOT CAUSE MODEL
+The editor must find the executable, create a process in a valid directory and run the shell's startup configuration. A stale custom profile path can fail the first step; a removed terminal.integrated.cwd can fail the second; a broken profile script or an explicit exit command can terminate an otherwise healthy process. Shell integration and extensions add other variables. A standalone npm error after the prompt appears is not a terminal-launch failure.
+
+REPRODUCIBLE FAILING FIXTURE
+Use a disposable VS Code profile and empty workspace. Save its settings first. Configure a custom Windows terminal profile pointing to a deliberately nonexistent executable under that fixture directory, select it as default, and create a terminal. Capture the actual executable-not-found notification. Restore the original setting after testing. In a separate case use a nonexistent starting folder to distinguish directory failure. Neither case has been executed for this draft; they are verification instructions, not anecdotes.
+
+STEP 1: TEST THE SHELL OUTSIDE VS CODE
+Open a normal external terminal and inspect available applications:
+
+Get-Command pwsh.exe, powershell.exe, cmd.exe -ErrorAction SilentlyContinue |
+  Select-Object Name, Source
+
+Test the intended shell, choosing one that actually exists:
+
+pwsh.exe -NoProfile
+# Or, for Windows PowerShell:
+powershell.exe -NoProfile
+# Or, for Command Prompt without AutoRun customization:
+cmd.exe /d
+
+The goal is a stable prompt. Type exit to leave the nested shell. If it fails externally too, inspect that shell's installation, startup configuration or access restrictions before editing VS Code. A missing pwsh.exe does not mean powershell.exe is missing: they are separate products/paths.
+
+STEP 2: SELECT A KNOWN INSTALLED PROFILE
+In VS Code's Command Palette use “Terminal: Select Default Profile”, choose a detected installed shell, then “Terminal: Create New Terminal”. Existing terminals do not change. Inspect User and Workspace Settings for terminal.integrated.defaultProfile.windows, terminal.integrated.profiles.windows and terminal.integrated.cwd; workspace settings can override user settings.
+
+For Windows PowerShell specifically, an isolated diagnostic profile can be merged into settings.json:
+
+{
+  "terminal.integrated.profiles.windows": {
+    "PowerShell diagnostic": {
+      "path": "${env:windir}\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+      "args": ["-NoProfile"]
+    }
+  },
+  "terminal.integrated.defaultProfile.windows": "PowerShell diagnostic"
+}
+
+This is a complete example object for a disposable settings file. Merge the profile entry into an existing object instead of replacing other profiles. Confirm the executable exists first. It selects Windows PowerShell, not PowerShell 7. For PowerShell 7, use its actual installed path from Get-Command, not a guessed directory.
+
+STEP 3: FIX THE IDENTIFIED LAYER
+If the diagnostic shell opens, compare the original profile's path/args. Restore a valid executable and remove only the erroneous argument. If -NoProfile makes the difference, back up the shell's startup script, isolate the failing statement and correct it; do not delete all profiles. If cwd is invalid, remove the stale override or choose an existing accessible local folder. Reopen a new terminal after each single change and record the outcome.
+
+If shell integration appears implicated, record its current setting, temporarily set terminal.integrated.shellIntegration.enabled to false, create a fresh terminal, compare, then restore the prior value. If an extension is suspected, compare a temporary clean VS Code profile or an extension-disabled window before disabling everything permanently. For unexplained failure capture Output → Log (Pty Host) and terminal diagnostics available in the tested editor release. Redact usernames, tokens and command history before sharing logs.
+
+VERIFY THE FIX
+Create two new terminals using the intended final profile, confirm they remain open, inspect the current folder and run a harmless shell command. Then independently check project prerequisites:
+
+Get-Location
+$PSVersionTable.PSVersion
+node --version
+git --version
+
+These commands assume PowerShell; use shell-appropriate equivalents for Command Prompt. Record nonzero results separately: Node/Git command discovery can fail even when terminal launch is fixed. Close/reopen VS Code and repeat in both the empty fixture and intended workspace. Restore temporary integration/profile settings and verify that the original supported workflow works.
+
+COMMON MISTAKES AND LIMITS
+Running the editor as administrator as a blanket fix; deleting settings.json; changing security controls without evidence; treating all code-1 notifications as WSL installation errors; confusing a native process-creation code with a shell exit code. Use the full message and logs. Managed endpoint controls require an administrator-supported resolution.
+
+PUBLICATION GATE
+Capture the nonexistent-executable and invalid-cwd failures separately, final settings diff, stable-prompt evidence, exact versions and a startup-profile comparison where relevant. Have another reviewer repeat the applicable case. The guide remains DRAFT until this evidence exists and the author approves publication.
+
+OFFICIAL REFERENCES (reviewed 2026-10-21)
+Terminal launch failure isolation: https://code.visualstudio.com/docs/supporting/troubleshoot-terminal-launch
+Windows terminal profiles and variable resolution: https://code.visualstudio.com/docs/terminal/profiles

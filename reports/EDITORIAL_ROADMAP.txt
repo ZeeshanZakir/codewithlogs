@@ -1,5 +1,5 @@
 CODEWITHLOGS — 15-GUIDE EDITORIAL ROADMAP
-All entries are DRAFT planning briefs. No solution testing or publication is claimed.
+All 15 topics remain DRAFT and untested. The first five now have complete local guide drafts in reports/guides/; later entries remain planning briefs. No publication is claimed.
 Review article-template.txt before beginning any guide.
 
 1. Node is not recognized after installation on Windows 11

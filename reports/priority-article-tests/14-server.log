@@ -1,0 +1,9 @@
+▲ Next.js 16.2.6
+- Local:         http://127.0.0.1:3107
+- Network:       http://127.0.0.1:3107
+✓ Ready in 1486ms
+⨯ Error: fixture_server_failure_private_marker
+    at <unknown> (C:\Users\zeesh\Desktop\codewithlogs\fixtures\priority-articles\.next\server\chunks\ssr\[root-of-the-server]__01rkxlj._.js:1:1172)
+    at stringify (<anonymous>) {
+  digest: '3151226528'
+}

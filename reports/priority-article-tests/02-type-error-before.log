@@ -1,0 +1,21 @@
+▲ Next.js 16.2.6 (Turbopack)
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 5.2s
+  Running TypeScript ...
+
+  We detected TypeScript in your project and reconfigured your tsconfig.json file for you.
+  The following suggested values were added to your tsconfig.json. These values can be changed to fit your project's needs:
+
+  	- allowJs was set to true
+  	- include was updated to add '.next/dev/types/**/*.ts'
+
+Failed to type check.
+
+./src/components/Status.tsx:1:34
+Type error: Type 'string' is not assignable to type 'number'.
+
+[31m[1m>[0m [90m1 |[0m [36mexport[0m [36mfunction[0m [33mStatus[0m() { [36mconst[0m quantity: number = [32m"three"[0m; [36mreturn[0m <p>{quantity}</p>; }
+  [90m  |[0m                                  [31m[1m^[0m
+  [90m2 |[0m
+Next.js build worker exited with code: 1 and signal: null

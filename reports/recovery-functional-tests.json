@@ -1,0 +1,42 @@
+{
+  "checkedAt": "2026-10-21T13:53:03.527Z",
+  "checks": [
+    {
+      "name": "JWT Unicode object decoding and expiry typing",
+      "passed": true
+    },
+    {
+      "name": "Malformed and non-object JWT JSON rejected without render crash",
+      "passed": true
+    },
+    {
+      "name": "Base64 Unicode and URL-safe round trips",
+      "passed": true
+    },
+    {
+      "name": "Regex global, named capture, invalid syntax and zero-width termination",
+      "passed": true
+    },
+    {
+      "name": "Newsletter malformed JSON and invalid consent fail before database",
+      "passed": true
+    },
+    {
+      "name": "Newsletter homepage consent saved and confirmation excludes promotions",
+      "passed": true
+    },
+    {
+      "name": "Newsletter duplicate leaves existing preferences unchanged",
+      "passed": true
+    },
+    {
+      "name": "Newsletter promotions-only and combined confirmations match consent",
+      "passed": true
+    },
+    {
+      "name": "Newsletter database failure is generic and retryable",
+      "passed": true
+    }
+  ],
+  "limitations": "Isolated module tests. Newsletter database is mocked: no subscriber, email or production record was created. Regex tests invoke the actual pure memo derivation, not browser rendering. These tests do not verify the five draft guide solutions."
+}

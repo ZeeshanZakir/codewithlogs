@@ -115,7 +115,7 @@ export function getNextRuns(expr: string, count = 5): Date[] {
   const [minuteExpr, hourExpr, dayOfMonthExpr, monthExpr, dayOfWeekExpr] = expr.trim().split(/\s+/);
   
   const runs: Date[] = [];
-  let current = new Date();
+  const current = new Date();
   current.setSeconds(0, 0);
   current.setMinutes(current.getMinutes() + 1); // Start from next minute
   

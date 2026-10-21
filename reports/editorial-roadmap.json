@@ -39,7 +39,8 @@
         "Repeat on a fresh fixture",
         "Named technical reviewer; author approval for publication"
       ],
-      "acceptanceGate": "Remain DRAFT until reproduction, fix, alternatives and limitations are checked, official references are reviewed for the pinned versions, and the author approves publication."
+      "acceptanceGate": "Remain DRAFT until reproduction, fix, alternatives and limitations are checked, official references are reviewed for the pinned versions, and the author approves publication.",
+      "completeDraftFile": "reports/guides/01-windows-node-not-recognized.txt"
     },
     {
       "order": 2,
@@ -77,7 +78,8 @@
         "Repeat on a fresh fixture",
         "Named technical reviewer; author approval for publication"
       ],
-      "acceptanceGate": "Remain DRAFT until reproduction, fix, alternatives and limitations are checked, official references are reviewed for the pinned versions, and the author approves publication."
+      "acceptanceGate": "Remain DRAFT until reproduction, fix, alternatives and limitations are checked, official references are reviewed for the pinned versions, and the author approves publication.",
+      "completeDraftFile": "reports/guides/02-windows-npm-ps1-blocked.txt"
     },
     {
       "order": 3,
@@ -115,7 +117,8 @@
         "Repeat on a fresh fixture",
         "Named technical reviewer; author approval for publication"
       ],
-      "acceptanceGate": "Remain DRAFT until reproduction, fix, alternatives and limitations are checked, official references are reviewed for the pinned versions, and the author approves publication."
+      "acceptanceGate": "Remain DRAFT until reproduction, fix, alternatives and limitations are checked, official references are reviewed for the pinned versions, and the author approves publication.",
+      "completeDraftFile": "reports/guides/03-windows-git-not-recognized.txt"
     },
     {
       "order": 4,
@@ -152,7 +155,8 @@
         "Repeat on a fresh fixture",
         "Named technical reviewer; author approval for publication"
       ],
-      "acceptanceGate": "Remain DRAFT until reproduction, fix, alternatives and limitations are checked, official references are reviewed for the pinned versions, and the author approves publication."
+      "acceptanceGate": "Remain DRAFT until reproduction, fix, alternatives and limitations are checked, official references are reviewed for the pinned versions, and the author approves publication.",
+      "completeDraftFile": "reports/guides/04-windows-git-line-endings.txt"
     },
     {
       "order": 5,
@@ -189,7 +193,8 @@
         "Repeat on a fresh fixture",
         "Named technical reviewer; author approval for publication"
       ],
-      "acceptanceGate": "Remain DRAFT until reproduction, fix, alternatives and limitations are checked, official references are reviewed for the pinned versions, and the author approves publication."
+      "acceptanceGate": "Remain DRAFT until reproduction, fix, alternatives and limitations are checked, official references are reviewed for the pinned versions, and the author approves publication.",
+      "completeDraftFile": "reports/guides/05-vscode-terminal-wont-launch.txt"
     },
     {
       "order": 6,

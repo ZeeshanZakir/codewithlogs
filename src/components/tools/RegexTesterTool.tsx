@@ -14,35 +14,18 @@ export function RegexTesterTool() {
   const [pattern, setPattern] = useState(SAMPLE_PATTERN);
   const [flags, setFlags] = useState<string[]>(["g"]);
   const [testText, setTestText] = useState(SAMPLE_TEXT);
-  const [error, setError] = useState<string | null>(null);
-
-  const regex = useMemo(() => {
+  const { regex, error, matches } = useMemo(() => {
     try {
-      const reg = new RegExp(pattern, flags.join(""));
-      setError(null);
-      return reg;
-    } catch (e) {
-      setError(e instanceof Error ? e.message : "Invalid regex");
-      return null;
+      const regex = new RegExp(pattern, flags.join(""));
+      // matchAll advances safely after zero-width matches, including Unicode.
+      const matches = flags.includes("g")
+        ? Array.from(testText.matchAll(regex))
+        : (() => { const match = regex.exec(testText); return match ? [match] : []; })();
+      return { regex, error: null, matches };
+    } catch (cause) {
+      return { regex: null, error: cause instanceof Error ? cause.message : "Invalid regex", matches: [] };
     }
-  }, [pattern, flags]);
-
-  const matches = useMemo(() => {
-    if (!regex) return [];
-    const found: RegExpExecArray[] = [];
-    let match: RegExpExecArray | null;
-    const global = flags.includes("g");
-    if (global) {
-      while ((match = regex.exec(testText)) !== null) {
-        found.push(match);
-        if (match[0].length === 0) regex.lastIndex++;
-      }
-    } else {
-      match = regex.exec(testText);
-      if (match) found.push(match);
-    }
-    return found;
-  }, [regex, testText, flags]);
+  }, [pattern, flags, testText]);
 
   const explanations = useMemo(() => explainRegex(pattern), [pattern]);
 
@@ -179,14 +162,14 @@ export function RegexTesterTool() {
                   >
                     <p className="text-sm font-semibold text-text mb-2">Match #{matchIdx + 1}</p>
                     <div className="space-y-1">
-                      <p className="text-sm font-mono text-text/70">Full match: "{match[0]}"</p>
+                      <p className="text-sm font-mono text-text/70">Full match: &quot;{match[0]}&quot;</p>
                       {match.slice(1).map((group, groupIdx) => {
                         const name = Object.keys(match.groups || {}).find(
-                          (n) => (match as any).groups[n] === group
+                          (n) => match.groups?.[n] === group
                         );
                         return (
                           <p key={groupIdx} className="text-sm font-mono text-text/70">
-                            {name ? `Group "${name}"` : `Group ${groupIdx + 1}`}: "{group}"
+                            {name ? `Group "${name}"` : `Group ${groupIdx + 1}`}: &quot;{group}&quot;
                           </p>
                         );
                       })}

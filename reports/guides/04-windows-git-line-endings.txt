@@ -1,0 +1,78 @@
+Git warns LF will be replaced by CRLF: inspect the index before changing settings
+Status: DRAFT — commands and byte-level assertions require execution in a disposable repository.
+Proposed slug: windows-git-line-endings | Category: Windows Developer Setup
+
+PROBLEM AND ENVIRONMENT
+Identification target: a warning such as “LF will be replaced by CRLF the next time Git touches it”. This may be a conversion notice rather than a failed commit. Distinguish that from a shell script failing on Linux with a carriage-return-related interpreter error, or a diff showing every line changed.
+Intended environment: Windows 11, native Git for Windows and PowerShell; a Linux/WSL checkout is needed if validating Linux script execution. Record Git, shell, OS, filesystem and editor versions. No exact test environment or successful conversion is claimed here.
+
+ROOT CAUSE
+Git's index and working tree can use different line endings. Attributes such as text/eol and settings such as core.autocrlf affect conversion. Existing committed CRLF blobs can remain until deliberately renormalized. Editor saves can introduce another conversion. The warning alone does not tell you whether repository content is wrong; inspect the affected file and its intended consumer first.
+
+INSPECT WITHOUT MODIFYING FILES
+From the repository root, substituting the real affected path for src/example.ts:
+
+git status --short
+git config --show-origin --get core.autocrlf
+git config --show-origin --get core.eol
+git ls-files --eol -- src/example.ts
+git check-attr text eol -- src/example.ts
+git diff -- src/example.ts
+git diff --cached -- src/example.ts
+
+An unset config value can return no output/nonzero status; that is not proof of a broken configuration. Read i/ (index), w/ (working tree) and attr/ separately in ls-files output. Mixed endings require investigation, not just suppressing the warning. Check for existing .gitattributes rules before adding new ones.
+
+CONTROLLED REPRODUCTION
+Use a disposable repo, never the site's current working tree. PowerShell fixture:
+
+$eolFixture = Join-Path $env:TEMP ('cwl-eol-' + [guid]::NewGuid())
+New-Item -ItemType Directory -Path $eolFixture | Out-Null
+git -C $eolFixture init
+git -C $eolFixture config core.autocrlf true
+[IO.File]::WriteAllText((Join-Path $eolFixture 'demo.txt'), "one`ntwo`n", [Text.UTF8Encoding]::new($false))
+git -C $eolFixture add -- demo.txt
+git -C $eolFixture ls-files --eol -- demo.txt
+
+Record whether this Git version emits a warning and the resulting endings; do not promise that every version emits identical wording. The local config affects only the disposable repo. This fixture has not been run for this draft.
+
+SOLUTION: EXPRESS THE TEAM'S FILE POLICY
+For a project intentionally using LF for JavaScript/TypeScript and Unix scripts, agree on repository attributes instead of telling every reader to change their global config. Example .gitattributes content to merge with existing rules:
+
+* text=auto
+*.js text eol=lf
+*.jsx text eol=lf
+*.ts text eol=lf
+*.tsx text eol=lf
+*.json text eol=lf
+*.sh text eol=lf
+*.bat text eol=crlf
+*.cmd text eol=crlf
+*.png -text
+*.jpg -text
+
+This is an example policy, not a universal file inventory. Add only rules the team intends; preserve special encoding/binary rules. A nonempty dirty working tree must be resolved before normalization so unrelated changes cannot be mistaken for conversion.
+
+In an approved clean branch/repository, preview then stage deliberately:
+
+git add -- .gitattributes
+git add --renormalize .
+git diff --cached --stat
+git diff --cached --check
+git diff --cached
+git ls-files --eol
+
+Renormalization stages changes; it does not publish them, and should never be run blindly in a repository containing unreviewed work. Review every affected file before an owner-approved commit. No such change has been applied to CodeWithLogs by this draft.
+
+VERIFY CONTENT, NOT JUST ABSENCE OF A WARNING
+Inspect staged blobs and working-tree endings separately. For LF-targeted tracked source, the index should report LF; existing working-tree bytes need a fresh safe checkout or intentional editor save to match new rules. Inspect a fresh clone/checkout of the approved policy commit. Run the project's real lint, type and build commands; on the intended Linux host run the shell script. Check shebang bytes and executable permissions separately: LF alone does not make a script executable or guarantee its interpreter exists.
+
+ALTERNATIVES AND COMMON MISTAKES
+If the current conversion matches an intentional team policy, no repair may be needed. Use per-file eol rules when Windows command files genuinely need CRLF. Do not globally toggle core.autocrlf as a universal cure, disable safecrlf merely to hide evidence, normalize images, or use reset --hard to refresh a dirty checkout. PowerShell file-writing defaults differ across releases, so the fixture uses an explicit UTF-8 writer rather than relying on Out-File encoding defaults.
+
+PUBLICATION GATE
+Run the fixture on recorded Git/PowerShell versions, capture actual warnings and i/w/attr output, verify staged bytes, and repeat on a fresh Windows checkout plus Linux script fixture. Record the exact diff and approved rollback plan. Keep DRAFT until reviewed.
+
+OFFICIAL REFERENCES (reviewed 2026-10-21)
+Text/eol attributes and renormalization: https://git-scm.com/docs/gitattributes
+core.autocrlf, core.eol and configuration scopes: https://git-scm.com/docs/git-config
+File ending inspection: https://git-scm.com/docs/git-ls-files

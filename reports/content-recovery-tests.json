@@ -1,0 +1,75 @@
+{
+  "checkedAt": "2026-10-21T13:53:24.579Z",
+  "branch": "redesign/adsense-readiness",
+  "lint": {
+    "command": "npx eslint . --format json --output-file reports/eslint-recovery.json",
+    "errors": 0,
+    "warnings": 10,
+    "baselineErrors": 54
+  },
+  "typescript": {
+    "command": "npx tsc --noEmit",
+    "passed": true
+  },
+  "build": {
+    "command": "npm run build",
+    "passed": true,
+    "staticPages": 33,
+    "note": "Sandbox attempt failed fetching existing Google font; network-authorized local build completed successfully. No deployment."
+  },
+  "routes": {
+    "checks": 68,
+    "publicArticles": 41,
+    "failures": [],
+    "brokenInternalLinks": [],
+    "searchChecks": [
+      {
+        "query": "module",
+        "status": 200,
+        "privateLeak": false,
+        "passed": true
+      },
+      {
+        "query": "^.*$",
+        "status": 200,
+        "privateLeak": false,
+        "passed": true
+      },
+      {
+        "query": "",
+        "status": 400,
+        "privateLeak": false,
+        "passed": true
+      },
+      {
+        "query": "overlength",
+        "status": 400,
+        "privateLeak": false,
+        "passed": true
+      }
+    ]
+  },
+  "isolatedFunctional": {
+    "checks": 9,
+    "passed": true,
+    "newsletterDatabaseMocked": true
+  },
+  "liveHttp": {
+    "checks": 7,
+    "passed": true
+  },
+  "preservation": {
+    "count": 58,
+    "unchanged": true
+  },
+  "browser": {
+    "rerun": false,
+    "reason": "Browser URL policy denied authority; no alternate browser/workaround used."
+  },
+  "guideVerification": {
+    "count": 5,
+    "status": "DRAFT",
+    "solutionsTested": false,
+    "published": false
+  }
+}

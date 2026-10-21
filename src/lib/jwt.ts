@@ -11,7 +11,7 @@ export function base64UrlDecode(input: string): string {
   return new TextDecoder('utf-8').decode(bytes);
 }
 
-export function parseJwt(token: string): { header: any; payload: any; signature: string; rawHeader: string; rawPayload: string; rawSignature: string } {
+export function parseJwt(token: string): { header: Record<string, unknown>; payload: Record<string, unknown>; signature: string; rawHeader: string; rawPayload: string; rawSignature: string } {
   const parts = token.split('.');
   if (parts.length !== 3) {
     throw new Error('Invalid JWT format. A valid JWT must have 3 parts separated by dots.');
@@ -19,6 +19,9 @@ export function parseJwt(token: string): { header: any; payload: any; signature:
   try {
     const header = JSON.parse(base64UrlDecode(parts[0]));
     const payload = JSON.parse(base64UrlDecode(parts[1]));
+    if (!header || typeof header !== 'object' || Array.isArray(header) || !payload || typeof payload !== 'object' || Array.isArray(payload)) {
+      throw new Error('JWT header and payload must be JSON objects.');
+    }
     return {
       header,
       payload,
@@ -27,7 +30,7 @@ export function parseJwt(token: string): { header: any; payload: any; signature:
       rawPayload: parts[1],
       rawSignature: parts[2]
     };
-  } catch (error) {
+  } catch {
     throw new Error('Failed to parse JWT. The token appears to be malformed.');
   }
 }
@@ -40,7 +43,7 @@ export function formatTimestamp(timestamp: number): string {
   }
 }
 
-export function isExpired(payload: any): boolean | null {
+export function isExpired(payload: Record<string, unknown> | null): boolean | null {
   if (!payload || typeof payload.exp !== 'number') {
     return null;
   }

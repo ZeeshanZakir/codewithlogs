@@ -1,61 +1,92 @@
 import fs from "node:fs";
-
+import crypto from "node:crypto";
 import nextEnv from "@next/env";
-const { loadEnvConfig } = nextEnv;
 import { MongoClient } from "mongodb";
-
-const mergePairs = {
-  "typescript-for-beginners-why-learn-it": "what-is-typescript",
-  "what-is-typescript": "what-is-typescript-why-developers-switching",
-  "what-is-typescript-why-developers-switching": "what-is-typescript",
-  "mongodb-vs-postgresql": "mongodb-vs-postgresql-which-database-2026",
-  "mongodb-vs-postgresql-which-database-2026": "mongodb-vs-postgresql",
-};
-const specificFindings = {
-  "common-vercel-deployment-errors-solutions": ["The claim that next build runs ESLint is outdated for this installed Next.js 16 project.", "The NODE_OPTIONS=... command uses POSIX syntax; a Windows version needs shell-specific examples.", "Reproduce case-only renames in a disposable Windows Git repository and validate the tracked path in a case-sensitive environment.", "Review platform limits against current official docs instead of hardcoding plan assumptions."],
-  "debug-production-errors-nextjs": ["The error component snippet has untyped props and needs a complete pinned TypeScript fixture.", "The hydration section needs a minimal reproducible mismatch and explicit post-fix checks.", "Confirm anecdotal client stories with the author; no supporting evidence was found in the repository."],
-  "nextjs-folder-structure-large-projects": ["The directory tree is useful supporting material but is not a specific troubleshooting solution.", "Focus a revision on resolving aliases, file casing and module boundaries; preserve the existing URL.", "Do not turn folder-count anecdotes into verified claims without author confirmation."],
-  "nextjs-authentication-without-nextauth": ["The sample imports an updateSession helper without supplying its implementation.", "Review middleware versus proxy conventions for the pinned Next.js version.", "Layout-only authorization claims need security review; protect each data/action boundary and verify access tests."],
-  "deploy-nextjs-to-vercel-guide": ["Separate ordinary deployment setup from a specific Windows-to-production failure.", "Do not offer a global database network allowlist as a routine connection fix.", "Verify current image configuration, environment behavior and Windows shell commands against the pinned version."],
-  "reduce-nextjs-website-loading-time": ["The claimed 52-to-94 score and LCP/CLS/JS-size improvements need original reports and author confirmation.", "Distinguish Lighthouse laboratory results from real-user Core Web Vitals.", "Review the installed version docs for image preloading conventions; provide a complete before/after fixture."],
-  "what-is-code-with-logs": ["Useful logging background, but it needs a narrow reproducible Windows debugging example.", "Avoid treating anecdotal production experience as independently verified test evidence."],
-};
-const improve = new Set([
-  "deploy-nextjs-to-vercel-guide", "what-is-code-with-logs",
-
-  "nextjs-folder-structure-large-projects", "nextjs-authentication-without-nextauth",
-  "debug-production-errors-nextjs",
- "reduce-nextjs-website-loading-time",
-  "common-vercel-deployment-errors-solutions",
-]);
-async function main() {
-  loadEnvConfig(process.cwd());
-  const client = new MongoClient(process.env.MONGODB_URI, {serverSelectionTimeoutMS:10000});
-  try {
-    await client.connect();
-    const docs = await client.db().collection("posts").find({}, {projection:{_id:0,title:1,slug:1,content:1,category:1,status:1,publishedAt:1,scheduledAt:1,author:1,excerpt:1,coverImage:1}}).sort({publishedAt:-1,createdAt:-1}).toArray();
-    fs.mkdirSync(".next", {recursive:true});
-    fs.writeFileSync(".next/editorial-source.json", JSON.stringify(docs));
-    const posts = docs.map(post => {
-      const content = post.content || "";
-      const headings = [...content.matchAll(/^#{1,3}\s+(.+)$/gm)].map(m=>m[1]);
-      const officialLinks = [...new Set((content.match(/https?:\/\/[^\s)>"']+/g)||[]).filter(url=>/^https:\/\/(learn\.microsoft\.com|code\.visualstudio\.com|nodejs\.org|docs\.npmjs\.com|git-scm\.com|nextjs\.org)\//.test(url)))];
-      const action = mergePairs[post.slug] ? "MERGE" : improve.has(post.slug) ? "IMPROVE" : "ARCHIVE";
-      const reason = action === "MERGE"
-        ? "Overlapping search intent with the paired article. Compare examples and Search Console performance before choosing a primary URL; no redirect or deletion authorized."
-        : action === "IMPROVE"
-        ? "Useful adjacent technical material. Rework around a specific Windows development failure, document the environment, reproduce and verify each fix, and retain the existing URL."
-        : "Outside the Windows developer troubleshooting niche. Recommend a legacy editorial archive, preserving the live URL and content until an approved migration plan exists.";
-      const missing = ["Independent Windows test evidence and exact tested environment are not recorded in the repository verification registry."];
-      if (!/reproduc|steps to reproduce/i.test(content)) missing.push("No explicit reproduction section detected.");
-      if (!/verif|expected (output|result)|confirm/i.test(content)) missing.push("No explicit verification/expected-result wording detected.");
-      if (!officialLinks.length) missing.push("No relevant Windows/VS Code/Node/npm/Git/Next official reference detected.");
-      return {slug:post.slug,url:"https://codewithlogs.com/blog/"+post.slug,title:post.title,status:post.status,category:post.category,action,reason,mergeWith:mergePairs[post.slug]||null,windowsVerification:"NOT VERIFIED",specificFindings:specificFindings[post.slug] || (action === "MERGE" ? ["Compare the complete examples and search intent in this overlapping group before proposing a consolidation; keep every URL until approved."] : ["This is an editorial scope decision, not a finding that the content is worthless or plagiarized. No archival status change has been made."]),wordCount:content.split(/\s+/).filter(Boolean).length,headings,codeBlocks:Math.floor((content.match(/^```/gm)||[]).length/2),officialLinks,missing,bodyPreserved:true};
-    });
-    const result = {generatedAt:new Date().toISOString(),method:"Read-only database snapshot, automated body/heading/reference signals, editorial topical/duplicate-intent triage, and manual review of selected relevant article bodies. Signals are triage evidence, not proof of correctness, originality, plagiarism, or successful testing.",publicationChanges:false,counts:Object.fromEntries(["KEEP","IMPROVE","MERGE","ARCHIVE"].map(action=>[action,posts.filter(p=>p.action===action).length])),posts};
-    fs.writeFileSync("reports/content-audit.json",JSON.stringify(result,null,2)+"\n");
-    console.log(JSON.stringify({total:posts.length,counts:result.counts,statuses:docs.reduce((a,p)=>(a[p.status]=(a[p.status]||0)+1,a),{})}));
-
-  } finally {await client.close();}
+const notes = JSON.parse(fs.readFileSync("reports/article-review-notes.json", "utf8"));
+const groups = [
+ ["what-is-typescript","what-is-typescript-why-developers-switching","typescript-for-beginners-why-learn-it"],
+ ["mongodb-vs-postgresql","mongodb-vs-postgresql-which-database-2026"],
+ ["what-are-ai-agents","what-are-ai-agents-how-they-work"],
+ ["learn-web-development-free-2026","best-free-websites-learn-web-development-2026"]
+];
+const priority = [
+ ["common-vercel-deployment-errors-solutions","Exact errors and direct Windows-to-Linux casing intent; correct Next 16 lint and shell guidance.","Medium"],
+ ["debug-production-errors-nextjs","Useful client/server triage; supply one complete failure/recovery fixture.","Medium"],
+ ["nextjs-authentication-without-nextauth","Useful cookie workflow; supply missing helpers and protect each data/action boundary.","High"],
+ ["deploy-nextjs-to-vercel-guide","Preserve setup intent; correct network access advice and environment diagnostics.","Medium"],
+ ["nextjs-folder-structure-large-projects","Useful concrete tree; add alias/casing debugging with pinned versions.","Medium"],
+ ["supabase-errors-production-fixes","Retain useful exact-error content; complete schemas/auth fixtures and harden helpers.","High"],
+ ["supabase-row-level-security-real-examples","Retain useful security education; add two-user denied-access tests and harden helpers.","High"],
+ ["inventory-management-system-nextjs-supabase","Retain distinct concurrency content; invalid aggregate locking and authorization need correction.","High"],
+ ["build-rest-api-nodejs-beginners","Substantial CRUD draft; complete field/error validation and local-only scope.","Medium"],
+ ["what-is-code-with-logs","Brand-relevant logging foundation; add a full redacted debugging exercise.","Medium"]
+];
+async function snapshot() {
+ if(!process.argv.includes("--refresh")) return JSON.parse(fs.readFileSync(".next/editorial-source.json","utf8"));
+ nextEnv.loadEnvConfig(process.cwd());
+ if(!process.env.MONGODB_URI) throw new Error("Database configuration unavailable");
+ const client=new MongoClient(process.env.MONGODB_URI,{serverSelectionTimeoutMS:10000});
+ try {
+  await client.connect();
+  const posts=await client.db().collection("posts").find({},{projection:{_id:0,title:1,slug:1,content:1,category:1,status:1,publishedAt:1,scheduledAt:1,author:1,excerpt:1}}).toArray();
+  fs.mkdirSync(".next",{recursive:true});
+  fs.writeFileSync(".next/editorial-source.json",JSON.stringify(posts,null,2));
+  return posts;
+ } finally {await client.close();}
 }
-main().catch(error=>{console.error(error.name+": read-only content audit failed; no database writes performed.");process.exitCode=1;});
+const docs=await snapshot();
+const hash=value=>crypto.createHash("sha256").update(value).digest("hex");
+const fence=String.fromCharCode(96).repeat(3);
+const posts=docs.map(post=>{
+ if(!notes[post.slug]) throw new Error("Article needs review: "+post.slug);
+ const content=post.content||"";
+ const group=groups.find(g=>g.includes(post.slug));
+ const links=[...new Set(content.match(/https?:\/\/[^\s)>"']+/g)||[])];
+ const officialLinks=links.filter(link=>/https:\/\/(learn\.microsoft\.com|code\.visualstudio\.com|nodejs\.org|docs\.npmjs\.com|git-scm\.com|nextjs\.org|supabase\.com|www\.postgresql\.org|docs\.n8n\.io|react\.dev|www\.typescriptlang\.org)\//.test(link));
+ const headings=[...content.matchAll(/^#{1,4}\s+(.+)$/gm)].map(m=>m[1]);
+ const codeBlocks=Math.floor(content.split(fence).length/2);
+ return {
+  slug:post.slug,title:post.title,url:"https://codewithlogs.com/blog/"+post.slug,status:post.status,category:post.category,
+  action:group?"MERGE":"IMPROVE",
+  reason:group?"Potential overlapping search intent; differentiation or a merge requires unique-content and traffic review. No action authorized.":"Retain URL and useful material; correct article-specific quality gaps. Niche fit is not an archival criterion.",
+  mergeWith:group?group.filter(s=>s!==post.slug):[],
+  specificFindings:[notes[post.slug]],
+  localRevisionDraft:fs.existsSync("reports/priority-article-revisions/"+post.slug+".txt") ? "reports/priority-article-revisions/"+post.slug+".txt" : null,
+  assessment:{
+   originality:"Provenance not independently established; no external plagiarism audit or AI-authorship inference. "+(group?"In-site intent overlap identified.":"No confirmed duplicate-intent group; this is not proof of uniqueness."),
+   usefulness:notes[post.slug].split(". ")[0]+".",
+   completeness:codeBlocks?codeBlocks+" fenced examples; complete fixture and expected outputs still require review.":"No fenced executable example. Explanatory intent may justify this; a promised build/test needs an exercise.",
+   technicalAccuracy:"Static review, not execution certification. "+notes[post.slug],
+   duplication:group?"Potential search-intent overlap: "+group.filter(s=>s!==post.slug).join(", "):"No consolidation proposed; related supporting topics can legitimately overlap.",
+   searchIntent:"Assess the title's own reader task independently of new Windows category placement. "+(priority.some(([s])=>s===post.slug)?"Priority problem-solving/educational candidate.":"Retain existing URL and traffic potential; traffic data unavailable."),
+   firstHandEvidence:"No linked reproducible artifact or verification-registry entry establishes personal claims. Request author records; missing repository evidence does not establish that the experience is false."
+  },
+  windowsVerification:"NOT VERIFIED",bodyPreserved:true,wordCount:content.split(/\s+/).filter(Boolean).length,headings,codeBlocks,officialLinks,links,
+  evidenceToReview:content.split(/\n\n/).filter(t=>!t.startsWith(fence)&&/I (built|tested|used|spent|saved|pay)|my (client|first|project)|\d+%|\$\d/.test(t)).slice(0,3).map(t=>t.slice(0,280)),
+  missing:["Exact supported versions and reproducible fixture where applicable.","Traceable evidence for author/personal claims.",...(officialLinks.length?[]:["No relevant official technical link detected; domain detection is only a signal."])],
+  bodySha256:hash(content)
+ };
+});
+const counts=Object.fromEntries(["KEEP","IMPROVE","MERGE","ARCHIVE"].map(a=>[a,posts.filter(p=>p.action===a).length]));
+const ranked=priority.map(([slug,rationale,effort],index)=>({rank:index+1,...posts.find(p=>p.slug===slug),rationale,effort,trafficEvidence:"Search Console unavailable; ranking reflects editorial utility/correctability, not measured traffic."}));
+const audit={generatedAt:new Date().toISOString(),method:"Read-only full stored-body snapshot; structural/code/claim extraction for all 58; article-specific editorial review and targeted official-documentation checks. Not execution testing of all snippets or external plagiarism review. Topic mismatch never produces ARCHIVE.",publicationChanges:false,counts,duplicateIntentGroups:groups,posts};
+fs.writeFileSync("reports/content-audit.json",JSON.stringify(audit,null,2));
+fs.writeFileSync("reports/priority-articles.json",JSON.stringify(ranked,null,2));
+const preservation={capturedAt:audit.generatedAt,count:docs.length,records:docs.map(p=>({slug:p.slug,status:p.status,bodySha256:hash(p.content||""),recordSha256:hash(JSON.stringify(p))})).sort((a,b)=>a.slug.localeCompare(b.slug))};
+if(!fs.existsSync("reports/content-preservation.json")) fs.writeFileSync("reports/content-preservation.json",JSON.stringify(preservation,null,2));
+else fs.writeFileSync("reports/content-preservation-latest.json",JSON.stringify(preservation,null,2));
+fs.writeFileSync("reports/CONTENT_AUDIT.txt",[
+ "CODEWITHLOGS — CONTENT QUALITY REASSESSMENT",
+ "Supersedes the earlier niche-first 46-ARCHIVE recommendation. No database records changed.",
+ "Coverage: "+posts.length+" stored articles; recommendations: "+JSON.stringify(counts),
+ "KEEP means no substantive correction identified; none certified at that standard. IMPROVE retains useful content. MERGE is intent comparison only; differentiation may be preferable. ARCHIVE=0.",
+ "All seven dimensions assessed below. No claim of plagiarism, generated authorship, fabricated author experience or verified execution. Traffic evidence unavailable.",
+ "TOP 10 EXISTING ARTICLES TO IMPROVE",
+ ...ranked.map(p=>p.rank+". "+p.title+"\n"+p.url+"\nStored status: "+p.status+" | Effort: "+p.effort+"\n"+p.rationale),
+ "READER-SAFETY PRIORITY: inventory locking, authentication/data/action boundaries, Supabase definer helpers and Sheets view permissions must be corrected and tested before promoting those guides. No live corrections applied.",
+ "FIVE NEW DRAFTS: first five existing roadmap topics developed separately in reports/guides/*.txt. Node PATH, npm.ps1, Git PATH, Git line endings, VS Code terminal launch. These do not replace top-10 URLs or enter the CMS.",
+ "ALL 58 ARTICLE ASSESSMENTS",
+ ...posts.map(p=>[p.title,p.url,"Stored status: "+p.status+" | Recommendation: "+p.action,...(p.localRevisionDraft ? ["Local revision DRAFT (not applied/published): "+p.localRevisionDraft] : []),...Object.entries(p.assessment).map(([k,v])=>k+": "+v),"Selected claims needing evidence: "+(p.evidenceToReview.join(" / ")||"None extracted; author review still required."),""].join("\n")),
+ "Official accuracy checks: https://www.postgresql.org/docs/current/sql-select.html ; https://supabase.com/docs/guides/database/postgres/row-level-security ; https://supabase.com/docs/guides/database/functions ; https://nextjs.org/docs/app/guides/upgrading/version-16 ; https://docs.n8n.io/hosting/installation/docker/"
+].join("\n\n"));
+console.log("Reassessed",posts.length,"articles:",counts);

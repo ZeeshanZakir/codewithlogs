@@ -1,0 +1,113 @@
+{
+  "checkedAt": "2026-10-21T14:24:59.844Z",
+  "branch": "redesign/adsense-readiness",
+  "articleRevisions": 5,
+  "wholeGuideStatus": "DRAFT",
+  "published": false,
+  "archived": 0,
+  "articleRecordsPreserved": 58,
+  "environment": {
+    "node": "v22.18.0",
+    "os": "Windows 10 Pro",
+    "release": "10.0.19045",
+    "architecture": "x64",
+    "next": "16.2.6",
+    "react": "19.2.4",
+    "typescript": "5.9.3",
+    "supabaseSsr": "0.12.7",
+    "supabaseJs": "2.118.0"
+  },
+  "fixture": {
+    "initialChecks": 18,
+    "confirmationChecks": 15,
+    "distinctPassingCases": 21,
+    "caseIds": [
+      "missing-import-reproduced",
+      "build-type-error-reproduced",
+      "alias-error-reproduced",
+      "separate-eslint-error-reproduced",
+      "next16-build-does-not-run-eslint",
+      "imports-types-alias-corrected-build",
+      "fixture-typecheck",
+      "windows-two-hop-git-casing",
+      "anonymous-direct-action-and-data-denied",
+      "identity-not-taken-from-form",
+      "identity-error-fails-closed",
+      "fixed-alias-renders",
+      "public-env-is-build-time",
+      "dynamic-server-env-is-runtime",
+      "anonymous-direct-http-api-denied",
+      "anonymous-dashboard-redirect",
+      "production-server-error-redacted",
+      "server-error-retains-original-log",
+      "supabase-single-returns-error-object",
+      "supabase-maybe-single-accepts-empty",
+      "auth-response-not-publicly-cacheable"
+    ],
+    "limitations": [
+      "No Windows 11 or Linux runtime tested.",
+      "No Vercel deployment, DNS or hosting limits verified.",
+      "No real Supabase project, account login/refresh or database RLS test.",
+      "No browser hydration, error fallback interaction or retry-click test.",
+      "Whole article revisions remain DRAFT; evidence applies only to named fixture cases."
+    ]
+  },
+  "site": {
+    "build": {
+      "passed": true,
+      "command": "npm run build",
+      "staticPages": 33
+    },
+    "typescript": {
+      "passed": true,
+      "command": "npx tsc --noEmit"
+    },
+    "eslint": {
+      "errors": 0,
+      "warnings": 10
+    },
+    "routes": {
+      "checked": 68,
+      "publicArticles": 41,
+      "failures": [],
+      "brokenInternalLinks": [],
+      "searchChecks": [
+        {
+          "query": "module",
+          "status": 200,
+          "privateLeak": false,
+          "passed": true
+        },
+        {
+          "query": "^.*$",
+          "status": 200,
+          "privateLeak": false,
+          "passed": true
+        },
+        {
+          "query": "",
+          "status": 400,
+          "privateLeak": false,
+          "passed": true
+        },
+        {
+          "query": "overlength",
+          "status": 400,
+          "privateLeak": false,
+          "passed": true
+        }
+      ]
+    },
+    "homepageCurationPassed": true,
+    "revisionsNotPubliclyServed": true
+  },
+  "unchanged": {
+    "websiteAuthentication": true,
+    "cms": true,
+    "databaseSchema": true,
+    "rootDependencies": true,
+    "articleUrls": true,
+    "publicationStatuses": true
+  },
+  "remaining": "Live Supabase account/session/RLS, Vercel preview/DNS/network settings, Windows 11/Linux and browser hydration/retry remain untested. Owner approval required before any CMS body change or deployment."
+}

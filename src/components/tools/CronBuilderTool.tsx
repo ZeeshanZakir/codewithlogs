@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useMemo } from "react";
+import { useState, useMemo } from "react";
 import { ChevronDown, ChevronUp, Clipboard, Copy, Clock } from "lucide-react";
 import { validateCron, explainCron, getNextRuns, CRON_PRESETS } from "@/lib/cron";
 
@@ -16,7 +16,6 @@ type FieldConfig = {
   step: string;
 };
 
-const FIELD_NAMES = ["minute", "hour", "dayOfMonth", "month", "dayOfWeek"] as const;
 const FIELD_LABELS = ["Minute", "Hour", "Day of Month", "Month", "Day of Week"];
 const FIELD_RANGES = [
   { min: 0, max: 59 },
@@ -30,7 +29,7 @@ const MONTH_NAMES = ['January', 'February', 'March', 'April', 'May', 'June', 'Ju
 
 export function CronBuilderTool() {
   const [mode, setMode] = useState<CronMode>("build");
-  const [cronExpr, setCronExpr] = useState("0 0 * * *");
+  const [parsedCron, setCronExpr] = useState("0 0 * * *");
   const [parseInput, setParseInput] = useState("");
   const [copied, setCopied] = useState(false);
   const [referenceOpen, setReferenceOpen] = useState(true);
@@ -45,7 +44,7 @@ export function CronBuilderTool() {
 
   // Build cron from fields
   const builtCron = useMemo(() => {
-    return fields.map((field, i) => {
+    return fields.map((field) => {
       switch (field.type) {
         case "every": return "*";
         case "specific": return field.value;
@@ -56,11 +55,7 @@ export function CronBuilderTool() {
     }).join(" ");
   }, [fields]);
 
-  useEffect(() => {
-    if (mode === "build") {
-      setCronExpr(builtCron);
-    }
-  }, [builtCron, mode]);
+  const cronExpr = mode === "build" ? builtCron : parsedCron;
 
   const validation = useMemo(() => validateCron(cronExpr), [cronExpr]);
   const explanation = useMemo(() => validation.valid ? explainCron(cronExpr) : "", [cronExpr, validation]);

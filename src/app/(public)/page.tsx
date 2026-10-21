@@ -17,11 +17,17 @@ export const metadata: Metadata = {
   openGraph: { title: "CodeWithLogs — Fix Your Development Errors. Step by Step.", description, url: siteUrl, type: "website" },
 };
 const topicIcons = [Monitor, Terminal, Package, Braces];
-const featuredSlugs = ["common-vercel-deployment-errors-solutions", "debug-production-errors-nextjs"];
+const recommendations = [
+  { slug: "what-is-code-with-logs", summary: "Start by collecting useful context: the failing operation, expected result, and a log that leaves secrets out." },
+  { slug: "debug-production-errors-nextjs", summary: "Work out whether the failure is in the browser or on the server, then follow the relevant logs. A version-specific revision is awaiting review." },
+];
 
 export default async function HomePage() {
   const posts = await getAllPosts();
-  const featured = featuredSlugs.flatMap((slug) => posts.find((post) => post.slug === slug) ?? []);
+  const featured = recommendations.flatMap(({ slug, summary }) => {
+    const post = posts.find((post) => post.slug === slug);
+    return post ? [{ ...post, excerpt: summary }] : [];
+  });
   const verified = posts.filter((post) => getVerification(post.slug)).slice(0, 3);
   return (
     <div className="journal-home troubleshooting-home">
@@ -65,8 +71,8 @@ export default async function HomePage() {
         </div>
       </section>
       <section className="journal-container journal-section">
-        <div className="section-heading"><div><p className="eyebrow">Start with a failure</p><h2>From error to explanation<span>.</span></h2></div><Link href="/blog" className="journal-text-link">Browse the archive <ArrowUpRight size={16} /></Link></div>
-        <p className="section-intro">Existing troubleshooting guides from the archive. Windows-specific verification is still pending; each article shows its review status.</p>
+        <div className="section-heading"><div><p className="eyebrow">Start with evidence</p><h2>Find the failure before the fix<span>.</span></h2></div><Link href="/blog" className="journal-text-link">Browse the archive <ArrowUpRight size={16} /></Link></div>
+        <p className="section-intro">Begin with logging and client-versus-server diagnosis. These existing articles offer background; their technical revisions are under review and they are not Windows-verified guides.</p>
         <div className="featured-solutions">{featured.map((post) => <BlogCard key={post.slug} post={post} featured />)}</div>
         {!featured.length && <p className="journal-empty">No published troubleshooting guides are available yet. <Link href="/blog">Browse the existing archive.</Link></p>}
       </section>

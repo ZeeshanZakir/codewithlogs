@@ -1,0 +1,36 @@
+▲ Next.js 16.2.6 (Turbopack)
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 5.2s
+  Running TypeScript ...
+
+  We detected TypeScript in your project and reconfigured your tsconfig.json file for you.
+  The following suggested values were added to your tsconfig.json. These values can be changed to fit your project's needs:
+
+  	- allowJs was set to true
+  	- include was updated to add '.next/dev/types/**/*.ts'
+
+  Finished TypeScript in 8.7s ...
+  Collecting page data using 7 workers ...
+  Generating static pages using 7 workers (0/6) ...
+  Generating static pages using 7 workers (1/6) 
+  Generating static pages using 7 workers (2/6) 
+  Generating static pages using 7 workers (4/6) 
+✓ Generating static pages using 7 workers (6/6) in 682ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ƒ /api/private
+├ ƒ /api/runtime-env
+├ ƒ /dashboard
+├ ƒ /failure
+└ ○ /login
+
+
+ƒ Proxy (Middleware)
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+

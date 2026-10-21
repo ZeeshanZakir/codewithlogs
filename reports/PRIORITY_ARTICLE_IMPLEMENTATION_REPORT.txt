@@ -1,0 +1,244 @@
+CODEWITHLOGS — PRIORITY ARTICLE CORRECTIONS AND TESTING
+Branch: redesign/adsense-readiness | Date: 2026-10-21
+
+OUTCOME
+Five complete local revision drafts are ready for technical/editorial review.
+They correct the identified technical problems and replace unsupported claims
+with neutral explanations or explicit limitations. They have NOT been applied
+to the database, published or deployed. No article-wide verified label was added.
+All 58 stored article bodies, slugs, statuses and audited metadata match the
+starting snapshot. All 41 currently public articles remain accessible.
+
+The 46-article niche-only archival proposal is not approved and is superseded.
+Current audit: 49 IMPROVE / 9 potential intent-overlap MERGE comparisons /
+0 ARCHIVE / 0 certified KEEP. A potential merge is not an approved action.
+Useful Next.js, Supabase, deployment and other existing content remains available.
+The audit now puts the owner's five selected articles first.
+
+FIVE REPLACEMENT DRAFTS
+reports/priority-article-revisions/common-vercel-deployment-errors-solutions.txt
+- Separates Next 16 lint/type/build commands; supplies missing-import, alias and
+  type failure diagnosis; two-hop Git casing correction with index verification.
+- Distinguishes client build-time from server execution timing; shell-labelled
+  memory example; removes universal host limits and unsupported incident claims.
+
+reports/priority-article-revisions/debug-production-errors-nextjs.txt
+- Distinguishes server logs from sanitized error transport and qualifies digest
+  lookup. Supplies a typed boundary with effect-based logging and complete fixture.
+- Corrects dev-overlay/production confusion, explains hydration/prerender limits,
+  and leaves browser retry/hydration claims explicitly untested.
+
+reports/priority-article-revisions/nextjs-authentication-without-nextauth.txt
+- Supplies complete client/server/config/proxy/login/logout/read/action/API/schema
+  source with pinned dependencies. Cookie responses retain cache safeguards.
+- Checks identity at protected operations, ignores forged form owners and scopes
+  reads. Sample database grants/revokes and RLS are provided, not executed.
+- Distinguishes getUser, getClaims and getSession; removes universal expiry and
+  layout-only security claims. No migration of the real site's NextAuth occurs.
+
+reports/priority-article-revisions/deploy-nextjs-to-vercel-guide.txt
+- Adds safe preflight/secret tracking review and preserves branch/remote choices.
+- Removes routine 0.0.0.0/0 database allowlisting, hardcoded DNS/branch assumptions,
+  unsupported deployment timing, and legacy broad image-host guidance.
+- Separates local evidence from owner-approved external preview/DNS/network work.
+
+reports/priority-article-revisions/nextjs-folder-structure-large-projects.txt
+- Uses the real executable fixture tree and complete alias example; separates
+  framework conventions from organizational preferences and performance claims.
+- Corrects route-group/layout authorization assumptions and server/client scope.
+
+Each draft includes references, reproduction/verification instructions and
+remaining evidence requirements. Embedded source snippets are complete files,
+not unresolved helper imports or code-inclusion placeholders.
+manifest.json records original/draft hashes, preserved status and review state.
+
+DETAILED QUALITY COMPARISON
+Read reports/PRIORITY_ARTICLES_BEFORE_AFTER.txt for each original issue, replacement,
+test case and limitation. The report distinguishes local proposed corrections
+from published content. No personal incident, benchmark or experience was invented.
+
+ADDITIONAL RETENTION REVIEW
+reports/SUPABASE_RETENTION_REVIEW.txt recommends retaining all three:
+- Supabase Errors: useful exact-error intent; fix SDK error handling, sessions,
+  privilege-sensitive helpers and connection-mode assumptions.
+- Supabase RLS: useful policy education; complete grant/bypass/update/admin-role
+  semantics and run a real anonymous/A/B/admin matrix.
+- Inventory: useful concurrency problem; aggregate SUM ... FOR UPDATE is invalid.
+  Replace with a complete serialization/authorization design and prove invariants
+  using concurrent database transactions. No live SQL repair is claimed.
+A real SDK + simulated HTTP check supports the single/maybeSingle correction;
+it is not evidence of a real Postgres or Supabase RLS test.
+
+REPRODUCIBLE FIXTURE
+fixtures/priority-articles is a separate private Next application. Website package
+dependencies, backend and auth configuration are unchanged. It contains 26 tracked
+source/config/schema/lock/readme files; node_modules, generated types and .next
+are ignored. Root TypeScript excludes this independently checked project, and
+ESLint ignores only its generated .next output while checking its source.
+
+Actual test environment:
+Windows 10 Pro, release 10.0.19045, x64
+Node v22.18.0
+Next.js 16.2.6
+React / React DOM 19.2.4
+TypeScript 5.9.3
+@supabase/ssr 0.12.7
+@supabase/supabase-js 2.118.0
+The complete fixture dependency graph is pinned in package-lock.json. OS patch
+revision beyond the reported build was not established. Windows 11 is not tested.
+
+TEST EVIDENCE
+reports/priority-article-tests/results.json: 18 initial passing cases.
+reports/priority-article-tests/confirmation-results.json: 15 focused passing cases.
+21 DISTINCT case IDs across the two runs; repeated checks are not added as unique.
+The confirmation followed cookie cache-header/fixture dependency corrections.
+The final config-only named-export cleanup has no behavior change.
+
+Covered cases:
+- Deliberate missing import, invalid number assignment and wrong alias failures.
+- Explicit-any lint failure while Next 16 build succeeds, then restored clean build.
+- Independent fixture TypeScript check and corrected alias-rendered output.
+- Windows two-hop Git case rename verified in a disposable index with no remote.
+- Anonymous direct action/data calls denied before transport writes/queries.
+- Server-owned identity despite forged form user_id and identity-error fail-closed.
+- Actual SDK single/maybeSingle result handling against simulated HTTP responses.
+- Local real-SDK no-session API 401, dashboard redirect and private/no-store headers.
+- Public label fixed at build versus dynamic server label read at runtime.
+- Production response hides private error marker while server log retains it.
+
+Limits:
+Identity/data transports are mocked for action/query unit tests; they do not prove
+JWT validity or RLS. Real SDK anonymous HTTP tests use synthetic loopback-only
+configuration and contact no live Supabase project. No account or row is created.
+No browser hydration, fallback/retry click, Windows 11/Linux runtime, actual Vercel,
+DNS/TLS or live Supabase sign-in/refresh/RLS test is claimed. These gaps keep the
+whole articles DRAFT even though named local cases passed.
+
+WEBSITE IMPLEMENTATION
+Homepage curated recommendations now lead with contextual logging and production
+triage, use neutral local summaries and clearly show that revisions are under
+review. The first draft fixes are not overlaid into live article bodies, and
+high-risk auth/inventory/RLS samples are not newly promoted as verified solutions.
+The archive and all existing Next.js/Supabase/deployment URLs remain accessible.
+The verification registry remains unchanged.
+
+SITE CHECKS
+npm run build: PASS, 33 static pages. Local build only.
+npx tsc --noEmit: PASS.
+ESLint: 0 errors, 10 existing warnings; no added warning retained.
+Route validator: 68 checks, 41 public article pages, 4 search checks, no failures
+and no broken internal links detected.
+Homepage HTTP checks: curated links/status present; a direct request to a local
+revision report returns 404, so the draft is not accidentally served.
+Database preservation: 58/58 projected records match the starting hashes.
+Root package.json/package-lock.json: unchanged.
+git diff --check: PASS.
+No authenticated CMS write, real newsletter signup or external message was sent.
+Browser interaction was not rerun; prior URL-policy denial remains a limitation.
+The temporary website/fixture validation servers are stopped at task completion.
+
+REMAINING WORK / APPROVAL GATES
+1. Review the five draft texts and evidence, then decide whether to narrow any
+   untested scope before approving actual CMS body updates. No approval is assumed.
+2. Run live Supabase session/RLS tests only with approved disposable accounts/data.
+   Add abuse controls and complete confirmation/recovery flows before presenting
+   the sample as a production authentication system.
+3. Test case-sensitive Linux builds and Windows 11 if those environments are claimed.
+   Exercise browser hydration, segment fallback and retry/idempotency.
+4. Apply the three retained Supabase article repairs in a later approved content
+   revision, prioritizing privilege/concurrency defects before additional promotion.
+5. External preview, hosted images, DNS, networking, Search Console and AdSense
+   resubmission remain owner-controlled. No approval guarantee is made.
+
+LOCAL REVIEW AND REPEAT
+Review the five .txt drafts and the before/after report in Codex.
+To run the website:
+  npm.cmd run dev
+  Open http://localhost:3000/
+To repeat isolated fixture tests, from repository root:
+  Push-Location fixtures/priority-articles
+  try { npm.cmd ci } finally { Pop-Location }
+  node scripts/test-priority-articles.mjs
+For focused build/runtime confirmation:
+  node scripts/test-priority-articles.mjs --confirm
+Do not run the mutation-based fixture runner concurrently with fixture editing
+or another fixture build. It restores three fixture files in finally.
+Do not supply production Supabase keys or execute schema.sql on the blog.
+For website route checks, start a local production server after npm run build:
+  npm.cmd run start
+  node scripts/validate-redesign.mjs http://localhost:3000
+Article publication, archival, redirects, deployment and AdSense submission require
+separate owner approval. This task performs none of them.
+
+FULL FILE INVENTORY FOR THIS PRIORITY-ARTICLE PHASE
+See reports/PRIORITY_ARTICLE_MODIFIED_FILES.json and the absolute paths below.
+Earlier uncommitted recovery changes are preserved and not attributed to this phase.
+
+
+C:/Users/zeesh/Desktop/codewithlogs/eslint.config.mjs
+C:/Users/zeesh/Desktop/codewithlogs/fixtures/priority-articles/.gitignore
+C:/Users/zeesh/Desktop/codewithlogs/fixtures/priority-articles/README.txt
+C:/Users/zeesh/Desktop/codewithlogs/fixtures/priority-articles/next.config.mjs
+C:/Users/zeesh/Desktop/codewithlogs/fixtures/priority-articles/package-lock.json
+C:/Users/zeesh/Desktop/codewithlogs/fixtures/priority-articles/package.json
+C:/Users/zeesh/Desktop/codewithlogs/fixtures/priority-articles/schema.sql
+C:/Users/zeesh/Desktop/codewithlogs/fixtures/priority-articles/src/app/api/private/route.ts
+C:/Users/zeesh/Desktop/codewithlogs/fixtures/priority-articles/src/app/api/runtime-env/route.ts
+C:/Users/zeesh/Desktop/codewithlogs/fixtures/priority-articles/src/app/dashboard/actions.ts
+C:/Users/zeesh/Desktop/codewithlogs/fixtures/priority-articles/src/app/dashboard/page.tsx
+C:/Users/zeesh/Desktop/codewithlogs/fixtures/priority-articles/src/app/failure/error.tsx
+C:/Users/zeesh/Desktop/codewithlogs/fixtures/priority-articles/src/app/failure/page.tsx
+C:/Users/zeesh/Desktop/codewithlogs/fixtures/priority-articles/src/app/layout.tsx
+C:/Users/zeesh/Desktop/codewithlogs/fixtures/priority-articles/src/app/login/actions.ts
+C:/Users/zeesh/Desktop/codewithlogs/fixtures/priority-articles/src/app/login/page.tsx
+C:/Users/zeesh/Desktop/codewithlogs/fixtures/priority-articles/src/app/page.tsx
+C:/Users/zeesh/Desktop/codewithlogs/fixtures/priority-articles/src/components/BuildLabel.tsx
+C:/Users/zeesh/Desktop/codewithlogs/fixtures/priority-articles/src/components/Status.tsx
+C:/Users/zeesh/Desktop/codewithlogs/fixtures/priority-articles/src/lib/authorization.ts
+C:/Users/zeesh/Desktop/codewithlogs/fixtures/priority-articles/src/lib/notes.ts
+C:/Users/zeesh/Desktop/codewithlogs/fixtures/priority-articles/src/lib/supabase/client.ts
+C:/Users/zeesh/Desktop/codewithlogs/fixtures/priority-articles/src/lib/supabase/config.ts
+C:/Users/zeesh/Desktop/codewithlogs/fixtures/priority-articles/src/lib/supabase/proxy.ts
+C:/Users/zeesh/Desktop/codewithlogs/fixtures/priority-articles/src/lib/supabase/server.ts
+C:/Users/zeesh/Desktop/codewithlogs/fixtures/priority-articles/src/proxy.ts
+C:/Users/zeesh/Desktop/codewithlogs/fixtures/priority-articles/tsconfig.json
+C:/Users/zeesh/Desktop/codewithlogs/reports/CONTENT_AUDIT.txt
+C:/Users/zeesh/Desktop/codewithlogs/reports/PRIORITY_ARTICLES_BEFORE_AFTER.txt
+C:/Users/zeesh/Desktop/codewithlogs/reports/PRIORITY_ARTICLE_IMPLEMENTATION_REPORT.txt
+C:/Users/zeesh/Desktop/codewithlogs/reports/PRIORITY_ARTICLE_MODIFIED_FILES.json
+C:/Users/zeesh/Desktop/codewithlogs/reports/PRIORITY_ARTICLE_TEST_SUMMARY.json
+C:/Users/zeesh/Desktop/codewithlogs/reports/SUPABASE_RETENTION_REVIEW.txt
+C:/Users/zeesh/Desktop/codewithlogs/reports/TOP_10_IMPROVEMENT_PRIORITIES.txt
+C:/Users/zeesh/Desktop/codewithlogs/reports/content-audit.json
+C:/Users/zeesh/Desktop/codewithlogs/reports/content-preservation-latest.json
+C:/Users/zeesh/Desktop/codewithlogs/reports/priority-article-revisions/common-vercel-deployment-errors-solutions.txt
+C:/Users/zeesh/Desktop/codewithlogs/reports/priority-article-revisions/debug-production-errors-nextjs.txt
+C:/Users/zeesh/Desktop/codewithlogs/reports/priority-article-revisions/deploy-nextjs-to-vercel-guide.txt
+C:/Users/zeesh/Desktop/codewithlogs/reports/priority-article-revisions/manifest.json
+C:/Users/zeesh/Desktop/codewithlogs/reports/priority-article-revisions/nextjs-authentication-without-nextauth.txt
+C:/Users/zeesh/Desktop/codewithlogs/reports/priority-article-revisions/nextjs-folder-structure-large-projects.txt
+C:/Users/zeesh/Desktop/codewithlogs/reports/priority-article-tests/01-missing-import-before.log
+C:/Users/zeesh/Desktop/codewithlogs/reports/priority-article-tests/02-type-error-before.log
+C:/Users/zeesh/Desktop/codewithlogs/reports/priority-article-tests/03-alias-before.log
+C:/Users/zeesh/Desktop/codewithlogs/reports/priority-article-tests/04-lint-only-before.log
+C:/Users/zeesh/Desktop/codewithlogs/reports/priority-article-tests/05-build-does-not-run-eslint.log
+C:/Users/zeesh/Desktop/codewithlogs/reports/priority-article-tests/06-fixed-production-build.log
+C:/Users/zeesh/Desktop/codewithlogs/reports/priority-article-tests/07-fixed-typecheck.log
+C:/Users/zeesh/Desktop/codewithlogs/reports/priority-article-tests/08-git-init.log
+C:/Users/zeesh/Desktop/codewithlogs/reports/priority-article-tests/09-git-add.log
+C:/Users/zeesh/Desktop/codewithlogs/reports/priority-article-tests/10-git-index-before.log
+C:/Users/zeesh/Desktop/codewithlogs/reports/priority-article-tests/11-git-hop-one.log
+C:/Users/zeesh/Desktop/codewithlogs/reports/priority-article-tests/12-git-hop-two.log
+C:/Users/zeesh/Desktop/codewithlogs/reports/priority-article-tests/13-git-index-after.log
+C:/Users/zeesh/Desktop/codewithlogs/reports/priority-article-tests/14-server.log
+C:/Users/zeesh/Desktop/codewithlogs/reports/priority-article-tests/confirmation-results.json
+C:/Users/zeesh/Desktop/codewithlogs/reports/priority-article-tests/fixture-sources.json
+C:/Users/zeesh/Desktop/codewithlogs/reports/priority-article-tests/preservation-homepage.json
+C:/Users/zeesh/Desktop/codewithlogs/reports/priority-article-tests/results.json
+C:/Users/zeesh/Desktop/codewithlogs/reports/priority-article-tests/site-eslint.json
+C:/Users/zeesh/Desktop/codewithlogs/reports/priority-articles.json
+C:/Users/zeesh/Desktop/codewithlogs/reports/route-validation.json
+C:/Users/zeesh/Desktop/codewithlogs/scripts/audit-editorial.mjs
+C:/Users/zeesh/Desktop/codewithlogs/scripts/test-priority-articles.mjs
+C:/Users/zeesh/Desktop/codewithlogs/src/app/(public)/page.tsx
+C:/Users/zeesh/Desktop/codewithlogs/tsconfig.json

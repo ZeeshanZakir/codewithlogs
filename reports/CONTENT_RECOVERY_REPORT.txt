@@ -1,0 +1,188 @@
+CODEWITHLOGS — CONTENT QUALITY RECOVERY IMPLEMENTATION REPORT
+Branch: redesign/adsense-readiness
+Date: 2026-10-21
+Scope: local review package and safe source maintenance. No deployment, resubmission,
+CMS publication, article update, archive, deletion, redirect or database migration.
+
+DELIVERABLES
+- CONTENT_AUDIT.txt and content-audit.json: reassessment of all 58 stored bodies
+  against seven quality dimensions, with article-specific findings and selected
+  claims requiring author evidence. Supersedes niche-first archival recommendations.
+- TOP_10_IMPROVEMENT_PRIORITIES.txt and priority-articles.json: ranked existing
+  articles, rationale, effort, preserved status and corrections required.
+- guides/01 through 05: complete DRAFT guides for Node discovery, npm.ps1 policy,
+  Git discovery, Git endings and VS Code terminal launch. Official references,
+  reproduction, root cause, proposed fix, version limits, verification and mistakes.
+- VERIFICATION_REQUIREMENTS.txt: evidence matrix and owner publication gates.
+- FUNCTIONALITY_AUDIT.txt: search and subscriber capture behavior, tests and gaps.
+- LINT_RECOVERY.txt: priorities for the original 54 errors, repairs and 10 warnings.
+- content-recovery-tests.json plus detailed test outputs: current verification.
+
+CONTENT FINDINGS
+49 IMPROVE / 9 potential MERGE / 0 KEEP / 0 ARCHIVE.
+KEEP here means no substantive correction identified, not merely on-niche.
+MERGE means compare overlapping intent; differentiation may be the better outcome.
+No consolidation, URL change or live status change was made. No article is
+automatically worthless because it covers AI, freelancing or another older topic.
+The nine intent-overlap candidates are the three TypeScript introductions, two
+database comparisons, two AI-agent definitions and two free-learning resources.
+Search Console data was unavailable; priorities are editorial, not traffic forecasts.
+Provenance is unverified, not disproved. No plagiarism or AI-authorship diagnosis.
+
+Reader-safety priorities include inventory aggregate locking, auth/data/action
+boundaries, Supabase definer helpers and Sheets view permissions. Static review
+and targeted official docs establish correction needs; existing snippets were not
+all executed. Personal experience, pricing, costs and performance claims need
+author evidence and dated sources. Do not promote these as verified solutions.
+
+TOP TEN EXISTING CANDIDATES
+1. common-vercel-deployment-errors-solutions
+2. debug-production-errors-nextjs
+3. supabase-errors-production-fixes
+4. supabase-row-level-security-real-examples
+5. inventory-management-system-nextjs-supabase
+6. nextjs-authentication-without-nextauth
+7. deploy-nextjs-to-vercel-guide
+8. nextjs-folder-structure-large-projects
+9. build-rest-api-nodejs-beginners (stored draft)
+10. what-is-code-with-logs
+
+The five new local Windows drafts develop the first five pre-existing roadmap
+briefs. They are not replacements for these ten URLs. They remain DRAFT because
+the relevant failure/repair fixtures have not been independently run. Website
+build/test success is not article verification. Homepage pending sections remain;
+no draft was imported to the database or labeled published/verified.
+
+SOURCE IMPLEMENTATION
+- Replaced render-time state changes in JWT/regex with pure derivation.
+- Moved JWT child components outside render and guarded parsed object/claim types.
+- Preserved Base64's live encoded output through derivation; cron builds directly
+  from current fields; gallery starts at the requested index and follows events.
+- Regex matching no longer mutates a memoized regex; global zero-width matches
+  terminate safely through matchAll. Normal/named/single-match behavior is covered.
+- Removed unsafe any uses with real types/guards; preserved category selection.
+- Escaped JSX tool prose without changing rendered wording or stored articles.
+- Corrected const bindings while retaining MongoDB connection cache behavior.
+- Subscriber confirmation now matches blog/promotions consent; malformed JSON is
+  rejected before DB access; server failures no longer expose DB exception details.
+- Search loading no longer announces a preliminary result count as definitive.
+No dependency, authentication provider, CMS schema or admin workflow was replaced.
+
+PRESERVED FUNCTIONALITY AND DATA
+Read-only before/after snapshots match all 58 projected records, including body
+hashes, slugs, publication statuses, authors, excerpts and scheduling metadata.
+41 currently public article URLs remain accessible; the remaining 17 stay drafts.
+Authentication configuration, CMS, admin actions, uploads and MongoDB models remain.
+The admin category typing change preserves predefined/custom category behavior.
+No actual subscriber, contact message or external email was created by tests.
+Authenticated admin write flows were not exercised with production records.
+
+TEST RESULTS
+- ESLint: 0 errors / 10 warnings; all 54 baseline errors repaired.
+- TypeScript: npx tsc --noEmit passes.
+- Production: npm run build passes, 33 static pages generated.
+  Initial sandbox build could not fetch the existing Google font. A network-
+  authorized local rerun passed. No production deployment was invoked.
+- Local production route validator: 68 route checks, 41 public articles,
+  4 search checks, no failures, no broken internal links detected.
+- 9 isolated functional checks: JWT Unicode/expiry/malformed/nonobject cases,
+  Base64 Unicode/URL-safe round trips, regex captures/invalid/zero-width/repeated
+  evaluation, newsletter validation, consent messages, duplicate no-write behavior,
+  generic DB failure response. Newsletter DB is mocked.
+- 7 additional live HTTP checks: body-only search, word/regex query boundaries,
+  invalid newsletter requests and rendered homepage form controls.
+- Article preservation: 58/58 records match the starting hashes.
+- git diff --check passes.
+- Browser rerun unavailable: browser URL security policy denied page authority.
+  No alternate surface or policy workaround attempted. Existing prior-phase browser
+  evidence is historical and is not presented as a new interaction pass.
+
+REMAINING ISSUES / PRIORITIES
+1. Reproduce/review all five guide fixes and correct high-risk existing content;
+   then seek owner approval for each actual publication/edit. No automatic change.
+2. Confirm newsletter persistence/delivery in an owner-controlled test workflow.
+   Code captures subscribers but no automated mailing/unsubscribe flow was found.
+   No promise of delivery, double opt-in or unsubscribe implementation is verified.
+3. Review the 10 residual lint warnings: password initialization dependency,
+   code-view scroll dependency, five image-preview recommendations, three unused
+   bindings. They are recorded in LINT_RECOVERY.txt and were not suppressed.
+4. Search works through homepage GET and full-body API. Typing/clearing filters
+   does not synchronize the shareable URL; large-corpus indexing remains future work.
+5. Obtain Search Console query data and author claim/provenance records before
+   consolidation or editorial reclassification. No traffic potential was discarded.
+6. Existing external privacy/consent, historical credential rotation, production
+   indexing, real-user vitals and owner-approved authenticated tests remain in
+   SEO_READINESS.txt. This report makes no AdSense approval guarantee.
+
+LOCAL REVIEW
+From C:\Users\zeesh\Desktop\codewithlogs:
+  npm.cmd run dev
+Open http://localhost:3000/ and /blog?q=module.
+For the built version:
+  npm.cmd run build
+  npm.cmd run start
+Open /tools/jwt-decoder, /tools/regex-tester, /tools/base64 and /tools/cron-builder
+to review affected utilities. Inspect the drafts as local text files; they have
+no public routes. Do not submit a real subscriber or run admin writes against the
+shared database merely for review. The temporary validation server is stopped
+at the end of this task.
+
+REPEATABLE CHECKS
+  npx.cmd eslint .
+  npx.cmd tsc --noEmit
+  node scripts/validate-content-recovery.mjs
+  node scripts/validate-redesign.mjs http://localhost:3000
+Audit regeneration uses the ignored .next/editorial-source.json snapshot:
+  node scripts/audit-editorial.mjs
+A fresh read-only DB snapshot requires configured access:
+  node scripts/audit-editorial.mjs --refresh
+It never writes posts; report recommendations are local artifacts only.
+
+FULL MODIFIED/ADDED FILE INVENTORY FOLLOWS
+Paths are absolute. This lists this recovery phase's working changes; prior
+redesign implementation remains in the branch.
+
+
+C:/Users/zeesh/Desktop/codewithlogs/reports/CONTENT_AUDIT.txt
+C:/Users/zeesh/Desktop/codewithlogs/reports/CONTENT_RECOVERY_REPORT.txt
+C:/Users/zeesh/Desktop/codewithlogs/reports/EDITORIAL_ROADMAP.txt
+C:/Users/zeesh/Desktop/codewithlogs/reports/FUNCTIONALITY_AUDIT.txt
+C:/Users/zeesh/Desktop/codewithlogs/reports/LINT_RECOVERY.txt
+C:/Users/zeesh/Desktop/codewithlogs/reports/SEO_READINESS.txt
+C:/Users/zeesh/Desktop/codewithlogs/reports/TOP_10_IMPROVEMENT_PRIORITIES.txt
+C:/Users/zeesh/Desktop/codewithlogs/reports/VERIFICATION_REQUIREMENTS.txt
+C:/Users/zeesh/Desktop/codewithlogs/reports/article-review-notes.json
+C:/Users/zeesh/Desktop/codewithlogs/reports/content-audit.json
+C:/Users/zeesh/Desktop/codewithlogs/reports/content-preservation-latest.json
+C:/Users/zeesh/Desktop/codewithlogs/reports/content-preservation.json
+C:/Users/zeesh/Desktop/codewithlogs/reports/content-recovery-modified-files.json
+C:/Users/zeesh/Desktop/codewithlogs/reports/content-recovery-tests.json
+C:/Users/zeesh/Desktop/codewithlogs/reports/editorial-roadmap.json
+C:/Users/zeesh/Desktop/codewithlogs/reports/eslint-recovery.json
+C:/Users/zeesh/Desktop/codewithlogs/reports/guides/01-windows-node-not-recognized.txt
+C:/Users/zeesh/Desktop/codewithlogs/reports/guides/02-windows-npm-ps1-blocked.txt
+C:/Users/zeesh/Desktop/codewithlogs/reports/guides/03-windows-git-not-recognized.txt
+C:/Users/zeesh/Desktop/codewithlogs/reports/guides/04-windows-git-line-endings.txt
+C:/Users/zeesh/Desktop/codewithlogs/reports/guides/05-vscode-terminal-wont-launch.txt
+C:/Users/zeesh/Desktop/codewithlogs/reports/priority-articles.json
+C:/Users/zeesh/Desktop/codewithlogs/reports/recovery-functional-tests.json
+C:/Users/zeesh/Desktop/codewithlogs/reports/recovery-live-checks.json
+C:/Users/zeesh/Desktop/codewithlogs/reports/route-validation.json
+C:/Users/zeesh/Desktop/codewithlogs/scripts/audit-editorial.mjs
+C:/Users/zeesh/Desktop/codewithlogs/scripts/validate-content-recovery.mjs
+C:/Users/zeesh/Desktop/codewithlogs/src/app/(public)/tools/page.tsx
+C:/Users/zeesh/Desktop/codewithlogs/src/app/api/subscribers/route.ts
+C:/Users/zeesh/Desktop/codewithlogs/src/components/admin/PostEditor.tsx
+C:/Users/zeesh/Desktop/codewithlogs/src/components/blog/BlogIndexClient.tsx
+C:/Users/zeesh/Desktop/codewithlogs/src/components/gallery/GalleryLightbox.tsx
+C:/Users/zeesh/Desktop/codewithlogs/src/components/tools/Base64Tool.tsx
+C:/Users/zeesh/Desktop/codewithlogs/src/components/tools/CronBuilderSeoContent.tsx
+C:/Users/zeesh/Desktop/codewithlogs/src/components/tools/CronBuilderTool.tsx
+C:/Users/zeesh/Desktop/codewithlogs/src/components/tools/JwtDecoderSeoContent.tsx
+C:/Users/zeesh/Desktop/codewithlogs/src/components/tools/JwtDecoderTool.tsx
+C:/Users/zeesh/Desktop/codewithlogs/src/components/tools/RegexTesterSeoContent.tsx
+C:/Users/zeesh/Desktop/codewithlogs/src/components/tools/RegexTesterTool.tsx
+C:/Users/zeesh/Desktop/codewithlogs/src/components/tools/TokenCounterSeoContent.tsx
+C:/Users/zeesh/Desktop/codewithlogs/src/lib/cron.ts
+C:/Users/zeesh/Desktop/codewithlogs/src/lib/jwt.ts
+C:/Users/zeesh/Desktop/codewithlogs/src/lib/mongodb.ts

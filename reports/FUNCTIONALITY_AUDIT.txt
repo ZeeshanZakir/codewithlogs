@@ -1,0 +1,56 @@
+CODEWITHLOGS — HOMEPAGE SEARCH AND NEWSLETTER
+
+SEARCH
+The homepage is a real GET form to /blog with q, not a decorative input.
+The archive reads the query, debounces requests for 250ms and calls /api/search.
+The API searches stored title, excerpt, body, category and tags, requiring every
+term to match at least one field. This is lexical substring search, not semantic
+search, fuzzy correction or relevance ranking. It preserves the archive's order.
+Only published and due scheduled records are eligible; drafts/future records do
+not enter the result set. Article content remains public without authentication.
+Regex metacharacters are escaped. Queries are bounded to 160 characters/12 words.
+Stale requests are aborted; API failures show title/summary fallback feedback.
+Corrected the loading announcement so preliminary counts do not appear definitive.
+
+Actual local HTTP checks: body-only query 6543 finds the Supabase error guide;
+module finds the deployment guide; regex-looking text is literal; invalid query
+length/word counts are rejected; returned slugs are checked against public sitemap.
+The 68-route validator also checks public metadata, anchors and links.
+Current limitation: local filter edits do not rewrite the URL, so sharing the URL
+after typing/clearing can retain the original q. Homepage submit/deep-link search
+works. Large corpora may need indexed search; no unmeasured performance claim.
+Browser interaction was not rerun: the browser tool denied authority under its
+URL policy. No alternate browser surface or policy workaround was attempted.
+
+NEWSLETTER
+The React form posts email, blogUpdates=true, promotions=false, source=homepage
+to /api/subscribers, disables its submit button while pending and shows live
+success/error feedback. The existing schema and Subscriber collection remain.
+The API validates before database access, lowercases/trims email, checks duplicates
+and upserts new subscribers. Existing subscribers retain existing preferences.
+
+Corrections:
+- Blog-only signup no longer claims the reader subscribed to promotions.
+- Promotions-only and combined confirmations describe the selected consent.
+- Malformed JSON receives 400 instead of falling through to a server error.
+- Database exceptions return generic retry feedback, not database internals.
+
+Verification:
+- Live local endpoint: malformed JSON, invalid email and no-selected-consent all
+  return 400. These requests cannot create a subscription.
+- Isolated tests execute the actual handler with a mocked Subscriber/database:
+  new signup data/flags, duplicate no-write behavior, all confirmation variants,
+  and generic database-failure response pass.
+- No valid signup was sent to the real database; no subscriber was created or
+  deleted and no mail was sent. A real persistence/delivery run remains unverified.
+
+DELIVERY AND CONSENT LIMITATIONS
+Signup is a subscriber-capture mechanism. No automated article-mail sending,
+double-opt-in confirmation or public unsubscribe/token workflow was identified
+in the newsletter implementation. Contact email delivery is a separate feature.
+The API does not currently add request throttling; account preferences on a
+duplicate request are intentionally not silently changed. Concurrent signup
+behavior needs an isolated database test before broader hardening work.
+Owner must select/review an email delivery and unsubscribe workflow, align privacy
+copy and complete an owner-controlled end-to-end test before promising delivery.
+This task adds no campaign, mailing integration or externally sent messages.

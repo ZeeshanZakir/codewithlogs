@@ -1,0 +1,58 @@
+npm.ps1 cannot be loaded: distinguish PowerShell policy from a broken npm install
+Status: DRAFT — proposed solution not reproduced in an isolated policy fixture. No publication.
+Proposed slug: windows-npm-ps1-blocked | Category: Node.js and npm Errors
+
+THE EXACT PROBLEM AND ENVIRONMENT
+Targets native Windows 11 and PowerShell 5.1/7, including VS Code's integrated PowerShell terminal. The identification error is “npm.ps1 cannot be loaded because running scripts is disabled on this system”, commonly with PSSecurityException/UnauthorizedAccess detail. Another variant concerns a script that is not digitally signed. Do not assume these messages have the same policy cause. The wording here is a recognition aid, not an observed log.
+Record Windows build, shell edition/version, Node/npm versions, install method and policy scopes. No tested combination is claimed. Command Prompt, WSL Bash and Git Bash have different launcher behavior.
+
+ROOT CAUSE
+A Windows Node/npm installation can expose npm.ps1 and npm.cmd. In a PowerShell session, the npm command can resolve to the PowerShell script, whose execution is then governed by execution policy. This is different from node not being installed, npm package permissions, antivirus quarantine or a registry network error. Policy precedence matters: organization-controlled scopes can override settings a user tries to change.
+
+REPRODUCTION PLAN
+Use an owner-approved disposable Windows VM with Node/npm already installed. Record its policies and launcher resolution. Reproduce using a process-scoped policy setting in that VM only, never by altering an organization's configured policy. Confirm that ordinary npm selects npm.ps1 and actually fails before claiming reproduction. A MachinePolicy/UserPolicy value can make a proposed process setting ineffective. Restore the original environment or discard the VM after testing. This experiment has not been performed for this draft.
+
+DIAGNOSE THE FAILING TERMINAL
+PowerShell commands:
+
+$PSVersionTable.PSVersion
+Get-Command npm -All | Select-Object CommandType, Source, Definition
+Get-Command npm.cmd -All | Select-Object CommandType, Source
+Get-ExecutionPolicy -List
+Get-ExecutionPolicy
+node --version
+
+Record the effective policy as well as the scope list. An alias or function named npm requires its own investigation. If node also fails command discovery, resolve that installation/PATH problem first.
+
+PREFERRED NARROW SOLUTION
+Where running the installed npm command launcher is allowed by your organization's rules, invoke it explicitly:
+
+npm.cmd --version
+npm.cmd run
+
+The first command checks npm startup without downloading dependencies. The second lists scripts in the current trusted project. For this CodeWithLogs repository the existing check commands are:
+
+npm.cmd run lint
+npm.cmd run build
+
+These commands are examples for this repository, not evidence that the npm.ps1 failure was reproduced. Build scripts execute project code: run them only in a project you trust. Explicit npm.cmd selection does not change execution policy or grant administrator rights. If application control also blocks that launcher, stop and request the administrator's supported development setup; do not seek another way around that control.
+
+IF YOU INTENTIONALLY WANT POWERSHELL SCRIPT EXECUTION
+On a personally administered machine, review Microsoft's execution-policy documentation and the effective scope before changing anything. RemoteSigned for CurrentUser is a scoped option for some developer setups, but it is not a universal fix: downloaded scripts, signatures and Group Policy can still matter. Record the existing value and obtain approval for any change. This draft intentionally does not prescribe a global Unrestricted/Bypass setting or a blanket unblock command.
+
+VERIFY THE FIX
+In the original failing shell, ordinary npm should still demonstrate the diagnosed policy behavior until the underlying policy/selection changes. The explicit allowed npm.cmd command should report the expected npm version. Compare Get-Command npm.cmd with the selected installation path. Run a harmless project script and capture its exit code and expected output. Reopen VS Code and repeat in a new terminal. Test npm install only in a disposable fixture if dependency installation is part of the supported workflow; version output alone does not verify network access or package scripts.
+
+VERSION CONSIDERATIONS AND ALTERNATIVES
+Record whether the terminal runs powershell.exe (Windows PowerShell) or pwsh.exe (PowerShell 7). A policy or profile in one host need not explain another host's result. npm launcher paths can differ under version managers. Selecting the Command Prompt terminal profile is an alternative only where that workflow is permitted. Use npm.cmd consistently in PowerShell instructions when deliberately avoiding ambiguous launcher selection.
+
+COMMON MISTAKES
+Reinstalling Node before checking which launcher failed; globally allowing all scripts; disabling security software; running the entire editor as administrator; assuming the error proves npm registry access is broken; reporting a successful --version as a verified app repair.
+
+PUBLICATION GATE
+Retain DRAFT until a tester records the original script-selection failure, all policy scopes, exact paths/versions, allowed-launcher success and repeatability on a clean fixture. Document managed-policy limitations and have the author approve the final text. No security policy has been changed as part of writing this draft.
+
+OFFICIAL REFERENCES (reviewed 2026-10-21)
+PowerShell execution policies and scope precedence: https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_execution_policies
+Command precedence and explicit command names: https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_command_precedence
+Node/npm installation checks: https://docs.npmjs.com/downloading-and-installing-node-js-and-npm/

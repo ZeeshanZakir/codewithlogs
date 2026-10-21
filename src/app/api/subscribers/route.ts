@@ -24,8 +24,13 @@ const subscriberSchema = z
   });
 
 export async function POST(request: Request) {
+  let body: unknown;
   try {
-    const body = await request.json();
+    body = await request.json();
+  } catch {
+    return NextResponse.json({ error: "Invalid JSON request." }, { status: 400 });
+  }
+  try {
     const parsed = subscriberSchema.safeParse(body);
 
     if (!parsed.success) {
@@ -73,17 +78,18 @@ export async function POST(request: Request) {
     return NextResponse.json(
       {
         alreadySubscribed: false,
-        message: "You are subscribed for blog updates and promotions.",
+        message: parsed.data.blogUpdates && parsed.data.promotions
+          ? "You are subscribed for blog updates and promotions."
+          : parsed.data.blogUpdates
+            ? "You are subscribed for blog updates."
+            : "You are subscribed for promotions.",
       },
       { status: 200 },
     );
-  } catch (error) {
+  } catch {
     return NextResponse.json(
       {
-        error:
-          error instanceof Error
-            ? error.message
-            : "Server error while saving your subscription.",
+        error: "Unable to save your subscription right now. Please try again later.",
       },
       { status: 500 },
     );

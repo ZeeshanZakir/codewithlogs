@@ -4,7 +4,6 @@ import { useEffect, useMemo, useState } from "react";
 import { Clipboard, Download, Eraser, Key, LockKeyhole, Unlock } from "lucide-react";
 
 import {
-  base64UrlDecode,
   downloadTextFile,
   formatTimestamp,
   isExpired,
@@ -27,53 +26,7 @@ function StatChip({ label, value, variant = "default" }: { label: string; value:
   );
 }
 
-export function JwtDecoderTool() {
-  const [jwtInput, setJwtInput] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
-  const [copied, setCopied] = useState<string | null>(null);
-  const [activeTab, setActiveTab] = useState<"header" | "payload" | "signature">("payload");
-
-  const decoded = useMemo(() => {
-    if (!jwtInput.trim()) {
-      return null;
-    }
-    try {
-      setErrorMessage("");
-      return parseJwt(jwtInput);
-    } catch (error) {
-      setErrorMessage(error instanceof Error ? error.message : "Failed to decode JWT");
-      return null;
-    }
-  }, [jwtInput]);
-
-  const isExpiredStatus = useMemo(() => {
-    if (!decoded?.payload) return null;
-    return isExpired(decoded.payload);
-  }, [decoded]);
-
-  const isValidFormat = useMemo(() => isValidJwtFormat(jwtInput), [jwtInput]);
-
-  useEffect(() => {
-    if (!copied) {
-      return;
-    }
-    const timer = window.setTimeout(() => setCopied(null), 1500);
-    return () => window.clearTimeout(timer);
-  }, [copied]);
-
-  function handleClear() {
-    setJwtInput("");
-    setErrorMessage("");
-    setCopied(null);
-  }
-
-  async function handleCopy(text: string, id: string) {
-    if (!text) return;
-    await navigator.clipboard.writeText(text);
-    setCopied(id);
-  }
-
-  function TabButton({
+function TabButton({
     active,
     icon: Icon,
     label,
@@ -98,7 +51,7 @@ export function JwtDecoderTool() {
     );
   }
 
-  function JsonViewer({ data, label }: { data: any; label: string }) {
+function JsonViewer({ data, label, copied, handleCopy }: { data: Record<string, unknown>; label: string; copied: string | null; handleCopy: (text: string, id: string) => Promise<void> }) {
     const jsonString = JSON.stringify(data, null, 2);
 
     return (
@@ -120,6 +73,47 @@ export function JwtDecoderTool() {
       </div>
     );
   }
+
+export function JwtDecoderTool() {
+  const [jwtInput, setJwtInput] = useState("");
+  const [copied, setCopied] = useState<string | null>(null);
+  const [activeTab, setActiveTab] = useState<"header" | "payload" | "signature">("payload");
+
+  const { decoded, errorMessage } = useMemo(() => {
+    if (!jwtInput.trim()) return { decoded: null, errorMessage: "" };
+    try {
+      return { decoded: parseJwt(jwtInput.trim()), errorMessage: "" };
+    } catch (error) {
+      return { decoded: null, errorMessage: error instanceof Error ? error.message : "Failed to decode JWT" };
+    }
+  }, [jwtInput]);
+
+  const isExpiredStatus = useMemo(() => {
+    if (!decoded?.payload) return null;
+    return isExpired(decoded.payload);
+  }, [decoded]);
+
+  const isValidFormat = useMemo(() => isValidJwtFormat(jwtInput), [jwtInput]);
+
+  useEffect(() => {
+    if (!copied) {
+      return;
+    }
+    const timer = window.setTimeout(() => setCopied(null), 1500);
+    return () => window.clearTimeout(timer);
+  }, [copied]);
+
+  function handleClear() {
+    setJwtInput("");
+    setCopied(null);
+  }
+
+  async function handleCopy(text: string, id: string) {
+    if (!text) return;
+    await navigator.clipboard.writeText(text);
+    setCopied(id);
+  }
+
 
   return (
     <div className="space-y-10">
@@ -173,22 +167,22 @@ export function JwtDecoderTool() {
                 <div className="flex flex-wrap items-center gap-3 rounded-[20px] border border-black/6 bg-surface/70 px-4 py-4 text-sm">
                   <StatChip
                     label="Algorithm"
-                    value={decoded.header.alg || "Unknown"}
+                    value={typeof decoded.header.alg === "string" ? decoded.header.alg : "Unknown"}
                   />
-                  {decoded.payload.iss && (
+                  {typeof decoded.payload.iss === "string" && (
                     <StatChip label="Issuer" value={decoded.payload.iss} />
                   )}
-                  {decoded.payload.sub && (
+                  {typeof decoded.payload.sub === "string" && (
                     <StatChip label="Subject" value={decoded.payload.sub} />
                   )}
-                  {decoded.payload.exp && (
+                  {typeof decoded.payload.exp === "number" && (
                     <StatChip
                       label="Expires"
                       value={formatTimestamp(decoded.payload.exp)}
                       variant={isExpiredStatus ? "danger" : "success"}
                     />
                   )}
-                  {decoded.payload.iat && (
+                  {typeof decoded.payload.iat === "number" && (
                     <StatChip
                       label="Issued At"
                       value={formatTimestamp(decoded.payload.iat)}
@@ -218,11 +212,11 @@ export function JwtDecoderTool() {
                 </div>
 
                 {activeTab === "header" && (
-                  <JsonViewer data={decoded.header} label="Header" />
+                  <JsonViewer copied={copied} handleCopy={handleCopy} data={decoded.header} label="Header" />
                 )}
 
                 {activeTab === "payload" && (
-                  <JsonViewer data={decoded.payload} label="Payload" />
+                  <JsonViewer copied={copied} handleCopy={handleCopy} data={decoded.payload} label="Payload" />
                 )}
 
                 {activeTab === "signature" && (
@@ -285,7 +279,7 @@ export function JwtDecoderTool() {
 
             {!decoded && jwtInput.trim() && !isValidFormat && (
               <div className="rounded-[18px] border border-amber-200 bg-amber-50 px-4 py-3 text-sm font-medium text-amber-800">
-                This doesn't look like a valid JWT format. A JWT should have 3 parts separated by dots.
+                This doesn&apos;t look like a valid JWT format. A JWT should have 3 parts separated by dots.
               </div>
             )}
           </div>

@@ -21,6 +21,7 @@ export function GalleryLightbox({
   const [selectedIndex, setSelectedIndex] = useState(initialIndex);
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: pin.images.length > 1,
+    startIndex: initialIndex,
   });
 
   useEffect(() => {
@@ -45,14 +46,13 @@ export function GalleryLightbox({
       return;
     }
 
-    emblaApi.scrollTo(initialIndex, true);
-    setSelectedIndex(initialIndex);
 
     const onSelect = () => {
       setSelectedIndex(emblaApi.selectedScrollSnap());
     };
 
     emblaApi.on("select", onSelect);
+    emblaApi.scrollTo(initialIndex, true);
 
     return () => {
       emblaApi.off("select", onSelect);

@@ -1,0 +1,96 @@
+CODEWITHLOGS — ADDITIONAL SUPABASE ARTICLES: RETAIN AND REPAIR
+No article is archived for niche relevance. These subjects support practical
+Next.js/deployment troubleshooting and retain their current URLs and records.
+Recommendations below are local editorial decisions, not status changes.
+
+1. 10 SUPABASE ERRORS I FACED IN PRODUCTION
+URL: /blog/supabase-errors-production-fixes
+Recommendation: RETAIN / IMPROVE, high priority after the five requested revisions.
+Value: concrete error strings and a useful RLS/session/query/connection checklist.
+
+Corrections required:
+- .single() normally returns a result with error; do not say it necessarily throws.
+  .throwOnError changes handling. .maybeSingle permits zero rows, not arbitrary
+  multiple rows. Read error/data explicitly and demonstrate each cardinality.
+- Membership security-definer function: schema qualification, safe search_path,
+  execute grants and ownership/role review; avoid making broad RLS-bypass helpers
+  a routine copy/paste remedy without explaining the privilege boundary.
+- Session lifetime is configurable; Next 16 proxy and the pinned SSR cookie/cache
+  flow must be complete. Do not imply exactly one hour for every project.
+- Pooling choices depend on ORM, prepared statements, connection mode and actual
+  project strings; “always use 6543” is not a universal production rule.
+- Missing vars, SMTP and schema migration causes need exact diagnostics, not
+  asserted percentages, silent-failure generalizations or production push commands.
+- Confirm claimed personal incidents with author records or use neutral wording.
+
+New evidence: real supabase-js 2.118.0 with a simulated 406 PostgREST response
+returns error.code=PGRST116 without a thrown exception; a simulated empty 200 JSON
+array through maybeSingle returns null data/null error. See confirmation-results.
+This is SDK/HTTP contract evidence, NOT a live database/cardinality or RLS test.
+Remaining: complete disposable schema, two users, actual zero/one/multiple-row
+queries, expired sessions, permissions and pooler-specific connection exercises.
+
+2. SUPABASE ROW LEVEL SECURITY EXPLAINED
+URL: /blog/supabase-row-level-security-real-examples
+Recommendation: RETAIN / IMPROVE, security-sensitive supporting education.
+Value: own-row/public/team policy search intent and concrete SQL examples.
+
+Corrections required:
+- Explain permissive versus restrictive policies, grants and bypass roles;
+  “nobody can remove the filter” is too absolute.
+- For update rules show USING and WITH CHECK explicitly; explain PostgreSQL's
+  fallback behavior rather than implying omission always removes write checks.
+- A user-editable profile must not grant self-service is_admin escalation.
+  Demonstrate column privileges or an appropriate controlled write path/trigger;
+  a vague “exclude the flag with with check” is not a complete privilege design.
+- Harden and restrict definer helpers; avoid exposing them casually in a public
+  RPC schema. Scope recursion examples and provide full related table policies.
+- SET LOCAL role/claims examples need an explicit transaction and real test UUIDs.
+  A SQL-console owner/bypass role is not equivalent to an authenticated API call.
+- Replace unverified speed claims with a measurable plan or retained evidence.
+
+Evidence status: documentation/static review only; no live SQL execution.
+The new auth fixture supplies a separate minimal own-note policy example, but
+its SQL remains unexecuted. Its mocked guards do not verify this older article.
+Remaining: anonymous/A/B/admin API matrix, denied reads/inserts/updates/deletes,
+mutable role escalation, grant inspection and helper search_path/execute tests.
+
+3. INVENTORY MANAGEMENT WITH NEXT.JS AND SUPABASE
+URL: /blog/inventory-management-system-nextjs-supabase
+Recommendation: RETAIN / SUBSTANTIAL REPAIR before additional promotion.
+Value: distinct stock-ledger, auditability and concurrent-sale problem; this is
+useful technical content even though it is not Windows-only.
+
+Critical corrections:
+- SELECT SUM(change) ... FOR UPDATE is invalid PostgreSQL aggregate locking.
+  A function/transaction alone does not establish serialization or prevent races.
+- A candidate design locks a stable product row before reading/writing the ledger,
+  with every writer following the same protocol. Another is an atomic guarded
+  balance update plus ledger entry in one transaction. Choose and prove a complete
+  design; do not paste a plausible fragment and claim negative stock is solved.
+- Validate product/tenant membership, positive bounded quantity and actor identity;
+  reason='sale' alone is not sufficient authorization for arbitrary movement rows.
+- Review security-definer privileges/search_path/execute grants and prevent direct
+  ledger inserts from bypassing the stock invariant. Confirm refund/adjustment paths.
+- Add realtime subscription cleanup and distinguish server rendering from actual
+  downloaded JavaScript/performance measurements.
+- Verify business hosting plan eligibility/cost claims and original client story;
+  no fictional numbers, testimonial, test outcome or “never happened again” claim.
+
+Evidence status: invalid aggregate-lock usage confirmed against official SELECT
+documentation; not reproduced in a local PostgreSQL server. Docker/PostgreSQL
+runtime was not available in the inspected tool setup, and no cloud DB was used.
+Remaining: isolated SQL fixture, last-unit simultaneous sales from two sessions,
+negative/zero quantity rejection, unauthorized tenant denial, transaction rollback,
+idempotent retry and consistency between balance/ledger. Record full SQL and logs.
+
+OFFICIAL REFERENCES
+https://supabase.com/docs/reference/javascript/single
+https://supabase.com/docs/reference/javascript/maybesingle
+https://supabase.com/docs/guides/database/postgres/row-level-security
+https://supabase.com/docs/guides/database/functions
+https://supabase.com/docs/guides/database/connecting-to-postgres
+https://www.postgresql.org/docs/current/sql-select.html
+
+No new original body, verified badge or publication status was written. Retention
+protects existing usefulness/traffic potential; it does not certify current code.

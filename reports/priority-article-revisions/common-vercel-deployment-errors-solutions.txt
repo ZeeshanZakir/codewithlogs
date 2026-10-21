@@ -1,0 +1,136 @@
+Common Vercel Deployment Errors: a Windows-to-production diagnostic checklist
+REVISION DRAFT — not published. Retain /blog/common-vercel-deployment-errors-solutions.
+Existing article record, title and publication status are unchanged.
+
+## Scope and evidence
+Use this guide to separate import resolution, TypeScript, environment and hosting
+failures. A successful localhost page does not establish a successful production
+build. Examples target Next.js 16.2.6 and native PowerShell. See the committed
+fixtures/priority-articles package/lockfile and reports/priority-article-tests for
+the exact tested environment and outcomes. Only cases recorded as passed in that
+report are tested; Vercel itself and Linux builds have not been exercised.
+No client anecdotes, timing promises or fixed plan-limit claims are asserted.
+
+## 1. Module not found: inspect the path and package separately
+For “Module not found: Can't resolve …”, copy the entire import specifier and the
+file importing it. Is it a package name, a relative path, or an alias such as @/?
+Check package.json and the lockfile for package imports. For local imports, compare
+the complete tracked path including upper/lowercase letters and filename suffix.
+
+PowerShell, from the actual repository root:
+
+git status --short
+git ls-files -- src/components
+Get-Content tsconfig.json
+npm.cmd ls next
+
+An alias used by src/app/page.tsx can be configured with:
+
+{
+  "compilerOptions": {
+    "paths": { "@/*": ["./src/*"] }
+  }
+}
+
+Merge that entry with the existing compiler settings; do not replace tsconfig.json
+with this fragment. A file named src/components/Status.tsx is then imported as:
+
+import { Status } from '@/components/Status';
+
+The fixture deliberately imports a nonexistent component, then fixes the import;
+it separately breaks and restores the alias mapping. A fresh build is the check.
+Do not install a package merely because a misspelled local import cannot resolve.
+
+### Case-only renames on Windows
+Windows can hide case discrepancies that a case-sensitive build exposes. Inspect
+Git's index, not only Explorer. If the intended file is Button.tsx and Git tracks
+button.tsx, use two distinct names in a clean, reviewed branch:
+
+git mv src/components/button.tsx src/components/button-case-temp.tsx
+git mv src/components/button-case-temp.tsx src/components/Button.tsx
+git diff --cached --name-status
+git ls-files -- src/components
+
+Confirm imports use the final exact spelling. Choose an unused temporary name;
+do not overwrite a real file. The isolated Git test checks the index correction
+on Windows. A Linux clone/build remains a separate required verification step.
+
+## 2. A type error appears during build
+Next.js development mode is not a replacement for a full type check. The fixture
+reproduces assigning a string to a number and records the failing build. Correct
+the data/type contract rather than hiding it with any or ignoreBuildErrors:
+
+// Incorrect fixture: const quantity: number = 'three';
+const quantity: number = 3;
+
+Run the checks separately:
+
+npx.cmd tsc --noEmit
+npm.cmd run lint
+npm.cmd run build
+
+In Next.js 16, next build does not run ESLint. The fixture includes an intentional
+explicit-any violation that ESLint rejects while next build succeeds, followed
+by restoring clean code. Configure CI/build checks to run lint explicitly. The
+old ignoreDuringBuilds advice is not an appropriate Next.js 16 fix.
+
+## 3. Environment values differ after deployment
+NEXT_PUBLIC_ values referenced literally in client code are bundled at build
+time. Changing a runtime variable does not rewrite an already-built client bundle.
+Server values depend on when code executes: a dynamic request can read runtime
+configuration, while static rendering may capture values during the build.
+
+The fixture builds with NEXT_PUBLIC_FIXTURE_LABEL=fixture-build-a, then starts the
+same build with a different value. It compares the client output with a dynamic
+server route's synthetic runtime label. It never prints database credentials.
+In Vercel, inspect the variable's selected environment and branch scope and create
+a new approved deployment when its build-time value changes. Do not copy every
+local development secret into every hosted environment or prefix secrets publicly.
+
+## 4. Timeouts, bundle size and memory errors
+Read the actual platform error and current project configuration. Duration,
+concurrency and bundle allowances depend on runtime, plan and enabled features;
+there is no universal “Hobby is ten seconds” rule in this guide. Measure the slow
+operation and review current official limits before selecting a remedy. A slow
+query may need an index; an export may need a durable background job with explicit
+retry/idempotency behavior. Neither is proved by changing a timeout alone.
+
+For a genuine Node build-memory error, investigate build inputs and memory first.
+If testing an approved memory adjustment in PowerShell, preserve NODE_OPTIONS:
+
+$originalNodeOptions = $env:NODE_OPTIONS
+try {
+  $env:NODE_OPTIONS = (($originalNodeOptions, '--max-old-space-size=4096') |
+    Where-Object { $_ }) -join ' '
+  npm.cmd run build
+} finally {
+  $env:NODE_OPTIONS = $originalNodeOptions
+}
+
+Do not add a second conflicting max-old-space-size flag. This memory example is
+documentation-reviewed, not an executed out-of-memory repair. Avoid presenting
+POSIX NAME=value command syntax as native PowerShell syntax.
+
+## 5. Cookies, static rendering and production-only 404s
+A request-dependent page needs a request-time rendering design. Do not apply
+force-dynamic everywhere without checking whether the page should be public,
+personalized, cached or exported. With static export, the host cannot generate
+an omitted path on request. In a server deployment, behavior also depends on
+dynamicParams, generateStaticParams and cache settings. Check the specific mode.
+Inspect proxy matchers if an unrelated route is intercepted. Next.js 16 uses
+proxy.ts; older middleware examples require a version-specific explanation.
+
+## Verify a correction
+Reproduce the original failure, make one change, rerun its command, then run lint,
+types and build. For a hosted failure compare the deployment commit, environment,
+root directory and Node version. Verify the approved preview before promotion.
+No deployment, performance result, account limit or article-wide verification is
+claimed by the local fixture results. This revision remains DRAFT pending review.
+
+## Official references
+https://nextjs.org/docs/messages/module-not-found
+https://nextjs.org/docs/app/guides/upgrading/version-16
+https://nextjs.org/docs/app/guides/environment-variables
+https://git-scm.com/docs/git-mv
+https://vercel.com/docs/functions/limitations
+https://vercel.com/docs/deployments/environments

@@ -1,0 +1,106 @@
+[
+  {
+    "file": "fixtures/priority-articles/.gitignore",
+    "sha256": "499faa2b811cfccb1c724012d8b7c1b1fac7841cc5e706d9fafa2d225fcae302"
+  },
+  {
+    "file": "fixtures/priority-articles/next.config.mjs",
+    "sha256": "06274501fc7a90f548bdcc320eb90b9b214cf43a2883b085200310dc5a151770"
+  },
+  {
+    "file": "fixtures/priority-articles/package-lock.json",
+    "sha256": "36aa8c22f742ace6c7b5d7fec07bbf1ec15d5b9fb99f71cb91636e4fe88eebb4"
+  },
+  {
+    "file": "fixtures/priority-articles/package.json",
+    "sha256": "66daa5b2cb64e37ac88e6f7a8322b3f543c76b067fc9e85c29fdc64d84c9f38e"
+  },
+  {
+    "file": "fixtures/priority-articles/README.txt",
+    "sha256": "9666b42ce2a5e4440b5c983720eccaace9dbdacae64624fab7d521488c47b8fe"
+  },
+  {
+    "file": "fixtures/priority-articles/schema.sql",
+    "sha256": "5107c9c4f28aebb8949b2572440ec5b988774219a0cdcfb374cfb589459d9b4e"
+  },
+  {
+    "file": "fixtures/priority-articles/src/app/api/private/route.ts",
+    "sha256": "9ce8d01eb31866fb0e390cab053793b1deaa02b9aa0c34b61b75c0256f42fffe"
+  },
+  {
+    "file": "fixtures/priority-articles/src/app/api/runtime-env/route.ts",
+    "sha256": "c7e9ab44a92ce3ede2b0e1c19033931c87cab436ec357842ddfc93e3b6a2ab0c"
+  },
+  {
+    "file": "fixtures/priority-articles/src/app/dashboard/actions.ts",
+    "sha256": "3ce52cf7c39b94f1a8099676ffdc0da8adbbefa6d382c80d75f2f7f1dab9988f"
+  },
+  {
+    "file": "fixtures/priority-articles/src/app/dashboard/page.tsx",
+    "sha256": "a9543fd795d2f692ba6fe033baec2b6311d061e0f1ea4df8f86d0a72d6b1dbcd"
+  },
+  {
+    "file": "fixtures/priority-articles/src/app/failure/error.tsx",
+    "sha256": "172eb526217f465acdadd0434dff0d91cd91a91b5d1a5856face5bb923f4d45d"
+  },
+  {
+    "file": "fixtures/priority-articles/src/app/failure/page.tsx",
+    "sha256": "7d9b22a3446b9c8f3b563a1e0a76950b42faf81eb5b26c26a7ac7415d288acb8"
+  },
+  {
+    "file": "fixtures/priority-articles/src/app/layout.tsx",
+    "sha256": "f2cf71a75cd26e319fd01a17c5366f21edaa2784911bc1791380d806775af785"
+  },
+  {
+    "file": "fixtures/priority-articles/src/app/login/actions.ts",
+    "sha256": "fbec62e4fdce3432775752fee584004e9d776bb53230e8f7632eeb335647c306"
+  },
+  {
+    "file": "fixtures/priority-articles/src/app/login/page.tsx",
+    "sha256": "c0cefde9fab1055c04b66ad34b63633ffdd548589d5da1757b3513384a731f36"
+  },
+  {
+    "file": "fixtures/priority-articles/src/app/page.tsx",
+    "sha256": "33ff19d47b2f45b06c33f3b03bf67e1226b83692af459d8fd340dad0637da4e2"
+  },
+  {
+    "file": "fixtures/priority-articles/src/components/BuildLabel.tsx",
+    "sha256": "8545a38d2b64a0c4408090646be67c3e2632744fb5fe317e1794dbc1e549defd"
+  },
+  {
+    "file": "fixtures/priority-articles/src/components/Status.tsx",
+    "sha256": "b469a547a42fe32de0448d77227ca1fcebc6a7034c97a49aa6b143c261d0cdb3"
+  },
+  {
+    "file": "fixtures/priority-articles/src/lib/authorization.ts",
+    "sha256": "3796338b31c34365f8dcd776025f4372b633e1e7fddd7a552e364a62c041f7cd"
+  },
+  {
+    "file": "fixtures/priority-articles/src/lib/notes.ts",
+    "sha256": "1e8220fd24586abb017424bbe274e107d691b5e41a1ceaa178be07d26c1b67c9"
+  },
+  {
+    "file": "fixtures/priority-articles/src/lib/supabase/client.ts",
+    "sha256": "e3331216dcf34bc88cb0cbcdd64979bcb95d06add407ab696f49e5e6dfdb7e88"
+  },
+  {
+    "file": "fixtures/priority-articles/src/lib/supabase/config.ts",
+    "sha256": "3ef0d7fed5a886a39e15e02ed07400376795701373705bfeee69033c85c4efe0"
+  },
+  {
+    "file": "fixtures/priority-articles/src/lib/supabase/proxy.ts",
+    "sha256": "0f20d408b8022a8f45734dae6823cecdd3b3e4b8ec1045ca23d903443a2f55df"
+  },
+  {
+    "file": "fixtures/priority-articles/src/lib/supabase/server.ts",
+    "sha256": "90594b598af67c893dab126e223d038eb73563e088026fcd8ec67dbedda92fec"
+  },
+  {
+    "file": "fixtures/priority-articles/src/proxy.ts",
+    "sha256": "762c6231e045f6e55e137d8416c6b6032f10433d827699126efa313ab9eb58df"
+  },
+  {
+    "file": "fixtures/priority-articles/tsconfig.json",
+    "sha256": "56456757396a36a9c315e2092c56bc6a3c508d071e4da4373780be5592a5bc04"
+  }
+]
