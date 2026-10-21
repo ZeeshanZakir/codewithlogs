@@ -1,0 +1,47 @@
+{
+  "testedAt": "2026-10-21T18:55:52.281Z",
+  "checks": [
+    {
+      "id": "inventory-management-system-nextjs-supabase.txt-sql-fixture-parity",
+      "passed": true,
+      "mode": "Normalized source comparison, not runtime/SQL execution"
+    },
+    {
+      "id": "inventory-management-system-nextjs-supabase.txt-js-fixture-parity",
+      "passed": true,
+      "mode": "Normalized source comparison, not runtime/SQL execution"
+    },
+    {
+      "id": "supabase-row-level-security-real-examples.txt-sql-fixture-parity",
+      "passed": true,
+      "mode": "Normalized source comparison, not runtime/SQL execution"
+    },
+    {
+      "id": "supabase-errors-production-fixes.txt-js-fixture-parity",
+      "passed": true,
+      "mode": "Normalized source comparison, not runtime/SQL execution"
+    },
+    {
+      "id": "all-five-js-tsx-blocks-parse",
+      "passed": true,
+      "count": 5,
+      "mode": "Syntax only"
+    },
+    {
+      "id": "rls-draft-insert-success",
+      "passed": true,
+      "mode": "Exact draft JavaScript + real SDK with constructed HTTP, no database or RLS"
+    },
+    {
+      "id": "rls-draft-insert-provider-error",
+      "passed": true,
+      "mode": "Exact draft JavaScript + real SDK with constructed HTTP, no database or RLS"
+    },
+    {
+      "id": "rls-draft-insert-null-data",
+      "passed": true,
+      "mode": "Exact draft JavaScript + real SDK with constructed HTTP, no database or RLS"
+    }
+  ],
+  "scope": "Draft parity, syntax and newly revised RLS response guard only; not SQL execution."
+}

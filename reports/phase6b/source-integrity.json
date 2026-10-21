@@ -1,0 +1,15 @@
+{
+  "testedAt": "2026-10-21T18:55:34.052Z",
+  "phase6aFilesSha256": {
+    "common-vercel-deployment-errors-solutions.txt": "444c030164daa14f207dff307b5690ff61142d980831b759c5e4accdbe9193dd",
+    "debug-production-errors-nextjs.txt": "8d724259b750880987e49120a7ded53433f24bd6a967ecd9c4dc2b6f9a708056",
+    "inventory-management-system-nextjs-supabase.txt": "97884ebfff3e5af7a96f62fd3637ee917a69b64330785cfbf5a54f188d24abad",
+    "REVIEW_SUMMARY.md": "637c3a30cd0eabd1f98285e0460ea22cb4fbeaa7485d42f1dd122d8ac927beb5",
+    "supabase-errors-production-fixes.txt": "9a67ecaecc76763277531b9ec5c26b0fd3438c42072ffdf533a1caa3a4576548",
+    "supabase-row-level-security-real-examples.txt": "d0e623aed194714108295cb9bd089672277e90ed3f89bbf254ef79be8454587c"
+  },
+  "phase6aUnchanged": true,
+  "retryBoundaryDraftSha256": "314e961f0367639c751251663b2cc926e43678f595d2f6ba6335537b204b9e6f",
+  "originalBoundaryRestored": true,
+  "scope": "Existing confirmation runner with exact Phase 6A retry boundary temporarily substituted; build/types/local HTTP only, no browser or live database."
+}

@@ -1,0 +1,8 @@
+{
+  "testedAt": "2026-10-21T18:56:24.029Z",
+  "file": "Phase 6A debugging draft retry TSX block",
+  "method": "ESLint lintText against existing project config; fixture/source files not modified",
+  "errors": 0,
+  "warnings": 0,
+  "messages": []
+}

@@ -1,0 +1,228 @@
+Build an Inventory System with Next.js and Supabase: Stock Safety
+Editorial status: NEEDS VERIFICATION — local revision only; not approved for publication.
+Preserve URL: /blog/inventory-management-system-nextjs-supabase
+Proposed description: Design a small inventory core with a stock balance, movement ledger, ownership checks and retry keys. Includes an explicit concurrency test plan.
+Canonical (unchanged): https://codewithlogs.com/blog/inventory-management-system-nextjs-supabase
+Review date: 2026-10-21. Source record and publication status are preserved.
+
+## Start with the stock invariant
+An inventory tutorial needs to answer a concrete question: what happens when two
+requests both try to sell the last unit? A page that reads stock in JavaScript
+and writes a sale later leaves a gap between those operations.
+
+This example develops a narrow sale workflow, not a complete shop application.
+Each product belongs to one authenticated owner. Staff roles, purchases, refunds,
+pricing, barcode printing and multi-tenant membership need separate designs.
+No client incident, delivery time, hosting cost or performance result is claimed.
+
+For each product the intended invariant is:
+stock = initial_stock + sum(ledger delta)
+
+Keeping a balance column is compatible with an audit ledger when both change in
+one controlled transaction. Computing a ledger sum is not the only valid model.
+The earlier SELECT SUM(...) FOR UPDATE fragment is not a working PostgreSQL lock:
+aggregate result rows cannot be locked that way. A function alone does not make
+an unsafe read/check/write sequence safe.
+
+## Environment and evidence boundary
+The local JavaScript checks use Node 22.18.0 and supabase-js 2.118.0 on Windows
+10 Pro 10.0.19045 x64. The companion SSR/build fixture uses Next 16.2.6, React
+19.2.4 and supabase/ssr 0.12.7. Recorded tests cover input validation, mocked identity/RPC results and SDK
+request serialization with constructed HTTP responses. They do not verify
+database behavior, authentication against a provider or concurrent sales.
+
+The SQL below was documentation-reviewed but NOT executed. No PostgreSQL version
+has been tested for it. Run it only in an approved empty disposable Supabase
+project after reviewing the function owner and grants. Record that project's
+actual PostgreSQL version. Windows 11, Linux and hosted Next.js remain untested.
+
+## A balance and ledger with one ordinary write path
+The proposed function locks an owned product row, checks an existing request key,
+performs a guarded subtraction and inserts a movement. Its exception is allowed
+to abort the transaction if any later write fails. Ordinary authenticated clients
+get SELECT and the specific RPC, not direct balance or movement writes.
+
+Proposed database schema and sale function (not executed):
+```sql
+-- DRAFT, NOT EXECUTED. Disposable Supabase project only; not a production migration.
+-- Create using a reviewed trusted database owner. Review function owner/grants.
+begin;
+create table public.cwl_inventory_products (
+  id uuid primary key default gen_random_uuid(),
+  owner_id uuid not null references auth.users(id),
+  name text not null check (char_length(name) between 1 and 200),
+  initial_stock integer not null check (initial_stock between 0 and 100000),
+  stock integer not null check (stock between 0 and 100000)
+);
+create table public.cwl_inventory_movements (
+  id uuid primary key default gen_random_uuid(),
+  product_id uuid not null references public.cwl_inventory_products(id),
+  owner_id uuid not null references auth.users(id),
+  request_id uuid not null,
+  delta integer not null check (delta between -10000 and -1),
+  balance_after integer not null check (balance_after >= 0),
+  created_at timestamptz not null default now(),
+  unique (owner_id, request_id)
+);
+create index cwl_inventory_products_owner_idx on public.cwl_inventory_products(owner_id);
+create index cwl_inventory_movements_product_idx on public.cwl_inventory_movements(product_id);
+alter table public.cwl_inventory_products enable row level security;
+alter table public.cwl_inventory_movements enable row level security;
+create policy cwl_products_read on public.cwl_inventory_products for select to authenticated
+  using ((select auth.uid()) = owner_id);
+create policy cwl_movements_read on public.cwl_inventory_movements for select to authenticated
+  using ((select auth.uid()) = owner_id);
+revoke all on public.cwl_inventory_products, public.cwl_inventory_movements from public, anon, authenticated;
+grant select on public.cwl_inventory_products, public.cwl_inventory_movements to authenticated;
+
+create function public.cwl_record_sale(p_product_id uuid, p_qty integer, p_request_id uuid)
+returns table (remaining_after_sale integer, movement_id uuid, replayed boolean)
+language plpgsql security definer set search_path = '' as $$
+declare
+  v_actor uuid := auth.uid();
+  v_product public.cwl_inventory_products%rowtype;
+  v_previous public.cwl_inventory_movements%rowtype;
+  v_remaining integer;
+  v_movement uuid;
+begin
+  if v_actor is null then raise exception 'Authentication required' using errcode = '42501'; end if;
+  if p_product_id is null or p_request_id is null or p_qty is null or p_qty < 1 or p_qty > 10000 then
+    raise exception 'Invalid sale input' using errcode = '22023';
+  end if;
+  select p.* into v_product from public.cwl_inventory_products as p
+    where p.id = p_product_id and p.owner_id = v_actor for update;
+  if not found then raise exception 'Product unavailable' using errcode = '42501'; end if;
+
+  select m.* into v_previous from public.cwl_inventory_movements as m
+    where m.owner_id = v_actor and m.request_id = p_request_id;
+  if found then
+    if v_previous.product_id <> p_product_id or v_previous.delta <> -p_qty then
+      raise exception 'Request key reused with different input' using errcode = '22023';
+    end if;
+    return query select v_previous.balance_after, v_previous.id, true;
+    return;
+  end if;
+
+  update public.cwl_inventory_products as p set stock = p.stock - p_qty
+    where p.id = p_product_id and p.owner_id = v_actor and p.stock >= p_qty
+    returning p.stock into v_remaining;
+  if not found then raise exception 'Insufficient stock' using errcode = 'P0001'; end if;
+  insert into public.cwl_inventory_movements (product_id, owner_id, request_id, delta, balance_after)
+    values (p_product_id, v_actor, p_request_id, -p_qty, v_remaining)
+    returning id into v_movement;
+  return query select v_remaining, v_movement, false;
+end;
+$$;
+revoke all on function public.cwl_record_sale(uuid, integer, uuid) from public, anon, authenticated;
+grant execute on function public.cwl_record_sale(uuid, integer, uuid) to authenticated;
+commit;
+```
+
+The definer executes with its owner's authority. The empty search_path and
+qualified names reduce name-resolution hazards; they do not replace an ownership
+check or a trusted function owner. auth.uid() supplies the caller identity. A
+caller-supplied owner ID is never trusted. Public/anonymous execute is revoked.
+This example creates new tables. A table-level REVOKE does not remove existing
+column-level privileges. If adapting an existing schema, inspect column grants,
+inherited roles and other policies; explicitly revoke unintended privileges.
+Privileged database owners and service roles remain trusted administrative paths;
+review them explicitly rather than claiming nobody can bypass these rules.
+
+Seed products as the setup owner with a real test user's UUID and equal
+initial_stock/stock. The sample deliberately has no public product-create RPC.
+All future restock/refund/adjustment paths must preserve the same invariant and
+locking protocol before they are introduced.
+
+## Validate the call and preserve its retry identity
+Use an authenticated cookie-aware server client and pass it to this complete
+helper. Its early validation improves error handling; SQL remains the authority.
+
+```js
+const uuid = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+export function saleInput(productId, quantity, requestId) {
+  if (typeof productId !== "string" || !uuid.test(productId) || typeof requestId !== "string" || !uuid.test(requestId) || !Number.isInteger(quantity) || quantity < 1 || quantity > 10000) throw new Error("Invalid sale input");
+  return { p_product_id: productId, p_qty: quantity, p_request_id: requestId };
+}
+// Pass an authenticated, cookie-aware server client. Never a service-role client.
+// SQL remains the authorization/concurrency boundary; this helper is not that proof.
+export async function recordSale(supabase, productId, quantity, requestId) {
+  const args = saleInput(productId, quantity, requestId);
+  const { data: identity, error: identityError } = await supabase.auth.getUser();
+  if (identityError || !identity?.user) throw new Error("Authentication required");
+  const { data, error } = await supabase.rpc("cwl_record_sale", args);
+  if (error || !Array.isArray(data) || data.length !== 1) throw new Error("Sale could not be confirmed. Check its request ID before retrying.");
+  const row = data[0];
+  if (!row || typeof row !== "object" || !Number.isInteger(row.remaining_after_sale) || row.remaining_after_sale < 0 || typeof row.movement_id !== "string" || !uuid.test(row.movement_id) || typeof row.replayed !== "boolean") throw new Error("Unexpected sale response");
+  return { remainingAfterSale: row.remaining_after_sale, movementId: row.movement_id, replayed: row.replayed };
+}
+```
+
+In a Next.js Server Action, obtain the SSR client inside the request, verify the
+caller, validate FormData types and call recordSale. The companion authentication
+guide explains the cookie/client boundary; it still needs live provider tests.
+Do not substitute a service-role client to make a policy error disappear.
+
+Generate one request UUID for a user's intended sale. Preserve it, the product
+and quantity through retries. Generating a fresh UUID after a timeout can record
+a second sale when the first request already committed. Reusing a key for a
+different payload is an error. The replay response contains the original event's
+balance_after, which may differ from today's stock after later sales. Reread the
+product to display the current balance.
+
+These are expected API shapes, not captured SQL output:
+new sale: one movement, replayed=false, remaining_after_sale>=0
+same request/payload again: same movement, replayed=true, no second decrement
+insufficient stock: rejected transaction, unchanged stock and movement count
+
+## Reproduce and verify the last-unit race
+Use real A/B test users and a publishable application key in the disposable
+project. Record the SQL version, policies, role grants and actual HTTP results.
+1. Seed a fresh product for A with initial_stock=stock=1. Record its ID.
+2. From two independent clients for A, start quantity-1 RPCs together using
+   different request UUIDs. Do not use a SQL owner session as the API identity.
+3. Require exactly one successful sale. Verify stock=0 and exactly one delta=-1.
+4. Repeat with the same request UUID and identical payload, including concurrent
+   retries. Require a single movement and a replay rather than another sale.
+5. Reuse a key with a different quantity/product. Require rejection. For a
+   cross-product race, verify that a unique-key failure rolls back its subtraction.
+6. As B and anonymously, attempt to read/sell A's product and directly mutate its
+   balance/ledger. Verify denial. Test null, zero, negative and excessive quantities.
+7. Force a controlled ledger-insert failure in a separate fixture and verify the
+   preceding balance update rolls back. Compare balance with ledger totals.
+
+For the cross-product race, this function does not serialize both product rows
+under a shared request lock. The unique constraint may reject the losing request;
+verify its entire transaction rolls back. Do not generate a new request key to
+hide that result. Investigate the original key and retry the same intended payload.
+None of these concurrent database outcomes has been observed locally yet. Do not replace
+the test with a JavaScript array simulation or a successful mocked RPC response.
+
+## Alternatives and common mistakes
+A ledger-only design can lock a stable owned product row before calculating its
+sum, provided every writer follows that protocol. A balance-plus-ledger design
+can be simpler to query but requires consistency checks. SERIALIZABLE isolation
+introduces transaction retries; it is not a one-line guarantee. Choose one model
+and test it instead of mixing unchecked write paths.
+
+Do not permit a direct movement insert merely because reason='sale'. That says
+nothing about owner, quantity, available stock or retry identity. Do not add
+unverified realtime refresh claims: if introduced, subscriptions need cleanup,
+authorization and actual two-client tests. Server Components alone also do not
+establish a measured page-speed or JavaScript-size improvement.
+
+## Continue and review
+Related guide: /blog/supabase-row-level-security-real-examples
+Related guide: /blog/supabase-errors-production-fixes
+Related: /tools/package-json-inspector and /tools/error-decoder
+Before publication: execute the SQL/API matrix, review privileges independently,
+make any companion code accessible to readers, and obtain owner approval.
+The existing article URL and publication record remain untouched.
+
+Official references:
+https://www.postgresql.org/docs/current/sql-select.html
+https://www.postgresql.org/docs/current/explicit-locking.html
+https://www.postgresql.org/docs/current/sql-createfunction.html
+https://supabase.com/docs/guides/database/functions
+https://supabase.com/docs/guides/database/postgres/row-level-security
+
+https://www.postgresql.org/docs/current/sql-revoke.html

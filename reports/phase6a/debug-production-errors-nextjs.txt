@@ -1,0 +1,173 @@
+How to Debug Next.js Production Errors: Logs, Digests and Recovery
+Editorial status: NEEDS VERIFICATION — local revision only; not approved for publication.
+Preserve URL: /blog/debug-production-errors-nextjs
+Proposed description: Trace Next.js production errors with server logs, error digests and reproducible checks. Understand error boundaries, retry behavior and hydration failures.
+Canonical (unchanged): https://codewithlogs.com/blog/debug-production-errors-nextjs
+Review date: 2026-10-21. Source record and publication status are preserved.
+
+## Capture a report that points to the failing operation
+An “Application error” screen describes a failure, not its cause. Record the path,
+time with timezone, operation, deployed commit and browser version. Note whether
+the error occurs on the first request, after interaction or only when signed in.
+Keep passwords, tokens, connection strings and personal payloads out of reports.
+
+Start with the browser network response and console, then inspect the server log
+for that request. A render exception, a failed API request and a rejected user
+input need different handling. Do not infer the failing layer from a message alone.
+
+## What a production error digest tells you
+Next.js sanitizes Server Component error details sent to a production client.
+The server can retain the original exception and stack trace while the visitor
+receives a generic message and a digest. Production errors do not universally
+lose their stack traces.
+
+Use the digest alongside the path, timestamp and deployment to correlate logs.
+It is an error hash, not a unique request identifier or a guarantee that a host
+has retained a complete trace. Client Component errors can expose their original
+messages; avoid putting secrets in errors in either environment.
+
+## Establish a local production baseline
+The historical fixture used Node.js 22.18.0, Next.js 16.2.6, React 19.2.4 and
+TypeScript 5.9.3 on Windows 10 Pro 10.0.19045 x64. Its recorded build/start HTTP
+test found a synthetic server error marker in the server log and absent from the
+client response. That result verifies error transport for that local fixture.
+It does not establish hosted logging, Windows 11, Linux or browser recovery.
+
+For an isolated App Router test application using that configuration, add this
+synthetic route. Never add it to a public production application:
+
+```tsx
+// app/failure/page.tsx — isolated test application only
+export const dynamic = 'force-dynamic';
+
+export default function FailurePage(): never {
+  throw new Error('fixture_server_failure_private_marker');
+}
+```
+
+This example assumes Cache Components is not enabled, matching the recorded
+fixture. Check the installed version's cache configuration before copying route
+segment options into a different application.
+
+From the trusted test application's directory, use separate production commands:
+
+```powershell
+npm.cmd run build
+npm.cmd run start
+```
+
+The scripts must map to next build and next start. Visit /failure, save the server
+log and inspect the response. The expected result is a fallback without the private
+marker, with the original exception retained on the server. A development overlay
+is not evidence for production sanitization. These commands describe reproduction;
+no fresh production build or browser run was performed during this editorial review.
+
+## Provide a segment fallback with the correct retry behavior
+For Next.js 16.2.6, the installed error-file documentation distinguishes two props:
+unstable_retry() attempts to fetch and render the segment again; reset() clears
+the error state and renders again without fetching its contents again. They are
+not interchangeable when recovery depends on new server data. unstable_retry is
+an unstable API: confirm its availability when using another Next.js version.
+
+This complete boundary uses only the React import shown below. It is a revised
+example; the historical fixture compiled an earlier reset-based boundary, not
+this exact component. Its browser behavior remains untested.
+
+```tsx
+// app/failure/error.tsx
+'use client';
+
+import { useTransition } from 'react';
+
+export default function Failure({ error, unstable_retry }: {
+  error: Error & { digest?: string };
+  unstable_retry: () => void;
+}) {
+  const [isPending, startTransition] = useTransition();
+
+  return (
+    <section aria-labelledby="failure-heading" aria-busy={isPending}>
+      <h2 id="failure-heading">This section could not load.</h2>
+      {error.digest && <p>Reference: {error.digest}</p>}
+      <button
+        type="button"
+        disabled={isPending}
+        onClick={() => startTransition(() => unstable_retry())}
+      >
+        {isPending ? 'Trying again…' : 'Try again'}
+      </button>
+      <p role="status">{isPending ? 'Loading the section again.' : ''}</p>
+    </section>
+  );
+}
+```
+
+An always-throwing page will still fail after retry. To verify recovery, use a
+controlled temporary failure in a separate fixture, remove its cause, click the
+button and check that fresh server data replaces the fallback. Record the browser,
+request trace and actual result. Also test repeated failure and keyboard access.
+Do not describe a compiled boundary or a passing HTTP request as a successful
+browser retry test.
+
+error.tsx handles its segment's descendants, not the layout above it in the same
+segment. Use an appropriate parent boundary for those errors. Root-layout failures
+need global-error.tsx, including its own html and body elements. Expected API
+failures and event-handler errors need explicit handling at their operation boundary.
+
+## Compare environment and build inputs
+Check the deployed commit, lockfile, Node version and environment-variable names
+against the working checkout. A literal NEXT_PUBLIC_ reference in client code is
+inlined during the build. Dynamic server code can read request-time values; static
+rendering may read values earlier. Updating a hosting setting cannot rewrite an
+already generated client bundle.
+
+Compare the presence and purpose of variables without printing credentials.
+Do not expose a private key under NEXT_PUBLIC_ to fix configuration. A server-side
+variable can still leak if application code serializes it into a response.
+
+Related guide: /blog/common-vercel-deployment-errors-solutions
+
+## Isolate hydration mismatches
+Hydration requires compatible initial server and client output. Check date/time
+formatting, random values during rendering, invalid HTML nesting and DOM changes
+introduced before hydration. A Client Component can still be prerendered on the
+server: adding 'use client' does not make window available during every render.
+
+For a clock, render deterministic initial content, then update it in an effect.
+For browser-only interactions, read browser APIs inside an effect or event handler
+where appropriate. Do not blanket-suppress warnings instead of finding the cause.
+An extension-free browser is an isolation step, not a diagnosis of every mismatch.
+
+Before claiming a hydration fix, capture the original mismatch, make one focused
+change, then repeat in development and production with a real browser. No such
+browser mismatch/fix evidence is available for this draft.
+
+## Verify the operation, not just the disappearance of an error
+Repeat the original operation with the same authorization conditions. Inspect the
+response and persisted result, then check adjacent routes and anonymous access.
+An error boundary does not repair an upstream service or make a mutation safe to
+repeat. For sales or payments, determine whether the first operation committed
+and preserve an idempotency key through retries.
+
+Monitoring can help correlate events when configured with appropriate redaction,
+source-map access and retention. No monitoring provider, setup-time estimate or
+claimed reduction in support incidents is required for this workflow.
+
+Related guide: /blog/inventory-management-system-nextjs-supabase
+Related guide: /blog/supabase-errors-production-fixes
+Diagnostic tool: /tools/error-decoder
+
+## Evidence still required before publication
+Exercise this revised boundary in a browser with both recoverable and persistent
+failures. Test a real hydration mismatch and its correction. Inspect hosting logs
+only in an owner-approved environment. Repeat on Windows 11 or Linux before
+claiming either was tested. Keep actual results separate from expected outcomes.
+The original author must approve removal of unsupported first-person claims and
+the proposed metadata. This revision stays local until publication is authorized.
+
+Official references:
+https://nextjs.org/docs/app/api-reference/file-conventions/error
+https://nextjs.org/docs/app/getting-started/error-handling
+https://nextjs.org/docs/messages/react-hydration-error
+https://nextjs.org/docs/app/guides/environment-variables
+https://nextjs.org/docs/app/api-reference/config/next-config-js/cacheComponents

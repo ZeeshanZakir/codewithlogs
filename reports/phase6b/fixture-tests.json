@@ -1,0 +1,78 @@
+{
+  "testedAt": "2026-10-21T18:55:19.193Z",
+  "environment": {
+    "os": "Windows 10 Pro",
+    "release": "10.0.19045",
+    "architecture": "x64",
+    "node": "v22.18.0",
+    "supabaseJs": "2.118.0"
+  },
+  "passed": 12,
+  "checks": [
+    {
+      "id": "sale-input-valid-bounds",
+      "passed": true,
+      "mode": "Pure input validation, not SQL"
+    },
+    {
+      "id": "sale-input-invalid-values",
+      "passed": true,
+      "mode": "Pure input validation, not SQL"
+    },
+    {
+      "id": "anonymous-and-identity-errors-fail-before-rpc",
+      "passed": true,
+      "mode": "Mock identity boundary; not JWT validation"
+    },
+    {
+      "id": "rpc-serializes-only-product-quantity-request",
+      "passed": true,
+      "mode": "Real SDK, simulated HTTP response and mocked identity"
+    },
+    {
+      "id": "rpc-errors-and-malformed-results-never-report-success",
+      "passed": true,
+      "mode": "Mock RPC responses, not database transactions"
+    },
+    {
+      "id": "replay-response-preserved-without-another-client-side-sale",
+      "passed": true,
+      "mode": "Mock RPC replay; not SQL idempotency proof"
+    },
+    {
+      "id": "single-0-rows",
+      "passed": true,
+      "mode": "Real supabase-js with constructed HTTP; not a real table/RLS test"
+    },
+    {
+      "id": "single-1-rows",
+      "passed": true,
+      "mode": "Real supabase-js with constructed HTTP; not a real table/RLS test"
+    },
+    {
+      "id": "single-2-rows",
+      "passed": true,
+      "mode": "Real supabase-js with constructed HTTP; not a real table/RLS test"
+    },
+    {
+      "id": "maybeSingle-0-rows",
+      "passed": true,
+      "mode": "Real supabase-js with constructed HTTP; not a real table/RLS test"
+    },
+    {
+      "id": "maybeSingle-1-rows",
+      "passed": true,
+      "mode": "Real supabase-js with constructed HTTP; not a real table/RLS test"
+    },
+    {
+      "id": "maybeSingle-2-rows",
+      "passed": true,
+      "mode": "Real supabase-js with constructed HTTP; not a real table/RLS test"
+    }
+  ],
+  "limitations": [
+    "No network requests or real Supabase project used. The fake host's fetch implementation returns constructed HTTP responses.",
+    "Identity and RPC unit cases are mocks. They do not verify tokens, SQL privileges, RLS, concurrency, rollback or idempotency.",
+    "SQL fixtures are NOT EXECUTED. No PostgreSQL version, Windows 11, Linux or Vercel environment was tested."
+  ]
+}
