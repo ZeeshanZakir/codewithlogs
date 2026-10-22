@@ -64,7 +64,7 @@ const socialLinks = [
   },
   {
     label: "LinkedIn",
-    href: "https://www.linkedin.com/company/code-with-logs",
+    href: "https://www.linkedin.com/in/zeeshan-zakir-profile/",
     icon: (
       <svg viewBox="0 0 24 24" className="h-4 w-4" aria-hidden="true">
         <path
@@ -75,14 +75,34 @@ const socialLinks = [
     ),
   },
   {
-    label: "Twitter",
-    href: "https://twitter.com/ZeeshanZakir",
+    label: "X (Twitter)",
+    href: "https://x.com/ZeshanM04610735",
     icon: (
       <svg viewBox="0 0 24 24" className="h-4 w-4" aria-hidden="true">
         <path
           d="M18.9 2H22l-6.77 7.73L23.2 22h-6.25l-4.9-7.43L5.55 22H2.43l7.24-8.27L2 2h6.4l4.43 6.77L18.9 2Zm-1.1 18h1.73L7.46 3.9H5.6L17.8 20Z"
           fill="currentColor"
         />
+      </svg>
+    ),
+  },
+  {
+    label: "Website",
+    href: "https://www.zeeshanzakir.com/",
+    icon: (
+      <svg
+        viewBox="0 0 24 24"
+        className="h-4 w-4"
+        aria-hidden="true"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <circle cx="12" cy="12" r="10" />
+        <path d="M2 12h20" />
+        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10Z" />
       </svg>
     ),
   },
