@@ -13,41 +13,26 @@ export const metadata: Metadata = {
   openGraph: {
     title: "About CodeWithLogs & Zeeshan Zakir",
     description:
-      "Background, skills, experience, and the story behind this developer blog.",
+      "The publication, topics and evidence standard behind CodeWithLogs.",
     url: `${siteUrl}/about`,
     type: "profile",
   },
 };
 
-const skillGroups = [
-  {
-    title: "Frontend",
-    skills: ["Next.js", "React", "TypeScript", "Tailwind CSS", "HTML", "CSS"],
-  },
-  {
-    title: "Backend",
-    skills: ["Node.js", "Express", "REST APIs", "Authentication", "Validation"],
-  },
-  {
-    title: "Database",
-    skills: ["MongoDB", "Mongoose", "Schema Design", "Query Optimization"],
-  },
-  {
-    title: "DevOps",
-    skills: ["Vercel", "Deployment", "Performance", "Environment Config"],
-  },
-  {
-    title: "Tools",
-    skills: ["Git", "Cursor", "VS Code", "Postman", "GitHub"],
-  },
+const topicGroups = [
+  { title: "Next.js", topics: ["App Router", "Debugging", "Rendering", "Deployment"] },
+  { title: "Node.js & npm", topics: ["Dependency errors", "Package scripts", "Runtime configuration"] },
+  { title: "Supabase", topics: ["Authentication", "Row Level Security", "Database troubleshooting"] },
+  { title: "Development setup", topics: ["Windows", "VS Code", "Git", "Vercel"] },
+  { title: "Free tools", topics: ["Error decoder", "package.json inspector", "JSON utilities"] },
 ];
 
-const milestones = [
-  "2019 - Started learning web development",
-  "2020 - First freelance client",
-  "2021 - Specialized in MERN stack",
-  "2023 - Started building SaaS products",
-  "2025 - Launched this developer blog",
+const editorialSteps = [
+  "Identify the error and affected environment.",
+  "Explain the likely cause and the scope of the example.",
+  "Provide diagnostic steps, code and official references.",
+  "Distinguish expected results from actual test evidence.",
+  "Review corrections and document remaining limitations.",
 ];
 
 const socialLinks = [
@@ -112,7 +97,7 @@ const socialLinks = [
 export default function AboutPage() {
   return (
     <div className="bg-background">
-      <section className="journal-container about-publication"><p className="eyebrow">About CodeWithLogs</p><h2>Fix Your Development Errors. Step by Step.</h2><p>CodeWithLogs focuses on Next.js debugging, Node.js/npm errors, Supabase troubleshooting, and practical developer tools. Windows, VS Code, Git and deployment guides support that work. The existing archive and author background below are preserved.</p><p>A published date is not a technical test record. See the <Link href="/editorial-policy">editorial and verification policy</Link> for how guide status is assessed.</p></section>
+      <section className="journal-container about-publication"><p className="eyebrow">About CodeWithLogs</p><h2>Fix Your Development Errors. Step by Step.</h2><p>CodeWithLogs focuses on Next.js debugging, Node.js/npm errors, Supabase troubleshooting, and practical developer tools. Windows, VS Code, Git and deployment guides support that work. The archive contains guides and explanations with their evidence status shown on each article.</p><p>A published date is not a technical test record. See the <Link href="/editorial-policy">editorial and verification policy</Link> for how guide status is assessed.</p></section>
       <section className="border-b border-black/5 bg-surface">
         <div className="mx-auto flex w-full max-w-5xl flex-col items-center px-4 py-16 text-center sm:px-6 lg:px-8 lg:py-20">
           <Image
@@ -126,7 +111,7 @@ export default function AboutPage() {
           <h1 className="mt-6 text-4xl font-bold tracking-tight text-text sm:text-5xl">
             Zeeshan Zakir
           </h1>
-          <p className="mt-3 text-lg text-text/70">Software Engineer · Full-Stack Web Developer</p>
+          <p className="mt-3 text-lg text-text/70">Author of CodeWithLogs</p>
 
           <div className="mt-6 flex items-center gap-3">
             {socialLinks.map((link) => (
@@ -149,30 +134,35 @@ export default function AboutPage() {
         <div className="space-y-8">
           <div className="space-y-4">
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-primary">
-              My Story
+              The publication
             </p>
             <h2 className="text-3xl font-bold tracking-tight text-text sm:text-4xl">
-              About Me
+              What you will find here
             </h2>
             <div className="space-y-5 text-base leading-8 text-text/75">
               <p>
-                I&apos;ve spent years growing as a full-stack developer — starting with simple HTML and CSS projects, then slowly building the confidence to take on real client work. What started as curiosity turned into something much more serious once I realized how satisfying it is to turn an idea into a working product people can actually use.
+                CodeWithLogs is an independent developer resource focused on practical troubleshooting
+                guides, modern JavaScript development, and free tools. Our content covers Next.js,
+                Node.js, npm, Supabase, Vercel, and everyday development problems.
               </p>
               <p>
-                JavaScript was the real turning point for me. The moment I understood how much logic, interactivity, and product thinking could live inside a single web app, I was hooked. From there, I leaned fully into modern frontend and backend development and eventually specialized in the MERN stack — React, Node.js, Express, and MongoDB — building applications that aren&apos;t just functional, but maintainable and built to scale.
+                Zeeshan Zakir is the author identified by this website. Articles aim to connect an
+                error message with diagnostic steps, an explanation and a way to check the result.
+                The tools provide focused browser-based utilities without requiring an account.
               </p>
               <p>
-                These days, my focus is on building SaaS products, content-driven platforms, and custom web tools for founders and small businesses. I care a lot about clean code, real performance, and making developer education less intimidating than it often is.
+                A published article is not automatically a tested solution. Each guide shows its
+                evidence status, and examples may need adjustment for your software versions and
+                environment. Report unclear steps or incorrect results through the contact page.
               </p>
-              <p>This blog exists because of that last part — I want to share the practical lessons, useful tools, and no-fluff guidance I wish someone had handed me when I was starting out.</p>
               <p>
-                You can check out my client work and portfolio at <a href="https://zeeshanzakir.com" target="_blank" rel="noopener">zeeshanzakir.com</a>.
+                Author links are available above, including <a href="https://zeeshanzakir.com" target="_blank" rel="noopener">zeeshanzakir.com</a>.
               </p>
             </div>
           </div>
 
           <div className="flex flex-wrap gap-3">
-            {["Based in United States", "Available Worldwide", "English + Urdu"].map((fact) => (
+            {["Independent developer resource", "Troubleshooting guides", "Free developer tools"].map((fact) => (
               <span
                 key={fact}
                 className="rounded-full border border-black/8 bg-surface px-4 py-2 text-sm font-medium text-text/70"
@@ -188,24 +178,24 @@ export default function AboutPage() {
         <div className="mx-auto w-full max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
           <div className="mb-8 space-y-3">
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-primary">
-              Skills
+              Topics
             </p>
             <h2 className="text-3xl font-bold tracking-tight text-text sm:text-4xl">
-              What I work with day to day
+              What the guides cover
             </h2>
           </div>
 
           <div className="grid gap-6 lg:grid-cols-2 xl:grid-cols-5">
-            {skillGroups.map((group) => (
+            {topicGroups.map((group) => (
               <div key={group.title} className="rounded-xl border border-black/6 bg-white p-5">
                 <h3 className="text-lg font-semibold text-text">{group.title}</h3>
                 <div className="mt-4 flex flex-wrap gap-2">
-                  {group.skills.map((skill) => (
+                  {group.topics.map((topic) => (
                     <span
-                      key={skill}
+                      key={topic}
                       className="rounded-full bg-surface px-3 py-1.5 text-sm text-text/68"
                     >
-                      {skill}
+                      {topic}
                     </span>
                   ))}
                 </div>
@@ -219,15 +209,15 @@ export default function AboutPage() {
         <div className="space-y-8">
           <div className="space-y-3">
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-primary">
-              Experience
+              Editorial approach
             </p>
             <h2 className="text-3xl font-bold tracking-tight text-text sm:text-4xl">
-              Timeline
+              How a guide is reviewed
             </h2>
           </div>
 
           <div className="space-y-4">
-            {milestones.map((item) => (
+            {editorialSteps.map((item) => (
               <div
                 key={item}
                 className="flex items-center gap-4 rounded-xl border border-black/6 bg-white px-5 py-4"
@@ -244,12 +234,12 @@ export default function AboutPage() {
         <div className="mx-auto w-full max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
           <div className="rounded-xl border border-black/6 bg-white p-8">
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-primary">
-              What I Write About
+              Useful explanations with clear limits
             </p>
             <p className="mt-4 text-base leading-8 text-text/75">
-              On this blog, I share tutorials, tool reviews, and real-world lessons from 6 years
-              of professional development. No fluff — only content I wish existed when I was
-              learning.
+              The focus is on understanding a problem before changing code or configuration.
+              Read the official references and evidence notes, and test security-sensitive
+              changes in a disposable environment before using them in production.
             </p>
           </div>
         </div>
@@ -257,16 +247,16 @@ export default function AboutPage() {
 
       <section className="mx-auto w-full max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="rounded-xl bg-primary p-8 text-white">
-          <h2 className="text-3xl font-bold tracking-tight">Want to work together?</h2>
+          <h2 className="text-3xl font-bold tracking-tight">Found an issue in a guide?</h2>
           <p className="mt-3 max-w-2xl text-base leading-8 text-white/80">
-            If you need a developer for a product build, client project, or performance-focused web
-            app, I&apos;d love to hear more about it.
+            Send the article URL, your software versions and the steps that produced a different
+            result. Leave passwords, tokens and private customer data out of your message.
           </p>
           <Link
             href="/contact"
             className="mt-6 inline-flex items-center rounded-full bg-white px-5 py-3 text-sm font-semibold text-primary"
           >
-            Contact Me
+            Contact &amp; corrections
           </Link>
         </div>
       </section>
