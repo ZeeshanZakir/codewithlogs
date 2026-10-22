@@ -71,7 +71,7 @@ export function isTopicId(value: string): value is TroubleshootingTopicId {
 
 export function getTroubleshootingTopic(post: Pick<BlogPostMeta, "slug" | "title" | "category" | "tags">): TroubleshootingTopicId | undefined {
   if (["inventory-management-system-nextjs-supabase", "supabase-row-level-security-real-examples", "supabase-errors-production-fixes"].includes(post.slug)) return "supabase";
-  const explicit = troubleshootingTopics.find((topic) => topic.title === post.category || post.tags.includes(topic.id));
+  const explicit = troubleshootingTopics.find((topic) => topic.title === post.category || topic.shortTitle === post.category || post.tags.includes(topic.id));
   if (explicit) return explicit.id;
   const existingNextGuides = ["common-vercel-deployment-errors-solutions", "debug-production-errors-nextjs", "deploy-nextjs-to-vercel-guide", "nextjs-folder-structure-large-projects", "nextjs-authentication-without-nextauth", "reduce-nextjs-website-loading-time"];
   if (existingNextGuides.includes(post.slug)) return "nextjs";

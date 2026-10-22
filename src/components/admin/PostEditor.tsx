@@ -23,6 +23,7 @@ import {
 
 import { savePostAction, type PostSaveInput } from "@/app/(admin)/admin/actions";
 import type { BlogPost } from "@/lib/mdx";
+import { troubleshootingTopics } from "@/lib/troubleshooting";
 
 type PostEditorProps = {
   initialPost: BlogPost | null;
@@ -43,6 +44,7 @@ type ToastState =
   | null;
 
 const PREDEFINED_CATEGORIES = [
+  ...troubleshootingTopics.map((topic) => topic.shortTitle),
   "Next.js",
   "React",
   "MERN",

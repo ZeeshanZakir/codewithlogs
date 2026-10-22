@@ -173,10 +173,12 @@ const docs = await BlogPostModel.find(filter)
       })
       .lean();
 
-    return docs.map((doc) => {
-      const post = mapPost(doc);
-
-      return {
+    // Sort by the effective date after mapping: MongoDB puts a null publishedAt
+    // (a draft that was never published) last, which buried new drafts.
+    return docs
+      .map((doc) => mapPost(doc))
+      .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+      .map((post) => ({
         slug: post.slug,
         title: post.title,
         date: post.date,
@@ -190,8 +192,7 @@ const docs = await BlogPostModel.find(filter)
         affiliateLinks: post.affiliateLinks,
         status: post.status,
         tags: post.tags,
-      };
-    });
+      }));
   }
 );
 
