@@ -22,6 +22,14 @@ function renderComponentLiteral(name: string) {
 }
 
 const mdxComponents = {
+  // The article header owns the page H1. Keep body titles visible without
+  // creating a second top-level heading or changing the stored article text.
+  h1: (props: ComponentProps<"h1">) => (
+    <h2
+      {...props}
+      className="mt-12 scroll-mt-24 text-3xl font-bold tracking-tight text-text"
+    />
+  ),
   h2: (props: ComponentProps<"h2">) => (
     <h2
       {...props}

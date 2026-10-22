@@ -16,40 +16,17 @@ export function PasswordToolSeoContent() {
       </div>
 
       <div className="space-y-4">
-        <h2 className="text-3xl font-bold tracking-tight text-text">How Strong Is Your Password?</h2>
-        <div className="overflow-x-auto rounded-[24px] border border-black/6 bg-white">
-          <table className="min-w-full text-left text-sm">
-            <thead className="bg-surface text-text/65">
-              <tr>
-                <th className="px-5 py-4 font-semibold">Length</th>
-                <th className="px-5 py-4 font-semibold">Character Types</th>
-                <th className="px-5 py-4 font-semibold">Estimated Crack Time</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr className="border-t border-black/6">
-                <td className="px-5 py-4">8 chars</td>
-                <td className="px-5 py-4">Letters only</td>
-                <td className="px-5 py-4 text-red-700">Very Weak | Minutes</td>
-              </tr>
-              <tr className="border-t border-black/6">
-                <td className="px-5 py-4">12 chars</td>
-                <td className="px-5 py-4">Mixed</td>
-                <td className="px-5 py-4 text-orange-700">Moderate | Days</td>
-              </tr>
-              <tr className="border-t border-black/6">
-                <td className="px-5 py-4">16 chars</td>
-                <td className="px-5 py-4">All types</td>
-                <td className="px-5 py-4 text-blue-700">Strong | Centuries</td>
-              </tr>
-              <tr className="border-t border-black/6">
-                <td className="px-5 py-4">20+ chars</td>
-                <td className="px-5 py-4">All types</td>
-                <td className="px-5 py-4 text-emerald-700">Very Strong | Billions of years</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+        <h2 className="text-3xl font-bold tracking-tight text-text">What Affects Password Strength?</h2>
+        <p className="max-w-4xl text-base leading-8 text-text/70">
+          Length, unpredictable generation and using a different password for each account all
+          matter. A long password chosen from a predictable pattern can still be weak.
+        </p>
+        <p className="max-w-4xl text-base leading-8 text-text/70">
+          This tool does not estimate crack times. An online login with rate limits and an offline
+          attack against a stolen password hash have different risks. Guessing speed depends on
+          the hashing method, attacker hardware and attack strategy, so length alone cannot
+          establish how long a password will resist an attack.
+        </p>
       </div>
 
       <div className="space-y-4">

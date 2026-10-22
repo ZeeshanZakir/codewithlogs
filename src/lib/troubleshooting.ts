@@ -32,17 +32,18 @@ export function getArticleReview(slug: string) {
   };
 }
 
-// Draft-fixture evidence never labels an older, different published body.
+// Draft-fixture evidence never verifies a different published body. Summaries
+// describe the current guide's scope; unexecuted examples remain unverified.
 const articleSummaries: Readonly<Record<string, string>> = {
   "what-is-code-with-logs": "Use context-rich logs to trace missing values and failed operations while keeping credentials out of diagnostic output.",
-  "debug-production-errors-nextjs": "Separate browser exceptions from server failures, locate relevant logs and investigate hydration or environment differences. Version review required.",
-  "common-vercel-deployment-errors-solutions": "Compare import, type and environment failures between local builds and deployment. Older commands and platform limits require version review.",
-  "deploy-nextjs-to-vercel-guide": "Follow the repository, environment and hosting setup for a Next.js deployment. Review network-access advice before changing database settings.",
+  "debug-production-errors-nextjs": "Separate browser exceptions from server failures, correlate logs and digests, and investigate hydration, environment differences and error boundaries.",
+  "common-vercel-deployment-errors-solutions": "Diagnose import casing, type errors, environment values, function failures and deployment routing. Hosted remedies remain independently unverified.",
+  "deploy-nextjs-to-vercel-guide": "Work through Git, environment settings, previews and custom domains. Validate hosting and database network settings for the target project.",
   "nextjs-folder-structure-large-projects": "Locate routing, shared components and data access, and understand the @/ source alias. Folder organization does not itself enforce authorization.",
-  "nextjs-authentication-without-nextauth": "Understand browser/server cookie clients and session handling. The published authentication example requires security review before adoption.",
+  "nextjs-authentication-without-nextauth": "Understand cookie-aware browser/server clients, proxy refresh and operation-level identity checks. Live session flows remain unverified.",
   "supabase-errors-production-fixes": "Investigate row-policy failures, query cardinality, expired sessions and connection limits. Validate permission-sensitive fixes in a disposable project.",
-  "supabase-row-level-security-real-examples": "Compare own-row and team access policies. The published examples need grant, privilege and negative-test review before adoption.",
-  "inventory-management-system-nextjs-supabase": "Explore a stock ledger and Next.js/Supabase workflow. The published sale-locking and permission examples need substantial technical correction.",
+  "supabase-row-level-security-real-examples": "Compare own-row, published-post, team and admin access rules. Database permission and negative-access tests remain unverified.",
+  "inventory-management-system-nextjs-supabase": "Design an owner-scoped stock balance and movement ledger with transactional sales and retry keys. Concurrency and authorization require real database tests.",
 };
 export function getArticleSummary(post: Pick<BlogPostMeta, "slug" | "excerpt">) {
   return articleSummaries[post.slug] ?? post.excerpt;
