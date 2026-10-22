@@ -12,7 +12,7 @@ export default async function AdminPreviewPage({
   const { source } = await searchParams;
 
   return (
-    <div className="rounded-2xl border border-white/10 bg-[#111827] p-5">
+    <div className="rounded-2xl border border-slate-200 bg-white p-5">
       <MDXRenderer
         source={
           source ??

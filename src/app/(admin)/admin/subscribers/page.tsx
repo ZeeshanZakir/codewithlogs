@@ -10,11 +10,11 @@ export default async function AdminSubscribersPage() {
 
   return (
     <div className="space-y-8">
-      <section className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-white/10 bg-white/5 p-5">
+      <section className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-slate-200 bg-white shadow-sm p-5">
         <div>
-          <p className="text-sm uppercase tracking-[0.18em] text-white/45">Subscribers</p>
-          <p className="mt-3 text-3xl font-semibold text-white">{subscribers.length}</p>
-          <p className="mt-2 text-sm text-white/60">
+          <p className="text-sm uppercase tracking-[0.18em] text-slate-500">Subscribers</p>
+          <p className="mt-3 text-3xl font-semibold text-slate-900">{subscribers.length}</p>
+          <p className="mt-2 text-sm text-slate-500">
             People who subscribed for blog updates and promotions.
           </p>
         </div>

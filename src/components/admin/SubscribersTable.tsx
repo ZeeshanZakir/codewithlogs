@@ -123,16 +123,16 @@ export function SubscribersTable({ subscribers }: SubscribersTableProps) {
 
   return (
     <div className="space-y-5">
-      <div className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-white/10 bg-white/5 p-5">
-        <p className="text-sm text-white/60">
-          Total subscribers: <span className="font-semibold text-white">{subscribers.length}</span>
+      <div className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-slate-200 bg-white shadow-sm p-5">
+        <p className="text-sm text-slate-500">
+          Total subscribers: <span className="font-semibold text-slate-900">{subscribers.length}</span>
           {" · "}
-          Homepage: <span className="font-semibold text-emerald-200">{homepageCount}</span>
+          Homepage: <span className="font-semibold text-emerald-700">{homepageCount}</span>
         </p>
 
         {selectedIds.size > 0 ? (
           <div className="flex items-center gap-3">
-            <span className="text-sm text-white/60">{selectedIds.size} selected</span>
+            <span className="text-sm text-slate-500">{selectedIds.size} selected</span>
             <button
               type="button"
               disabled={isPending}
@@ -146,17 +146,17 @@ export function SubscribersTable({ subscribers }: SubscribersTableProps) {
         ) : null}
       </div>
 
-      <div className="overflow-hidden rounded-2xl border border-white/10 bg-white/5">
+      <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
         <div className="overflow-x-auto">
-          <table className="min-w-full divide-y divide-white/10 text-left">
-            <thead className="bg-white/5 text-xs uppercase tracking-[0.18em] text-white/45">
+          <table className="min-w-full divide-y divide-slate-100 text-left">
+            <thead className="bg-white shadow-sm text-xs uppercase tracking-[0.18em] text-slate-500">
               <tr>
                 <th className="w-10 px-5 py-4">
                   <input
                     type="checkbox"
                     checked={subscribers.length > 0 && selectedIds.size === subscribers.length}
                     onChange={toggleSelectAll}
-                    className="h-4 w-4 rounded border-white/10 bg-[#0b1020] text-primary focus:ring-0 focus:ring-offset-0"
+                    className="h-4 w-4 rounded border-slate-200 bg-slate-50 text-primary focus:ring-0 focus:ring-offset-0"
                   />
                 </th>
                 <th className="px-5 py-4">Email</th>
@@ -166,7 +166,7 @@ export function SubscribersTable({ subscribers }: SubscribersTableProps) {
                 <th className="px-5 py-4">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-white/10">
+            <tbody className="divide-y divide-slate-100">
               {subscribers.length ? (
                 subscribers.map((subscriber) => {
                   const preferences = [
@@ -186,17 +186,17 @@ export function SubscribersTable({ subscribers }: SubscribersTableProps) {
                           type="checkbox"
                           checked={selectedIds.has(subscriber.id)}
                           onChange={() => toggleSelect(subscriber.id)}
-                          className="h-4 w-4 rounded border-white/10 bg-[#0b1020] text-primary focus:ring-0 focus:ring-offset-0"
+                          className="h-4 w-4 rounded border-slate-200 bg-slate-50 text-primary focus:ring-0 focus:ring-offset-0"
                         />
                       </td>
-                      <td className="px-5 py-4 text-sm font-medium text-white">
+                      <td className="px-5 py-4 text-sm font-medium text-slate-900">
                         {subscriber.email}
                       </td>
-                      <td className="px-5 py-4 text-sm text-white/70">{preferences}</td>
-                      <td className="px-5 py-4 text-sm capitalize text-white/70">
+                      <td className="px-5 py-4 text-sm text-slate-600">{preferences}</td>
+                      <td className="px-5 py-4 text-sm capitalize text-slate-600">
                         {subscriber.source}
                       </td>
-                      <td className="px-5 py-4 text-sm text-white/70">
+                      <td className="px-5 py-4 text-sm text-slate-600">
                         {format(new Date(subscriber.subscribedAt), "MMM d, yyyy")}
                       </td>
                       <td className="px-5 py-4">
@@ -205,7 +205,7 @@ export function SubscribersTable({ subscribers }: SubscribersTableProps) {
                             type="button"
                             disabled={isPending}
                             onClick={() => openEditModal(subscriber)}
-                            className="inline-flex items-center gap-2 rounded-full border border-white/10 px-3 py-1.5 text-white/75"
+                            className="inline-flex items-center gap-2 rounded-full border border-slate-200 px-3 py-1.5 text-slate-700"
                           >
                             <Pencil className="h-4 w-4" />
                             Edit
@@ -214,7 +214,7 @@ export function SubscribersTable({ subscribers }: SubscribersTableProps) {
                             type="button"
                             disabled={isPending}
                             onClick={() => deleteSubscriber(subscriber.id)}
-                            className="inline-flex items-center gap-2 rounded-full border border-red-500/30 px-3 py-1.5 text-red-200"
+                            className="inline-flex items-center gap-2 rounded-full border border-red-200 px-3 py-1.5 text-red-600"
                           >
                             <Trash2 className="h-4 w-4" />
                             Delete
@@ -226,7 +226,7 @@ export function SubscribersTable({ subscribers }: SubscribersTableProps) {
                 })
               ) : (
                 <tr>
-                  <td colSpan={6} className="px-5 py-6 text-sm text-white/60">
+                  <td colSpan={6} className="px-5 py-6 text-sm text-slate-500">
                     No subscribers yet.
                   </td>
                 </tr>
@@ -237,19 +237,19 @@ export function SubscribersTable({ subscribers }: SubscribersTableProps) {
       </div>
 
       {editingSubscriber ? (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 px-4">
-          <div className="w-full max-w-xl rounded-2xl border border-white/10 bg-[#111827] p-6 shadow-2xl">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/40 backdrop-blur-sm px-4">
+          <div className="w-full max-w-xl rounded-2xl border border-slate-200 bg-white p-6 shadow-2xl">
             <div className="flex items-start justify-between gap-4">
               <div>
-                <h2 className="text-xl font-semibold text-white">Edit Subscriber</h2>
-                <p className="mt-2 text-sm text-white/60">
+                <h2 className="text-xl font-semibold text-slate-900">Edit Subscriber</h2>
+                <p className="mt-2 text-sm text-slate-500">
                   Update the subscriber email and notification preferences.
                 </p>
               </div>
               <button
                 type="button"
                 onClick={closeEditModal}
-                className="rounded-full border border-white/10 px-4 py-2 text-sm text-white/70"
+                className="rounded-full border border-slate-200 px-4 py-2 text-sm text-slate-600"
               >
                 Close
               </button>
@@ -257,43 +257,43 @@ export function SubscribersTable({ subscribers }: SubscribersTableProps) {
 
             <form onSubmit={handleEditSubmit} className="mt-6 space-y-5">
               <div>
-                <label className="text-sm font-medium text-white">Email</label>
+                <label className="text-sm font-medium text-slate-900">Email</label>
                 <input
                   type="email"
                   value={email}
                   onChange={(event) => setEmail(event.target.value)}
-                  className="mt-2 h-12 w-full rounded-2xl border border-white/10 bg-[#0b1020] px-4 text-sm text-white outline-none focus:ring-2 focus:ring-primary/40"
+                  className="mt-2 h-12 w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 text-sm text-slate-900 outline-none focus:ring-2 focus:ring-primary/40"
                   required
                 />
               </div>
 
-              <label className="flex items-center gap-3 rounded-2xl border border-white/10 bg-[#0b1020] px-4 py-3 text-sm text-white/75">
+              <label className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-700">
                 <input
                   type="checkbox"
                   checked={blogUpdates}
                   onChange={(event) => setBlogUpdates(event.target.checked)}
-                  className="h-4 w-4 rounded border-white/10 bg-[#0b1020] text-primary focus:ring-0 focus:ring-offset-0"
+                  className="h-4 w-4 rounded border-slate-200 bg-slate-50 text-primary focus:ring-0 focus:ring-offset-0"
                 />
                 Blog updates
               </label>
 
-              <label className="flex items-center gap-3 rounded-2xl border border-white/10 bg-[#0b1020] px-4 py-3 text-sm text-white/75">
+              <label className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-700">
                 <input
                   type="checkbox"
                   checked={promotions}
                   onChange={(event) => setPromotions(event.target.checked)}
-                  className="h-4 w-4 rounded border-white/10 bg-[#0b1020] text-primary focus:ring-0 focus:ring-offset-0"
+                  className="h-4 w-4 rounded border-slate-200 bg-slate-50 text-primary focus:ring-0 focus:ring-offset-0"
                 />
                 Promotions
               </label>
 
-              {errorMessage ? <p className="text-sm text-red-300">{errorMessage}</p> : null}
+              {errorMessage ? <p className="text-sm text-red-600">{errorMessage}</p> : null}
 
               <div className="flex flex-wrap justify-end gap-3">
                 <button
                   type="button"
                   onClick={closeEditModal}
-                  className="rounded-full border border-white/10 px-4 py-2 text-sm text-white/70"
+                  className="rounded-full border border-slate-200 px-4 py-2 text-sm text-slate-600"
                 >
                   Cancel
                 </button>

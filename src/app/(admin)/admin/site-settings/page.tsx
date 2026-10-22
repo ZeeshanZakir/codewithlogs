@@ -24,10 +24,10 @@ export default function SiteSettingsPage() {
       {settings.map((setting) => (
         <section
           key={setting.title}
-          className="rounded-2xl border border-white/10 bg-white/5 p-5"
+          className="rounded-2xl border border-slate-200 bg-white shadow-sm p-5"
         >
-          <h2 className="text-lg font-semibold text-white">{setting.title}</h2>
-          <p className="mt-3 text-sm leading-7 text-white/60">{setting.description}</p>
+          <h2 className="text-lg font-semibold text-slate-900">{setting.title}</h2>
+          <p className="mt-3 text-sm leading-7 text-slate-500">{setting.description}</p>
         </section>
       ))}
     </div>

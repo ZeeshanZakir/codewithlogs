@@ -9,13 +9,16 @@ import {
   Heading2,
   Heading3,
   Image as ImageIcon,
+  ImagePlus,
   Italic,
   Link2,
+  Loader2,
   MonitorPlay,
   Save,
   SquareTerminal,
   Star,
   Upload,
+  X,
 } from "lucide-react";
 
 import { savePostAction, type PostSaveInput } from "@/app/(admin)/admin/actions";
@@ -111,7 +114,7 @@ function renderInline(value: string) {
       return (
         <code
           key={index}
-          className="rounded bg-[#0f172a] px-1.5 py-0.5 text-sm text-emerald-200"
+          className="rounded bg-slate-100 px-1.5 py-0.5 text-sm text-emerald-700"
         >
           {segment.slice(1, -1)}
         </code>
@@ -158,7 +161,7 @@ function PreviewPane({ content }: { content: string }) {
 
     if (value) {
       elements.push(
-        <p key={`p-${elements.length}`} className="text-sm leading-7 text-white/75">
+        <p key={`p-${elements.length}`} className="text-sm leading-7 text-slate-700">
           {renderInline(value)}
         </p>,
       );
@@ -175,7 +178,7 @@ function PreviewPane({ content }: { content: string }) {
     elements.push(
       <pre
         key={`code-${elements.length}`}
-        className="overflow-x-auto rounded-xl border border-white/10 bg-[#0b1020] p-4 text-xs text-emerald-200"
+        className="overflow-x-auto rounded-xl bg-slate-900 p-4 text-xs text-emerald-200"
       >
         <code>{codeBuffer.join("\n")}</code>
       </pre>,
@@ -207,7 +210,7 @@ function PreviewPane({ content }: { content: string }) {
     if (line.startsWith("### ")) {
       flushParagraph();
       elements.push(
-        <h3 key={`h3-${elements.length}`} className="text-lg font-semibold text-white">
+        <h3 key={`h3-${elements.length}`} className="text-lg font-semibold text-slate-900">
           {line.replace(/^###\s+/, "")}
         </h3>,
       );
@@ -217,7 +220,7 @@ function PreviewPane({ content }: { content: string }) {
     if (line.startsWith("## ")) {
       flushParagraph();
       elements.push(
-        <h2 key={`h2-${elements.length}`} className="text-2xl font-semibold text-white">
+        <h2 key={`h2-${elements.length}`} className="text-2xl font-semibold text-slate-900">
           {line.replace(/^##\s+/, "")}
         </h2>,
       );
@@ -231,7 +234,7 @@ function PreviewPane({ content }: { content: string }) {
       elements.push(
         <div
           key={`img-${elements.length}`}
-          className="rounded-xl border border-white/10 bg-white/5 p-4 text-sm text-white/60"
+          className="rounded-xl border border-slate-200 bg-white shadow-sm p-4 text-sm text-slate-500"
         >
           Image preview: {imageMatch[1] || "Untitled"} ({imageMatch[2]})
         </div>,
@@ -251,9 +254,9 @@ function PreviewPane({ content }: { content: string }) {
           key={`affiliate-${elements.length}`}
           className="rounded-xl border border-primary/20 bg-primary/10 p-4 text-sm"
         >
-          <p className="font-semibold text-white">Affiliate recommendation: {label}</p>
-          <p className="mt-2 text-white/70">Link: {url}</p>
-          <p className="mt-2 text-xs text-white/55">{disclosure}</p>
+          <p className="font-semibold text-slate-900">Affiliate recommendation: {label}</p>
+          <p className="mt-2 text-slate-600">Link: {url}</p>
+          <p className="mt-2 text-xs text-slate-500">{disclosure}</p>
         </div>,
       );
       continue;
@@ -267,7 +270,7 @@ function PreviewPane({ content }: { content: string }) {
 
   if (!elements.length) {
     return (
-      <div className="flex min-h-[420px] items-center justify-center rounded-xl border border-dashed border-white/10 bg-[#0b1020] px-6 text-center text-sm text-white/45">
+      <div className="flex min-h-[420px] items-center justify-center rounded-xl border border-dashed border-slate-200 bg-slate-50 px-6 text-center text-sm text-slate-500">
         Start writing MDX to see a live preview.
       </div>
     );
@@ -301,6 +304,8 @@ export function PostEditor({ initialPost }: PostEditorProps) {
   const [tags, setTags] = useState(initialPost?.tags.join(", ") ?? "");
   const [content, setContent] = useState(initialPost?.content ?? "");
   const [isUploading, setIsUploading] = useState(false);
+  const [dragTarget, setDragTarget] = useState<"cover" | "content" | null>(null);
+  const coverInputRef = useRef<HTMLInputElement>(null);
   const [affiliateLinks, setAffiliateLinks] = useState<EditableAffiliateLink[]>(() =>
     initialPost?.affiliateLinks.length
       ? initialPost.affiliateLinks.map((link) => createAffiliateLink(link))
@@ -319,9 +324,11 @@ export function PostEditor({ initialPost }: PostEditorProps) {
   const wordCount = useMemo(() => getWordCount(content), [content]);
   const readTime = useMemo(() => getReadTime(content), [content]);
 
-  async function handleImageUpload(event: React.ChangeEvent<HTMLInputElement>, target: "cover" | "content") {
-    const file = event.target.files?.[0];
-    if (!file) return;
+  async function uploadImage(file: File, target: "cover" | "content") {
+    if (!file.type.startsWith("image/")) {
+      setToast({ type: "error", message: "Only image files can be uploaded." });
+      return;
+    }
 
     setIsUploading(true);
     const formData = new FormData();
@@ -353,9 +360,27 @@ export function PostEditor({ initialPost }: PostEditorProps) {
       });
     } finally {
       setIsUploading(false);
-      // Clear input
-      event.target.value = "";
     }
+  }
+
+  function handleImageInput(event: React.ChangeEvent<HTMLInputElement>, target: "cover" | "content") {
+    const file = event.target.files?.[0];
+    event.target.value = "";
+    if (file) void uploadImage(file, target);
+  }
+
+  function handleImageDrop(event: React.DragEvent<HTMLElement>, target: "cover" | "content") {
+    event.preventDefault();
+    setDragTarget(null);
+    const file = event.dataTransfer.files?.[0];
+    if (file && !isUploading) void uploadImage(file, target);
+  }
+
+  function handleDragOver(event: React.DragEvent<HTMLElement>, target: "cover" | "content") {
+    if (!event.dataTransfer.types.includes("Files")) return;
+    event.preventDefault();
+    event.dataTransfer.dropEffect = "copy";
+    setDragTarget(target);
   }
 
   function updateAffiliateLink(
@@ -548,15 +573,15 @@ export function PostEditor({ initialPost }: PostEditorProps) {
         type="file"
         className="hidden"
         accept="image/*"
-        onChange={(e) => handleImageUpload(e, "content")}
+        onChange={(e) => handleImageInput(e, "content")}
         disabled={isUploading}
       />
       {toast ? (
         <div
           className={`rounded-xl px-4 py-3 text-sm font-medium ${
             toast.type === "success"
-              ? "bg-emerald-500/15 text-emerald-200"
-              : "bg-red-500/15 text-red-200"
+              ? "bg-emerald-50 text-emerald-700"
+              : "bg-red-50 text-red-600"
           }`}
         >
           {toast.message}
@@ -565,10 +590,10 @@ export function PostEditor({ initialPost }: PostEditorProps) {
 
       <div className="grid gap-6 xl:grid-cols-[minmax(0,1.55fr)_minmax(320px,0.85fr)]">
         <div className="space-y-6">
-          <section className="rounded-2xl border border-white/10 bg-white/5 p-5">
+          <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
             <div className="grid gap-5 lg:grid-cols-2">
               <div className="space-y-2 lg:col-span-2">
-                <label className="text-sm font-medium text-white/75">Title</label>
+                <label className="text-sm font-medium text-slate-700">Title</label>
                 <input
                   value={title}
                   onChange={(event) => {
@@ -579,25 +604,25 @@ export function PostEditor({ initialPost }: PostEditorProps) {
                       setSlug(slugify(nextTitle));
                     }
                   }}
-                  className="h-12 w-full rounded-xl border border-white/10 bg-[#0b1020] px-4 text-sm text-white outline-none focus:border-primary/40"
+                  className="h-12 w-full rounded-xl border border-slate-200 bg-white px-4 text-sm text-slate-900 outline-none transition focus:border-primary focus:ring-4 focus:ring-primary/10"
                 />
               </div>
 
               <div className="space-y-2">
-                <label className="text-sm font-medium text-white/75">Slug</label>
+                <label className="text-sm font-medium text-slate-700">Slug</label>
                 <input
                   value={slug}
                   onChange={(event) => {
                     setSlugTouched(true);
                     setSlug(slugify(event.target.value));
                   }}
-                  className="h-12 w-full rounded-xl border border-white/10 bg-[#0b1020] px-4 text-sm text-white outline-none focus:border-primary/40"
+                  className="h-12 w-full rounded-xl border border-slate-200 bg-white px-4 text-sm text-slate-900 outline-none transition focus:border-primary focus:ring-4 focus:ring-primary/10"
                 />
               </div>
 
               <div className="space-y-2">
                 <div className="flex items-center justify-between gap-4">
-                  <label className="text-sm font-medium text-white/75">Category</label>
+                  <label className="text-sm font-medium text-slate-700">Category</label>
                   <button
                     type="button"
                     onClick={() => {
@@ -618,13 +643,13 @@ export function PostEditor({ initialPost }: PostEditorProps) {
                     value={category}
                     onChange={(event) => setCategory(event.target.value)}
                     placeholder="Enter custom category"
-                    className="h-12 w-full rounded-xl border border-white/10 bg-[#0b1020] px-4 text-sm text-white outline-none focus:border-primary/40"
+                    className="h-12 w-full rounded-xl border border-slate-200 bg-white px-4 text-sm text-slate-900 outline-none transition focus:border-primary focus:ring-4 focus:ring-primary/10"
                   />
                 ) : (
                   <select
                     value={category}
                     onChange={(event) => setCategory(event.target.value)}
-                    className="h-12 w-full rounded-xl border border-white/10 bg-[#0b1020] px-4 text-sm text-white outline-none focus:border-primary/40"
+                    className="h-12 w-full rounded-xl border border-slate-200 bg-white px-4 text-sm text-slate-900 outline-none transition focus:border-primary focus:ring-4 focus:ring-primary/10"
                   >
                     {PREDEFINED_CATEGORIES.map((option) => (
                       <option key={option} value={option}>
@@ -637,88 +662,165 @@ export function PostEditor({ initialPost }: PostEditorProps) {
 
               <div className="space-y-2 lg:col-span-2">
                 <div className="flex items-center justify-between gap-4">
-                  <label className="text-sm font-medium text-white/75">Excerpt</label>
-                  <span className="text-xs text-white/45">{excerpt.length}/150</span>
+                  <label className="text-sm font-medium text-slate-700">Excerpt</label>
+                  <span className="text-xs text-slate-500">{excerpt.length}/150</span>
                 </div>
                 <textarea
                   value={excerpt}
                   maxLength={500}
                   onChange={(event) => setExcerpt(event.target.value)}
                   rows={4}
-                  className="w-full rounded-xl border border-white/10 bg-[#0b1020] px-4 py-3 text-sm text-white outline-none focus:border-primary/40"
+                  className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-primary focus:ring-4 focus:ring-primary/10"
                 />
               </div>
 
               <div className="space-y-2 lg:col-span-2">
-                <div className="flex items-center justify-between gap-4">
-                  <label className="text-sm font-medium text-white/75">Cover image URL</label>
-                  <label className="cursor-pointer text-xs font-medium text-primary hover:text-primary/80">
-                    <input
-                      type="file"
-                      className="hidden"
-                      accept="image/*"
-                      onChange={(e) => handleImageUpload(e, "cover")}
-                      disabled={isUploading}
-                    />
-                    {isUploading ? "Uploading..." : "Upload Image"}
-                  </label>
-                </div>
+                <label className="text-sm font-medium text-slate-700">Cover image</label>
                 <input
-                  value={coverImage}
-                  onChange={(event) => setCoverImage(event.target.value)}
-                  className="h-12 w-full rounded-xl border border-white/10 bg-[#0b1020] px-4 text-sm text-white outline-none focus:border-primary/40"
+                  ref={coverInputRef}
+                  type="file"
+                  className="hidden"
+                  accept="image/*"
+                  onChange={(e) => handleImageInput(e, "cover")}
+                  disabled={isUploading}
                 />
+                <div
+                  role="button"
+                  tabIndex={0}
+                  aria-label="Upload cover image"
+                  onClick={() => !isUploading && coverInputRef.current?.click()}
+                  onKeyDown={(event) => {
+                    if (event.key === "Enter" || event.key === " ") {
+                      event.preventDefault();
+                      if (!isUploading) coverInputRef.current?.click();
+                    }
+                  }}
+                  onDragOver={(event) => handleDragOver(event, "cover")}
+                  onDragLeave={() => setDragTarget(null)}
+                  onDrop={(event) => handleImageDrop(event, "cover")}
+                  className={`group relative cursor-pointer overflow-hidden rounded-2xl border-2 border-dashed transition-colors focus:outline-none focus-visible:ring-4 focus-visible:ring-primary/10 ${
+                    dragTarget === "cover"
+                      ? "border-primary bg-primary/5"
+                      : "border-slate-200 bg-slate-50 hover:border-primary/40 hover:bg-primary/[0.03]"
+                  }`}
+                >
+                  {coverImage ? (
+                    <div className="relative aspect-[16/7]">
+                      <Image
+                        src={coverImage}
+                        alt="Cover preview"
+                        fill
+                        loading="lazy"
+                        unoptimized
+                        className="object-cover"
+                        sizes="(max-width: 1280px) 100vw, 50vw"
+                      />
+                      <div className="absolute inset-0 flex items-center justify-center bg-slate-900/0 opacity-0 transition group-hover:bg-slate-900/40 group-hover:opacity-100">
+                        <span className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-medium text-slate-900 shadow">
+                          <Upload className="h-4 w-4" />
+                          Drop or click to replace
+                        </span>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="flex flex-col items-center justify-center gap-3 px-6 py-10 text-center">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white text-primary shadow-sm">
+                        {isUploading ? (
+                          <Loader2 className="h-5 w-5 animate-spin" />
+                        ) : (
+                          <ImagePlus className="h-5 w-5" />
+                        )}
+                      </div>
+                      <div>
+                        <p className="text-sm font-medium text-slate-900">
+                          {isUploading ? "Uploading…" : "Drag & drop a cover image"}
+                        </p>
+                        <p className="mt-1 text-xs text-slate-500">
+                          or <span className="font-medium text-primary">browse</span> · JPG, PNG, WEBP or GIF up to 5MB
+                        </p>
+                      </div>
+                    </div>
+                  )}
+                  {isUploading && coverImage ? (
+                    <div className="absolute inset-0 flex items-center justify-center bg-white/70">
+                      <Loader2 className="h-6 w-6 animate-spin text-primary" />
+                    </div>
+                  ) : null}
+                </div>
+                <div className="flex gap-2">
+                  <input
+                    value={coverImage}
+                    onChange={(event) => setCoverImage(event.target.value)}
+                    placeholder="…or paste an image URL"
+                    className="h-10 min-w-0 flex-1 rounded-xl border border-slate-200 bg-white px-3 text-sm text-slate-900 outline-none transition focus:border-primary focus:ring-4 focus:ring-primary/10"
+                  />
+                  {coverImage ? (
+                    <button
+                      type="button"
+                      onClick={() => setCoverImage("")}
+                      className="inline-flex h-10 items-center gap-1.5 rounded-xl border border-slate-200 px-3 text-sm text-slate-600 transition hover:border-red-200 hover:bg-red-50 hover:text-red-600"
+                    >
+                      <X className="h-4 w-4" />
+                      Remove
+                    </button>
+                  ) : null}
+                </div>
               </div>
 
               <div className="space-y-2">
-                <label className="text-sm font-medium text-white/75">Author</label>
+                <label className="text-sm font-medium text-slate-700">Author</label>
                 <input
                   value={author}
                   onChange={(event) => setAuthor(event.target.value)}
-                  className="h-12 w-full rounded-xl border border-white/10 bg-[#0b1020] px-4 text-sm text-white outline-none focus:border-primary/40"
+                  className="h-12 w-full rounded-xl border border-slate-200 bg-white px-4 text-sm text-slate-900 outline-none transition focus:border-primary focus:ring-4 focus:ring-primary/10"
                 />
               </div>
 
               <div className="space-y-2">
-                <label className="text-sm font-medium text-white/75">Post date</label>
+                <label className="text-sm font-medium text-slate-700">Post date</label>
                 <input
                   type="datetime-local"
                   value={publishDate}
                   onChange={(event) => setPublishDate(event.target.value)}
-                  className="h-12 w-full rounded-xl border border-white/10 bg-[#0b1020] px-4 text-sm text-white outline-none focus:border-primary/40 [color-scheme:dark]"
+                  className="h-12 w-full rounded-xl border border-slate-200 bg-white px-4 text-sm text-slate-900 outline-none transition focus:border-primary focus:ring-4 focus:ring-primary/10"
                 />
               </div>
 
               <div className="space-y-2">
-                <label className="text-sm font-medium text-white/75">Read time</label>
-                <div className="flex h-12 items-center rounded-xl border border-white/10 bg-[#0b1020] px-4 text-sm text-white/70">
+                <label className="text-sm font-medium text-slate-700">Read time</label>
+                <div className="flex h-12 items-center rounded-xl border border-slate-200 bg-slate-50 px-4 text-sm text-slate-600">
                   {readTime}
                 </div>
               </div>
 
               <div className="space-y-2">
-                <label className="text-sm font-medium text-white/75">Tags</label>
+                <label className="text-sm font-medium text-slate-700">Tags</label>
                 <input
                   value={tags}
                   onChange={(event) => setTags(event.target.value)}
                   placeholder="nextjs, mern, saas"
-                  className="h-12 w-full rounded-xl border border-white/10 bg-[#0b1020] px-4 text-sm text-white outline-none focus:border-primary/40"
+                  className="h-12 w-full rounded-xl border border-slate-200 bg-white px-4 text-sm text-slate-900 outline-none transition focus:border-primary focus:ring-4 focus:ring-primary/10"
                 />
               </div>
 
               <div className="space-y-3">
-                <p className="text-sm font-medium text-white/75">Status</p>
+                <p className="text-sm font-medium text-slate-700">Status</p>
                 <div className="flex flex-wrap gap-3">
                   {(["draft", "published", "scheduled"] as const).map((option) => (
                     <label
                       key={option}
-                      className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-[#0b1020] px-4 py-2 text-sm text-white/75"
+                      className={`inline-flex cursor-pointer items-center gap-2 rounded-full border px-4 py-2 text-sm transition ${
+                        status === option
+                          ? "border-primary bg-primary/10 font-medium text-primary"
+                          : "border-slate-200 bg-white text-slate-600 hover:border-slate-300"
+                      }`}
                     >
                       <input
                         type="radio"
                         name="status"
                         checked={status === option}
                         onChange={() => setStatus(option)}
+                        className="accent-primary"
                       />
                       {option.charAt(0).toUpperCase() + option.slice(1)}
                     </label>
@@ -728,19 +830,20 @@ export function PostEditor({ initialPost }: PostEditorProps) {
 
               {status === "scheduled" ? (
                 <div className="space-y-2 lg:col-span-2">
-                  <label className="text-sm font-medium text-white/75">Schedule for</label>
+                  <label className="text-sm font-medium text-slate-700">Schedule for</label>
                   <input
                     type="datetime-local"
                     value={scheduledAt}
                     onChange={(event) => setScheduledAt(event.target.value)}
-                    className="h-12 w-full rounded-xl border border-white/10 bg-[#0b1020] px-4 text-sm text-white outline-none focus:border-primary/40 [color-scheme:dark]"
+                    className="h-12 w-full rounded-xl border border-slate-200 bg-white px-4 text-sm text-slate-900 outline-none transition focus:border-primary focus:ring-4 focus:ring-primary/10"
                   />
                 </div>
               ) : null}
 
               <div className="space-y-3 lg:col-span-2">
-                <label className="inline-flex items-center gap-3 rounded-xl border border-white/10 bg-[#0b1020] px-4 py-3 text-sm text-white/75">
+                <label className="inline-flex cursor-pointer items-center gap-3 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 transition hover:border-slate-300">
                   <input
+                    className="h-4 w-4 accent-primary"
                     type="checkbox"
                     checked={featured}
                     onChange={(event) => setFeatured(event.target.checked)}
@@ -749,32 +852,17 @@ export function PostEditor({ initialPost }: PostEditorProps) {
                 </label>
               </div>
 
-              {coverImage ? (
-                <div className="lg:col-span-2">
-                  <div className="relative aspect-[16/7] overflow-hidden rounded-xl border border-white/10 bg-[#0b1020]">
-                    <Image
-                      src={coverImage}
-                      alt="Cover preview"
-                      fill
-                      loading="lazy"
-                      unoptimized
-                      className="object-cover"
-                      sizes="(max-width: 1280px) 100vw, 50vw"
-                    />
-                  </div>
-                </div>
-              ) : null}
             </div>
           </section>
 
-          <section className="rounded-2xl border border-white/10 bg-white/5 p-5">
+          <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
             <div className="flex flex-wrap gap-2">
               {toolbarButtons.map(({ type, label, icon: Icon }) => (
                 <button
                   key={type}
                   type="button"
                   onClick={() => handleToolbarInsert(type)}
-                  className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-[#0b1020] px-4 py-2 text-xs font-medium text-white/75 transition hover:border-primary/30 hover:text-white"
+                  className="inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs font-medium text-slate-600 transition hover:border-primary/30 hover:bg-primary/5 hover:text-primary"
                 >
                   <Icon className="h-4 w-4" />
                   {label}
@@ -785,36 +873,46 @@ export function PostEditor({ initialPost }: PostEditorProps) {
             <div className="mt-5 grid gap-5 xl:grid-cols-2">
               <div className="space-y-3">
                 <div className="flex items-center justify-between gap-3">
-                  <p className="text-sm font-medium text-white/75">MDX Editor</p>
-                  <span className="text-xs text-white/45">{wordCount} words</span>
+                  <p className="text-sm font-medium text-slate-700">MDX Editor</p>
+                  <span className="text-xs text-slate-500">{wordCount} words</span>
                 </div>
                 <textarea
                   ref={textareaRef}
                   value={content}
                   onChange={(event) => setContent(event.target.value)}
+                  onDragOver={(event) => handleDragOver(event, "content")}
+                  onDragLeave={() => setDragTarget(null)}
+                  onDrop={(event) => {
+                    if (event.dataTransfer.files?.length) handleImageDrop(event, "content");
+                  }}
+                  placeholder="Write your post in MDX… drop an image here to insert it."
                   rows={22}
-                  className="min-h-[520px] w-full rounded-2xl border border-white/10 bg-[#0b1020] px-4 py-4 font-mono text-sm leading-7 text-white outline-none focus:border-primary/40"
+                  className={`min-h-[520px] w-full rounded-2xl border px-4 py-4 font-mono text-sm leading-7 text-slate-900 outline-none transition focus:border-primary focus:ring-4 focus:ring-primary/10 ${
+                    dragTarget === "content"
+                      ? "border-primary bg-primary/5 ring-4 ring-primary/10"
+                      : "border-slate-200 bg-white"
+                  }`}
                 />
               </div>
 
               <div className="space-y-3">
-                <p className="text-sm font-medium text-white/75">Live Preview</p>
-                <div className="min-h-[520px] rounded-2xl border border-white/10 bg-[#111827] p-5">
+                <p className="text-sm font-medium text-slate-700">Live Preview</p>
+                <div className="min-h-[520px] rounded-2xl border border-slate-200 bg-slate-50/60 p-5">
                   <PreviewPane content={content} />
                 </div>
               </div>
             </div>
 
-            <div className="mt-4 text-sm text-white/50">
+            <div className="mt-4 text-sm text-slate-500">
               Word count: {wordCount} · Read time: {readTime}
             </div>
           </section>
 
-          <section className="rounded-2xl border border-white/10 bg-white/5 p-5">
+          <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
             <div className="flex items-center justify-between gap-4">
               <div>
-                <h2 className="text-lg font-semibold text-white">Affiliate Links</h2>
-                <p className="mt-1 text-sm text-white/55">
+                <h2 className="text-lg font-semibold text-slate-900">Affiliate Links</h2>
+                <p className="mt-1 text-sm text-slate-500">
                   These entries are saved into the post frontmatter as `affiliateLinks`.
                 </p>
               </div>
@@ -826,7 +924,7 @@ export function PostEditor({ initialPost }: PostEditorProps) {
                     createAffiliateLink(),
                   ])
                 }
-                className="rounded-full border border-white/10 px-4 py-2 text-sm font-medium text-white/75"
+                className="rounded-lg border border-slate-200 px-4 py-2 text-sm font-medium text-slate-700 transition hover:border-primary/30 hover:bg-primary/5 hover:text-primary"
               >
                 Add Link
               </button>
@@ -836,7 +934,7 @@ export function PostEditor({ initialPost }: PostEditorProps) {
               {affiliateLinks.map((link) => (
                 <div
                   key={link.id}
-                  className="grid gap-4 rounded-xl border border-white/10 bg-[#0b1020] p-4 lg:grid-cols-3"
+                  className="grid gap-4 rounded-xl border border-slate-200 bg-slate-50 p-4 lg:grid-cols-3"
                 >
                   <input
                     value={link.label}
@@ -844,7 +942,7 @@ export function PostEditor({ initialPost }: PostEditorProps) {
                       updateAffiliateLink(link.id, "label", event.target.value)
                     }
                     placeholder="Tool label"
-                    className="h-11 rounded-xl border border-white/10 bg-transparent px-3 text-sm text-white outline-none focus:border-primary/40"
+                    className="h-11 rounded-xl border border-slate-200 bg-white px-3 text-sm text-slate-900 outline-none transition focus:border-primary focus:ring-4 focus:ring-primary/10"
                   />
                   <input
                     value={link.url}
@@ -852,7 +950,7 @@ export function PostEditor({ initialPost }: PostEditorProps) {
                       updateAffiliateLink(link.id, "url", event.target.value)
                     }
                     placeholder="https://affiliate-link.com"
-                    className="h-11 rounded-xl border border-white/10 bg-transparent px-3 text-sm text-white outline-none focus:border-primary/40"
+                    className="h-11 rounded-xl border border-slate-200 bg-white px-3 text-sm text-slate-900 outline-none transition focus:border-primary focus:ring-4 focus:ring-primary/10"
                   />
                   <div className="flex gap-3">
                     <input
@@ -861,7 +959,7 @@ export function PostEditor({ initialPost }: PostEditorProps) {
                         updateAffiliateLink(link.id, "disclosure", event.target.value)
                       }
                       placeholder="Disclosure text"
-                      className="h-11 flex-1 rounded-xl border border-white/10 bg-transparent px-3 text-sm text-white outline-none focus:border-primary/40"
+                      className="h-11 flex-1 rounded-xl border border-slate-200 bg-white px-3 text-sm text-slate-900 outline-none transition focus:border-primary focus:ring-4 focus:ring-primary/10"
                     />
                     {affiliateLinks.length > 1 ? (
                       <button
@@ -871,7 +969,7 @@ export function PostEditor({ initialPost }: PostEditorProps) {
                             current.filter((currentLink) => currentLink.id !== link.id),
                           )
                         }
-                        className="rounded-xl border border-red-500/30 px-4 text-sm text-red-200"
+                        className="rounded-xl border border-red-200 px-4 text-sm text-red-600 transition hover:bg-red-50"
                       >
                         Remove
                       </button>
@@ -883,10 +981,10 @@ export function PostEditor({ initialPost }: PostEditorProps) {
           </section>
         </div>
 
-        <aside className="space-y-6">
-          <section className="rounded-2xl border border-white/10 bg-white/5 p-5">
-            <h2 className="text-lg font-semibold text-white">Post Actions</h2>
-            <p className="mt-2 text-sm leading-7 text-white/55">
+        <aside className="space-y-6 xl:sticky xl:top-24 xl:self-start">
+          <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+            <h2 className="text-lg font-semibold text-slate-900">Post Actions</h2>
+            <p className="mt-2 text-sm leading-7 text-slate-500">
               Save drafts, publish updates, or preview the blog post in a new tab.
             </p>
 
@@ -895,7 +993,7 @@ export function PostEditor({ initialPost }: PostEditorProps) {
                 type="button"
                 onClick={() => persistPost("draft")}
                 disabled={isPending}
-                className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/10 bg-[#0b1020] px-5 py-3 text-sm font-semibold text-white/80"
+                className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-5 py-3 text-sm font-semibold text-slate-700 transition hover:border-slate-300 hover:bg-slate-50 disabled:opacity-60"
               >
                 <Save className="h-4 w-4" />
                 Save Draft
@@ -905,7 +1003,7 @@ export function PostEditor({ initialPost }: PostEditorProps) {
                   type="button"
                   onClick={() => persistPost("scheduled")}
                   disabled={isPending}
-                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-5 py-3 text-sm font-semibold text-white"
+                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-5 py-3 text-sm font-semibold text-white shadow-sm shadow-primary/20 transition hover:bg-primary/90 disabled:opacity-60"
                 >
                   Schedule
                 </button>
@@ -914,7 +1012,7 @@ export function PostEditor({ initialPost }: PostEditorProps) {
                   type="button"
                   onClick={() => persistPost("published")}
                   disabled={isPending}
-                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-5 py-3 text-sm font-semibold text-white"
+                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-5 py-3 text-sm font-semibold text-white shadow-sm shadow-primary/20 transition hover:bg-primary/90 disabled:opacity-60"
                 >
                   {status === "published" ? "Update Post" : "Publish Now"}
                 </button>
@@ -922,7 +1020,7 @@ export function PostEditor({ initialPost }: PostEditorProps) {
               <button
                 type="button"
                 onClick={openPreview}
-                className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/10 px-5 py-3 text-sm font-semibold text-white/80"
+                className="inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold text-slate-600 transition hover:bg-slate-100 hover:text-slate-900"
               >
                 <MonitorPlay className="h-4 w-4" />
                 Preview
@@ -930,9 +1028,9 @@ export function PostEditor({ initialPost }: PostEditorProps) {
             </div>
           </section>
 
-          <section className="rounded-2xl border border-white/10 bg-white/5 p-5">
-            <h2 className="text-lg font-semibold text-white">Post Summary</h2>
-            <dl className="mt-4 space-y-3 text-sm text-white/70">
+          <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+            <h2 className="text-lg font-semibold text-slate-900">Post Summary</h2>
+            <dl className="mt-4 space-y-3 text-sm text-slate-600">
               <div className="flex items-center justify-between gap-4">
                 <dt>Status</dt>
                 <dd className="capitalize">{status}</dd>

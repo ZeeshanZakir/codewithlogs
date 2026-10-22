@@ -73,16 +73,16 @@ export function ContactMessagesTable({ messages }: ContactMessagesTableProps) {
 
   return (
     <div className="space-y-5">
-      <div className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-white/10 bg-white/5 p-5">
-        <p className="text-sm text-white/60">
-          Total messages: <span className="font-semibold text-white">{messages.length}</span>
+      <div className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-slate-200 bg-white shadow-sm p-5">
+        <p className="text-sm text-slate-500">
+          Total messages: <span className="font-semibold text-slate-900">{messages.length}</span>
           {" · "}
-          Unread: <span className="font-semibold text-amber-200">{unreadCount}</span>
+          Unread: <span className="font-semibold text-amber-700">{unreadCount}</span>
         </p>
 
         {selectedIds.size > 0 && (
           <div className="flex items-center gap-3 animate-in fade-in slide-in-from-right-4">
-            <span className="text-sm text-white/60">
+            <span className="text-sm text-slate-500">
               {selectedIds.size} selected
             </span>
             <button
@@ -98,17 +98,17 @@ export function ContactMessagesTable({ messages }: ContactMessagesTableProps) {
         )}
       </div>
 
-      <div className="overflow-hidden rounded-2xl border border-white/10 bg-white/5">
+      <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
         <div className="overflow-x-auto">
-          <table className="min-w-full divide-y divide-white/10 text-left">
-            <thead className="bg-white/5 text-xs uppercase tracking-[0.18em] text-white/45">
+          <table className="min-w-full divide-y divide-slate-100 text-left">
+            <thead className="bg-white shadow-sm text-xs uppercase tracking-[0.18em] text-slate-500">
               <tr>
                 <th className="px-5 py-4 w-10">
                   <input
                     type="checkbox"
                     checked={messages.length > 0 && selectedIds.size === messages.length}
                     onChange={toggleSelectAll}
-                    className="h-4 w-4 rounded border-white/10 bg-[#0b1020] text-primary focus:ring-0 focus:ring-offset-0"
+                    className="h-4 w-4 rounded border-slate-200 bg-slate-50 text-primary focus:ring-0 focus:ring-offset-0"
                   />
                 </th>
                 <th className="px-5 py-4">Name</th>
@@ -120,7 +120,7 @@ export function ContactMessagesTable({ messages }: ContactMessagesTableProps) {
                 <th className="px-5 py-4">View</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-white/10">
+            <tbody className="divide-y divide-slate-100">
               {messages.map((message) => (
                 <tr
                   key={message.id}
@@ -131,24 +131,24 @@ export function ContactMessagesTable({ messages }: ContactMessagesTableProps) {
                       type="checkbox"
                       checked={selectedIds.has(message.id)}
                       onChange={() => toggleSelect(message.id)}
-                      className="h-4 w-4 rounded border-white/10 bg-[#0b1020] text-primary focus:ring-0 focus:ring-offset-0"
+                      className="h-4 w-4 rounded border-slate-200 bg-slate-50 text-primary focus:ring-0 focus:ring-offset-0"
                     />
                   </td>
-                  <td className="px-5 py-4 text-sm font-medium text-white">
+                  <td className="px-5 py-4 text-sm font-medium text-slate-900">
                     {message.name}
                   </td>
-                  <td className="px-5 py-4 text-sm text-white/70">{message.email}</td>
-                  <td className="px-5 py-4 text-sm text-white/70">{message.subject}</td>
-                  <td className="px-5 py-4 text-sm text-white/70">{message.budget}</td>
-                  <td className="px-5 py-4 text-sm text-white/70">
+                  <td className="px-5 py-4 text-sm text-slate-600">{message.email}</td>
+                  <td className="px-5 py-4 text-sm text-slate-600">{message.subject}</td>
+                  <td className="px-5 py-4 text-sm text-slate-600">{message.budget}</td>
+                  <td className="px-5 py-4 text-sm text-slate-600">
                     {format(new Date(message.createdAt), "MMM d, yyyy")}
                   </td>
                   <td className="px-5 py-4">
                     <span
                       className={`inline-flex rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] ${
                         message.status === "read"
-                          ? "bg-emerald-500/15 text-emerald-200"
-                          : "bg-amber-500/15 text-amber-200"
+                          ? "bg-emerald-50 text-emerald-700"
+                          : "bg-amber-50 text-amber-700"
                       }`}
                     >
                       {message.status}
@@ -158,7 +158,7 @@ export function ContactMessagesTable({ messages }: ContactMessagesTableProps) {
                     <button
                       type="button"
                       onClick={() => setSelectedMessage(message)}
-                      className="inline-flex items-center gap-2 rounded-full border border-white/10 px-3 py-1.5 text-sm text-white/75"
+                      className="inline-flex items-center gap-2 rounded-full border border-slate-200 px-3 py-1.5 text-sm text-slate-700"
                     >
                       <Eye className="h-4 w-4" />
                       View
@@ -172,47 +172,47 @@ export function ContactMessagesTable({ messages }: ContactMessagesTableProps) {
       </div>
 
       {selectedMessage ? (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 px-4">
-          <div className="w-full max-w-2xl rounded-2xl border border-white/10 bg-[#111827] p-6 shadow-2xl">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/40 backdrop-blur-sm px-4">
+          <div className="w-full max-w-2xl rounded-2xl border border-slate-200 bg-white p-6 shadow-2xl">
             <div className="flex items-start justify-between gap-4">
               <div>
-                <h2 className="text-xl font-semibold text-white">
+                <h2 className="text-xl font-semibold text-slate-900">
                   {selectedMessage.subject}
                 </h2>
-                <p className="mt-2 text-sm text-white/60">
+                <p className="mt-2 text-sm text-slate-500">
                   From {selectedMessage.name} · {selectedMessage.email}
                 </p>
               </div>
               <button
                 type="button"
                 onClick={() => setSelectedMessage(null)}
-                className="rounded-full border border-white/10 px-4 py-2 text-sm text-white/70"
+                className="rounded-full border border-slate-200 px-4 py-2 text-sm text-slate-600"
               >
                 Close
               </button>
             </div>
 
-            <div className="mt-6 grid gap-4 rounded-2xl border border-white/10 bg-[#0b1020] p-5 sm:grid-cols-3">
+            <div className="mt-6 grid gap-4 rounded-2xl border border-slate-200 bg-slate-50 p-5 sm:grid-cols-3">
               <div>
-                <p className="text-xs uppercase tracking-[0.18em] text-white/45">Budget</p>
-                <p className="mt-2 text-sm text-white/75">{selectedMessage.budget}</p>
+                <p className="text-xs uppercase tracking-[0.18em] text-slate-500">Budget</p>
+                <p className="mt-2 text-sm text-slate-700">{selectedMessage.budget}</p>
               </div>
               <div>
-                <p className="text-xs uppercase tracking-[0.18em] text-white/45">Date</p>
-                <p className="mt-2 text-sm text-white/75">
+                <p className="text-xs uppercase tracking-[0.18em] text-slate-500">Date</p>
+                <p className="mt-2 text-sm text-slate-700">
                   {format(new Date(selectedMessage.createdAt), "PPP")}
                 </p>
               </div>
               <div>
-                <p className="text-xs uppercase tracking-[0.18em] text-white/45">Status</p>
-                <p className="mt-2 text-sm capitalize text-white/75">
+                <p className="text-xs uppercase tracking-[0.18em] text-slate-500">Status</p>
+                <p className="mt-2 text-sm capitalize text-slate-700">
                   {selectedMessage.status}
                 </p>
               </div>
             </div>
 
-            <div className="mt-5 rounded-2xl border border-white/10 bg-[#0b1020] p-5">
-              <p className="whitespace-pre-wrap text-sm leading-7 text-white/75">
+            <div className="mt-5 rounded-2xl border border-slate-200 bg-slate-50 p-5">
+              <p className="whitespace-pre-wrap text-sm leading-7 text-slate-700">
                 {selectedMessage.message}
               </p>
             </div>
@@ -223,7 +223,7 @@ export function ContactMessagesTable({ messages }: ContactMessagesTableProps) {
                   type="button"
                   disabled={isPending}
                   onClick={() => markAsRead(selectedMessage.id)}
-                  className="inline-flex items-center gap-2 rounded-full border border-white/10 px-4 py-2 text-sm text-white/75"
+                  className="inline-flex items-center gap-2 rounded-full border border-slate-200 px-4 py-2 text-sm text-slate-700"
                 >
                   <MailOpen className="h-4 w-4" />
                   Mark as read

@@ -38,7 +38,7 @@ export function LoginForm() {
   }
 
   return (
-    <div className="w-full max-w-md rounded-2xl border border-white/10 bg-white/5 p-8 shadow-2xl backdrop-blur">
+    <div className="w-full max-w-md rounded-2xl border border-slate-200 bg-white shadow-sm p-8 shadow-2xl backdrop-blur">
       <div className="mb-8 text-center">
         <Logo
           href=""
@@ -46,15 +46,15 @@ export function LoginForm() {
           className="mx-auto w-[220px]"
           imageClassName="rounded-xl bg-white p-2 shadow-lg shadow-black/20"
         />
-        <h1 className="mt-5 text-3xl font-semibold text-white">Admin Panel</h1>
-        <p className="mt-2 text-sm text-white/60">
+        <h1 className="mt-5 text-3xl font-semibold text-slate-900">Admin Panel</h1>
+        <p className="mt-2 text-sm text-slate-500">
           Sign in to manage blog posts, messages, and site content.
         </p>
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-5">
         <div className="space-y-2">
-          <label htmlFor="email" className="text-sm font-medium text-white/75">
+          <label htmlFor="email" className="text-sm font-medium text-slate-700">
             Email
           </label>
           <input
@@ -64,12 +64,12 @@ export function LoginForm() {
             value={email}
             onChange={(event) => setEmail(event.target.value)}
             required
-            className="h-12 w-full rounded-xl border border-white/10 bg-[#0f172a] px-4 text-sm text-white outline-none transition focus:border-primary/40"
+            className="h-12 w-full rounded-xl border border-slate-200 bg-slate-100 px-4 text-sm text-slate-900 outline-none transition focus:border-primary/40"
           />
         </div>
 
         <div className="space-y-2">
-          <label htmlFor="password" className="text-sm font-medium text-white/75">
+          <label htmlFor="password" className="text-sm font-medium text-slate-700">
             Password
           </label>
           <input
@@ -79,12 +79,12 @@ export function LoginForm() {
             value={password}
             onChange={(event) => setPassword(event.target.value)}
             required
-            className="h-12 w-full rounded-xl border border-white/10 bg-[#0f172a] px-4 text-sm text-white outline-none transition focus:border-primary/40"
+            className="h-12 w-full rounded-xl border border-slate-200 bg-slate-100 px-4 text-sm text-slate-900 outline-none transition focus:border-primary/40"
           />
         </div>
 
         {error ? (
-          <div className="rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-200">
+          <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-600">
             {error}
           </div>
         ) : null}
