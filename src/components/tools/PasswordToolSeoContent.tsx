@@ -61,7 +61,9 @@ export function PasswordToolSeoContent() {
               Are generated passwords stored or sent to a server?
             </h3>
             <p className="mt-2 text-base leading-8 text-text/70">
-              No. Everything runs in your browser. Zero data leaves your device.
+              Generated passwords and history stay in this page&apos;s memory. The generator does
+              not upload them or save them to browser storage. Other site scripts, including
+              advertising and analytics, may still send measurement data; see our Privacy Policy.
             </p>
           </div>
           <div className="rounded-[24px] border border-black/6 bg-white p-6">

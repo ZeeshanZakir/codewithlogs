@@ -98,7 +98,7 @@ a {
 .field-note-title { font: 35px/1.13 Georgia, serif; letter-spacing: -1px; margin-block: 23px; }
 .field-note ol { list-style: none; }
 .field-note li { display: flex; gap: 17px; padding-block: 14px; border-top: 1px solid #d8dfd1; }
-.field-note li > span { color: #68836c; font: 11px/1.8 monospace; }
+.field-note li > span { color: #52665c; font: 11px/1.8 monospace; }
 .field-note strong { font-size: 13px; font-weight: 600; }
 .field-note li p { font-size: 11px; line-height: 1.8; color: var(--muted); margin-top: 3px; }
 .field-note-bottom { border-top: 1px solid #ced7c7; padding-block: 18px; margin-top: 9px; display: flex; align-items: center; gap: 8px; font: 10px/1.5 monospace; color: #53634f; }

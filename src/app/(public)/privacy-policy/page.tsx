@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 import { LegalPageTemplate } from "@/components/legal/LegalPageTemplate";
 import { siteUrl } from "@/lib/site-url";
-const lastUpdated = "October 21, 2026";
+const lastUpdated = "October 22, 2026";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
@@ -97,7 +97,8 @@ const sections = [
           advertising.
         </p>
         <p>
-          This site uses <strong>Google AdSense</strong> to display advertising. Google may use
+          This site includes <strong>Google AdSense</strong> code. Ads may be served when the site
+          is approved and advertising is enabled. Google may use
           cookies, including the <strong>DoubleClick cookie</strong>, to serve ads based on a
           user&apos;s prior visits to this website and other websites on the internet. That means the
           ads you see may be influenced by browsing behavior, prior interactions, and inferred
@@ -128,6 +129,11 @@ const sections = [
           . Please note that disabling personalized ads does not necessarily remove all ads. You
           may still see non-personalized advertising.
         </p>
+        <p>
+          Google ad settings and browser controls do not replace any consent choices that must
+          be offered on this website. This policy describes data practices; it is not a consent
+          mechanism or a claim that regional consent requirements have been verified.
+        </p>
       </>
     ),
   },
@@ -137,20 +143,18 @@ const sections = [
     content: (
       <>
         <p>
-          This website may use <strong>Google Analytics</strong> or comparable analytics tools to
-          understand how visitors use the site. Analytics cookies help measure performance metrics
-          such as page views, session duration, referring pages, content popularity, device types,
-          and general traffic patterns. This helps me improve articles, identify technical issues,
-          understand which resources are helpful, and make the site more useful overall.
+          This website loads <strong>Google Analytics</strong>, <strong>Vercel Analytics</strong>
+          and <strong>Vercel Speed Insights</strong> to understand traffic and page performance.
+          These services can process page URLs, referring pages, device and browser information,
+          and usage or performance measurements. This helps identify useful resources and
+          technical problems.
         </p>
         <p>
-          Analytics tools typically use cookies or similar identifiers to generate reports about
-          website activity. These reports are usually aggregated and are used to understand trends
-          rather than to identify individual readers personally. However, your browser or device may
-          still be associated with an identifier that allows usage patterns to be measured over
-          time. If you do not want analytics cookies to operate in your browser, you may be able to
-          block cookies through your browser settings or use privacy controls and extensions that
-          limit tracking technologies.
+          Google Analytics can use cookies and identifiers to measure visits. Vercel Web Analytics
+          uses request-derived hashes rather than third-party cookies for visitor measurement;
+          Speed Insights collects page-performance measurements. These are separate services with
+          different data practices. Browser privacy controls may limit tracking, but they do not
+          replace any consent mechanism required on this site.
         </p>
       </>
     ),
