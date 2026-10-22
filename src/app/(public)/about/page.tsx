@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { siteUrl } from "@/lib/site-url";
 
@@ -114,13 +115,18 @@ export default function AboutPage() {
       <section className="journal-container about-publication"><p className="eyebrow">About CodeWithLogs</p><h2>Fix Your Development Errors. Step by Step.</h2><p>CodeWithLogs focuses on Next.js debugging, Node.js/npm errors, Supabase troubleshooting, and practical developer tools. Windows, VS Code, Git and deployment guides support that work. The existing archive and author background below are preserved.</p><p>A published date is not a technical test record. See the <Link href="/editorial-policy">editorial and verification policy</Link> for how guide status is assessed.</p></section>
       <section className="border-b border-black/5 bg-surface">
         <div className="mx-auto flex w-full max-w-5xl flex-col items-center px-4 py-16 text-center sm:px-6 lg:px-8 lg:py-20">
-          <div className="flex h-[120px] w-[120px] items-center justify-center rounded-full border border-black/6 bg-white text-3xl font-semibold text-primary">
-            ZZ
-          </div>
+          <Image
+            src="/images/zeeshan-zakir.webp"
+            alt="Zeeshan Zakir"
+            width={140}
+            height={140}
+            loading="eager"
+            className="h-[140px] w-[140px] rounded-full border-4 border-white object-cover shadow-sm"
+          />
           <h1 className="mt-6 text-4xl font-bold tracking-tight text-text sm:text-5xl">
             Zeeshan Zakir
           </h1>
-          <p className="mt-3 text-lg text-text/70">Full-Stack MERN Developer</p>
+          <p className="mt-3 text-lg text-text/70">Software Engineer · Full-Stack Web Developer</p>
 
           <div className="mt-6 flex items-center gap-3">
             {socialLinks.map((link) => (
