@@ -25,14 +25,14 @@ const availableTools = [
     description: "Match npm, Windows, Git, Next.js and Vercel error signatures with scoped diagnostic checklists and official references.",
     href: "/tools/error-decoder",
     icon: FileSearch,
-    badge: "Local analysis",
+    badge: "Live",
   },
   {
     name: "package.json Inspector",
     description: "Review dependency patterns, configuration and npm scripts as text. No installation, script execution or compatibility claims.",
     href: "/tools/package-json-inspector",
     icon: Braces,
-    badge: "Local analysis",
+    badge: "Live",
   },
   {
     name: "JSON Formatter",
