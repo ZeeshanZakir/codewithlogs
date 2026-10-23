@@ -46,7 +46,7 @@ export function ErrorDecoderTool() {
         <h4>Diagnostic steps</h4><ol>{guide.steps.map(step => <li key={step}>{step}</li>)}</ol>
         <h4>Diagnostic commands</h4><p>PowerShell syntax for Windows setup checks. Review the commands and their output before sharing.</p><pre className={styles.code}><code>{guide.commands}</code></pre><DiagnosticCopyButton text={guide.commands} label={`Copy ${guide.id} diagnostics`} />
         <p className={styles.notice}><strong>Evidence and limits. </strong>{guide.scope}</p><p className={`${styles.notice} ${styles.caution}`}><strong>Safety. </strong>{guide.caution}</p>
-        <div className={styles.links}>{guide.references.map(ref => <a key={ref.href} href={ref.href}>{ref.label} ↗</a>)}{guide.related.map(link => <Link key={link.href} href={link.href}>{link.label} →</Link>)}</div>
+        <div className={styles.links}>{guide.references.map(ref => <a key={ref.href} href={ref.href}>{ref.label} ↗</a>)}{guide.related.map(link => <Link key={link.href} href={link.href}>{link.label.replace(/ \(unverified article\)$/, "")} →</Link>)}</div>
       </section>)}
     </div>}
   </>;

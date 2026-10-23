@@ -57,7 +57,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, "\\u003c") }} />
     <nav aria-label="Breadcrumb" className="article-breadcrumb"><Link href="/">Home</Link><span aria-hidden="true">/</span><Link href="/blog"><ArrowLeft size={15} /> Guides & archive</Link><span aria-hidden="true">/</span><span aria-current="page">{post.title}</span></nav>
     <header className="article-header"><p className="eyebrow">{post.category} / {post.readTime}</p><h1>{post.title}</h1><p className="article-deck">{post.excerpt}</p><div className="article-byline"><span className="author-initials" aria-hidden="true">{initials}</span><div><span className="author-name">{post.author === "Zeeshan Zakir" ? <Link href="/about">{post.author}</Link> : post.author}</span><p>Published <time dateTime={post.date}>{format(new Date(post.date), "MMMM d, yyyy")}</time><span aria-hidden="true"> · </span>{post.readTime}</p></div></div></header>
-    <section className="article-verification" aria-label="Article verification status" data-review-status={review.status}><span className="review-status">{review.label}</span><p>{review.detail}</p><Link href="/editorial-policy">How we verify guides</Link></section>
+    <section className="article-verification" aria-label="Article testing limitations"><p>{review.detail}</p><Link href="/editorial-policy">How we verify guides</Link></section>
     <div className="article-layout">
       <article className="article-main" aria-label={post.title}>
         <div className="article-cover"><Image src={post.coverImage} alt={post.title} width={1600} height={900} sizes="(max-width: 1024px) 100vw, 740px" priority /></div>
