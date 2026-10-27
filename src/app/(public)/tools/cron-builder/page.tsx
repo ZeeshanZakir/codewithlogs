@@ -1,3 +1,5 @@
+import { FaqSection } from "@/components/FaqSection";
+import { pageFaqs } from "@/lib/faq-content";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { AdUnit } from "@/components/ads/AdUnit";
@@ -7,7 +9,7 @@ import { Braces, Code2, Key } from "lucide-react";
 import { siteUrl } from "@/lib/site-url";
 
 export const metadata: Metadata = {
-  title: "Cron Expression Builder & Parser — Free Cron Job Generator | CodeWithLogs",
+  title: "Cron Expression Builder & Parser — Free Cron Job Generator",
   description: "Build and understand cron expressions with a visual editor. Get human-readable explanations and see the next run times instantly. 100% free, no signup.",
   alternates: {
     canonical: `${siteUrl}/tools/cron-builder`,
@@ -72,32 +74,6 @@ export default function CronBuilderPage() {
                 priceCurrency: "USD",
               },
             },
-            {
-              "@context": "https://schema.org",
-              "@type": "FAQPage",
-              mainEntity: [
-                {
-                  "@type": "Question",
-                  name: "Does this tool run my cron job?",
-                  acceptedAnswer: { "@type": "Answer", text: "No, this only builds and explains the expression. Use it in your crontab, CI/CD config, or scheduler (AWS EventBridge, GitHub Actions, etc.)" },
-                },
-                {
-                  "@type": "Question",
-                  name: "What timezone are the 'next run times' based on?",
-                  acceptedAnswer: { "@type": "Answer", text: "Your browser's local timezone. Actual server cron jobs typically run in the server's configured timezone (often UTC)." },
-                },
-                {
-                  "@type": "Question",
-                  name: "Can I schedule 'every 15 minutes'?",
-                  acceptedAnswer: { "@type": "Answer", text: "Yes, use the step syntax: */15 * * * *" },
-                },
-                {
-                  "@type": "Question",
-                  name: "Is data sent anywhere?",
-                  acceptedAnswer: { "@type": "Answer", text: "No, all parsing and calculation happens locally in your browser." },
-                },
-              ],
-            },
           ]),
         }}
       />
@@ -124,6 +100,8 @@ export default function CronBuilderPage() {
         <CronBuilderTool />
 
         <CronBuilderSeoContent />
+
+        <FaqSection items={pageFaqs["/tools/cron-builder"]} className="mt-10" />
 
         <section className="mt-10 rounded-[24px] border border-black/6 bg-white p-4 shadow-sm">
           <AdUnit slot="cron-builder-bottom" format="rectangle" />

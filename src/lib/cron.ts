@@ -1,163 +1,70 @@
-// Cron field definitions
+// Numeric five-field Cronie-style subset, evaluated in UTC only.
 const CRON_FIELDS = [
-  { name: 'minute', min: 0, max: 59 },
-  { name: 'hour', min: 0, max: 23 },
-  { name: 'dayOfMonth', min: 1, max: 31 },
-  { name: 'month', min: 1, max: 12 },
-  { name: 'dayOfWeek', min: 0, max: 6 },
+  { name: "minute", min: 0, max: 59 },
+  { name: "hour", min: 0, max: 23 },
+  { name: "day of month", min: 1, max: 31 },
+  { name: "month", min: 1, max: 12 },
+  { name: "day of week", min: 0, max: 6 },
 ];
+type ParsedField = { values: Set<number>; wildcard: boolean };
 
-const MONTH_NAMES = ['January', 'February', 'March', 'April', 'May', 'June', 
-                     'July', 'August', 'September', 'October', 'November', 'December'];
-const DAY_NAMES = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-
-// Validate a cron expression
-export function validateCron(expr: string): { valid: boolean; error?: string } {
-  const parts = expr.trim().split(/\s+/);
-  if (parts.length !== 5) {
-    return { valid: false, error: 'A cron expression must have exactly 5 fields' };
-  }
-  
-  for (let i = 0; i < 5; i++) {
-    const field = parts[i];
-    const { name, min, max } = CRON_FIELDS[i];
-    
-    if (field === '*') continue;
-    
-    const partsList = field.split(',');
-    for (const part of partsList) {
-      if (part.includes('/')) {
-        const [range, step] = part.split('/');
-        if (!validateRange(range, min, max) || !validateNumber(step, 1, max)) {
-          return { valid: false, error: `Invalid ${name} field: ${part}` };
-        }
-      } else if (part.includes('-')) {
-        if (!validateRange(part, min, max)) {
-          return { valid: false, error: `Invalid ${name} field: ${part}` };
-        }
-      } else {
-        if (!validateNumber(part, min, max)) {
-          return { valid: false, error: `Invalid ${name} field: ${part}` };
-        }
+function parseCron(expr: string): ParsedField[] {
+  if (expr.length > 256) throw new Error("Expression exceeds 256 characters.");
+  const fields = expr.trim().split(/\s+/);
+  if (fields.length !== 5) throw new Error("Use exactly five fields: minute hour day-of-month month day-of-week.");
+  return fields.map((field, index) => {
+    const { name, min, max } = CRON_FIELDS[index];
+    const values = new Set<number>();
+    const items = field.split(",");
+    if (items.length > 1 && field.includes("*")) throw new Error(`Use a wildcard on its own in the ${name} field.`);
+    for (const item of items) {
+      const match = /^(\*|[0-9]+(?:-[0-9]+)?)(?:\/([0-9]+))?$/.exec(item);
+      if (!match) throw new Error(`Invalid ${name} field: ${item || "empty list item"}.`);
+      const base = match[1];
+      const step = match[2] === undefined ? 1 : Number(match[2]);
+      if (match[2] && base !== "*" && !base.includes("-")) throw new Error(`Steps require * or a range in the ${name} field.`);
+      const [first, last] = base === "*" ? [min, max] : base.split("-").map(Number);
+      const end = last ?? first;
+      if (!Number.isSafeInteger(first) || !Number.isSafeInteger(end) || first < min || end > max || first > end || !Number.isSafeInteger(step) || step < 1 || step > max - min + 1) {
+        throw new Error(`Invalid ${name}: use ${min}-${max}, ascending ranges and steps 1-${max - min + 1}.`);
       }
+      for (let value = first; value <= end; value += step) values.add(value);
     }
-  }
-  
-  return { valid: true };
-}
-
-function validateNumber(str: string, min: number, max: number): boolean {
-  const num = parseInt(str, 10);
-  return !isNaN(num) && num >= min && num <= max;
-}
-
-function validateRange(range: string, min: number, max: number): boolean {
-  if (range === '*') return true;
-  const [start, end] = range.split('-');
-  if (end === undefined) {
-    return validateNumber(start, min, max);
-  }
-  return validateNumber(start, min, max) && validateNumber(end, min, max) && parseInt(start) <= parseInt(end);
-}
-
-// Parse a cron field into human-readable parts
-function parseField(field: string, fieldInfo: typeof CRON_FIELDS[0]): string {
-  if (field === '*') {
-    return `every ${fieldInfo.name}`;
-  }
-  
-  const parts = field.split(',');
-  const explanations: string[] = [];
-  
-  for (const part of parts) {
-    if (part.includes('/')) {
-      const [range, step] = part.split('/');
-      if (range === '*') {
-        explanations.push(`every ${step} ${fieldInfo.name}s`);
-      } else {
-        const [start, end] = range.split('-');
-        explanations.push(`every ${step} ${fieldInfo.name}s from ${formatValue(start, fieldInfo.name)}${end ? ` to ${formatValue(end, fieldInfo.name)}` : ''}`);
-      }
-    } else if (part.includes('-')) {
-      const [start, end] = part.split('-');
-      explanations.push(`${formatValue(start, fieldInfo.name)} through ${formatValue(end, fieldInfo.name)}`);
-    } else {
-      explanations.push(formatValue(part, fieldInfo.name));
-    }
-  }
-  
-  return explanations.join(', ');
-}
-
-function formatValue(value: string, fieldName: string): string {
-  if (fieldName === 'month') {
-    return MONTH_NAMES[parseInt(value, 10) - 1];
-  }
-  if (fieldName === 'dayOfWeek') {
-    return DAY_NAMES[parseInt(value, 10)];
-  }
-  return value;
-}
-
-// Generate a human-readable explanation
-export function explainCron(expr: string): string {
-  const parts = expr.trim().split(/\s+/);
-  const explanations = parts.map((p, i) => parseField(p, CRON_FIELDS[i]));
-  
-  return `At ${explanations[0]}, ${explanations[1]}, ${explanations[2]}, ${explanations[3]}, ${explanations[4]}.`;
-}
-
-// Calculate next N run times
-export function getNextRuns(expr: string, count = 5): Date[] {
-  const { valid } = validateCron(expr);
-  if (!valid) return [];
-  
-  const [minuteExpr, hourExpr, dayOfMonthExpr, monthExpr, dayOfWeekExpr] = expr.trim().split(/\s+/);
-  
-  const runs: Date[] = [];
-  const current = new Date();
-  current.setSeconds(0, 0);
-  current.setMinutes(current.getMinutes() + 1); // Start from next minute
-  
-  while (runs.length < count && current.getTime() < Date.now() + 1000 * 60 * 60 * 24 * 365) { // Limit to 1 year
-    if (matchesCron(current, minuteExpr, hourExpr, dayOfMonthExpr, monthExpr, dayOfWeekExpr)) {
-      runs.push(new Date(current));
-    }
-    current.setMinutes(current.getMinutes() + 1);
-  }
-  
-  return runs;
-}
-
-function matchesCron(date: Date, minute: string, hour: string, dayOfMonth: string, month: string, dayOfWeek: string): boolean {
-  return matchesField(date.getMinutes(), minute, 0, 59) &&
-         matchesField(date.getHours(), hour, 0, 23) &&
-         matchesField(date.getDate(), dayOfMonth, 1, 31) &&
-         matchesField(date.getMonth() + 1, month, 1, 12) &&
-         matchesField(date.getDay(), dayOfWeek, 0, 6);
-}
-
-function matchesField(value: number, expr: string, min: number, max: number): boolean {
-  if (expr === '*') return true;
-  
-  const parts = expr.split(',');
-  return parts.some(part => {
-    if (part.includes('/')) {
-      const [range, stepStr] = part.split('/');
-      const step = parseInt(stepStr, 10);
-      if (range === '*') {
-        return value % step === min % step;
-      } else {
-        const [start, end] = range.split('-').map(Number);
-        return value >= start && (end ? value <= end : true) && (value - start) % step === 0;
-      }
-    } else if (part.includes('-')) {
-      const [start, end] = part.split('-').map(Number);
-      return value >= start && value <= end;
-    } else {
-      return value === parseInt(part, 10);
-    }
+    return { values, wildcard: field.startsWith("*") };
   });
+}
+
+export function validateCron(expr: string): { valid: boolean; error?: string } {
+  try { parseCron(expr); return { valid: true }; }
+  catch (error) { return { valid: false, error: error instanceof Error ? error.message : "Invalid cron expression." }; }
+}
+
+export function explainCron(expr: string): string {
+  const validation = validateCron(expr);
+  if (!validation.valid) return validation.error!;
+  const fields = expr.trim().split(/\s+/);
+  const restrictedDays = !fields[2].startsWith("*") && !fields[4].startsWith("*");
+  return `UTC schedule: minute ${fields[0]}, hour ${fields[1]}, month ${fields[3]}; day of month ${fields[2]} ${restrictedDays ? "OR" : "AND"} weekday ${fields[4]} (0 = Sunday). Steps advance within each field, not from the previous run.`;
+}
+
+// Fixed anchor and UTC arithmetic make previews repeatable and independent of DST.
+// At most 365 days / 525,600 candidate minutes, and at most 20 returned dates.
+export function getNextRuns(expr: string, count = 5, anchor: Date = new Date()): Date[] {
+  if (!Number.isInteger(count) || count < 1 || count > 20 || !Number.isFinite(anchor.getTime())) return [];
+  let fields: ParsedField[];
+  try { fields = parseCron(expr); } catch { return []; }
+  const [minute, hour, day, month, weekday] = fields;
+  const start = Math.floor(anchor.getTime() / 60000) * 60000 + 60000;
+  const end = anchor.getTime() + 365 * 24 * 60 * 60000;
+  const runs: Date[] = [];
+  for (let time = start; time <= end && runs.length < count; time += 60000) {
+    const date = new Date(time);
+    if (!minute.values.has(date.getUTCMinutes()) || !hour.values.has(date.getUTCHours()) || !month.values.has(date.getUTCMonth() + 1)) continue;
+    const dayMatches = day.values.has(date.getUTCDate());
+    const weekdayMatches = weekday.values.has(date.getUTCDay());
+    if (day.wildcard || weekday.wildcard ? dayMatches && weekdayMatches : dayMatches || weekdayMatches) runs.push(date);
+  }
+  return runs;
 }
 
 // Presets

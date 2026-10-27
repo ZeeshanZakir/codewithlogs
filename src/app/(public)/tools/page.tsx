@@ -1,10 +1,12 @@
+import { FaqSection } from "@/components/FaqSection";
+import { pageFaqs } from "@/lib/faq-content";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, Braces, Clock, Code2, FileSearch, Hash, Key, KeyRound, Type, Wand2 } from "lucide-react";
 import { siteUrl } from "@/lib/site-url";
 
 export const metadata: Metadata = {
-  title: "Developer Tools — Error Decoder & JSON Utilities | CodeWithLogs",
+  title: "Developer Tools — Error Decoder & JSON Utilities",
   description:
     "Decode development errors, inspect package.json, format JSON and review data with browser-based developer tools from CodeWithLogs.",
   alternates: {
@@ -172,6 +174,8 @@ export default function ToolsPage() {
               })}
             </div>
           </section>
+
+          <FaqSection items={pageFaqs["/tools"]} />
 
           {comingSoonTools.length > 0 && <section className="space-y-6">
             <div className="space-y-2">

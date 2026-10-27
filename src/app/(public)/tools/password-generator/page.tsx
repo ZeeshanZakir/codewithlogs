@@ -1,3 +1,5 @@
+import { FaqSection } from "@/components/FaqSection";
+import { pageFaqs } from "@/lib/faq-content";
 import type { Metadata } from "next";
 
 import { AdUnit } from "@/components/ads/AdUnit";
@@ -6,7 +8,7 @@ import { PasswordGeneratorTool } from "@/components/tools/PasswordGeneratorTool"
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://codewithlogs.com";
 
 export const metadata: Metadata = {
-  title: "Password Generator — Free Strong Password Tool | CodeWithLogs",
+  title: "Password Generator — Free Strong Password Tool",
   description:
     "Generate strong, secure passwords instantly. Customize length, uppercase, lowercase, numbers, and symbols. 100% browser-based — no passwords stored or sent anywhere.",
   alternates: {
@@ -30,6 +32,8 @@ export default function PasswordGeneratorPage() {
         </section>
 
         <PasswordGeneratorTool />
+
+        <FaqSection items={pageFaqs["/tools/password-generator"]} className="mt-10" />
 
         <section className="mt-10 rounded-[24px] border border-black/6 bg-white p-4 shadow-sm">
           <AdUnit slot="password-generator-bottom" format="rectangle" />

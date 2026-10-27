@@ -80,38 +80,6 @@ export function JwtDecoderSeoContent() {
         </ol>
       </div>
 
-      <div className="space-y-4">
-        <h2 className="text-3xl font-bold tracking-tight text-text">FAQ</h2>
-        <div className="space-y-4">
-          <div className="rounded-[24px] border border-black/6 bg-white p-6">
-            <h3 className="text-lg font-semibold text-text">Is JWT secure?</h3>
-            <p className="mt-2 text-base leading-8 text-text/70">
-              JWT itself is just a format. Its security depends on how you use it. Always use HTTPS
-              to prevent tokens from being stolen in transit, use short expiration times, and never
-              store sensitive data in the payload.
-            </p>
-          </div>
-          <div className="rounded-[24px] border border-black/6 bg-white p-6">
-            <h3 className="text-lg font-semibold text-text">
-              Can anyone decode my JWT?
-            </h3>
-            <p className="mt-2 text-base leading-8 text-text/70">
-              Yes. The header and payload are only base64url encoded, not encrypted. Anyone can
-              decode them. The signature ensures that the token hasn&apos;t been tampered with, but it
-              doesn&apos;t hide the content.
-            </p>
-          </div>
-          <div className="rounded-[24px] border border-black/6 bg-white p-6">
-            <h3 className="text-lg font-semibold text-text">
-              Does this tool validate the signature?
-            </h3>
-            <p className="mt-2 text-base leading-8 text-text/70">
-              This tool only decodes the JWT for inspection. It does not validate the signature, as
-              that would require access to the secret or public key used to sign the token.
-            </p>
-          </div>
-        </div>
-      </div>
     </section>
   );
 }

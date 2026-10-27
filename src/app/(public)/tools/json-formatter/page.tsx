@@ -1,3 +1,5 @@
+import { FaqSection } from "@/components/FaqSection";
+import { pageFaqs } from "@/lib/faq-content";
 import type { Metadata } from "next";
 
 import { AdUnit } from "@/components/ads/AdUnit";
@@ -5,7 +7,7 @@ import { JsonFormatterTool } from "@/components/tools/JsonFormatterTool";
 import { siteUrl } from "@/lib/site-url";
 
 export const metadata: Metadata = {
-  title: "Best JSON Formatter & Validator Online — Free Tool | Code With Logs",
+  title: "Best JSON Formatter & Validator Online — Free Tool",
   description:
     "Free online JSON formatter, validator and beautifier. Paste your JSON to instantly format, validate, and fix errors. Works in your browser — no data sent to any server.",
   alternates: {
@@ -29,6 +31,8 @@ export default function JsonFormatterPage() {
         </section>
 
         <JsonFormatterTool />
+
+        <FaqSection items={pageFaqs["/tools/json-formatter"]} className="mt-10" />
 
         <section className="mt-10 rounded-[24px] border border-black/6 bg-white p-4 shadow-sm">
           <AdUnit slot="json-tool-bottom" format="rectangle" />

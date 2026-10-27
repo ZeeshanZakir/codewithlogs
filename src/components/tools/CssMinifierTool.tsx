@@ -106,7 +106,7 @@ export function CssMinifierTool() {
 
   const originalSize = formatCssSize(input);
   const minifiedSize = formatCssSize(minifiedPreview);
-  const savings = getSavingsPercentage(input, minifiedPreview);
+  const savings = minifiedPreview ? getSavingsPercentage(input, minifiedPreview) : 0;
 
   return (
     <div className="space-y-10">
@@ -119,8 +119,8 @@ export function CssMinifierTool() {
             CSS Minifier — Free Online CSS Compression Tool
           </h1>
           <p className="text-base leading-8 text-text/70">
-            Minify and beautify CSS instantly in your browser. Remove comments, whitespace, and
-            unnecessary characters without uploading your styles anywhere.
+            Minify and beautify CSS in your browser. Remove structural whitespace while retaining
+            comments, selectors and values. The tool does not upload your stylesheet for processing.
           </p>
         </div>
 

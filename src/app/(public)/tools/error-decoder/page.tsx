@@ -1,3 +1,5 @@
+import { FaqSection } from "@/components/FaqSection";
+import { pageFaqs } from "@/lib/faq-content";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { DiagnosticToolPage } from "@/components/tools/DiagnosticToolPage";
@@ -9,7 +11,7 @@ import styles from "@/components/tools/DiagnosticTools.module.css";
 const title = "Developer Error Decoder";
 const description = "Understand npm, PowerShell, Node, Git, Next.js and Vercel errors with local signature matching, practical diagnostics and explicit limits.";
 export const metadata: Metadata = {
-  title: "Developer Error Decoder — npm, Windows & Next.js | CodeWithLogs",
+  title: "Developer Error Decoder — npm, Windows & Next.js",
   description,
   alternates: { canonical: `${siteUrl}/tools/error-decoder` },
   openGraph: { title: `${title} | CodeWithLogs`, description, url: `${siteUrl}/tools/error-decoder`, type: "website" },
@@ -32,5 +34,6 @@ export default function ErrorDecoderPage() {
       <p>Read <Link href="/editorial-policy">our evidence standard</Link> before treating an article as tested. Report an incorrect signature through <Link href="/contact">Contact</Link>, using a minimal redacted example. Do not include tokens or customer data.</p>
       <h3>What happens to pasted errors?</h3><p>The decoder keeps input only in this page’s current React state. Its analysis does not upload logs, persist them in storage or encode them in a share URL. Clear removes the input and displayed results; browsers can independently restore page state during navigation. Existing site analytics may still load; see the <Link href="/privacy-policy">privacy policy</Link>. Clipboard access happens only when you choose Copy, and copies the static checklist rather than your original log.</p>
     </section>
+    <FaqSection items={pageFaqs["/tools/error-decoder"]} className={styles.reading} editorial />
   </DiagnosticToolPage>;
 }

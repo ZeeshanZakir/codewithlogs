@@ -1,3 +1,5 @@
+import postcss, { type Root, type Node } from "postcss";
+
 export type CssValidationResult =
   | {
       isValid: true;
@@ -47,234 +49,56 @@ body {
   }
 }`;
 
-function readQuotedString(input: string, startIndex: number) {
-  const quote = input[startIndex];
-  let index = startIndex + 1;
-
-  while (index < input.length) {
-    const current = input[index];
-
-    if (current === "\\") {
-      index += 2;
-      continue;
-    }
-
-    if (current === quote) {
-      return {
-        value: input.slice(startIndex, index + 1),
-        endIndex: index,
-      };
-    }
-
-    index += 1;
+function parseCss(input: string): Root {
+  if (!input.trim()) throw new Error("Enter CSS to process.");
+  const root = postcss.parse(input, { from: undefined });
+  if (root.nodes.some(node => node.type === "decl")) {
+    throw new Error("Declarations must be inside a rule or at-rule block.");
   }
-
-  return null;
+  return root;
 }
 
 export function validateCss(input: string): CssValidationResult {
-  if (!input.trim()) {
-    return {
-      isValid: false,
-      errorMessage: "Please paste CSS before running the tool.",
-    };
+  if (!input.trim()) return { isValid: false, errorMessage: "" };
+  try {
+    parseCss(input);
+    return { isValid: true, errorMessage: "" };
+  } catch (error) {
+    return { isValid: false, errorMessage: error instanceof Error ? error.message : "Unsupported CSS syntax." };
   }
-
-  let braceDepth = 0;
-  let inComment = false;
-
-  for (let index = 0; index < input.length; index += 1) {
-    const current = input[index];
-    const next = input[index + 1];
-
-    if (inComment) {
-      if (current === "*" && next === "/") {
-        inComment = false;
-        index += 1;
-      }
-      continue;
-    }
-
-    if (current === "/" && next === "*") {
-      inComment = true;
-      index += 1;
-      continue;
-    }
-
-    if (current === '"' || current === "'") {
-      const result = readQuotedString(input, index);
-
-      if (!result) {
-        return {
-          isValid: false,
-          errorMessage: "Unterminated string found in the CSS input.",
-        };
-      }
-
-      index = result.endIndex;
-      continue;
-    }
-
-    if (current === "{") {
-      braceDepth += 1;
-    }
-
-    if (current === "}") {
-      braceDepth -= 1;
-
-      if (braceDepth < 0) {
-        return {
-          isValid: false,
-          errorMessage: "Unexpected closing brace found in the CSS input.",
-        };
-      }
-    }
-  }
-
-  if (inComment) {
-    return {
-      isValid: false,
-      errorMessage: "Unterminated CSS comment found in the input.",
-    };
-  }
-
-  if (braceDepth !== 0) {
-    return {
-      isValid: false,
-      errorMessage: "CSS braces are unbalanced. Check your opening and closing braces.",
-    };
-  }
-
-  return {
-    isValid: true,
-    errorMessage: "",
-  };
 }
 
+// Only change structural whitespace. Values, selectors, comments, escape sequences,
+// declaration order and custom-property token streams remain untouched.
 export function minifyCss(input: string) {
-  let output = "";
-  let inComment = false;
-
-  for (let index = 0; index < input.length; index += 1) {
-    const current = input[index];
-    const next = input[index + 1];
-
-    if (inComment) {
-      if (current === "*" && next === "/") {
-        inComment = false;
-        index += 1;
-      }
-      continue;
+  const root = parseCss(input);
+  root.walk(node => {
+    if (/^\s*$/.test(node.raws.before ?? "")) node.raws.before = "";
+    if ("nodes" in node && /^\s*$/.test(node.raws.after ?? "")) node.raws.after = "";
+    if (node.type === "rule" || node.type === "atrule") {
+      if (/^\s*$/.test(node.raws.between ?? "")) node.raws.between = "";
+    } else if (node.type === "decl" && !node.prop.startsWith("--")) {
+      if (/^\s*:\s*$/.test(node.raws.between ?? "")) node.raws.between = ":";
     }
-
-    if (current === "/" && next === "*") {
-      inComment = true;
-      index += 1;
-      continue;
-    }
-
-    if (current === '"' || current === "'") {
-      const result = readQuotedString(input, index);
-
-      if (!result) {
-        throw new Error("Unterminated string found in the CSS input.");
-      }
-
-      output += result.value;
-      index = result.endIndex;
-      continue;
-    }
-
-    if (/\s/.test(current)) {
-      const previous = output.at(-1) ?? "";
-      let nextNonWhitespaceIndex = index + 1;
-
-      while (nextNonWhitespaceIndex < input.length && /\s/.test(input[nextNonWhitespaceIndex])) {
-        nextNonWhitespaceIndex += 1;
-      }
-
-      const nextNonWhitespace = input[nextNonWhitespaceIndex] ?? "";
-      const canDropWhitespace =
-        !previous ||
-        !nextNonWhitespace ||
-        /[{}:;,>+~(),]/.test(previous) ||
-        /[{}:;,>+~(),]/.test(nextNonWhitespace);
-
-      if (!canDropWhitespace) {
-        output += " ";
-      }
-
-      continue;
-    }
-
-    if (current === ";" && next === "}") {
-      continue;
-    }
-
-    output += current;
-  }
-
-  return output.replace(/\s+/g, " ").replace(/ ?([{}:;,>+~(),]) ?/g, "$1").trim();
+  });
+  if (/^\s*$/.test(root.raws.after ?? "")) root.raws.after = "";
+  return root.toString();
 }
 
 export function beautifyCss(input: string) {
-  const minified = minifyCss(input);
-  let output = "";
-  let indentLevel = 0;
-
-  for (let index = 0; index < minified.length; index += 1) {
-    const current = minified[index];
-
-    if (current === '"' || current === "'") {
-      const result = readQuotedString(minified, index);
-
-      if (!result) {
-        throw new Error("Unterminated string found in the CSS input.");
-      }
-
-      output += result.value;
-      index = result.endIndex;
-      continue;
+  const root = parseCss(input);
+  root.walk(node => {
+    let depth = 0;
+    for (let parent: Node | undefined = node.parent; parent && parent.type !== "root"; parent = parent.parent) depth++;
+    if (/^\s*$/.test(node.raws.before ?? "")) {
+      node.raws.before = (node === root.first ? "" : "\n") + "  ".repeat(depth);
     }
-
-    if (current === "{") {
-      output += " {\n";
-      indentLevel += 1;
-      output += `${"  ".repeat(indentLevel)}`;
-      continue;
-    }
-
-    if (current === ";") {
-      output += ";\n";
-      output += `${"  ".repeat(indentLevel)}`;
-      continue;
-    }
-
-    if (current === "}") {
-      output = output.replace(/[ \t]+$/g, "").replace(/\n{2,}$/g, "\n");
-
-      if (!output.endsWith("\n")) {
-        output += "\n";
-      }
-
-      indentLevel = Math.max(0, indentLevel - 1);
-      output += `${"  ".repeat(indentLevel)}}`;
-
-      if (index < minified.length - 1) {
-        output += "\n";
-        if (minified[index + 1] !== "}") {
-          output += "\n";
-          output += `${"  ".repeat(indentLevel)}`;
-        }
-      }
-
-      continue;
-    }
-
-    output += current;
-  }
-
-  return output.replace(/\n{3,}/g, "\n\n").trim();
+    if ("nodes" in node && /^\s*$/.test(node.raws.after ?? "")) node.raws.after = "\n" + "  ".repeat(depth);
+    if ((node.type === "rule" || node.type === "atrule") && /^\s*$/.test(node.raws.between ?? "")) node.raws.between = " ";
+    if (node.type === "decl" && !node.prop.startsWith("--") && /^\s*:\s*$/.test(node.raws.between ?? "")) node.raws.between = ": ";
+  });
+  root.raws.after = "";
+  return root.toString();
 }
 
 export function formatCssSize(value: string) {

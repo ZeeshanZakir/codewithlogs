@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, JSX } from "react";
+import { useState, useMemo, useEffect, JSX } from "react";
 import {
   explainRegex,
   FLAGS,
@@ -10,22 +10,50 @@ import {
   type CommonPattern,
 } from "@/lib/regex-tester";
 
+import type { RegexResult } from "@/lib/regex-evaluator.worker";
+
 export function RegexTesterTool() {
   const [pattern, setPattern] = useState(SAMPLE_PATTERN);
   const [flags, setFlags] = useState<string[]>(["g"]);
   const [testText, setTestText] = useState(SAMPLE_TEXT);
-  const { regex, error, matches } = useMemo(() => {
-    try {
-      const regex = new RegExp(pattern, flags.join(""));
-      // matchAll advances safely after zero-width matches, including Unicode.
-      const matches = flags.includes("g")
-        ? Array.from(testText.matchAll(regex))
-        : (() => { const match = regex.exec(testText); return match ? [match] : []; })();
-      return { regex, error: null, matches };
-    } catch (cause) {
-      return { regex: null, error: cause instanceof Error ? cause.message : "Invalid regex", matches: [] };
-    }
-  }, [pattern, flags, testText]);
+  const requestKey = JSON.stringify([pattern, flags.join(""), testText]);
+  const [result, setResult] = useState<(RegexResult & { key: string }) | null>(null);
+  useEffect(() => {
+    let worker: Worker | undefined;
+    let watchdog: ReturnType<typeof setTimeout> | undefined;
+    let active = true;
+    const finish = (value: RegexResult) => {
+      worker?.terminate();
+      clearTimeout(watchdog);
+      if (active) setResult({ ...value, key: requestKey });
+    };
+    const debounce = setTimeout(() => {
+      try {
+        worker = new Worker(new URL("../../lib/regex-evaluator.worker.ts", import.meta.url));
+        watchdog = setTimeout(() => finish({ matches: [], error: "The regex worker did not start within 5 seconds. Try again.", truncated: false }), 5000);
+        worker.onmessage = (event: MessageEvent<RegexResult | { ready: true }>) => {
+          if ("ready" in event.data) {
+            clearTimeout(watchdog);
+            watchdog = setTimeout(() => finish({ matches: [], error: "Evaluation stopped after 1 second. Simplify the pattern or shorten the text.", truncated: false }), 1000);
+            const [pattern, flags, text] = JSON.parse(requestKey) as [string, string, string];
+            worker!.postMessage({ pattern, flags, text });
+          } else finish(event.data);
+        };
+        worker.onerror = () => finish({ matches: [], error: "The regex worker could not run. Check browser worker support.", truncated: false });
+      } catch {
+        finish({ matches: [], error: "A Web Worker is required to evaluate this pattern safely.", truncated: false });
+      }
+    }, 150);
+    return () => {
+      active = false;
+      clearTimeout(debounce);
+      clearTimeout(watchdog);
+      worker?.terminate();
+    };
+  }, [requestKey]);
+  const current = result?.key === requestKey ? result : null;
+  const matches = current?.matches ?? [];
+  const error = current?.error ?? null;
 
   const explanations = useMemo(() => explainRegex(pattern), [pattern]);
 
@@ -41,7 +69,7 @@ export function RegexTesterTool() {
   };
 
   const highlightText = () => {
-    if (!regex || matches.length === 0) {
+    if (matches.length === 0) {
       return <span>{testText}</span>;
     }
 
@@ -58,10 +86,10 @@ export function RegexTesterTool() {
           className="bg-yellow-200 text-slate-900 rounded px-0.5"
           title={`Match #${idx + 1}`}
         >
-          {match[0]}
+          {match.values[0]!}
         </mark>
       );
-      lastIndex = match.index! + match[0].length;
+      lastIndex = match.index! + match.values[0]!.length;
     });
 
     if (lastIndex < testText.length) {
@@ -91,6 +119,8 @@ export function RegexTesterTool() {
             <p className="text-sm font-semibold text-text">Pattern</p>
             <input
               type="text"
+              aria-label="Regex pattern"
+              maxLength={500}
               value={pattern}
               onChange={(e) => setPattern(e.target.value)}
               placeholder="Enter your regex pattern here"
@@ -98,8 +128,12 @@ export function RegexTesterTool() {
                 error ? "border-red-400 bg-red-50" : "border-black/8 bg-[#fbfcfd]"
               }`}
             />
+            <p role="status" aria-live="polite" className="text-sm text-text/70">
+              {!current ? "Evaluating…" : error ? "Evaluation stopped." : current.truncated ? "Results truncated: at most 1,000 matches and 100,000 captured characters." : "Evaluation complete."}
+              {" "}Runs in a worker with a 1-second evaluation limit and a separate 5-second startup limit. Pattern limit: 500 characters; text limit: 20,000.
+            </p>
             {error && (
-              <div className="rounded-[18px] border border-red-200 bg-red-50 px-4 py-3 text-sm font-medium text-red-700">
+              <div role="alert" className="rounded-[18px] border border-red-200 bg-red-50 px-4 py-3 text-sm font-medium text-red-700">
                 {error}
               </div>
             )}
@@ -133,10 +167,12 @@ export function RegexTesterTool() {
                 Load Sample Text
               </button>
             </div>
-            <div className="min-h-[180px] w-full rounded-[24px] border border-black/8 bg-[#fbfcfd] px-4 py-4 text-sm leading-7 text-slate-800">
+            <div className="min-h-[180px] w-full rounded-[24px] border border-black/8 bg-[#fbfcfd] px-4 py-4 text-sm leading-7 text-slate-800 [overflow-wrap:anywhere]">
               {highlightText()}
             </div>
             <textarea
+              aria-label="Test text"
+              maxLength={20000}
               value={testText}
               onChange={(e) => setTestText(e.target.value)}
               placeholder="Paste your text here to test"
@@ -161,18 +197,20 @@ export function RegexTesterTool() {
                     className="rounded-[20px] border border-black/6 bg-surface/70 p-4"
                   >
                     <p className="text-sm font-semibold text-text mb-2">Match #{matchIdx + 1}</p>
-                    <div className="space-y-1">
-                      <p className="text-sm font-mono text-text/70">Full match: &quot;{match[0]}&quot;</p>
-                      {match.slice(1).map((group, groupIdx) => {
-                        const name = Object.keys(match.groups || {}).find(
-                          (n) => match.groups?.[n] === group
-                        );
+                    <div className="space-y-1 [overflow-wrap:anywhere]">
+                      <p className="text-sm font-mono text-text/70">Full match: &quot;{match.values[0]!}&quot;</p>
+                      {match.values.slice(1).map((group, groupIdx) => {
                         return (
                           <p key={groupIdx} className="text-sm font-mono text-text/70">
-                            {name ? `Group "${name}"` : `Group ${groupIdx + 1}`}: &quot;{group}&quot;
+                            {`Group ${groupIdx + 1}`}: &quot;{group}&quot;
                           </p>
                         );
                       })}
+                      {Object.entries(match.groups ?? {}).map(([name, value]) => (
+                        <p key={name} className="text-sm font-mono text-text/70">
+                          Named group &quot;{name}&quot;: &quot;{value}&quot;
+                        </p>
+                      ))}
                     </div>
                   </div>
                 ))}

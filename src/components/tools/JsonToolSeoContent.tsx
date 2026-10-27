@@ -43,8 +43,8 @@ export function JsonToolSeoContent() {
           APIs will reject it.
         </p>
         <p className="max-w-4xl text-base leading-8 text-text/70">
-          This validator uses the browser&apos;s native JSON parser, so the error messages are real,
-          immediate, and useful for fixing malformed input before it reaches your application.
+          This validator checks strict JSON syntax and duplicate keys locally. Formatting preserves
+          numeric tokens instead of converting them to JavaScript numbers. It does not check a schema.
         </p>
       </div>
 
@@ -76,42 +76,6 @@ export function JsonToolSeoContent() {
         </ul>
       </div>
 
-      <div className="space-y-4">
-        <h2 className="text-3xl font-bold tracking-tight text-text">Frequently Asked Questions</h2>
-        <div className="space-y-4">
-          <div className="rounded-[24px] border border-black/6 bg-white p-6">
-            <h3 className="text-lg font-semibold text-text">Is my JSON data sent to a server?</h3>
-            <p className="mt-2 text-base leading-8 text-text/70">
-              No. Everything runs in your browser. Zero data leaves your device.
-            </p>
-          </div>
-          <div className="rounded-[24px] border border-black/6 bg-white p-6">
-            <h3 className="text-lg font-semibold text-text">
-              What is the difference between formatting and minifying JSON?
-            </h3>
-            <p className="mt-2 text-base leading-8 text-text/70">
-              Formatting adds spaces and line breaks for readability. Minifying removes them to
-              reduce file size.
-            </p>
-          </div>
-          <div className="rounded-[24px] border border-black/6 bg-white p-6">
-            <h3 className="text-lg font-semibold text-text">
-              Can I use this tool for large JSON files?
-            </h3>
-            <p className="mt-2 text-base leading-8 text-text/70">
-              Yes, up to several MB of JSON can be processed instantly.
-            </p>
-          </div>
-          <div className="rounded-[24px] border border-black/6 bg-white p-6">
-            <h3 className="text-lg font-semibold text-text">
-              What JSON version does this support?
-            </h3>
-            <p className="mt-2 text-base leading-8 text-text/70">
-              Standard JSON (RFC 8259) including nested objects and arrays.
-            </p>
-          </div>
-        </div>
-      </div>
     </section>
   );
 }

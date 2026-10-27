@@ -140,7 +140,7 @@ export function JsonFormatterTool() {
           </h1>
           <p className="text-base leading-8 text-text/70">
             Format, validate, minify, and inspect JSON instantly in your browser. No API calls. No
-            uploads. No data leaves your device.
+            uploads. The formatting code processes your input locally; separate page analytics and advertising requests may still occur.
           </p>
         </div>
 

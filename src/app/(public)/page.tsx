@@ -1,3 +1,5 @@
+import { FaqSection } from "@/components/FaqSection";
+import { pageFaqs } from "@/lib/faq-content";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowUpRight, Search, Terminal, Database, Package, Braces } from "lucide-react";
@@ -83,6 +85,7 @@ export default async function HomePage() {
         <div className="archive-grid">{verified.map((post) => <BlogCard key={post.slug} post={post} />)}</div>
       </section>}
       <section className="journal-container editor-note"><p className="eyebrow">Behind CodeWithLogs</p><div><h2>Useful answers. Clear limits.</h2><p>CodeWithLogs is written by Zeeshan Zakir. The focus is modern JavaScript developer troubleshooting and tools: explaining what failed, why it failed, and how to check a change. <Link href="/blog?topic=windows-setup">Windows and Git setup</Link>, <Link href="/blog?topic=vscode">VS Code</Link>, and Vercel deployment support that work. The existing archive is retained.</p><Link href="/about" className="journal-text-link">About the author <ArrowUpRight size={16} /></Link></div></section>
+      <FaqSection items={pageFaqs["/"]} className="journal-container journal-section" editorial />
       <section id="newsletter" className="journal-container newsletter-section"><div><p className="eyebrow">Article updates</p><h2>Register your interest<br />in development notes.</h2><p>Leave your email and article-update preference. <Link href="/contact">Contact us</Link> to change your signup or request removal.</p></div><div><NewsletterSignup /><p className="newsletter-privacy">Signup records your interest; automatic email delivery is not currently offered. Read our <Link href="/privacy-policy">privacy policy</Link>.</p></div></section>
     </div>
   );

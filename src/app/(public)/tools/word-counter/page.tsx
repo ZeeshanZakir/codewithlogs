@@ -1,3 +1,5 @@
+import { FaqSection } from "@/components/FaqSection";
+import { pageFaqs } from "@/lib/faq-content";
 import type { Metadata } from "next";
 
 import { AdUnit } from "@/components/ads/AdUnit";
@@ -6,7 +8,7 @@ import { WordCounterTool } from "@/components/tools/WordCounterTool";
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://codewithlogs.com";
 
 export const metadata: Metadata = {
-  title: "Best Word Counter — Free Online Word & Character Count Tool | CodeWithLogs",
+  title: "Best Word Counter — Free Online Word & Character Count Tool",
   description:
     "Count words, characters, sentences, and paragraphs instantly. Free online word counter for writers, bloggers, students, and developers. No signup needed.",
   alternates: {
@@ -30,6 +32,8 @@ export default function WordCounterPage() {
         </section>
 
         <WordCounterTool />
+
+        <FaqSection items={pageFaqs["/tools/word-counter"]} className="mt-10" />
 
         <section className="mt-10 rounded-[24px] border border-black/6 bg-white p-4 shadow-sm">
           <AdUnit slot="word-counter-bottom" format="rectangle" />

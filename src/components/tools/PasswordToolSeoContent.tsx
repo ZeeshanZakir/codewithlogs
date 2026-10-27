@@ -53,40 +53,6 @@ export function PasswordToolSeoContent() {
         </ol>
       </div>
 
-      <div className="space-y-4">
-        <h2 className="text-3xl font-bold tracking-tight text-text">Frequently Asked Questions</h2>
-        <div className="space-y-4">
-          <div className="rounded-[24px] border border-black/6 bg-white p-6">
-            <h3 className="text-lg font-semibold text-text">
-              Are generated passwords stored or sent to a server?
-            </h3>
-            <p className="mt-2 text-base leading-8 text-text/70">
-              Generated passwords and history stay in this page&apos;s memory. The generator does
-              not upload them or save them to browser storage. Other site scripts, including
-              advertising and analytics, may still send measurement data; see our Privacy Policy.
-            </p>
-          </div>
-          <div className="rounded-[24px] border border-black/6 bg-white p-6">
-            <h3 className="text-lg font-semibold text-text">What makes a password strong?</h3>
-            <p className="mt-2 text-base leading-8 text-text/70">
-              Length + variety. 16+ characters with uppercase, lowercase, numbers, and symbols.
-            </p>
-          </div>
-          <div className="rounded-[24px] border border-black/6 bg-white p-6">
-            <h3 className="text-lg font-semibold text-text">How often should I change passwords?</h3>
-            <p className="mt-2 text-base leading-8 text-text/70">
-              Use a unique password for every account. Change if a site reports a breach.
-            </p>
-          </div>
-          <div className="rounded-[24px] border border-black/6 bg-white p-6">
-            <h3 className="text-lg font-semibold text-text">Should I use a password manager?</h3>
-            <p className="mt-2 text-base leading-8 text-text/70">
-              Yes. Tools like Bitwarden or 1Password store passwords securely so you only need to
-              remember one.
-            </p>
-          </div>
-        </div>
-      </div>
     </section>
   );
 }

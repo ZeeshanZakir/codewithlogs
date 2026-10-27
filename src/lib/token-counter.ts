@@ -1,4 +1,4 @@
-import { encode } from "gpt-tokenizer";
+import { encode } from "gpt-tokenizer/encoding/o200k_base";
 
 export type ModelType = "gpt" | "claude" | "gemini";
 
@@ -18,17 +18,18 @@ export interface ModelConfig {
 export const MODEL_CONFIGS: Record<ModelType, ModelConfig> = {
   gpt: {
     name: "GPT-4o",
+    note: "Local o200k_base text count; excludes message framing and other request inputs",
     pricePerMillion: 2.5,
   },
   claude: {
     name: "Claude",
     pricePerMillion: 3.0,
-    note: "Approximate token count",
+    note: "Heuristic: UTF-16 text length divided by four, rounded up; not a provider tokenizer",
   },
   gemini: {
     name: "Gemini",
     pricePerMillion: 0.15,
-    note: "Approximate token count",
+    note: "Heuristic: UTF-16 text length divided by four, rounded up; not a provider tokenizer",
   },
 };
 

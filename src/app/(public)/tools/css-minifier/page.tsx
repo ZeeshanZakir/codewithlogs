@@ -1,3 +1,5 @@
+import { FaqSection } from "@/components/FaqSection";
+import { pageFaqs } from "@/lib/faq-content";
 import type { Metadata } from "next";
 
 import { AdUnit } from "@/components/ads/AdUnit";
@@ -5,7 +7,7 @@ import { CssMinifierTool } from "@/components/tools/CssMinifierTool";
 import { siteUrl } from "@/lib/site-url";
 
 export const metadata: Metadata = {
-  title: "Best CSS Minifier — Free Online CSS Minify & Beautify Tool | CodeWithLogs",
+  title: "Best CSS Minifier — Free Online CSS Minify & Beautify Tool",
   description:
     "Minify and beautify CSS code instantly online. Remove whitespace, comments, and unnecessary characters. Free CSS compressor — no upload, works in browser.",
   alternates: {
@@ -29,6 +31,8 @@ export default function CssMinifierPage() {
         </section>
 
         <CssMinifierTool />
+
+        <FaqSection items={pageFaqs["/tools/css-minifier"]} className="mt-10" />
 
         <section className="mt-10 rounded-[24px] border border-black/6 bg-white p-4 shadow-sm">
           <AdUnit slot="css-minifier-bottom" format="rectangle" />

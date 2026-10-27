@@ -4,9 +4,9 @@ export function CssMinifierSeoContent() {
       <div className="space-y-4">
         <h2 className="text-3xl font-bold tracking-tight text-text">What Is CSS Minification?</h2>
         <p className="max-w-4xl text-base leading-8 text-text/70">
-          CSS minification removes comments, extra spaces, line breaks, and other non-essential
-          characters from your stylesheet so the file becomes smaller without changing how it works.
-          The result is leaner CSS that loads faster and sends fewer bytes to the browser.
+          This tool removes structural whitespace with a CSS parser. It preserves comments, selectors,
+          declaration values and their order, including spacing inside strings and calc() expressions.
+          It checks parseable syntax, not property validity or browser support. Test the result in your project.
         </p>
       </div>
 
@@ -15,9 +15,9 @@ export function CssMinifierSeoContent() {
           How Much Can CSS Minification Save?
         </h2>
         <p className="max-w-4xl text-base leading-8 text-text/70">
-          Typical CSS files often shrink by 20% to 80% depending on how much whitespace, commenting,
-          and repeated formatting they contain. Large utility stylesheets and hand-written theme files
-          usually benefit the most because there is more non-essential formatting to remove.
+          Savings depend on the input. The displayed percentage compares uncompressed UTF-8 byte sizes
+          before and after processing; it does not measure network transfer size or loading speed.
+          Comments and value whitespace are retained, so already compact CSS may barely change.
         </p>
       </div>
 
@@ -52,45 +52,6 @@ export function CssMinifierSeoContent() {
         </ol>
       </div>
 
-      <div className="space-y-4">
-        <h2 className="text-3xl font-bold tracking-tight text-text">FAQ</h2>
-        <div className="space-y-4">
-          <div className="rounded-[24px] border border-black/6 bg-white p-6">
-            <h3 className="text-lg font-semibold text-text">Does minification break my CSS?</h3>
-            <p className="mt-2 text-base leading-8 text-text/70">
-              Proper minification should not change the meaning of valid CSS. It only removes
-              formatting and other non-essential characters.
-            </p>
-          </div>
-          <div className="rounded-[24px] border border-black/6 bg-white p-6">
-            <h3 className="text-lg font-semibold text-text">
-              Should I minify CSS in development?
-            </h3>
-            <p className="mt-2 text-base leading-8 text-text/70">
-              Usually no. Beautified CSS is easier to debug in development, while minified CSS is
-              best for production builds.
-            </p>
-          </div>
-          <div className="rounded-[24px] border border-black/6 bg-white p-6">
-            <h3 className="text-lg font-semibold text-text">
-              What&apos;s the difference between minify and compress?
-            </h3>
-            <p className="mt-2 text-base leading-8 text-text/70">
-              Minify changes the source code to remove extra characters. Compression like Gzip or
-              Brotli reduces transfer size when the file is sent over the network.
-            </p>
-          </div>
-          <div className="rounded-[24px] border border-black/6 bg-white p-6">
-            <h3 className="text-lg font-semibold text-text">
-              Is this tool safe for production CSS?
-            </h3>
-            <p className="mt-2 text-base leading-8 text-text/70">
-              Yes, for normal valid CSS. This tool runs in your browser and is safe to use for checking
-              production styles before deployment.
-            </p>
-          </div>
-        </div>
-      </div>
     </section>
   );
 }

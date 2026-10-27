@@ -1,3 +1,5 @@
+import { FaqSection } from "@/components/FaqSection";
+import { pageFaqs } from "@/lib/faq-content";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { AdUnit } from "@/components/ads/AdUnit";
@@ -8,7 +10,7 @@ import { Braces, Hash, Clock } from "lucide-react";
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://codewithlogs.com";
 
 export const metadata: Metadata = {
-  title: "Regex Tester — Test & Debug Regular Expressions Online | CodeWithLogs",
+  title: "Regex Tester — Test & Debug Regular Expressions Online",
   description: "Test regular expressions in real time with match highlighting, group capture, and plain-English explanations. Free browser-based regex tool.",
   alternates: {
     canonical: `${siteUrl}/tools/regex-tester`,
@@ -73,32 +75,6 @@ export default function RegexTesterPage() {
                 priceCurrency: "USD",
               },
             },
-            {
-              "@context": "https://schema.org",
-              "@type": "FAQPage",
-              mainEntity: [
-                {
-                  "@type": "Question",
-                  name: "Which regex flavor does this use?",
-                  acceptedAnswer: { "@type": "Answer", text: "JavaScript's native RegExp engine (ECMAScript), the same engine used in Node.js and browsers." },
-                },
-                {
-                  "@type": "Question",
-                  name: "Is my test text uploaded anywhere?",
-                  acceptedAnswer: { "@type": "Answer", text: "No, everything runs locally in your browser using JavaScript's RegExp object." },
-                },
-                {
-                  "@type": "Question",
-                  name: "Why doesn't my pattern match anything?",
-                  acceptedAnswer: { "@type": "Answer", text: "Check your flags (e.g. missing the g flag for global search) and escape special characters like . or ( if you mean them literally." },
-                },
-                {
-                  "@type": "Question",
-                  name: "Can I test multiline text?",
-                  acceptedAnswer: { "@type": "Answer", text: "Yes, enable the m flag so ^ and $ match the start/end of each line." },
-                },
-              ],
-            },
           ]),
         }}
       />
@@ -125,6 +101,8 @@ export default function RegexTesterPage() {
         <RegexTesterTool />
 
         <RegexTesterSeoContent />
+
+        <FaqSection items={pageFaqs["/tools/regex-tester"]} className="mt-10" />
 
         <section className="mt-10 rounded-[24px] border border-black/6 bg-white p-4 shadow-sm">
           <AdUnit slot="regex-tester-bottom" format="rectangle" />

@@ -1,3 +1,5 @@
+import { FaqSection } from "@/components/FaqSection";
+import { pageFaqs } from "@/lib/faq-content";
 import type { Metadata } from "next";
 
 import { AdUnit } from "@/components/ads/AdUnit";
@@ -5,7 +7,7 @@ import { Base64Tool } from "@/components/tools/Base64Tool";
 import { siteUrl } from "@/lib/site-url";
 
 export const metadata: Metadata = {
-  title: "Base64 Encoder/Decoder — Free Online Tool | Code With Logs",
+  title: "Base64 Encoder/Decoder — Free Online Tool",
   description:
     "Encode and decode Base64 strings instantly online. Also encode/decode images and files to Base64. Free browser-based tool — no data sent to any server.",
   alternates: {
@@ -29,6 +31,8 @@ export default function Base64Page() {
         </section>
 
         <Base64Tool />
+
+        <FaqSection items={pageFaqs["/tools/base64"]} className="mt-10" />
 
         <section className="mt-10 rounded-[24px] border border-black/6 bg-white p-4 shadow-sm">
           <AdUnit slot="base64-bottom" format="rectangle" />

@@ -33,6 +33,11 @@ export function TokenCounterTool() {
           </p>
         </div>
 
+        <p className="text-sm leading-7 text-text/70" role="status">
+          {MODEL_CONFIGS[model].note}. Rates are editable, fixed examples, not current provider quotes.
+          Cost excludes output, cached-input discounts, tools, images and request overhead. No provider API is called.
+        </p>
+
         <div className="rounded-[28px] border border-black/6 bg-white p-4 shadow-sm sm:p-6 space-y-6">
           <div className="flex gap-2 rounded-full border border-black/6 bg-surface/80 p-2 w-fit">
             {(Object.keys(MODEL_CONFIGS) as ModelType[]).map((m) => (
@@ -62,7 +67,7 @@ export function TokenCounterTool() {
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             <div className="rounded-[20px] border border-black/6 bg-surface/70 p-4 text-center">
-              <p className="text-sm font-semibold text-text/70">Token Count</p>
+              <p className="text-sm font-semibold text-text/70">{model === "gpt" ? "Local text token count" : "Heuristic token estimate"}</p>
               <p className="text-3xl font-bold text-primary mt-2">{tokenCount}</p>
             </div>
             <div className="rounded-[20px] border border-black/6 bg-surface/70 p-4 text-center">
@@ -74,14 +79,14 @@ export function TokenCounterTool() {
               <p className="text-3xl font-bold text-text mt-2">{wordCount}</p>
             </div>
             <div className="rounded-[20px] border border-black/6 bg-surface/70 p-4 text-center">
-              <p className="text-sm font-semibold text-text/70">Est. Cost</p>
+              <p className="text-sm font-semibold text-text/70">Illustrative input cost</p>
               <p className="text-3xl font-bold text-text mt-2">{formatCost(estimatedCost)}</p>
             </div>
           </div>
 
           <div className="rounded-[20px] border border-black/6 bg-surface/70 p-4 space-y-3">
             <div className="flex items-center gap-2 text-sm font-semibold text-text">
-              Price per 1M tokens
+              Assumed USD price per 1M input tokens
             </div>
             <div className="flex items-center gap-2">
               <span className="text-text">$</span>

@@ -1,15 +1,15 @@
+import { visit, printParseErrorCode, format, applyEdits, createScanner } from "jsonc-parser";
+
 export type IndentMode = 2 | 4 | "\t";
 
 export type JsonValidationResult =
   | {
       isValid: true;
-      parsed: unknown;
       errorMessage: "";
       keyCount: number;
     }
   | {
       isValid: false;
-      parsed: null;
       errorMessage: string;
       keyCount: 0;
     };
@@ -71,39 +71,50 @@ export function countJsonKeys(value: unknown): number {
 }
 
 export function validateJson(input: string): JsonValidationResult {
-  if (!input.trim()) {
-    return {
-      isValid: false,
-      parsed: null,
-      errorMessage: "",
-      keyCount: 0,
-    };
-  }
-
+  if (!input.trim()) return { isValid: false, errorMessage: "", keyCount: 0 };
+  let keyCount = 0;
+  let issue = "";
+  const objects: Set<string>[] = [];
   try {
-    const parsed = JSON.parse(input) as unknown;
-
-    return {
-      isValid: true,
-      parsed,
-      errorMessage: "",
-      keyCount: countJsonKeys(parsed),
-    };
-  } catch (error) {
-    return {
-      isValid: false,
-      parsed: null,
-      errorMessage: error instanceof Error ? error.message : "Invalid JSON input.",
-      keyCount: 0,
-    };
+    visit(input, {
+      onObjectBegin: () => { objects.push(new Set()); },
+      onObjectProperty: (name, offset) => {
+        const keys = objects[objects.length - 1];
+        if (keys.has(name) && !issue) issue = `Duplicate object key ${JSON.stringify(name)} at character ${offset + 1}. Rename or remove it before formatting.`;
+        keys.add(name);
+        keyCount++;
+      },
+      onObjectEnd: () => { objects.pop(); },
+      onError: (code, offset) => { if (!issue) issue = `${printParseErrorCode(code)} at character ${offset + 1}.`; },
+    }, { disallowComments: true, allowTrailingComma: false, allowEmptyContent: false });
+  } catch {
+    issue = "JSON nesting is too deep to process safely.";
   }
+  return issue ? { isValid: false, errorMessage: issue, keyCount: 0 } : { isValid: true, errorMessage: "", keyCount };
+}
+
+function requireValidJson(input: string) {
+  const result = validateJson(input);
+  if (!result.isValid) throw new Error(result.errorMessage || "Enter JSON to process.");
 }
 
 export function formatJson(input: string, indentMode: IndentMode) {
-  const parsed = JSON.parse(input);
-  return JSON.stringify(parsed, null, indentToWhitespace(indentMode));
+  requireValidJson(input);
+  // Whitespace edits never convert number tokens to JavaScript numbers.
+  return applyEdits(input, format(input, undefined, {
+    insertSpaces: indentMode !== "\t", tabSize: indentMode === "\t" ? 1 : indentMode,
+    eol: "\n", keepLines: false,
+  })).trim();
 }
 
 export function minifyJson(input: string) {
-  return JSON.stringify(JSON.parse(input));
+  requireValidJson(input);
+  const scanner = createScanner(input, true);
+  let output = "";
+  while (true) {
+    scanner.scan();
+    if (scanner.getTokenLength() === 0) break;
+    output += input.slice(scanner.getTokenOffset(), scanner.getTokenOffset() + scanner.getTokenLength());
+  }
+  return output;
 }

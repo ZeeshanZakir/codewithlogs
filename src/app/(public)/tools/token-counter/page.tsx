@@ -1,3 +1,5 @@
+import { FaqSection } from "@/components/FaqSection";
+import { pageFaqs } from "@/lib/faq-content";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { AdUnit } from "@/components/ads/AdUnit";
@@ -8,14 +10,14 @@ import { Braces, Clock, Key } from "lucide-react";
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://codewithlogs.com";
 
 export const metadata: Metadata = {
-  title: "Token Counter for GPT, Claude & Gemini — Free AI Token Calculator | CodeWithLogs",
-  description: "Count tokens for your prompts before sending them to GPT-4, Claude, or Gemini. Estimate API costs instantly. 100% free, runs in your browser.",
+  title: "Token Counter for GPT, Claude & Gemini — Free AI Token Calculator",
+  description: "Count pasted text with the GPT-4o tokenizer, or get rough Claude and Gemini estimates. Compare illustrative input costs using editable rates in your browser.",
   alternates: {
     canonical: `${siteUrl}/tools/token-counter`,
   },
   openGraph: {
     title: "Token Counter for GPT, Claude & Gemini — Free AI Token Calculator | CodeWithLogs",
-    description: "Count tokens for your prompts before sending them to GPT-4, Claude, or Gemini. Estimate API costs instantly. 100% free, runs in your browser.",
+    description: "Count pasted text with the GPT-4o tokenizer, or get rough Claude and Gemini estimates. Compare illustrative input costs using editable rates in your browser.",
     url: `${siteUrl}/tools/token-counter`,
     type: "website",
   },
@@ -65,39 +67,13 @@ export default function TokenCounterPage() {
               "@context": "https://schema.org",
               "@type": "SoftwareApplication",
               name: "Token Counter for GPT, Claude & Gemini",
-              description: "Count tokens for your prompts before sending them to GPT-4, Claude, or Gemini. Estimate API costs instantly.",
+              description: "Count pasted text with the GPT-4o tokenizer, or get rough Claude and Gemini estimates. Costs use editable illustrative input rates.",
               applicationCategory: "DeveloperApplication",
               offers: {
                 "@type": "Offer",
                 price: "0",
                 priceCurrency: "USD",
               },
-            },
-            {
-              "@context": "https://schema.org",
-              "@type": "FAQPage",
-              mainEntity: [
-                {
-                  "@type": "Question",
-                  name: "Is this an exact token count?",
-                  acceptedAnswer: { "@type": "Answer", text: "For GPT models, yes, using the same tokenizer family as the OpenAI API. For Claude and Gemini, it's a close estimate since their exact tokenizers aren't public." },
-                },
-                {
-                  "@type": "Question",
-                  name: "Why do different models count differently for the same text?",
-                  acceptedAnswer: { "@type": "Answer", text: "Each model family uses its own vocabulary and tokenization rules, so identical text can produce different token counts." },
-                },
-                {
-                  "@type": "Question",
-                  name: "Does this tool store my prompts?",
-                  acceptedAnswer: { "@type": "Answer", text: "No, everything is processed locally in your browser. Nothing is uploaded or logged." },
-                },
-                {
-                  "@type": "Question",
-                  name: "How can I reduce token usage?",
-                  acceptedAnswer: { "@type": "Answer", text: "Remove redundant instructions, use concise phrasing, and avoid repeating context the model doesn't need." },
-                },
-              ],
             },
           ]),
         }}
@@ -125,6 +101,8 @@ export default function TokenCounterPage() {
         <TokenCounterTool />
 
         <TokenCounterSeoContent />
+
+        <FaqSection items={pageFaqs["/tools/token-counter"]} className="mt-10" />
 
         <section className="mt-10 rounded-[24px] border border-black/6 bg-white p-4 shadow-sm">
           <AdUnit slot="token-counter-bottom" format="rectangle" />

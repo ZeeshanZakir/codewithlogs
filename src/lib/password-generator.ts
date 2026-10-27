@@ -26,9 +26,11 @@ function filterAmbiguousCharacters(value: string, excludeAmbiguous: boolean) {
     .join("");
 }
 
-function getRandomInt(max: number) {
+export function getRandomInt(max: number) {
+  if (!Number.isInteger(max) || max < 1 || max > 0x100000000) throw new RangeError("Invalid random range.");
   const buffer = new Uint32Array(1);
-  crypto.getRandomValues(buffer);
+  const limit = Math.floor(0x100000000 / max) * max;
+  do { crypto.getRandomValues(buffer); } while (buffer[0] >= limit);
   return buffer[0] % max;
 }
 

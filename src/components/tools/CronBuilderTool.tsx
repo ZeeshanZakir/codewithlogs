@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { ChevronDown, ChevronUp, Clipboard, Copy, Clock } from "lucide-react";
 import { validateCron, explainCron, getNextRuns, CRON_PRESETS } from "@/lib/cron";
 
@@ -28,6 +28,12 @@ const DAY_NAMES = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Frid
 const MONTH_NAMES = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
 export function CronBuilderTool() {
+  const [anchor, setAnchor] = useState<Date | null>(null);
+  useEffect(() => {
+    // Populate after hydration so server and browser initial HTML agree.
+    const timer = setTimeout(() => setAnchor(new Date()), 0);
+    return () => clearTimeout(timer);
+  }, []);
   const [mode, setMode] = useState<CronMode>("build");
   const [parsedCron, setCronExpr] = useState("0 0 * * *");
   const [parseInput, setParseInput] = useState("");
@@ -59,7 +65,7 @@ export function CronBuilderTool() {
 
   const validation = useMemo(() => validateCron(cronExpr), [cronExpr]);
   const explanation = useMemo(() => validation.valid ? explainCron(cronExpr) : "", [cronExpr, validation]);
-  const nextRuns = useMemo(() => validation.valid ? getNextRuns(cronExpr, 5) : [], [cronExpr, validation]);
+  const nextRuns = useMemo(() => validation.valid && anchor ? getNextRuns(cronExpr, 5, anchor) : [], [cronExpr, validation, anchor]);
 
   const handlePreset = (expr: string) => {
     setCronExpr(expr);
@@ -74,7 +80,7 @@ export function CronBuilderTool() {
   };
 
   const formatRelative = (date: Date) => {
-    const now = new Date();
+    const now = anchor ?? date;
     const diff = date.getTime() - now.getTime();
     const minutes = Math.floor(diff / 60000);
     const hours = Math.floor(minutes / 60);
@@ -103,9 +109,15 @@ export function CronBuilderTool() {
           </h1>
           <p className="text-base leading-8 text-text/70">
             Build, parse, and understand cron expressions instantly in your browser. 
-            Get human-readable explanations and see next run times.
+            Preview a numeric five-field Cronie-style subset in UTC. No jobs are created.
           </p>
         </div>
+
+        <p className="text-sm leading-7 text-text/70">
+          UTC has no daylight-saving transitions. Previews use a fixed page-load time and search the next 365 days;
+          fewer than five results can be valid. Reload to refresh the anchor. Names, seconds, 7 for Sunday,
+          single-number steps and scheduler-specific extensions are unsupported. Verify the target scheduler separately.
+        </p>
 
         <div className="rounded-[28px] border border-black/6 bg-white p-4 shadow-sm sm:p-6 space-y-6">
           {/* Tabs */}
@@ -272,13 +284,14 @@ export function CronBuilderTool() {
               <div className="p-4 rounded-[20px] border border-black/6 bg-surface/70">
                 <div className="flex items-center gap-2 text-sm font-semibold text-text mb-3">
                   <Clock className="h-4 w-4 text-primary" />
-                  Next 5 Runs
+                  Next 5 Runs (UTC)
                 </div>
                 <ul className="space-y-2">
+                  {anchor && nextRuns.length < 5 && <li className="text-sm text-text/70">Only {nextRuns.length} runs found within the next 365 days.</li>}
                   {nextRuns.map((run, i) => (
-                    <li key={i} className="flex justify-between items-center text-sm">
+                    <li key={i} className="flex flex-wrap justify-between items-center gap-x-3 text-sm">
                       <span className="text-text/70">{formatRelative(run)}</span>
-                      <span className="font-mono text-text">{run.toLocaleString()}</span>
+                      <span className="font-mono text-text">{run.toISOString().replace("T", " ").replace(".000Z", " UTC")}</span>
                     </li>
                   ))}
                 </ul>

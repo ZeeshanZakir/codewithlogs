@@ -6,13 +6,13 @@ export function CronBuilderSeoContent() {
       <div className="space-y-4">
         <h2 className="text-3xl font-bold tracking-tight text-text">What Is a Cron Expression?</h2>
         <p className="max-w-4xl text-base leading-8 text-text/70">
-          A cron expression is a string of five fields that defines a schedule for recurring tasks.
-          It&apos;s widely used in Linux crontab files, CI/CD pipelines like GitHub Actions, and cloud
-          services such as AWS EventBridge to automate jobs that run on a set timetable.
+          Cron dialects differ between schedulers. This tool supports a numeric five-field subset:
+          minute, hour, day of month, month and day of week. It previews UTC times and uses Cronie-style
+          OR matching when both day fields are restricted. It does not implement AWS EventBridge or Quartz syntax.
         </p>
         <p className="max-w-4xl text-base leading-8 text-text/70">
           Cron syntax uses simple special characters to represent every unit, ranges, steps, and lists,
-          making it flexible enough to describe almost any recurring schedule you can imagine. If you
+          with steps supported on wildcards or ranges. A step resets within its field; it is not an elapsed-time interval. If you
           work with APIs or scheduled jobs, you might also use tools like our <Link href="/tools/base64" className="text-primary font-semibold hover:underline">Base64 Encoder</Link> to handle payloads.
         </p>
       </div>
@@ -61,6 +61,7 @@ export function CronBuilderSeoContent() {
 
       <div className="space-y-4">
         <h2 className="text-3xl font-bold tracking-tight text-text">Common Cron Expression Examples</h2>
+        <p className="text-sm text-text/70">All examples below are interpreted in UTC.</p>
         <div className="overflow-x-auto">
           <table className="w-full text-sm rounded-[24px] border border-black/6 bg-white">
             <thead>
@@ -95,35 +96,6 @@ export function CronBuilderSeoContent() {
         </div>
       </div>
 
-      <div className="space-y-4">
-        <h2 className="text-3xl font-bold tracking-tight text-text">Frequently Asked Questions</h2>
-        <div className="space-y-4">
-          <div className="rounded-[24px] border border-black/6 bg-white p-6">
-            <h3 className="text-lg font-semibold text-text">Does this tool run my cron job?</h3>
-            <p className="mt-2 text-base leading-8 text-text/70">
-              No, this only builds and explains the expression. Use it in your crontab, CI/CD config, or scheduler (AWS EventBridge, GitHub Actions, etc.)
-            </p>
-          </div>
-          <div className="rounded-[24px] border border-black/6 bg-white p-6">
-            <h3 className="text-lg font-semibold text-text">What timezone are the &quot;next run times&quot; based on?</h3>
-            <p className="mt-2 text-base leading-8 text-text/70">
-              Your browser&apos;s local timezone. Actual server cron jobs typically run in the server&apos;s configured timezone (often UTC).
-            </p>
-          </div>
-          <div className="rounded-[24px] border border-black/6 bg-white p-6">
-            <h3 className="text-lg font-semibold text-text">Can I schedule &quot;every 15 minutes&quot;?</h3>
-            <p className="mt-2 text-base leading-8 text-text/70">
-              Yes, use the step syntax: */15 * * * *
-            </p>
-          </div>
-          <div className="rounded-[24px] border border-black/6 bg-white p-6">
-            <h3 className="text-lg font-semibold text-text">Is data sent anywhere?</h3>
-            <p className="mt-2 text-base leading-8 text-text/70">
-              No, all parsing and calculation happens locally in your browser. For secure token handling, check out our <Link href="/tools/jwt-decoder" className="text-primary font-semibold hover:underline">JWT Decoder</Link>.
-            </p>
-          </div>
-        </div>
-      </div>
     </section>
   );
 }

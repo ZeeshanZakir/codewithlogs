@@ -55,33 +55,6 @@ export function Base64SeoContent() {
         </ol>
       </div>
 
-      <div className="space-y-4">
-        <h2 className="text-3xl font-bold tracking-tight text-text">FAQ</h2>
-        <div className="space-y-4">
-          <div className="rounded-[24px] border border-black/6 bg-white p-6">
-            <h3 className="text-lg font-semibold text-text">
-              Is Base64 the same as encryption?
-            </h3>
-            <p className="mt-2 text-base leading-8 text-text/70">
-              No. Base64 is encoding, not encryption. Anyone can decode it instantly.
-            </p>
-          </div>
-          <div className="rounded-[24px] border border-black/6 bg-white p-6">
-            <h3 className="text-lg font-semibold text-text">Can I encode images to Base64?</h3>
-            <p className="mt-2 text-base leading-8 text-text/70">
-              Yes. Use the Image/File tab to upload and convert supported image files directly in
-              your browser.
-            </p>
-          </div>
-          <div className="rounded-[24px] border border-black/6 bg-white p-6">
-            <h3 className="text-lg font-semibold text-text">What is URL-safe Base64?</h3>
-            <p className="mt-2 text-base leading-8 text-text/70">
-              It is a variant that replaces `+` and `/` with `-` and `_` so the output works more
-              safely inside URLs and filenames.
-            </p>
-          </div>
-        </div>
-      </div>
     </section>
   );
 }

@@ -43,11 +43,11 @@ export function formatTimestamp(timestamp: number): string {
   }
 }
 
-export function isExpired(payload: Record<string, unknown> | null): boolean | null {
-  if (!payload || typeof payload.exp !== 'number') {
+export function isExpired(payload: Record<string, unknown> | null, nowMs = Date.now()): boolean | null {
+  if (!payload || typeof payload.exp !== 'number' || !Number.isFinite(payload.exp)) {
     return null;
   }
-  return Date.now() > payload.exp * 1000;
+  return nowMs >= payload.exp * 1000;
 }
 
 export function isValidJwtFormat(token: string): boolean {
