@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
+import { Inter } from "next/font/google";
 import Script from "next/script";
 import { Analytics } from "@vercel/analytics/react";
 
@@ -7,10 +7,8 @@ import "./globals.css";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { siteUrl } from "@/lib/site-url";
 
-const inter = localFont({
-  src: "./fonts/InterVariable.woff2",
-  weight: "100 900",
-  style: "normal",
+const inter = Inter({
+  subsets: ["latin"],
   variable: "--font-inter",
   display: "swap",
 });
