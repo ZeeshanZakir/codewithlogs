@@ -56,13 +56,15 @@ export default function RootLayout({
 
   return (
     <html lang="en" className={inter.variable}>
-      {shouldLoadAdsense ? (
-        <Script
-          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsensePublisherId}`}
-          crossOrigin="anonymous"
-          async
-        />
-      ) : null}
+      <head>
+        {shouldLoadAdsense ? (
+          <script
+            src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsensePublisherId}`}
+            crossOrigin="anonymous"
+            async
+          />
+        ) : null}
+      </head>
       <Script
         src={`https://www.googletagmanager.com/gtag/js?id=${googleTagId}`}
         strategy="afterInteractive"
