@@ -5,7 +5,9 @@ import { z } from "zod";
 
 import authConfig from "@/auth.config";
 import dbConnect from "@/lib/mongodb";
+import { getLoginContext, recordLogin } from "@/lib/login-alert";
 import { Profile } from "@/lib/profile";
+import { isAccessExpired } from "@/lib/roles";
 
 const credentialsSchema = z.object({
   email: z.string().email(),
@@ -24,7 +26,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         email: { label: "Email", type: "email" },
         password: { label: "Password", type: "password" },
       },
-      async authorize(credentials) {
+      async authorize(credentials, request) {
         const parsed = credentialsSchema.safeParse(credentials);
         if (!parsed.success) return null;
 
@@ -55,10 +57,22 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
             return null;
           }
 
+          const accessExpiresAt = profile.expiresAt?.toISOString() ?? null;
+
+          if (isAccessExpired(accessExpiresAt)) {
+            return null;
+          }
+
+          const role = profile.role === "writer" ? "writer" : "admin";
+
+          await recordLogin(profile.email, role, getLoginContext(request));
+
           return {
             id: profile._id.toString(),
             name: profile.email,
             email: profile.email,
+            role,
+            accessExpiresAt,
           };
         } catch (error) {
           console.error("Auth Error: Database-backed sign-in failed:", error);

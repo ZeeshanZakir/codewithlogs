@@ -3,6 +3,7 @@ import { revalidatePath } from "next/cache";
 import { z } from "zod";
 
 import { auth } from "@/auth";
+import { getRole } from "@/lib/roles";
 import { getGalleryPins } from "@/lib/gallery";
 import { GalleryPin } from "@/lib/gallery-pin";
 import dbConnect from "@/lib/mongodb";
@@ -34,7 +35,7 @@ export async function GET(request: Request) {
 export async function POST(request: Request) {
   const session = await auth();
 
-  if (!session?.user) {
+  if (!session?.user || getRole(session) !== "admin") {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 

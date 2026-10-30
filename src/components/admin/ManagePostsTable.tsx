@@ -16,6 +16,10 @@ import { cn } from "@/lib/utils";
 
 type ManagePostsTableProps = {
   posts: BlogPostMeta[];
+  /** Admins can edit, publish/unpublish and delete any post. */
+  canManage?: boolean;
+  /** Posts a writer created; only these get an Edit button for writers. */
+  editableSlugs?: string[];
 };
 
 const statusTabs = [
@@ -56,13 +60,21 @@ function PostThumbnail({ src, alt }: { src: string; alt: string }) {
   );
 }
 
-export function ManagePostsTable({ posts }: ManagePostsTableProps) {
+export function ManagePostsTable({
+  posts,
+  canManage = true,
+  editableSlugs = [],
+}: ManagePostsTableProps) {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
   const [search, setSearch] = useState("");
-  const [statusFilter, setStatusFilter] = useState<(typeof statusTabs)[number]["value"]>("published");
+  const [statusFilter, setStatusFilter] =
+    useState<(typeof statusTabs)[number]["value"]>("published");
   const [categoryFilter, setCategoryFilter] = useState("all");
   const [postToDelete, setPostToDelete] = useState<BlogPostMeta | null>(null);
+
+  const editable = useMemo(() => new Set(editableSlugs), [editableSlugs]);
+  const canEdit = (slug: string) => canManage || editable.has(slug);
 
   const categories = useMemo(
     () => ["all", ...new Set(posts.map((post) => post.category))],
@@ -130,7 +142,9 @@ export function ManagePostsTable({ posts }: ManagePostsTableProps) {
                 <span
                   className={cn(
                     "rounded-full px-2 py-0.5 text-xs",
-                    isActive ? "bg-primary/10 text-primary" : "bg-slate-200/70 text-slate-500",
+                    isActive
+                      ? "bg-primary/10 text-primary"
+                      : "bg-slate-200/70 text-slate-500",
                   )}
                 >
                   {statusCounts[tab.value] ?? 0}
@@ -188,18 +202,29 @@ export function ManagePostsTable({ posts }: ManagePostsTableProps) {
               </thead>
               <tbody className="divide-y divide-slate-100">
                 {filteredPosts.map((post) => (
-                  <tr key={post.slug} className="transition-colors hover:bg-slate-50/70">
+                  <tr
+                    key={post.slug}
+                    className="transition-colors hover:bg-slate-50/70"
+                  >
                     <td className="px-5 py-4">
                       <div className="flex min-w-[300px] items-center gap-4">
                         <PostThumbnail src={post.coverImage} alt={post.title} />
                         <div className="min-w-0">
-                          <Link
-                            href={`/admin/new-post?slug=${post.slug}`}
-                            className="line-clamp-2 font-medium text-slate-900 hover:text-primary"
-                          >
-                            {post.title}
-                          </Link>
-                          <p className="mt-0.5 truncate text-xs text-slate-500">/{post.slug}</p>
+                          {canEdit(post.slug) ? (
+                            <Link
+                              href={`/admin/new-post?slug=${post.slug}`}
+                              className="line-clamp-2 font-medium text-slate-900 hover:text-primary"
+                            >
+                              {post.title}
+                            </Link>
+                          ) : (
+                            <p className="line-clamp-2 font-medium text-slate-900">
+                              {post.title}
+                            </p>
+                          )}
+                          <p className="mt-0.5 truncate text-xs text-slate-500">
+                            /{post.slug}
+                          </p>
                         </div>
                       </div>
                     </td>
@@ -212,7 +237,8 @@ export function ManagePostsTable({ posts }: ManagePostsTableProps) {
                       <span
                         className={cn(
                           "inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium capitalize ring-1 ring-inset",
-                          statusBadgeStyles[post.status] ?? statusBadgeStyles.draft,
+                          statusBadgeStyles[post.status] ??
+                            statusBadgeStyles.draft,
                         )}
                       >
                         <span className="h-1.5 w-1.5 rounded-full bg-current" />
@@ -224,29 +250,42 @@ export function ManagePostsTable({ posts }: ManagePostsTableProps) {
                     </td>
                     <td className="px-5 py-4">
                       <div className="flex items-center justify-end gap-1">
-                        <button
-                          type="button"
-                          disabled={isPending}
-                          onClick={() => toggleStatus(post.slug)}
-                          className="whitespace-nowrap rounded-lg px-3 py-1.5 text-sm font-medium text-slate-600 transition hover:bg-slate-100 hover:text-slate-900 disabled:opacity-50"
-                        >
-                          {post.status === "published" ? "Unpublish" : "Publish"}
-                        </button>
-                        <Link
-                          href={`/admin/new-post?slug=${post.slug}`}
-                          aria-label={`Edit ${post.title}`}
-                          className="rounded-lg p-2 text-slate-500 transition hover:bg-slate-100 hover:text-primary"
-                        >
-                          <Pencil className="h-4 w-4" />
-                        </Link>
-                        <button
-                          type="button"
-                          aria-label={`Delete ${post.title}`}
-                          onClick={() => setPostToDelete(post)}
-                          className="rounded-lg p-2 text-slate-500 transition hover:bg-red-50 hover:text-red-600"
-                        >
-                          <Trash2 className="h-4 w-4" />
-                        </button>
+                        {canManage ? (
+                          <button
+                            type="button"
+                            disabled={isPending}
+                            onClick={() => toggleStatus(post.slug)}
+                            className="whitespace-nowrap rounded-lg px-3 py-1.5 text-sm font-medium text-slate-600 transition hover:bg-slate-100 hover:text-slate-900 disabled:opacity-50"
+                          >
+                            {post.status === "published"
+                              ? "Unpublish"
+                              : "Publish"}
+                          </button>
+                        ) : null}
+                        {canEdit(post.slug) ? (
+                          <Link
+                            href={`/admin/new-post?slug=${post.slug}`}
+                            aria-label={`Edit ${post.title}`}
+                            className="rounded-lg p-2 text-slate-500 transition hover:bg-slate-100 hover:text-primary"
+                          >
+                            <Pencil className="h-4 w-4" />
+                          </Link>
+                        ) : null}
+                        {canManage ? (
+                          <button
+                            type="button"
+                            aria-label={`Delete ${post.title}`}
+                            onClick={() => setPostToDelete(post)}
+                            className="rounded-lg p-2 text-slate-500 transition hover:bg-red-50 hover:text-red-600"
+                          >
+                            <Trash2 className="h-4 w-4" />
+                          </button>
+                        ) : null}
+                        {!canEdit(post.slug) ? (
+                          <span className="px-2 text-xs text-slate-400">
+                            View only
+                          </span>
+                        ) : null}
                       </div>
                     </td>
                   </tr>
@@ -277,10 +316,14 @@ export function ManagePostsTable({ posts }: ManagePostsTableProps) {
                 <Trash2 className="h-5 w-5" />
               </div>
               <div>
-                <h2 className="text-lg font-semibold text-slate-900">Delete post?</h2>
+                <h2 className="text-lg font-semibold text-slate-900">
+                  Delete post?
+                </h2>
                 <p className="mt-2 text-sm leading-6 text-slate-500">
-                  <strong className="text-slate-900">{postToDelete.title}</strong> will be
-                  permanently removed. This cannot be undone.
+                  <strong className="text-slate-900">
+                    {postToDelete.title}
+                  </strong>{" "}
+                  will be permanently removed. This cannot be undone.
                 </p>
               </div>
             </div>

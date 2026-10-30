@@ -14,6 +14,13 @@ const profileSchema = new Schema(
       required: true,
       trim: true,
     },
+    // Missing on the original admin profile, which is treated as "admin".
+    role: {
+      type: String,
+      enum: ["admin", "writer"],
+    },
+    // Writer accounts stop working after this date.
+    expiresAt: Date,
   },
   {
     collection: "profile",

@@ -5,7 +5,7 @@ import { BlogPost } from "@/lib/blog-post";
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
 
-import { auth } from "@/auth";
+import { requireAdmin, requireEditor } from "@/lib/admin-auth";
 import { ContactMessage } from "@/lib/contact-message";
 import { getPostBySlug, type BlogPostStatus } from "@/lib/mdx";
 import dbConnect from "@/lib/mongodb";
@@ -65,16 +65,6 @@ const subscriberUpdateSchema = z
     }
   });
 
-async function ensureAdmin() {
-  const session = await auth();
-
-  if (!session?.user?.email) {
-    throw new Error("Unauthorized");
-  }
-
-  return session;
-}
-
 function slugifyHeading(value: string) {
   return value
     .toLowerCase()
@@ -121,7 +111,7 @@ function revalidateSubscriberRoutes() {
 }
 
 export async function savePostAction(input: PostSaveInput) {
-  await ensureAdmin();
+  const user = await requireEditor();
 
   const parsed = postSaveSchema.safeParse(input);
 
@@ -144,6 +134,10 @@ export async function savePostAction(input: PostSaveInput) {
 
   if (slugTaken) {
     throw new Error("A post with this slug already exists.");
+  }
+
+  if (user.role === "writer" && existing && existing.createdBy !== user.email) {
+    throw new Error("You can only edit posts you created.");
   }
 
   const scheduledAt = data.scheduledAt
@@ -191,7 +185,7 @@ export async function savePostAction(input: PostSaveInput) {
     Object.assign(existing, payload);
     await existing.save();
   } else {
-    await BlogPost.create(payload);
+    await BlogPost.create({ ...payload, createdBy: user.email });
   }
 
   revalidatePostRoutes(data.slug);
@@ -203,7 +197,7 @@ export async function savePostAction(input: PostSaveInput) {
 }
 
 export async function deletePostAction(slug: string) {
-  await ensureAdmin();
+  await requireAdmin();
 
   await dbConnect();
 
@@ -215,7 +209,7 @@ export async function deletePostAction(slug: string) {
 }
 
 export async function togglePostStatusAction(slug: string) {
-  await ensureAdmin();
+  await requireAdmin();
 
   await dbConnect();
 
@@ -249,7 +243,7 @@ export async function togglePostStatusAction(slug: string) {
 }
 
 export async function markMessageAsReadAction(id: string) {
-  await ensureAdmin();
+  await requireAdmin();
   await dbConnect();
   await ContactMessage.findByIdAndUpdate(id, { status: "read" }).exec();
   revalidatePath("/admin/dashboard");
@@ -257,7 +251,7 @@ export async function markMessageAsReadAction(id: string) {
 }
 
 export async function deleteMessageAction(id: string) {
-  await ensureAdmin();
+  await requireAdmin();
   await dbConnect();
   await ContactMessage.findByIdAndDelete(id).exec();
   revalidatePath("/admin/dashboard");
@@ -265,7 +259,7 @@ export async function deleteMessageAction(id: string) {
 }
 
 export async function deleteMessagesBulkAction(ids: string[]) {
-  await ensureAdmin();
+  await requireAdmin();
   await dbConnect();
   await ContactMessage.deleteMany({ _id: { $in: ids } }).exec();
   revalidatePath("/admin/dashboard");
@@ -275,7 +269,7 @@ export async function deleteMessagesBulkAction(ids: string[]) {
 export async function updateSubscriberAction(
   input: z.infer<typeof subscriberUpdateSchema>,
 ) {
-  await ensureAdmin();
+  await requireAdmin();
 
   const parsed = subscriberUpdateSchema.safeParse(input);
 
@@ -312,14 +306,14 @@ export async function updateSubscriberAction(
 }
 
 export async function deleteSubscriberAction(id: string) {
-  await ensureAdmin();
+  await requireAdmin();
   await dbConnect();
   await Subscriber.findByIdAndDelete(id).exec();
   revalidateSubscriberRoutes();
 }
 
 export async function deleteSubscribersBulkAction(ids: string[]) {
-  await ensureAdmin();
+  await requireAdmin();
   await dbConnect();
   await Subscriber.deleteMany({ _id: { $in: ids } }).exec();
   revalidateSubscriberRoutes();

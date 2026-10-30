@@ -1,4 +1,5 @@
 import { auth } from "@/auth";
+import { getRole } from "@/lib/roles";
 import dbConnect from "@/lib/mongodb";
 import { Subscriber } from "@/lib/subscriber";
 
@@ -13,7 +14,7 @@ function escapeCsvValue(value: string) {
 export async function GET() {
   const session = await auth();
 
-  if (!session?.user?.email) {
+  if (!session?.user?.email || getRole(session) !== "admin") {
     return new Response("Unauthorized", { status: 401 });
   }
 

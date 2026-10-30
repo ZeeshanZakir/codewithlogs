@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 
 import { auth } from "@/auth";
 import { AdminShell } from "@/components/admin/AdminShell";
+import { getRole } from "@/lib/roles";
 
 export const metadata: Metadata = { robots: { index: false, follow: false } };
 
@@ -15,5 +16,9 @@ export default async function AdminRootLayout({
 }: AdminRootLayoutProps) {
   const session = await auth();
 
-  return <AdminShell userEmail={session?.user?.email}>{children}</AdminShell>;
+  return (
+    <AdminShell userEmail={session?.user?.email} role={getRole(session)}>
+      {children}
+    </AdminShell>
+  );
 }

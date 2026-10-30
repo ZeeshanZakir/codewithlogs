@@ -15,11 +15,13 @@ import {
 } from "lucide-react";
 
 import { Logo } from "@/components/branding/Logo";
+import { canAccessAdminPath, type AdminRole } from "@/lib/roles";
 import { cn } from "@/lib/utils";
 
 type AdminShellProps = {
   children: React.ReactNode;
   userEmail?: string | null;
+  role?: AdminRole;
 };
 
 const navItems = [
@@ -70,7 +72,11 @@ const pageTitleMap: Record<string, string> = {
   "/admin/site-settings": "Site Settings",
 };
 
-export function AdminShell({ children, userEmail }: AdminShellProps) {
+export function AdminShell({
+  children,
+  userEmail,
+  role = "admin",
+}: AdminShellProps) {
   const pathname = usePathname();
   const isLoginRoute = pathname === "/admin/login";
 
@@ -99,25 +105,27 @@ export function AdminShell({ children, userEmail }: AdminShellProps) {
           </div>
 
           <nav className="mt-8 flex flex-col gap-1">
-            {navItems.map(({ href, label, icon: Icon }) => {
-              const isActive = pathname === href;
+            {navItems
+              .filter(({ href }) => canAccessAdminPath(role, href))
+              .map(({ href, label, icon: Icon }) => {
+                const isActive = pathname === href;
 
-              return (
-                <Link
-                  key={href}
-                  href={href}
-                  className={cn(
-                    "inline-flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors",
-                    isActive
-                      ? "bg-primary/10 text-primary"
-                      : "text-slate-600 hover:bg-slate-100 hover:text-slate-900",
-                  )}
-                >
-                  <Icon className="h-4 w-4" />
-                  {label}
-                </Link>
-              );
-            })}
+                return (
+                  <Link
+                    key={href}
+                    href={href}
+                    className={cn(
+                      "inline-flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors",
+                      isActive
+                        ? "bg-primary/10 text-primary"
+                        : "text-slate-600 hover:bg-slate-100 hover:text-slate-900",
+                    )}
+                  >
+                    <Icon className="h-4 w-4" />
+                    {label}
+                  </Link>
+                );
+              })}
           </nav>
 
           <div className="mt-8 border-t border-slate-200 pt-4 lg:mt-auto">
@@ -125,7 +133,12 @@ export function AdminShell({ children, userEmail }: AdminShellProps) {
               <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary/10 text-sm font-semibold uppercase text-primary">
                 {userLabel.charAt(0)}
               </div>
-              <p className="min-w-0 truncate text-sm text-slate-600">{userLabel}</p>
+              <div className="min-w-0">
+                <p className="truncate text-sm text-slate-600">{userLabel}</p>
+                {role === "writer" ? (
+                  <p className="text-xs text-slate-400">Content writer</p>
+                ) : null}
+              </div>
             </div>
             <button
               type="button"
@@ -140,13 +153,18 @@ export function AdminShell({ children, userEmail }: AdminShellProps) {
 
         <div className="min-w-0">
           <header className="sticky top-0 z-30 border-b border-slate-200 bg-white/80 px-5 py-4 backdrop-blur sm:px-6 lg:px-8">
-            <h1 className="text-xl font-semibold tracking-tight text-slate-900">{pageTitle}</h1>
+            <h1 className="text-xl font-semibold tracking-tight text-slate-900">
+              {pageTitle}
+            </h1>
             <p className="text-sm text-slate-500">
-              Manage blog content, subscribers, contact messages, and site settings.
+              Manage blog content, subscribers, contact messages, and site
+              settings.
             </p>
           </header>
 
-          <main className="min-w-0 px-5 py-6 sm:px-6 lg:px-8 lg:py-8">{children}</main>
+          <main className="min-w-0 px-5 py-6 sm:px-6 lg:px-8 lg:py-8">
+            {children}
+          </main>
         </div>
       </div>
     </div>

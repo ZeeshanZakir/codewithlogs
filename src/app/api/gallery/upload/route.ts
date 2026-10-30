@@ -3,6 +3,7 @@ import { put } from "@vercel/blob";
 import sharp from "sharp";
 
 import { auth } from "@/auth";
+import { getRole } from "@/lib/roles";
 
 export const runtime = "nodejs";
 
@@ -22,7 +23,7 @@ function sanitizeFileName(name: string) {
 export async function POST(request: Request) {
   const session = await auth();
 
-  if (!session?.user) {
+  if (!session?.user || getRole(session) !== "admin") {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 

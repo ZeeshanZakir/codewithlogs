@@ -1,5 +1,7 @@
 import type { NextAuthConfig } from "next-auth";
 
+import { isAccessExpired } from "@/lib/roles";
+
 const authConfig = {
   providers: [],
   session: {
@@ -12,6 +14,13 @@ const authConfig = {
     jwt({ token, user }) {
       if (user?.email) {
         token.email = user.email;
+        token.role = user.role ?? "admin";
+        token.accessExpiresAt = user.accessExpiresAt ?? null;
+      }
+
+      // Returning null clears the session cookie once a writer account expires.
+      if (isAccessExpired(token.accessExpiresAt)) {
+        return null;
       }
 
       return token;
@@ -19,6 +28,8 @@ const authConfig = {
     session({ session, token }) {
       if (session.user && token.email) {
         session.user.email = token.email as string;
+        session.user.role = token.role ?? "admin";
+        session.user.accessExpiresAt = token.accessExpiresAt ?? null;
       }
 
       return session;

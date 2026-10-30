@@ -42,6 +42,9 @@ const blogPostSchema = new Schema(
 
     headings: [headingSchema],
     affiliateLinks: [affiliateLinkSchema],
+
+    // Email of the account that created the post; writers may only edit their own.
+    createdBy: String,
   },
   {
     timestamps: true,
