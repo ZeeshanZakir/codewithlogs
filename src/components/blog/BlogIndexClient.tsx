@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { Suspense, useEffect, useMemo, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { Search, X } from "lucide-react";
 import Link from "next/link";
 import type { BlogPostMeta } from "@/lib/mdx";
@@ -8,9 +9,17 @@ import { getTroubleshootingTopic, isTopicId, matchesArticleSearch, troubleshooti
 import { BlogCard } from "./BlogCard";
 import { POSTS_PER_PAGE, archivePagePath } from "@/lib/blog-pagination";
 
-export function BlogIndexClient({ posts, initialQuery = "", candidate = "all", initialPage = 1, initialSlugs, searchFailed = false }: { posts: BlogPostMeta[]; initialQuery?: string; candidate?: string; initialPage?: number; initialSlugs?: string[]; searchFailed?: boolean }) {
+export function BlogIndexClient({ posts, initialPage = 1 }: { posts: BlogPostMeta[]; initialPage?: number }) {
+  return <Suspense fallback={<ArticleArchive posts={posts} initialPage={initialPage} initialQuery="" initialTopic="all" searchFailed={false} />}>
+    <SearchAwareArchive posts={posts} initialPage={initialPage} />
+  </Suspense>;
+}
+function SearchAwareArchive({ posts, initialPage }: { posts: BlogPostMeta[]; initialPage: number }) {
+  const params = useSearchParams();
+  const initialQuery = params.get("q") ?? "";
+  const candidate = params.get("topic") ?? "all";
   const initialTopic = isTopicId(candidate) ? candidate : "all";
-  return <ArticleArchive key={JSON.stringify([initialQuery, initialTopic, initialPage])} initialQuery={initialQuery} initialTopic={initialTopic} initialPage={initialPage} initialSlugs={initialSlugs} searchFailed={searchFailed} posts={posts} />;
+  return <ArticleArchive key={JSON.stringify([initialQuery, initialTopic, initialPage])} posts={posts} initialPage={initialPage} initialQuery={initialQuery} initialTopic={initialTopic} searchFailed={false} />;
 }
 function ArticleArchive({ posts, initialQuery, initialTopic, initialPage, initialSlugs, searchFailed }: { posts: BlogPostMeta[]; initialQuery: string; initialTopic: string; initialPage: number; initialSlugs?: string[]; searchFailed: boolean }) {
   const [query, setQuery] = useState(initialQuery);

@@ -7,5 +7,5 @@ export function parseArchivePage(value?: string | string[]): number {
 }
 
 export function archivePagePath(page: number): string {
-  return page <= 1 ? "/blog" : `/blog?page=${page}`;
+  return page <= 1 ? "/blog" : `/blog/page/${page}`;
 }

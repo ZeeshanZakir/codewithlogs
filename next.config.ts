@@ -3,11 +3,22 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   allowedDevOrigins: ["localhost", "127.0.0.1", "192.168.50.234"],
   compress: true,
+  async headers() {
+    return ["q", "topic"].map((key) => ({
+      source: "/blog/:path*",
+      has: [{ type: "query" as const, key }],
+      headers: [{ key: "X-Robots-Tag", value: "noindex, follow" }],
+    }));
+  },
   async redirects() {
     return [{
       source: "/:path*",
       has: [{ type: "host", value: "www.codewithlogs.com" }],
       destination: "https://codewithlogs.com/:path*",
+      permanent: true,
+    }, {
+      source: "/blog/page/1",
+      destination: "/blog",
       permanent: true,
     }];
   },
