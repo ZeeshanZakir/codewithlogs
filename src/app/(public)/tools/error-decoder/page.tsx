@@ -1,3 +1,4 @@
+import { openGraphDefaults } from "@/lib/open-graph";
 import { FaqSection } from "@/components/FaqSection";
 import { pageFaqs } from "@/lib/faq-content";
 import type { Metadata } from "next";
@@ -11,10 +12,10 @@ import styles from "@/components/tools/DiagnosticTools.module.css";
 const title = "Developer Error Decoder";
 const description = "Understand npm, PowerShell, Node, Git, Next.js and Vercel errors with local signature matching, practical diagnostics and explicit limits.";
 export const metadata: Metadata = {
-  title: "Developer Error Decoder — npm, Windows & Next.js",
+  title: "Error Decoder — npm, Windows & Next.js",
   description,
   alternates: { canonical: `${siteUrl}/tools/error-decoder` },
-  openGraph: { title: `${title} | CodeWithLogs`, description, url: `${siteUrl}/tools/error-decoder`, type: "website" },
+  openGraph: { ...openGraphDefaults, title: `${title} | CodeWithLogs`, description, url: `${siteUrl}/tools/error-decoder`, type: "website" },
 };
 
 export default function ErrorDecoderPage() {

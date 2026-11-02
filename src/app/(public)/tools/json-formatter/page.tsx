@@ -1,3 +1,4 @@
+import { openGraphDefaults } from "@/lib/open-graph";
 import { FaqSection } from "@/components/FaqSection";
 import { pageFaqs } from "@/lib/faq-content";
 import type { Metadata } from "next";
@@ -7,13 +8,13 @@ import { JsonFormatterTool } from "@/components/tools/JsonFormatterTool";
 import { siteUrl } from "@/lib/site-url";
 
 export const metadata: Metadata = {
-  title: "Best JSON Formatter & Validator Online — Free Tool",
+  title: "JSON Formatter & Syntax Validator",
   description:
-    "Free online JSON formatter, validator and beautifier. Paste your JSON to instantly format, validate, and fix errors. Works in your browser — no data sent to any server.",
+    "Format and minify JSON in your browser. Check syntax, detect duplicate keys, and preserve large numbers. Does not validate schemas or repair invalid JSON.",
   alternates: {
     canonical: `${siteUrl}/tools/json-formatter`,
   },
-  openGraph: {
+  openGraph: { ...openGraphDefaults,
     title: "Best JSON Formatter & Validator Online — Free Tool | Code With Logs",
     description:
       "Free online JSON formatter, validator and beautifier. Paste your JSON to instantly format, validate, and fix errors. Works in your browser — no data sent to any server.",

@@ -1,3 +1,4 @@
+import { openGraphDefaults } from "@/lib/open-graph";
 import { FaqSection } from "@/components/FaqSection";
 import { pageFaqs } from "@/lib/faq-content";
 import type { Metadata } from "next";
@@ -13,10 +14,10 @@ export const dynamic = "force-static";
 export const revalidate = 60;
 const description = "Modern JavaScript developer troubleshooting and tools. Investigate Next.js, Node.js/npm and Supabase errors with clear diagnostic steps and evidence limits.";
 export const metadata: Metadata = {
-  title: "JavaScript Troubleshooting & Developer Tools",
+  title: "JavaScript Troubleshooting & Tools",
   description,
   alternates: { canonical: siteUrl },
-  openGraph: { title: "CodeWithLogs — Fix Your Development Errors. Step by Step.", description, url: siteUrl, type: "website" },
+  openGraph: { ...openGraphDefaults, title: "CodeWithLogs — Fix Your Development Errors. Step by Step.", description, url: siteUrl, type: "website" },
 };
 const primaryTopics = troubleshootingTopics.filter(topic => ["nextjs", "node-npm", "supabase"].includes(topic.id));
 const topicIcons = [Braces, Package, Database];
@@ -35,6 +36,7 @@ export default async function HomePage() {
   const verified = posts.filter((post) => getVerification(post.slug)?.status === "verified").slice(0, 3);
   return (
     <div className="journal-home troubleshooting-home">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@graph": [{ "@type": "Person", "@id": `${siteUrl}/about#author`, name: "Zeeshan Zakir", url: `${siteUrl}/about` }, { "@type": "WebSite", "@id": `${siteUrl}/#website`, name: "CodeWithLogs", url: siteUrl, publisher: { "@id": `${siteUrl}/about#author` } }] }).replace(/</g, "\\u003c") }} />
       <section className="journal-container journal-hero">
         <div className="hero-copy">
           <p className="eyebrow"><span className="status-dot" /> JavaScript troubleshooting & tools</p>

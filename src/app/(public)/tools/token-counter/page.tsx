@@ -1,3 +1,4 @@
+import { openGraphDefaults } from "@/lib/open-graph";
 import { FaqSection } from "@/components/FaqSection";
 import { pageFaqs } from "@/lib/faq-content";
 import type { Metadata } from "next";
@@ -10,12 +11,12 @@ import { Braces, Clock, Key } from "lucide-react";
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://codewithlogs.com";
 
 export const metadata: Metadata = {
-  title: "Token Counter for GPT, Claude & Gemini — Free AI Token Calculator",
+  title: "Token Counter — GPT, Claude & Gemini",
   description: "Count pasted text with the GPT-4o tokenizer, or get rough Claude and Gemini estimates. Compare illustrative input costs using editable rates in your browser.",
   alternates: {
     canonical: `${siteUrl}/tools/token-counter`,
   },
-  openGraph: {
+  openGraph: { ...openGraphDefaults,
     title: "Token Counter for GPT, Claude & Gemini — Free AI Token Calculator | CodeWithLogs",
     description: "Count pasted text with the GPT-4o tokenizer, or get rough Claude and Gemini estimates. Compare illustrative input costs using editable rates in your browser.",
     url: `${siteUrl}/tools/token-counter`,
@@ -65,7 +66,11 @@ export default function TokenCounterPage() {
             },
             {
               "@context": "https://schema.org",
-              "@type": "SoftwareApplication",
+              "@type": "WebApplication",
+              url: `${siteUrl}/tools/token-counter`,
+              operatingSystem: "Any",
+              browserRequirements: "Requires JavaScript in a modern browser",
+              isAccessibleForFree: true,
               name: "Token Counter for GPT, Claude & Gemini",
               description: "Count pasted text with the GPT-4o tokenizer, or get rough Claude and Gemini estimates. Costs use editable illustrative input rates.",
               applicationCategory: "DeveloperApplication",

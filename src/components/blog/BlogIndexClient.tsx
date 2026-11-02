@@ -1,27 +1,23 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { useSearchParams } from "next/navigation";
 import { Search, X } from "lucide-react";
 import Link from "next/link";
 import type { BlogPostMeta } from "@/lib/mdx";
 import { getTroubleshootingTopic, isTopicId, matchesArticleSearch, troubleshootingTopics } from "@/lib/troubleshooting";
 import { BlogCard } from "./BlogCard";
+import { POSTS_PER_PAGE, archivePagePath } from "@/lib/blog-pagination";
 
-const POSTS_PER_PAGE = 9;
-export function BlogIndexClient({ posts }: { posts: BlogPostMeta[] }) {
-  const searchParams = useSearchParams();
-  const initialQuery = searchParams.get("q") ?? "";
-  const candidate = searchParams.get("topic") ?? "all";
+export function BlogIndexClient({ posts, initialQuery = "", candidate = "all", initialPage = 1, initialSlugs, searchFailed = false }: { posts: BlogPostMeta[]; initialQuery?: string; candidate?: string; initialPage?: number; initialSlugs?: string[]; searchFailed?: boolean }) {
   const initialTopic = isTopicId(candidate) ? candidate : "all";
-  return <ArticleArchive key={JSON.stringify([initialQuery, initialTopic])} initialQuery={initialQuery} initialTopic={initialTopic} posts={posts} />;
+  return <ArticleArchive key={JSON.stringify([initialQuery, initialTopic, initialPage])} initialQuery={initialQuery} initialTopic={initialTopic} initialPage={initialPage} initialSlugs={initialSlugs} searchFailed={searchFailed} posts={posts} />;
 }
-function ArticleArchive({ posts, initialQuery, initialTopic }: { posts: BlogPostMeta[]; initialQuery: string; initialTopic: string }) {
+function ArticleArchive({ posts, initialQuery, initialTopic, initialPage, initialSlugs, searchFailed }: { posts: BlogPostMeta[]; initialQuery: string; initialTopic: string; initialPage: number; initialSlugs?: string[]; searchFailed: boolean }) {
   const [query, setQuery] = useState(initialQuery);
   const [selectedTopic, setSelectedTopic] = useState(initialTopic);
-  const [page, setPage] = useState(1);
-  const [remoteResult, setRemoteResult] = useState<{ query: string; slugs: string[] } | null>(null);
-  const [failedQuery, setFailedQuery] = useState<string | null>(null);
+  const [page, setPage] = useState(initialPage);
+  const [remoteResult, setRemoteResult] = useState<{ query: string; slugs: string[] } | null>(initialSlugs ? { query: initialQuery, slugs: initialSlugs } : null);
+  const [failedQuery, setFailedQuery] = useState<string | null>(searchFailed ? initialQuery : null);
   useEffect(() => {
     if (!query.trim()) return;
     const controller = new AbortController();
@@ -56,7 +52,13 @@ function ArticleArchive({ posts, initialQuery, initialTopic }: { posts: BlogPost
       <div className="archive-status"><p role="status" aria-live="polite">{isSearching ? "Searching article text…" : `${filteredPosts.length} ${filteredPosts.length === 1 ? "article" : "articles"}${query ? ` matching “${query}”` : ""}`}</p>{(query || selectedTopic !== "all") && <button type="button" onClick={resetFilters}>Clear filters <X size={14} /></button>}</div>
       {failedQuery === query && <p role="alert" className="search-failure">Full article search is unavailable. Showing matches from titles and summaries.</p>}
       {isSearching ? <div className="journal-empty" role="status">Looking through article text…</div> : paginatedPosts.length ? <div className="archive-grid">{paginatedPosts.map((post) => <BlogCard key={post.slug} post={post} />)}</div> : <div className="journal-empty"><h2>No matching articles.</h2><p>Try fewer words or another tool name, or clear the filters to browse the full archive.</p><button type="button" onClick={resetFilters} className="journal-button">Browse the full archive</button><p><Link href="/contact">Suggest an error to investigate</Link></p></div>}
-      {pageCount > 1 && <nav className="archive-pagination" aria-label="Article pages"><button type="button" disabled={currentPage === 1} onClick={() => setPage(currentPage - 1)}>Previous</button><span>Page {currentPage} of {pageCount}</span><button type="button" disabled={currentPage === pageCount} onClick={() => setPage(currentPage + 1)}>Next</button></nav>}
+      {pageCount > 1 && <nav className="archive-pagination" aria-label="Article pages">
+        {!query && selectedTopic === "all" ? <>
+          {currentPage > 1 ? <Link href={archivePagePath(currentPage - 1)} prefetch={false} rel="prev">Previous</Link> : <span aria-disabled="true">Previous</span>}
+          <span>Page {currentPage} of {pageCount}</span>
+          {currentPage < pageCount ? <Link href={archivePagePath(currentPage + 1)} prefetch={false} rel="next">Next</Link> : <span aria-disabled="true">Next</span>}
+        </> : <><button type="button" disabled={currentPage === 1} onClick={() => setPage(currentPage - 1)}>Previous</button><span>Page {currentPage} of {pageCount}</span><button type="button" disabled={currentPage === pageCount} onClick={() => setPage(currentPage + 1)}>Next</button></>}
+      </nav>}
     </div>
   );
 }

@@ -1,3 +1,4 @@
+import { openGraphDefaults } from "@/lib/open-graph";
 import { FaqSection } from "@/components/FaqSection";
 import { pageFaqs } from "@/lib/faq-content";
 import type { Metadata } from "next";
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
   alternates: {
     canonical: `${siteUrl}/tools/jwt-decoder`,
   },
-  openGraph: {
+  openGraph: { ...openGraphDefaults,
     title: "JWT Decoder — Free Online Tool | Code With Logs",
     description:
       "Decode JSON Web Tokens instantly in your browser. Inspect headers, payloads, and signatures without sending any data to a server.",

@@ -1,16 +1,17 @@
+import { openGraphDefaults } from "@/lib/open-graph";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { siteUrl } from "@/lib/site-url";
 
 export const metadata: Metadata = {
-  title: "About CodeWithLogs & Zeeshan Zakir",
+  title: "About Zeeshan Zakir & the Site",
   description:
     "Meet Zeeshan Zakir, the author behind CodeWithLogs, and learn about the focus on modern JavaScript developer troubleshooting and tools.",
   alternates: {
     canonical: `${siteUrl}/about`,
   },
-  openGraph: {
+  openGraph: { ...openGraphDefaults,
     title: "About CodeWithLogs & Zeeshan Zakir",
     description:
       "The publication, topics and evidence standard behind CodeWithLogs.",

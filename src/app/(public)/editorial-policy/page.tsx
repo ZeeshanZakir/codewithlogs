@@ -1,10 +1,18 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { siteUrl } from "@/lib/site-url";
+import { openGraphDefaults } from "@/lib/open-graph";
 export const metadata: Metadata = {
   title: "Editorial & Verification Policy",
   description: "How CodeWithLogs distinguishes unverified articles, partial test coverage, verified scopes, and unpublished drafts.",
   alternates: { canonical: `${siteUrl}/editorial-policy` },
+  openGraph: {
+    ...openGraphDefaults,
+    title: "Editorial & Verification Policy",
+    description: "How CodeWithLogs distinguishes unverified articles, partial test coverage, verified scopes, and unpublished drafts.",
+    url: `${siteUrl}/editorial-policy`,
+    type: "website",
+  },
 };
 export default function EditorialPolicyPage() {
   return (

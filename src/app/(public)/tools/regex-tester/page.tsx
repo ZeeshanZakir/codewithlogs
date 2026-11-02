@@ -1,3 +1,4 @@
+import { openGraphDefaults } from "@/lib/open-graph";
 import { FaqSection } from "@/components/FaqSection";
 import { pageFaqs } from "@/lib/faq-content";
 import type { Metadata } from "next";
@@ -10,12 +11,12 @@ import { Braces, Hash, Clock } from "lucide-react";
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://codewithlogs.com";
 
 export const metadata: Metadata = {
-  title: "Regex Tester — Test & Debug Regular Expressions Online",
+  title: "Regex Tester — JavaScript Patterns",
   description: "Test regular expressions in real time with match highlighting, group capture, and plain-English explanations. Free browser-based regex tool.",
   alternates: {
     canonical: `${siteUrl}/tools/regex-tester`,
   },
-  openGraph: {
+  openGraph: { ...openGraphDefaults,
     title: "Regex Tester — Test & Debug Regular Expressions Online | CodeWithLogs",
     description: "Test regular expressions in real time with match highlighting, group capture, and plain-English explanations. Free browser-based regex tool.",
     url: `${siteUrl}/tools/regex-tester`,
@@ -65,7 +66,11 @@ export default function RegexTesterPage() {
             },
             {
               "@context": "https://schema.org",
-              "@type": "SoftwareApplication",
+              "@type": "WebApplication",
+              url: `${siteUrl}/tools/regex-tester`,
+              operatingSystem: "Any",
+              browserRequirements: "Requires JavaScript in a modern browser",
+              isAccessibleForFree: true,
               name: "Regex Tester — Test & Debug Regular Expressions",
               description: "Test regular expressions in real time with match highlighting, group capture, and plain-English explanations.",
               applicationCategory: "DeveloperApplication",

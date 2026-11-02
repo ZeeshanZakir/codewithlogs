@@ -1,3 +1,4 @@
+import { openGraphDefaults } from "@/lib/open-graph";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Script from "next/script";
@@ -28,6 +29,7 @@ export const metadata: Metadata = {
   description:
     "Modern JavaScript developer troubleshooting and tools for Next.js, Node.js/npm and Supabase. Fix Your Development Errors. Step by Step.",
   openGraph: {
+    ...openGraphDefaults,
     title: "CodeWithLogs",
     description:
       "CodeWithLogs: Modern JavaScript developer troubleshooting and tools. Fix Your Development Errors. Step by Step.",

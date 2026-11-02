@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export function JsonToolSeoContent() {
   return (
     <section className="space-y-10">
@@ -13,6 +15,7 @@ export function JsonToolSeoContent() {
           frontend or backend config files, and webhook payloads. A clean formatted view helps you
           debug faster, spot bad values, and understand the structure immediately.
         </p>
+        <p className="max-w-4xl text-base leading-8 text-text/70">For matching patterns inside string values, use the <Link href="/tools/regex-tester" className="text-primary font-semibold hover:underline">JavaScript regex tester</Link>; it checks patterns against text rather than validating JSON.</p>
       </div>
 
       <div className="space-y-4">

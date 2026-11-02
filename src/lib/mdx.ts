@@ -98,7 +98,7 @@ function extractHeadings(content: string): TocHeading[] {
   return headings;
 }
 
-function publicFilter() {
+export function publicFilter() {
   return {
     $or: [
       { status: "published" as const },

@@ -1,3 +1,4 @@
+import { openGraphDefaults } from "@/lib/open-graph";
 import { FaqSection } from "@/components/FaqSection";
 import { pageFaqs } from "@/lib/faq-content";
 import type { Metadata } from "next";
@@ -9,12 +10,12 @@ import { Braces, Code2, Key } from "lucide-react";
 import { siteUrl } from "@/lib/site-url";
 
 export const metadata: Metadata = {
-  title: "Cron Expression Builder & Parser — Free Cron Job Generator",
+  title: "Cron Expression Builder & Parser",
   description: "Build and understand cron expressions with a visual editor. Get human-readable explanations and see the next run times instantly. 100% free, no signup.",
   alternates: {
     canonical: `${siteUrl}/tools/cron-builder`,
   },
-  openGraph: {
+  openGraph: { ...openGraphDefaults,
     title: "Cron Expression Builder & Parser — Free Cron Job Generator | CodeWithLogs",
     description: "Build and understand cron expressions with a visual editor. Get human-readable explanations and see the next run times instantly. 100% free, no signup.",
     url: `${siteUrl}/tools/cron-builder`,
@@ -64,9 +65,13 @@ export default function CronBuilderPage() {
             },
             {
               "@context": "https://schema.org",
-              "@type": "SoftwareApplication",
+              "@type": "WebApplication",
+              url: `${siteUrl}/tools/cron-builder`,
+              operatingSystem: "Any",
+              browserRequirements: "Requires JavaScript in a modern browser",
+              isAccessibleForFree: true,
               name: "Cron Expression Builder & Parser",
-              description: "Build and understand cron expressions with a visual editor. Get human-readable explanations and see next run times.",
+              description: "Build numeric five-field cron expressions, read explanations, and preview matching UTC times. Does not schedule or execute jobs.",
               applicationCategory: "DeveloperApplication",
               offers: {
                 "@type": "Offer",

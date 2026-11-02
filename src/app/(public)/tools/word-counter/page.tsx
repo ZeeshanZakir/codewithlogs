@@ -1,3 +1,4 @@
+import { openGraphDefaults } from "@/lib/open-graph";
 import { FaqSection } from "@/components/FaqSection";
 import { pageFaqs } from "@/lib/faq-content";
 import type { Metadata } from "next";
@@ -8,13 +9,13 @@ import { WordCounterTool } from "@/components/tools/WordCounterTool";
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://codewithlogs.com";
 
 export const metadata: Metadata = {
-  title: "Best Word Counter — Free Online Word & Character Count Tool",
+  title: "Word & Character Counter",
   description:
     "Count words, characters, sentences, and paragraphs instantly. Free online word counter for writers, bloggers, students, and developers. No signup needed.",
   alternates: {
     canonical: `${siteUrl}/tools/word-counter`,
   },
-  openGraph: {
+  openGraph: { ...openGraphDefaults,
     title: "Best Word Counter — Free Online Word & Character Count Tool | CodeWithLogs",
     description:
       "Count words, characters, sentences, and paragraphs instantly. Free online word counter for writers, bloggers, students, and developers. No signup needed.",

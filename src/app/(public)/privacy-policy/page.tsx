@@ -1,3 +1,4 @@
+import { openGraphDefaults } from "@/lib/open-graph";
 import type { Metadata } from "next";
 
 import { LegalPageTemplate } from "@/components/legal/LegalPageTemplate";
@@ -11,7 +12,7 @@ export const metadata: Metadata = {
   alternates: {
     canonical: `${siteUrl}/privacy-policy`,
   },
-  openGraph: {
+  openGraph: { ...openGraphDefaults,
     title: "Privacy Policy",
     description:
       "How data is collected, used, and protected on codewithlogs.com, including AdSense and analytics disclosures.",

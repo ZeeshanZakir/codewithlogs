@@ -1,3 +1,4 @@
+import { openGraphDefaults } from "@/lib/open-graph";
 import { FaqSection } from "@/components/FaqSection";
 import { pageFaqs } from "@/lib/faq-content";
 import type { Metadata } from "next";
@@ -7,13 +8,13 @@ import { CssMinifierTool } from "@/components/tools/CssMinifierTool";
 import { siteUrl } from "@/lib/site-url";
 
 export const metadata: Metadata = {
-  title: "Best CSS Minifier — Free Online CSS Minify & Beautify Tool",
+  title: "CSS Minifier & Beautifier — Online Tool",
   description:
     "Minify and beautify CSS code instantly online. Remove whitespace, comments, and unnecessary characters. Free CSS compressor — no upload, works in browser.",
   alternates: {
     canonical: `${siteUrl}/tools/css-minifier`,
   },
-  openGraph: {
+  openGraph: { ...openGraphDefaults,
     title: "Best CSS Minifier — Free Online CSS Minify & Beautify Tool | CodeWithLogs",
     description:
       "Minify and beautify CSS code instantly online. Remove whitespace, comments, and unnecessary characters. Free CSS compressor — no upload, works in browser.",

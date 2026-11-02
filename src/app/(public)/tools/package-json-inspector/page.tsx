@@ -1,3 +1,4 @@
+import { openGraphDefaults } from "@/lib/open-graph";
 import { FaqSection } from "@/components/FaqSection";
 import { pageFaqs } from "@/lib/faq-content";
 import type { Metadata } from "next";
@@ -10,10 +11,10 @@ import styles from "@/components/tools/DiagnosticTools.module.css";
 const title = "package.json Inspector";
 const description = "Inspect package.json locally: validate JSON, summarize dependency declarations, review npm scripts and understand version patterns without running commands.";
 export const metadata: Metadata = {
-  title: "package.json Inspector — Dependencies & Scripts",
+  title: "package.json Inspector — Scripts & Dependencies",
   description,
   alternates: { canonical: `${siteUrl}/tools/package-json-inspector` },
-  openGraph: { title: `${title} | CodeWithLogs`, description, url: `${siteUrl}/tools/package-json-inspector`, type: "website" },
+  openGraph: { ...openGraphDefaults, title: `${title} | CodeWithLogs`, description, url: `${siteUrl}/tools/package-json-inspector`, type: "website" },
 };
 
 export default function PackageJsonInspectorPage() {

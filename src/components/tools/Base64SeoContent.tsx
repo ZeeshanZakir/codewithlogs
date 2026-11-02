@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export function Base64SeoContent() {
   return (
     <section className="space-y-10">
@@ -12,6 +14,7 @@ export function Base64SeoContent() {
           It does not compress or secure data. Instead, it changes the representation so that files,
           images, or credentials can be safely transported in text-friendly environments.
         </p>
+        <p className="max-w-4xl text-base leading-8 text-text/70">Base64 encoding does not strengthen a password. Use the <Link href="/tools/password-generator" className="text-primary font-semibold hover:underline">password generator</Link> to create a new random password. For stylesheets containing image data URLs, the <Link href="/tools/css-minifier" className="text-primary font-semibold hover:underline">CSS minifier</Link> removes structural whitespace while preserving string values.</p>
       </div>
 
       <div className="space-y-4">

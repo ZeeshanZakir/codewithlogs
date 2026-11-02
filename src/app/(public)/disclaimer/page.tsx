@@ -1,3 +1,4 @@
+import { openGraphDefaults } from "@/lib/open-graph";
 import type { Metadata } from "next";
 
 import { LegalPageTemplate } from "@/components/legal/LegalPageTemplate";
@@ -8,8 +9,8 @@ export const metadata: Metadata = {
   alternates: { canonical: `${siteUrl}/disclaimer` },
   title: "Disclaimer",
   description:
-    "Disclaimer for codewithlogs.com covering educational content, affiliate disclosures, earnings statements, third-party links, and limitations related to errors and omissions.",
-  openGraph: {
+    "Read CodeWithLogs disclosures on educational content, affiliate links, earnings claims, external websites, errors, and the limits of responsibility.",
+  openGraph: { ...openGraphDefaults,
     title: "Disclaimer",
     description:
       "Important disclaimers related to content, affiliate relationships, earnings references, and external links on codewithlogs.com.",

@@ -1,3 +1,4 @@
+import { openGraphDefaults } from "@/lib/open-graph";
 import { FaqSection } from "@/components/FaqSection";
 import { pageFaqs } from "@/lib/faq-content";
 import type { Metadata } from "next";
@@ -7,13 +8,13 @@ import { Base64Tool } from "@/components/tools/Base64Tool";
 import { siteUrl } from "@/lib/site-url";
 
 export const metadata: Metadata = {
-  title: "Base64 Encoder/Decoder — Free Online Tool",
+  title: "Base64 Encoder & Decoder — Online Tool",
   description:
     "Encode and decode Base64 strings instantly online. Also encode/decode images and files to Base64. Free browser-based tool — no data sent to any server.",
   alternates: {
     canonical: `${siteUrl}/tools/base64`,
   },
-  openGraph: {
+  openGraph: { ...openGraphDefaults,
     title: "Base64 Encoder/Decoder — Free Online Tool | Code With Logs",
     description:
       "Encode and decode Base64 strings instantly online. Also encode/decode images and files to Base64. Free browser-based tool — no data sent to any server.",

@@ -1,3 +1,4 @@
+import { openGraphDefaults } from "@/lib/open-graph";
 import { FaqSection } from "@/components/FaqSection";
 import { pageFaqs } from "@/lib/faq-content";
 import type { Metadata } from "next";
@@ -8,13 +9,13 @@ import { PasswordGeneratorTool } from "@/components/tools/PasswordGeneratorTool"
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://codewithlogs.com";
 
 export const metadata: Metadata = {
-  title: "Password Generator — Free Strong Password Tool",
+  title: "Strong Password Generator",
   description:
-    "Generate strong, secure passwords instantly. Customize length, uppercase, lowercase, numbers, and symbols. 100% browser-based — no passwords stored or sent anywhere.",
+    "Generate passwords in your browser using cryptographic randomness. Choose length, letters, numbers, and symbols, then copy the result for your own use.",
   alternates: {
     canonical: `${siteUrl}/tools/password-generator`,
   },
-  openGraph: {
+  openGraph: { ...openGraphDefaults,
     title: "Password Generator — Free Strong Password Tool | CodeWithLogs",
     description:
       "Generate strong, secure passwords instantly. Customize length, uppercase, lowercase, numbers, and symbols. 100% browser-based — no passwords stored or sent anywhere.",

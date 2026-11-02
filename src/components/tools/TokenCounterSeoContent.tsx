@@ -11,6 +11,7 @@ export function TokenCounterSeoContent() {
         <p className="max-w-4xl text-base leading-8 text-text/70">
           Context windows limit how much text a model can process in a single request, so optimizing your prompts can save money and prevent truncation errors in your applications.
         </p>
+        <p className="max-w-4xl text-base leading-8 text-text/70">Use the <Link href="/tools/word-counter" className="text-primary font-semibold hover:underline">word and character counter</Link> when a text field has a word or character limit; a token count measures something different.</p>
       </div>
 
       <div className="space-y-4">

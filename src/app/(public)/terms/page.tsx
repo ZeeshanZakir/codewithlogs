@@ -1,3 +1,4 @@
+import { openGraphDefaults } from "@/lib/open-graph";
 import type { Metadata } from "next";
 
 import { LegalPageTemplate } from "@/components/legal/LegalPageTemplate";
@@ -9,7 +10,7 @@ export const metadata: Metadata = {
   title: "Terms of Service",
   description:
     "Terms of Service for codewithlogs.com covering website use, intellectual property, user conduct, limitations of liability, and governing law.",
-  openGraph: {
+  openGraph: { ...openGraphDefaults,
     title: "Terms of Service",
     description:
       "Terms governing your use of codewithlogs.com, including intellectual property, permitted use, and liability limitations.",

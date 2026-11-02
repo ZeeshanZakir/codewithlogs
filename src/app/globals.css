@@ -177,7 +177,9 @@ a {
 .archive-status button { display: inline-flex; align-items: center; gap: 8px; color: var(--primary); cursor: pointer; }
 .archive-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 36px 28px; }
 .archive-pagination { display: flex; justify-content: center; align-items: center; gap: 25px; padding-top: 40px; font-size: 12px; }
-.archive-pagination button { padding: 10px 16px; border: 1px solid var(--rule); border-radius: 3px; cursor: pointer; }
+.archive-pagination :is(button, a, span[aria-disabled]) { padding: 10px 16px; border: 1px solid var(--rule); border-radius: 3px; }
+.archive-pagination :is(button, a) { cursor: pointer; }
+.archive-pagination span[aria-disabled] { opacity: .4; cursor: default; }
 .archive-pagination button:disabled { opacity: .4; cursor: default; }
 .journal-empty { border: 1px dashed var(--rule); padding: 50px 24px; text-align: center; }
 .journal-empty h2, .journal-empty h3 { font-size: 22px; font-weight: 550; }

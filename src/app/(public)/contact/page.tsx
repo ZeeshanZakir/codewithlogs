@@ -1,3 +1,4 @@
+import { openGraphDefaults } from "@/lib/open-graph";
 import type { Metadata } from "next";
 import Link from "next/link";
 
@@ -9,7 +10,7 @@ export const metadata: Metadata = {
   description:
     "Ask a development question, report an issue in a tutorial, or contact Zeeshan Zakir about CodeWithLogs.",
   alternates: { canonical: `${siteUrl}/contact` },
-  openGraph: {
+  openGraph: { ...openGraphDefaults,
     title: "Contact & Article Corrections",
     description:
       "Contact CodeWithLogs with tutorial questions, corrections, collaborations, or project enquiries.",

@@ -60,6 +60,7 @@ export function GalleryMasonry({
         ) : (
           <button
             key={item.pin.id}
+            id={`pin-${item.pin.id}`}
             type="button"
             onClick={() => onSelect(item.pin)}
             className="group relative mb-4 block w-full break-inside-avoid overflow-hidden rounded-[24px] border border-black/6 bg-white text-left shadow-sm transition-transform hover:-translate-y-1"

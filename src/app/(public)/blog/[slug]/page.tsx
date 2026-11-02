@@ -1,3 +1,4 @@
+import { openGraphDefaults, articleOpenGraphImage } from "@/lib/open-graph";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -11,6 +12,8 @@ import { MDXRenderer } from "@/components/blog/MDXRenderer";
 import { ShareButtons } from "@/components/blog/ShareButtons";
 import { TableOfContents } from "@/components/blog/TableOfContents";
 import { siteUrl } from "@/lib/site-url";
+import { getArticlePageTitle } from "@/lib/article-page-title";
+import { getArticleMetaDescription } from "@/lib/article-meta-description";
 import { getArticleReview, getRelatedReadingSlugs, getTroubleshootingTopic } from "@/lib/troubleshooting";
 
 export const dynamic = "force-static";
@@ -33,9 +36,9 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
   const post = await getPostBySlug((await params).slug);
   if (!post) return { title: "Article not found", robots: { index: false, follow: true } };
   return {
-    title: post.title, description: post.excerpt,
+    title: getArticlePageTitle(post.slug, post.title), description: getArticleMetaDescription(post.slug, post.excerpt),
     alternates: { canonical: `${siteUrl}/blog/${post.slug}` },
-    openGraph: { title: post.title, description: post.excerpt, url: `${siteUrl}/blog/${post.slug}`, type: "article", publishedTime: post.date, authors: [post.author], images: [{ url: post.coverImage, alt: post.title }] },
+    openGraph: { ...openGraphDefaults, title: post.title, description: post.excerpt, url: `${siteUrl}/blog/${post.slug}`, type: "article", publishedTime: post.date, authors: [post.author], images: [articleOpenGraphImage(post.coverImage, post.title)] },
     twitter: { card: "summary_large_image", title: post.title, description: post.excerpt, images: [post.coverImage] },
   };
 }

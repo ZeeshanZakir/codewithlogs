@@ -1,3 +1,4 @@
+import { openGraphDefaults } from "@/lib/open-graph";
 import { FaqSection } from "@/components/FaqSection";
 import { pageFaqs } from "@/lib/faq-content";
 import type { Metadata } from "next";
@@ -6,13 +7,13 @@ import { ArrowRight, Braces, Clock, Code2, FileSearch, Hash, Key, KeyRound, Type
 import { siteUrl } from "@/lib/site-url";
 
 export const metadata: Metadata = {
-  title: "Developer Tools — Error Decoder & JSON Utilities",
+  title: "Developer Tools — JSON, Regex & Debugging",
   description:
     "Decode development errors, inspect package.json, format JSON and review data with browser-based developer tools from CodeWithLogs.",
   alternates: {
     canonical: `${siteUrl}/tools`,
   },
-  openGraph: {
+  openGraph: { ...openGraphDefaults,
     title: "Developer Tools — Error Decoder & JSON Utilities | CodeWithLogs",
     description:
       "Decode development errors, inspect package.json, format JSON and review data with browser-based developer tools from CodeWithLogs.",
@@ -115,6 +116,7 @@ const comingSoonTools: Array<{ name: string; icon: typeof Braces }> = [];
 export default function ToolsPage() {
   return (
     <div className="bg-background">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "CollectionPage", "@id": `${siteUrl}/tools#collection`, url: `${siteUrl}/tools`, name: "Developer tools", mainEntity: { "@type": "ItemList", numberOfItems: availableTools.length, itemListElement: availableTools.map((tool, index) => ({ "@type": "ListItem", position: index + 1, name: tool.name, url: `${siteUrl}${tool.href}` })) } }).replace(/</g, "\\u003c") }} />
       <section className="border-b border-black/5 bg-surface">
         <div className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
           <div className="max-w-4xl space-y-5">

@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { BlogPost } from "@/lib/blog-post";
 import dbConnect from "@/lib/mongodb";
 import { siteUrl } from "@/lib/site-url";
+import { publicFilter } from "@/lib/mdx";
 
 // Metadata routes are cached by default. Read the CMS on each request so new
 // publications and drafts are reflected without waiting for a site rebuild.
@@ -9,8 +10,8 @@ export const dynamic = "force-dynamic";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   await dbConnect();
-  const posts = await BlogPost.find({ status: "published" })
-    .select("slug publishedAt")
+  const posts = await BlogPost.find(publicFilter())
+    .select("slug updatedAt publishedAt scheduledAt")
     .lean();
   const toolSlugs = ["error-decoder", "package-json-inspector", "base64", "cron-builder", "css-minifier", "json-formatter", "jwt-decoder", "password-generator", "regex-tester", "token-counter", "word-counter"];
   const routes = ["/", "/about", "/blog", "/contact", "/gallery", "/disclaimer", "/privacy-policy", "/terms", "/tools", "/editorial-policy"];
@@ -24,13 +25,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     changeFrequency: "monthly",
     priority: 0.6,
   }));
-  // Publication time is the only trustworthy content timestamp exposed by
-  // the existing read model. Do not fabricate a new modification date.
+  // Use stored timestamps, never the time the sitemap was requested.
   const blogPages: MetadataRoute.Sitemap = posts.map((post) => ({
     url: siteUrl + "/blog/" + post.slug,
-    ...(post.publishedAt ? { lastModified: post.publishedAt } : {}),
+    ...((post.updatedAt ?? post.publishedAt ?? post.scheduledAt)
+      ? { lastModified: post.updatedAt ?? post.publishedAt ?? post.scheduledAt }
+      : {}),
     changeFrequency: "monthly",
     priority: 0.8,
   }));
-  return [...staticPages, ...toolPages, ...blogPages];
+  return [...new Map(
+    [...staticPages, ...toolPages, ...blogPages].map((entry) => [entry.url, entry])
+  ).values()];
 }
