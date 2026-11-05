@@ -9,6 +9,10 @@ import { getInsightCategory } from "@/lib/insights";
 import { siteUrl } from "@/lib/site-url";
 import { breadcrumbSchema, faqSchema, organizationId, organizationSchema } from "@/lib/site-config";
 import { Breadcrumbs, CtaBand, Eyebrow, FaqList, JsonLd, SectionHeader } from "@/components/agency/ui";
+import { WhatsAppButton } from "@/components/whatsapp/WhatsAppButton";
+import { TechLogo } from "@/components/agency/TechLogo";
+import { StepIcon } from "@/components/agency/StepIcon";
+import { serviceWhatsAppMessage } from "@/lib/whatsapp";
 
 export const dynamicParams = false;
 export const revalidate = 300;
@@ -94,7 +98,7 @@ function Technologies({ service }: { service: Service }) {
     <div className="ag-container">
       <div className="ag-svc-tech ag-reveal">
         <h2>Technologies &amp; tools</h2>
-        <div className="ag-tags">{service.technologies.map((technology) => <span key={technology}>{technology}</span>)}</div>
+        <ul className="ag-tech-logos">{service.technologies.map((technology) => <li key={technology}><TechLogo name={technology} /></li>)}</ul>
       </div>
     </div>
   );
@@ -105,7 +109,8 @@ function Process({ service, vertical = false }: { service: Service; vertical?: b
     <ol className={`ag-steps${vertical ? " ag-steps-vertical" : ""}`}>
       {service.process.map((step, index) => (
         <li key={step.title} className="ag-reveal">
-          <span className="num">{String(index + 1).padStart(2, "0")}</span>
+          <StepIcon title={step.title} />
+          <span className="num">Step {String(index + 1).padStart(2, "0")}</span>
           <h3>{step.title}</h3>
           <p>{step.text}</p>
         </li>
@@ -183,6 +188,7 @@ export default async function ServicePage({ params }: Props) {
               <Link href="/contact" className="ag-btn ag-btn-primary">Start a Project <ArrowUpRight size={16} aria-hidden="true" /></Link>
               <a href="#faq-title" className="ag-btn ag-btn-outline">FAQs</a>
             </div>
+            <p className="ag-hero-alt"><WhatsAppButton variant="link" label="Discuss Your Project on WhatsApp" message={serviceWhatsAppMessage(service.name)} /></p>
           </aside>
         </div>
       </div>

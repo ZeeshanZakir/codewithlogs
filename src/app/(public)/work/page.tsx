@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { ArrowUpRight, Info } from "lucide-react";
+import { Info } from "lucide-react";
+import { ProjectCard } from "@/components/agency/ProjectCard";
 import { openGraphDefaults } from "@/lib/open-graph";
 import { caseStudies, publishedCaseStudies } from "@/lib/work";
-import { getService } from "@/lib/services";
 import { siteUrl } from "@/lib/site-url";
 import { breadcrumbSchema } from "@/lib/site-config";
 import { Breadcrumbs, CtaBand, Eyebrow, JsonLd, SectionHeader } from "@/components/agency/ui";
@@ -48,27 +47,15 @@ export default function WorkPage() {
 
       <section className="ag-section" aria-labelledby="work-list-title">
         <div className="ag-container">
-          <h2 id="work-list-title" className="sr-only">{hasRealWork ? "Case studies" : "Case study layout placeholders"}</h2>
+          <h2 id="work-list-title" className="sr-only">{hasRealWork ? "Case studies" : "Concept studies"}</h2>
           {!hasRealWork && (
-            <p className="ag-notice" role="note" style={{ marginBottom: 32 }}>
+            <p className="ag-notice" role="note" style={{ marginBottom: 40 }}>
               <Info size={18} aria-hidden="true" />
-              <span>Our first case studies are being prepared for publication. The cards below are <strong>layout placeholders, not real projects</strong>. They show how each case study will be presented.</span>
+              <span>Our client case studies are being prepared for publication. Until then, the projects below are <strong>concept studies, not client work</strong>. They show our design approach and how each case study will be presented.</span>
             </p>
           )}
-          <div className="ag-work-grid">
-            {list.map((study, index) => (
-              <Link key={study.slug} href={`/work/${study.slug}`} className={`ag-work-card ag-work-card-${index + 1} ag-reveal`}>
-                <div className="ag-work-media">
-                  {study.isPlaceholder ? <span className="ag-placeholder-tag">Placeholder</span> : null}
-                  <span className="ag-work-media-art" aria-hidden="true" />
-                </div>
-                <div className="ag-work-body">
-                  <p className="ag-work-meta">{study.industry} · {study.services.map((slug) => getService(slug)?.shortName).filter(Boolean).join(", ")}</p>
-                  <h3>{study.title}</h3>
-                  <span className="ag-link">{study.isPlaceholder ? "View layout" : "Read case study"} <ArrowUpRight size={15} aria-hidden="true" /></span>
-                </div>
-              </Link>
-            ))}
+          <div className="pc-grid">
+            {list.map((study, index) => <ProjectCard key={study.slug} study={study} size={index === 0 ? "large" : "medium"} />)}
           </div>
         </div>
       </section>

@@ -4,6 +4,8 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { mainNavigation, siteConfig } from "@/lib/site-config";
+import { WhatsAppButton } from "@/components/whatsapp/WhatsAppButton";
+import { whatsappMessages } from "@/lib/whatsapp";
 
 function isCurrent(pathname: string, href: string) {
   if (href === "/") return pathname === "/";
@@ -20,6 +22,15 @@ export function Navbar() {
   const toggleRef = useRef<HTMLButtonElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
 
+  const headerRef = useRef<HTMLElement>(null);
+  useEffect(() => {
+    // Toggle a data attribute (no React state) so scrolling never re-renders the header.
+    const update = () => headerRef.current?.toggleAttribute("data-scrolled", window.scrollY > 12);
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    return () => window.removeEventListener("scroll", update);
+  }, []);
+
   useEffect(() => {
     document.documentElement.classList.toggle("ag-menu-open", open);
     if (open) panelRef.current?.querySelector<HTMLElement>("a")?.focus();
@@ -32,7 +43,7 @@ export function Navbar() {
   }
 
   return (
-    <header className="ag-header" data-open={open || undefined} onKeyDown={(event) => { if (event.key === "Escape" && open) close(true); }}>
+    <header ref={headerRef} className="ag-header" data-open={open || undefined} onKeyDown={(event) => { if (event.key === "Escape" && open) close(true); }}>
       <div className="ag-container ag-header-inner">
         <Link href="/" className="ag-wordmark" aria-label="CodeWithLogs home" onClick={() => close()}><Wordmark /></Link>
         <nav className="ag-nav" aria-label="Main navigation">
@@ -50,6 +61,7 @@ export function Navbar() {
           </ol>
           <div className="ag-mobile-footer">
             <Link href="/contact" className="ag-btn ag-btn-primary" onClick={() => close()}>Start a Project <ArrowUpRight size={16} aria-hidden="true" /></Link>
+            <WhatsAppButton variant="link" label="Chat on WhatsApp" message={whatsappMessages.general} />
             <a href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a>
           </div>
         </nav>

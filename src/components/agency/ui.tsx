@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import { ArrowUpRight, Plus } from "lucide-react";
 import { jsonLd } from "@/lib/site-config";
+import { WhatsAppButton } from "@/components/whatsapp/WhatsAppButton";
 
 export function JsonLd({ data }: { data: unknown }) {
   return <script type="application/ld+json" dangerouslySetInnerHTML={jsonLd(data)} />;
@@ -50,7 +51,7 @@ export function FaqList({ faqs, headingId }: { faqs: readonly { question: string
   );
 }
 
-export function CtaBand({ eyebrow = "Start a project", title, text, primary = { href: "/contact", label: "Let's Build Something Great" }, secondary }: { eyebrow?: string; title: ReactNode; text: ReactNode; primary?: { href: string; label: string }; secondary?: { href: string; label: string } }) {
+export function CtaBand({ eyebrow = "Start a project", title, text, primary = { href: "/contact", label: "Let's Build Something Great" }, secondary, whatsapp }: { eyebrow?: string; title: ReactNode; text: ReactNode; primary?: { href: string; label: string }; secondary?: { href: string; label: string }; whatsapp?: { message: string; label: string } }) {
   return (
     <section className="ag-cta-band" aria-label="Start a project">
       <div className="ag-container ag-cta-inner ag-reveal">
@@ -63,6 +64,7 @@ export function CtaBand({ eyebrow = "Start a project", title, text, primary = { 
           <div className="ag-actions">
             <Link href={primary.href} className="ag-btn ag-btn-light">{primary.label} <ArrowUpRight size={16} aria-hidden="true" /></Link>
             {secondary ? <Link href={secondary.href} className="ag-btn ag-btn-ghost-light">{secondary.label}</Link> : null}
+            {whatsapp ? <WhatsAppButton message={whatsapp.message} label={whatsapp.label} variant="ghost-light" /> : null}
           </div>
         </div>
       </div>

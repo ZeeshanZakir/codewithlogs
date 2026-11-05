@@ -5,6 +5,8 @@ import { siteUrl } from "@/lib/site-url";
 import { breadcrumbSchema, organizationId, siteConfig } from "@/lib/site-config";
 import { ContactForm } from "@/components/contact/ContactForm";
 import { Breadcrumbs, Eyebrow, JsonLd } from "@/components/agency/ui";
+import { WhatsAppButton } from "@/components/whatsapp/WhatsAppButton";
+import { whatsappHref, whatsappMessages } from "@/lib/whatsapp";
 
 const title = "Contact CodeWithLogs: Start Your Project";
 const description =
@@ -45,6 +47,13 @@ export default function ContactPage() {
               <h2>Email us</h2>
               <p><a href={`mailto:${siteConfig.contactEmail}`} className="ag-contact-email">{siteConfig.contactEmail}</a></p>
             </section>
+            {whatsappHref("") ? (
+              <section>
+                <h2>Prefer WhatsApp?</h2>
+                <p>Send us a message on WhatsApp instead. It opens in a new tab with a short note ready for you to edit.</p>
+                <div style={{ marginTop: 14 }}><WhatsAppButton message={whatsappMessages.general} label="Chat on WhatsApp" /></div>
+              </section>
+            ) : null}
             <section>
               <h2>What happens next</h2>
               <ol>{nextSteps.map((step) => <li key={step}>{step}</li>)}</ol>

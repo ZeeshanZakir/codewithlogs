@@ -8,6 +8,7 @@ import { siteUrl } from "@/lib/site-url";
 import { breadcrumbSchema, organizationId, organizationSchema, siteConfig } from "@/lib/site-config";
 import { Breadcrumbs, CtaBand, Eyebrow, JsonLd, SectionHeader } from "@/components/agency/ui";
 import { SocialLinks } from "@/components/agency/SocialLinks";
+import { StepIcon } from "@/components/agency/StepIcon";
 
 const title = "About CodeWithLogs: A Creative and Technical Digital Agency";
 const description =
@@ -128,7 +129,7 @@ export default function AboutPage() {
             <Link href="/services" className="ag-link" style={{ marginTop: 24 }}>See our services <ArrowRight size={16} aria-hidden="true" /></Link>
           </div>
           <ol className="ag-steps ag-steps-vertical">
-            {workingSteps.map((step, index) => <li key={step.title} className="ag-reveal"><span className="num">{String(index + 1).padStart(2, "0")}</span><h3>{step.title}</h3><p>{step.text}</p></li>)}
+            {workingSteps.map((step, index) => <li key={step.title} className="ag-reveal"><StepIcon title={step.title} /><span className="num">Step {String(index + 1).padStart(2, "0")}</span><h3>{step.title}</h3><p>{step.text}</p></li>)}
           </ol>
         </div>
       </section>

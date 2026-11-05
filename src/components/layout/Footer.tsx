@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { services, servicePath } from "@/lib/services";
-import { siteConfig } from "@/lib/site-config";
+import { siteConfig, trustpilot } from "@/lib/site-config";
 import { Wordmark } from "@/components/layout/Navbar";
 
 const company = [
@@ -49,6 +49,7 @@ export function Footer() {
             <h2>Follow</h2>
             <ul>
               {siteConfig.social.map((link) => <li key={link.href}><a href={link.href} target="_blank" rel="noopener noreferrer">{link.label} <ArrowUpRight size={13} aria-hidden="true" /></a></li>)}
+              <li><a href={trustpilot.profileUrl} target="_blank" rel="noopener noreferrer">Trustpilot <ArrowUpRight size={13} aria-hidden="true" /></a></li>
             </ul>
           </nav>
         </div>

@@ -32,6 +32,30 @@ export const siteConfig = {
   companyLinkedIn: "https://www.linkedin.com/company/code-with-logs",
 } as const;
 
+/**
+ * Business figures for the homepage numbers band. Leave empty until each
+ * figure is real and verifiable; the band then falls back to figures the site
+ * can prove (services, articles, tools, technologies). Example:
+ *   { value: 25, suffix: "+", label: "Clients served", note: "Since 2022", icon: "users" }
+ */
+// Figures supplied by the business owner (5 Nov 2026). Keep them current.
+export const businessStats: { value: number; suffix?: string; label: string; note?: string; icon: "users" | "globe" | "layers" | "calendar" | "briefcase" | "star" }[] = [
+  { value: 50, suffix: "+", label: "Clients served", note: "Startups to established brands", icon: "users" },
+  { value: 100, suffix: "+", label: "Projects delivered", note: "Websites, apps and campaigns", icon: "briefcase" },
+  { value: 6, suffix: "+", label: "Years of experience", note: "Design and development", icon: "calendar" },
+  { value: 20, suffix: "+", label: "Projects in pipeline", note: "Currently in progress", icon: "layers" },
+];
+
+/**
+ * Trustpilot. Only list reviews written by real clients, quoted exactly, with
+ * their consent where needed. Never include reviews by the owner or staff.
+ */
+export const trustpilot = {
+  profileUrl: "https://www.trustpilot.com/review/codewithlogs.com",
+  reviewUrl: "https://www.trustpilot.com/evaluate/codewithlogs.com",
+  reviews: [] as { title: string; text: string; author: string; rating: number; date: string; url: string }[],
+};
+
 export const mainNavigation = [
   { href: "/", label: "Home" },
   { href: "/services", label: "Services" },

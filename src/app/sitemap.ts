@@ -4,6 +4,7 @@ import dbConnect from "@/lib/mongodb";
 import { siteUrl } from "@/lib/site-url";
 import { publicFilter } from "@/lib/mdx";
 import { services } from "@/lib/services";
+import { toolSlugs } from "@/lib/tools";
 import { publishedCaseStudies } from "@/lib/work";
 
 // Metadata routes are cached by default. Read the CMS on each request so new
@@ -15,7 +16,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const posts = await BlogPost.find(publicFilter())
     .select("slug updatedAt publishedAt scheduledAt")
     .lean();
-  const toolSlugs = ["error-decoder", "package-json-inspector", "base64", "cron-builder", "css-minifier", "json-formatter", "jwt-decoder", "password-generator", "regex-tester", "token-counter", "word-counter"];
   const routes = ["/", "/services", "/work", "/about", "/blog", "/contact", "/gallery", "/disclaimer", "/privacy-policy", "/terms", "/tools", "/editorial-policy"];
   const staticPages: MetadataRoute.Sitemap = routes.map((route) => ({
     url: route === "/" ? siteUrl + "/" : siteUrl + route,

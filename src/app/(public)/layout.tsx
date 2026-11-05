@@ -2,7 +2,9 @@ import type { ReactNode } from "react";
 
 import { Footer } from "@/components/layout/Footer";
 import { Navbar } from "@/components/layout/Navbar";
+import { WhatsAppWidget } from "@/components/whatsapp/WhatsAppWidget";
 import "./agency.css";
+import "./visuals.css";
 
 type PublicLayoutProps = {
   children: ReactNode;
@@ -15,6 +17,7 @@ export default function PublicLayout({ children }: PublicLayoutProps) {
       <Navbar />
       <main id="main-content" tabIndex={-1} className="flex-1">{children}</main>
       <Footer />
+      <WhatsAppWidget />
     </div>
   );
 }

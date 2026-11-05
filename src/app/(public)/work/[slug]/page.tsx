@@ -9,6 +9,7 @@ import { getService, servicePath } from "@/lib/services";
 import { siteUrl } from "@/lib/site-url";
 import { breadcrumbSchema } from "@/lib/site-config";
 import { Breadcrumbs, CtaBand, Eyebrow, JsonLd } from "@/components/agency/ui";
+import { ServiceVisual } from "@/components/agency/ServiceVisual";
 
 export const dynamicParams = false;
 type Props = { params: Promise<{ slug: string }> };
@@ -22,7 +23,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!study) return {};
   const url = `${siteUrl}/work/${study.slug}`;
   return {
-    title: study.title,
+    title: study.isPlaceholder ? `Concept study: ${study.title}` : study.title,
     description: study.description,
     alternates: { canonical: url },
     // Placeholder layouts must never be indexed.
@@ -45,7 +46,7 @@ export default async function CaseStudyPage({ params }: Props) {
           {study.isPlaceholder && (
             <p className="ag-notice" role="note" style={{ marginTop: 28 }}>
               <Info size={18} aria-hidden="true" />
-              <span><strong>This is a layout placeholder, not a real project.</strong> No client, results or work shown here are real. It demonstrates how case studies will be structured.</span>
+              <span><strong>This is a concept study, not client work.</strong> No client, results or project shown here are real. It demonstrates our design approach and how case studies will be structured.</span>
             </p>
           )}
           <Eyebrow>{study.industry}{study.year ? ` · ${study.year}` : ""}</Eyebrow>
@@ -65,9 +66,9 @@ export default async function CaseStudyPage({ params }: Props) {
 
           {study.coverImage ? (
             <div className="ag-case-cover"><Image src={study.coverImage.src} alt={study.coverImage.alt} fill sizes="(max-width: 1240px) 100vw, 1240px" className="object-cover" /></div>
-          ) : (
-            <div className="ag-case-cover" role="img" aria-label="Placeholder area for project imagery">Project imagery placeholder</div>
-          )}
+          ) : study.visual ? (
+            <div className="ag-case-cover ag-case-cover-visual"><ServiceVisual kind={study.visual} /></div>
+          ) : null}
 
           <div className="ag-case-body">
             <h2>The challenge</h2>
