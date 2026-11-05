@@ -5,11 +5,13 @@ import { archivePagePath } from "@/lib/blog-pagination";
 
 export function blogArchiveMetadata(page: number): Metadata {
   const url = siteUrl + archivePagePath(page);
-  const description = "Search Next.js debugging, Node.js/npm and Supabase troubleshooting articles, with supporting Windows, VS Code, Git and deployment guides.";
+  const description = "Articles and insights on web development, UI/UX, SEO, digital marketing and AI, plus Next.js, Node.js/npm and Supabase troubleshooting guides from CodeWithLogs.";
+  const title = page === 1 ? "Blog & Insights: Web Development, Design & Troubleshooting" : `Blog & Insights — Page ${page}`;
   return {
-    title: page === 1 ? "Troubleshooting Guides & Articles" : `Troubleshooting Guides & Articles — Page ${page}`,
+    title,
     description,
     alternates: { canonical: url },
-    openGraph: { ...openGraphDefaults, title: "CodeWithLogs Troubleshooting Archive", description, url, type: "website" },
+    openGraph: { ...openGraphDefaults, title: `${title} | CodeWithLogs`, description, url, type: "website" },
+    twitter: { card: "summary_large_image", title: `${title} | CodeWithLogs`, description },
   };
 }

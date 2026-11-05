@@ -4,7 +4,7 @@ const nextConfig: NextConfig = {
   allowedDevOrigins: ["localhost", "127.0.0.1", "192.168.50.234"],
   compress: true,
   async headers() {
-    return ["q", "topic"].map((key) => ({
+    return ["q", "topic", "category"].map((key) => ({
       source: "/blog/:path*",
       has: [{ type: "query" as const, key }],
       headers: [{ key: "X-Robots-Tag", value: "noindex, follow" }],

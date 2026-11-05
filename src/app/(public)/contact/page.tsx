@@ -1,96 +1,68 @@
-import { openGraphDefaults } from "@/lib/open-graph";
 import type { Metadata } from "next";
 import Link from "next/link";
-
-import { ContactForm } from "@/components/contact/ContactForm";
+import { openGraphDefaults } from "@/lib/open-graph";
 import { siteUrl } from "@/lib/site-url";
+import { breadcrumbSchema, organizationId, siteConfig } from "@/lib/site-config";
+import { ContactForm } from "@/components/contact/ContactForm";
+import { Breadcrumbs, Eyebrow, JsonLd } from "@/components/agency/ui";
+
+const title = "Contact CodeWithLogs: Start Your Project";
+const description =
+  "Tell CodeWithLogs about your website, app, branding, SEO or marketing project. Share your goals and we'll explore how we can help.";
 
 export const metadata: Metadata = {
-  title: "Contact & Article Corrections",
-  description:
-    "Ask a development question, report an issue in a tutorial, or contact Zeeshan Zakir about CodeWithLogs.",
+  title: { absolute: title },
+  description,
   alternates: { canonical: `${siteUrl}/contact` },
-  openGraph: { ...openGraphDefaults,
-    title: "Contact & Article Corrections",
-    description:
-      "Contact CodeWithLogs with tutorial questions, corrections, collaborations, or project enquiries.",
-    url: `${siteUrl}/contact`,
-    type: "website",
-  },
+  openGraph: { ...openGraphDefaults, title, description, url: `${siteUrl}/contact`, type: "website" },
+  twitter: { card: "summary_large_image", title, description },
 };
 
-const infoCards = [
-  {
-    title: "Email",
-    body: "info@codewithlogs.com",
-  },
-  {
-    title: "Article corrections",
-    body: "Include an article URL and your software versions for tutorial questions.",
-  },
-  {
-    title: "Signup preferences",
-    body: "Use this form to request changes to an article-update signup or ask for its removal.",
-  },
-];
-
-const socialLinks = [
-  { label: "GitHub", href: "https://github.com/ZeeshanZakir/" },
-  { label: "LinkedIn", href: "https://www.linkedin.com/company/code-with-logs" },
+const nextSteps = [
+  "We read your message and reply by email, usually with a few questions.",
+  "We arrange a short call to understand your goals, timeline and constraints.",
+  "You receive a recommended approach with a clear scope and estimate.",
 ];
 
 export default function ContactPage() {
   return (
-    <div className="bg-background">
-      <section className="border-b border-black/5 bg-surface">
-        <div className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
-          <div className="max-w-3xl space-y-4">
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-primary">
-              Contact
-            </p>
-            <h1 className="text-4xl font-bold tracking-tight text-text sm:text-5xl">
-              Questions, corrections, or a hello.
-            </h1>
-            <p className="text-base leading-8 text-text/70 sm:text-lg">
-              Found an issue in a tutorial? Include the article link, your framework version, and steps to reproduce it. For project enquiries, share your timeline and budget.
-              You can also email me directly below.
-            </p>
-          </div>
+    <div className="ag-page">
+      <JsonLd data={{ "@context": "https://schema.org", "@graph": [{ "@type": "ContactPage", "@id": `${siteUrl}/contact#webpage`, url: `${siteUrl}/contact`, name: title, about: { "@id": organizationId } }, breadcrumbSchema([{ name: "Home", path: "/" }, { name: "Contact", path: "/contact" }])] }} />
+      <section className="ag-page-hero">
+        <div className="ag-container">
+          <Breadcrumbs items={[{ name: "Home", path: "/" }, { name: "Contact" }]} />
+          <Eyebrow>Contact</Eyebrow>
+          <h1 className="ag-page-title">Have a Project in Mind? <span className="ag-hl">Let&apos;s Make It Happen.</span></h1>
+          <p className="ag-page-intro">Tell us what you&apos;re building, what challenges you&apos;re facing, or where you want to grow. We&apos;d love to explore how we can help.</p>
         </div>
       </section>
 
-      <section className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-18">
-        <div className="grid gap-8 lg:grid-cols-[minmax(0,1.5fr)_minmax(320px,0.8fr)]">
+      <section className="ag-section" style={{ paddingTop: "clamp(40px, 5vw, 72px)" }} aria-label="Contact form and details">
+        <div className="ag-container ag-contact-grid">
           <ContactForm />
-
-          <aside className="space-y-5">
-            {infoCards.map((card) => (
-              <div key={card.title} className="rounded-xl border border-black/6 bg-white p-6 shadow-sm">
-                <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">
-                  {card.title}
-                </p>
-                <p className="mt-3 text-base leading-8 text-text/75">{card.title === "Email" ? <a href={`mailto:${card.body}`} className="underline underline-offset-4">{card.body}</a> : card.body}</p>
-              </div>
-            ))}
-
-            <div className="rounded-xl border border-black/6 bg-white p-6 shadow-sm">
-              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">
-                Social
+          <aside className="ag-contact-aside">
+            <section>
+              <h2>Email us</h2>
+              <p><a href={`mailto:${siteConfig.contactEmail}`} className="ag-contact-email">{siteConfig.contactEmail}</a></p>
+            </section>
+            <section>
+              <h2>What happens next</h2>
+              <ol>{nextSteps.map((step) => <li key={step}>{step}</li>)}</ol>
+            </section>
+            <section>
+              <h2>Questions about an article?</h2>
+              <p>Choose &ldquo;Article question or correction&rdquo; and include the article link, your software versions and the steps that produced a different result. Please leave passwords, tokens and private customer data out of your message.</p>
+            </section>
+            <section>
+              <h2>Elsewhere</h2>
+              <p>
+                <a href={siteConfig.companyLinkedIn} target="_blank" rel="noopener noreferrer" className="ag-inline-link">LinkedIn</a>
+                {" · "}
+                <a href="https://github.com/ZeeshanZakir/" target="_blank" rel="noopener noreferrer" className="ag-inline-link">GitHub</a>
+                {" · "}
+                <Link href="/about" className="ag-inline-link">About us</Link>
               </p>
-              <div className="mt-4 flex flex-wrap gap-3">
-                {socialLinks.map((link) => (
-                  <Link
-                    key={link.label}
-                    href={link.href}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="rounded-full border border-black/8 bg-surface px-4 py-2 text-sm font-medium text-text/70 transition-colors hover:border-primary/20 hover:text-primary"
-                  >
-                    {link.label}
-                  </Link>
-                ))}
-              </div>
-            </div>
+            </section>
           </aside>
         </div>
       </section>

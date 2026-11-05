@@ -5,7 +5,7 @@ const brandImage = {
   width: 1067,
   height: 234,
   type: "image/png",
-  alt: "CodeWithLogs — developer troubleshooting and tools",
+  alt: "CodeWithLogs — digital agency for design, development and growth",
 };
 
 // Page-level openGraph objects replace parent objects; spread these explicitly.
