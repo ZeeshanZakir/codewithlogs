@@ -7,6 +7,10 @@ const contactMessageSchema = new Schema(
     subject: { type: String, required: true, trim: true },
     message: { type: String, required: true, trim: true },
     budget: { type: String, required: true, trim: true },
+    company: { type: String, trim: true },
+    service: { type: String, trim: true },
+    // Salted hash of the sender IP, used only for rate limiting.
+    ipHash: { type: String },
     status: {
       type: String,
       enum: ["read", "unread"],

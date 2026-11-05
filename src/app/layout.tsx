@@ -1,6 +1,6 @@
 import { openGraphDefaults } from "@/lib/open-graph";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Bricolage_Grotesque, Inter, Instrument_Serif } from "next/font/google";
 import Script from "next/script";
 import { Analytics } from "@vercel/analytics/react";
 
@@ -14,25 +14,41 @@ const inter = Inter({
   display: "swap",
 });
 
+const display = Bricolage_Grotesque({
+  subsets: ["latin"],
+  variable: "--font-display",
+  display: "swap",
+});
+
+const serif = Instrument_Serif({
+  subsets: ["latin"],
+  weight: "400",
+  style: ["normal", "italic"],
+  variable: "--font-serif",
+  display: "swap",
+});
+
 const configuredPublisherId = process.env.NEXT_PUBLIC_ADSENSE_PUBLISHER_ID;
 const adsensePublisherId = configuredPublisherId
   ? configuredPublisherId.startsWith("ca-") ? configuredPublisherId : `ca-${configuredPublisherId}`
   : undefined;
 const googleTagId = "G-NMGJP556HE";
 
+const defaultTitle = "CodeWithLogs | Digital Agency for Web, Design & Growth";
+const defaultDescription =
+  "CodeWithLogs is a digital agency for web design, website development, web applications, UI/UX, e-commerce, SEO, digital marketing, branding and AI automation.";
+
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "CodeWithLogs",
+    default: defaultTitle,
     template: "%s | CodeWithLogs",
   },
-  description:
-    "Modern JavaScript developer troubleshooting and tools for Next.js, Node.js/npm and Supabase. Fix Your Development Errors. Step by Step.",
+  description: defaultDescription,
   openGraph: {
     ...openGraphDefaults,
-    title: "CodeWithLogs",
-    description:
-      "CodeWithLogs: Modern JavaScript developer troubleshooting and tools. Fix Your Development Errors. Step by Step.",
+    title: defaultTitle,
+    description: defaultDescription,
     url: siteUrl,
     siteName: "CodeWithLogs",
     locale: "en_US",
@@ -40,9 +56,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "CodeWithLogs",
-    description:
-      "Modern JavaScript developer troubleshooting and tools for Next.js, Node.js/npm and Supabase. Fix Your Development Errors. Step by Step.",
+    title: defaultTitle,
+    description: defaultDescription,
   },
   other: adsensePublisherId ? { "google-adsense-account": adsensePublisherId } : {},
 };
@@ -57,7 +72,7 @@ export default function RootLayout({
     Boolean(adsensePublisherId);
 
   return (
-    <html lang="en" className={inter.variable}>
+    <html lang="en" className={`${inter.variable} ${display.variable} ${serif.variable}`}>
       <head>
         {shouldLoadAdsense ? (
           <script
