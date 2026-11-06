@@ -625,7 +625,7 @@ html.ag-menu-open .ag-wa { display: none; }
 
 /* ===== v2 header ===== */
 .ag-header { background: transparent; border-bottom-color: transparent; backdrop-filter: none; transition: background .3s var(--ag-ease), border-color .3s, box-shadow .3s; }
-.ag-header[data-scrolled], .ag-header[data-open] { background: color-mix(in srgb, var(--ag-bg) 86%, transparent); backdrop-filter: saturate(1.5) blur(16px); border-bottom-color: color-mix(in srgb, var(--ag-line) 85%, transparent); box-shadow: 0 10px 30px -24px #10181655; }
+.ag-header[data-scrolled]:not([data-open]) { background: color-mix(in srgb, var(--ag-bg) 86%, transparent); backdrop-filter: saturate(1.5) blur(16px); border-bottom-color: color-mix(in srgb, var(--ag-line) 85%, transparent); box-shadow: 0 10px 30px -24px #10181655; }
 .ag-header-inner { min-height: 84px; gap: 32px; }
 .ag-wordmark { font-size: 23px; gap: 11px; }
 .ag-mark { width: 36px; height: 36px; border-radius: 10px; font-size: 16px; box-shadow: inset 0 0 0 1px #ffffff14, 0 6px 14px -8px #101816aa; }
@@ -651,3 +651,8 @@ html.ag-menu-open .ag-wa { display: none; }
 .ag-faq-item::details-content { block-size: 0; overflow: hidden; opacity: 0; transition: block-size .45s var(--ag-ease), opacity .35s, content-visibility .45s allow-discrete; }
 .ag-faq-item[open]::details-content { block-size: auto; opacity: 1; }
 @media (prefers-reduced-motion: reduce) { .ag-faq-item::details-content { transition: none; } }
+
+/* backdrop-filter makes the header the containing block for its fixed
+   descendants, which squeezed the full-screen mobile menu into the header.
+   The blur is therefore only applied while the menu is closed. */
+.ag-header[data-open] { background: var(--ag-bg); border-bottom-color: var(--ag-line); }
