@@ -17,6 +17,11 @@ const nextConfig: NextConfig = {
       destination: "https://codewithlogs.com/:path*",
       permanent: true,
     }, {
+      // Generated concept studies were removed; send old links to the Work page.
+      source: "/work/:slug(placeholder-.*)",
+      destination: "/work",
+      permanent: true,
+    }, {
       source: "/blog/page/1",
       destination: "/blog",
       permanent: true,
