@@ -1,5 +1,8 @@
 // Generated from simple-icons (CC0). Brand names and logos belong to their owners.
 import {
+  siGooglecloud,
+  siGoogle,
+  siYoutube,
   siAnthropic,
   siAppstore,
   siClaude,
@@ -53,6 +56,10 @@ import {
 } from "simple-icons";
 
 export const brandIcons: Record<string, SimpleIcon> = {
+  "Google Cloud": siGooglecloud,
+  "Gemini AI": siGooglegemini,
+  "Google Search": siGoogle,
+  "YouTube": siYoutube,
   "React": siReact,
   "React Native": siReact,
   "Next.js": siNextdotjs,

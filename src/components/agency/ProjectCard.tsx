@@ -25,7 +25,7 @@ export function ProjectCard({ study, size = "large", headingLevel = 3 }: { study
         ) : null}
         {study.isPlaceholder ? <span className="pc-tag">Concept study · not client work</span> : null}
         {study.coverImage && size === "large" ? <span className="pc-scrim" aria-hidden="true" /> : null}
-        {!study.isPlaceholder ? <span className="pc-tag pc-tag-client">Client project</span> : null}
+        {!study.isPlaceholder ? <span className="pc-tag pc-tag-client">{study.kind === "in-house" ? "In-house project" : "Client project"}</span> : null}
         <span className="pc-go" aria-hidden="true"><ArrowUpRight size={22} /></span>
         {size === "large" ? body : null}
       </div>

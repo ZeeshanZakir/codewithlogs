@@ -291,3 +291,17 @@
 .pc-grid > .pc-large + .pc-large { margin-top: clamp(16px, 2vw, 28px); }
 .ag-case-shot + .ag-case-body { margin-top: clamp(40px, 5vw, 64px); }
 .ag-case-meta { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+
+/* AI publishing card visual */
+.sv-aip-in { left: 7%; top: 16%; width: 26%; padding: 2.4cqi; transform: rotate(-4deg); }
+.sv-aip-photo { position: relative; display: block; aspect-ratio: 1; border-radius: 1.6cqi; margin-bottom: 1.6cqi; background: radial-gradient(circle at 50% 65%, #ffffff, #dfe8e3 70%); overflow: hidden; }
+.sv-aip-photo::before { content: ""; position: absolute; left: 26%; right: 26%; top: 34%; bottom: 20%; border-radius: 42% 42% 30% 30%; background: linear-gradient(170deg, #2b3532, #101816); }
+.sv-aip-photo::after { content: ""; position: absolute; left: 46%; right: 46%; top: 62%; height: 5%; border-radius: 4px; background: #35d5bd; }
+.sv-aip-core { position: absolute; left: 50%; top: 40%; display: grid; place-items: center; width: 14cqi; aspect-ratio: 1; border-radius: 50%; translate: -50% -50%; background: radial-gradient(circle, #087f75, #073f3b 70%); box-shadow: 0 0 0 1px #35d5bd66, 0 0 8cqi -1cqi #35d5bdaa; color: #35d5bd; font: 700 3.6cqi/1 var(--font-inter), sans-serif; }
+.sv-aip-core span { position: absolute; inset: -2cqi; border-radius: 50%; border: 1px solid #35d5bd40; }
+.sv-aip-core span + span { inset: -4.4cqi; border-color: #35d5bd1f; }
+.sv-aip-out { right: 7%; top: 14%; width: 30%; transform: rotate(3deg); }
+.sv-aip-steps { position: absolute; left: 7%; right: 7%; bottom: 12%; display: flex; justify-content: space-between; gap: 1cqi; padding-top: 3cqi; border-top: 1px dashed #35d5bd66; }
+.sv-aip-steps span { position: relative; padding: 1cqi 1.8cqi; border-radius: 99px; background: #ffffff10; border: 1px solid #35d5bd44; color: #cfe2dd; font-size: 2cqi; font-weight: 600; }
+.sv-aip-steps span::before { content: ""; position: absolute; left: 50%; top: -3.8cqi; width: 1.4cqi; height: 1.4cqi; border-radius: 50%; translate: -50% 0; background: #35d5bd; }
+.sv-light .sv-aip-steps span { background: #ffffffaa; color: var(--ag-ink); }

@@ -20,6 +20,10 @@ export type CaseStudy = {
   isPlaceholder: boolean;
   /** Art-directed visual used when no real project imagery exists. */
   visual?: ServiceVisualKind;
+  /** "client" (default) or work the agency built for itself. */
+  kind?: "client" | "in-house";
+  /** True when the project has its own route instead of the shared template. */
+  customPage?: boolean;
   title: string;
   client: string;
   industry: string;
@@ -106,6 +110,23 @@ export const caseStudies: CaseStudy[] = [
     outcomes: [],
     liveUrl: "https://www.khazanaycorner.com/",
     credits: [{ role: "Strategy", name: "Zeeshan Zakir", url: "https://zeeshanzakir.com/" }],
+  },
+  {
+    slug: "ai-product-publishing-automation",
+    isPlaceholder: false,
+    kind: "in-house",
+    customPage: true,
+    visual: "ai-publishing",
+    title: "AI-Powered Product Publishing Automation",
+    client: "In-house project",
+    industry: "AI automation",
+    description:
+      "An automation pipeline that turns one product image into a complete, SEO-ready listing using Gemini, Google Search and YouTube, then publishes it to the website.",
+    services: ["ai-automation", "web-application-development", "seo-services"],
+    technologies: ["Google Cloud", "Gemini AI", "Google Search", "YouTube", "Website integration"],
+    challenge: "",
+    solution: "",
+    outcomes: [],
   },
 ];
 

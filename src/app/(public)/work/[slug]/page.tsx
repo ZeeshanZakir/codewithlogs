@@ -15,12 +15,13 @@ export const dynamicParams = false;
 type Props = { params: Promise<{ slug: string }> };
 
 export function generateStaticParams() {
-  return caseStudies.map((study) => ({ slug: study.slug }));
+  // Projects with their own route (customPage) are not generated here.
+  return caseStudies.filter((study) => !study.customPage).map((study) => ({ slug: study.slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const study = getCaseStudy((await params).slug);
-  if (!study) return {};
+  if (!study || study.customPage) return {};
   const url = `${siteUrl}/work/${study.slug}`;
   return {
     title: study.isPlaceholder ? `Concept study: ${study.title}` : study.title,

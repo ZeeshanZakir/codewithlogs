@@ -13,7 +13,8 @@ export type ServiceVisualKind =
   | "digital-marketing"
   | "branding-creative"
   | "ai-automation"
-  | "support-maintenance";
+  | "support-maintenance"
+  | "ai-publishing";
 
 function Bars({ widths, className = "" }: { widths: number[]; className?: string }) {
   return <div className={`sv-bars ${className}`}>{widths.map((width, index) => <i key={index} style={{ width: `${width}%` }} />)}</div>;
@@ -204,6 +205,17 @@ function Support() {
   );
 }
 
+function AiPublishing() {
+  return (
+    <div className="sv-scene sv-aip">
+      <div className="sv-panel sv-aip-in"><span className="sv-aip-photo" /><p className="sv-label">product.jpg</p></div>
+      <div className="sv-aip-core"><span /><span /><b>AI</b></div>
+      <div className="sv-panel sv-aip-out"><p className="sv-label">Published listing</p><Bars widths={[95, 70, 85, 50]} /><div className="sv-ui-row"><span className="sv-btn-accent">Live</span></div></div>
+      <div className="sv-aip-steps">{["Image", "Gemini", "Search", "SEO", "YouTube", "Publish"].map((step) => <span key={step}>{step}</span>)}</div>
+    </div>
+  );
+}
+
 const visuals: Record<ServiceVisualKind, () => React.ReactElement> = {
   "website-design-development": Website,
   "ui-ux-design": UiUx,
@@ -215,6 +227,7 @@ const visuals: Record<ServiceVisualKind, () => React.ReactElement> = {
   "branding-creative": Branding,
   "ai-automation": Ai,
   "support-maintenance": Support,
+  "ai-publishing": AiPublishing,
 };
 
 export function ServiceVisual({ kind, tone = "dark", className = "" }: { kind: ServiceVisualKind; tone?: "dark" | "light"; className?: string }) {
