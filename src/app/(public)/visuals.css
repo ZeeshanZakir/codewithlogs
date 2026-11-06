@@ -262,3 +262,32 @@
 .ag-steps .num { display: block; font: 600 12px/1 var(--font-inter), sans-serif; letter-spacing: .12em; text-transform: uppercase; color: var(--ag-teal); }
 .ag-steps li { padding-top: 30px; }
 .ag-steps-vertical li { padding-top: 0; }
+
+/* Real project imagery */
+.pc-grid-concepts .pc-medium { grid-column: span 4 !important; margin-top: 0 !important; }
+.pc-grid-concepts .pc-media { aspect-ratio: 4 / 3 !important; }
+.pc-image .pc-media img { transition: transform .9s var(--ag-ease); }
+.pc-scrim { position: absolute; inset: 0; z-index: 1; background: linear-gradient(90deg, #0c1311f2 0%, #0c1311cc 30%, #0c131133 62%, transparent 85%); }
+.pc-large.pc-image .pc-body { z-index: 2; }
+.pc-tag-client { background: var(--ag-mint); color: var(--ag-teal-deep); border-color: transparent; }
+@media (max-width: 1023px) { .pc-grid-concepts .pc-medium { grid-column: span 6 !important; } }
+@media (max-width: 767px) {
+  .pc-grid-concepts .pc-medium { grid-column: auto !important; }
+  .pc-large.pc-image .pc-media { display: block; aspect-ratio: 4 / 3.4; }
+  .pc-large.pc-image .pc-body { position: absolute; left: 20px; right: 20px; bottom: 20px; padding: 0; }
+  .pc-scrim { background: linear-gradient(0deg, #0c1311f2 0%, #0c1311b3 40%, transparent 75%); }
+}
+.ag-case-shot { margin: 48px 0 0; border-radius: clamp(14px, 1.6vw, 22px); overflow: hidden; border: 1px solid var(--ag-line); box-shadow: var(--ag-shadow-lg); background: #fff; }
+.ag-case-shot img { display: block; width: 100%; height: auto; }
+.ag-case-gallery { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); gap: 24px; align-items: start; margin-top: 56px; }
+.ag-case-gallery .ag-case-shot { margin: 0; }
+@media (max-width: 767px) { .ag-case-gallery { grid-template-columns: 1fr; } }
+.pc-large.pc-image .pc-body { max-width: 46%; }
+.pc-large.pc-image .pc-title { font-size: clamp(26px, 3vw, 44px); line-height: 1.08; }
+.ag-case-gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.ag-case-shot-wide { grid-column: 1 / -1; }
+.ag-case-gallery .ag-case-shot:not(.ag-case-shot-wide) { max-width: 760px; }
+.pc-image .pc-tag-client { left: auto; right: 18px; }
+.pc-grid > .pc-large + .pc-large { margin-top: clamp(16px, 2vw, 28px); }
+.ag-case-shot + .ag-case-body { margin-top: clamp(40px, 5vw, 64px); }
+.ag-case-meta { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }

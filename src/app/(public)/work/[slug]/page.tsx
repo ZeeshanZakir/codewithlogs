@@ -7,7 +7,7 @@ import { openGraphDefaults } from "@/lib/open-graph";
 import { caseStudies, getCaseStudy } from "@/lib/work";
 import { getService, servicePath } from "@/lib/services";
 import { siteUrl } from "@/lib/site-url";
-import { breadcrumbSchema } from "@/lib/site-config";
+import { breadcrumbSchema, organizationId } from "@/lib/site-config";
 import { Breadcrumbs, CtaBand, Eyebrow, JsonLd } from "@/components/agency/ui";
 import { ServiceVisual } from "@/components/agency/ServiceVisual";
 
@@ -39,7 +39,7 @@ export default async function CaseStudyPage({ params }: Props) {
 
   return (
     <div className="ag-page">
-      {!study.isPlaceholder && <JsonLd data={{ "@context": "https://schema.org", "@graph": [breadcrumbSchema([{ name: "Home", path: "/" }, { name: "Work", path: "/work" }, { name: study.title, path: `/work/${study.slug}` }])] }} />}
+      {!study.isPlaceholder && <JsonLd data={{ "@context": "https://schema.org", "@graph": [breadcrumbSchema([{ name: "Home", path: "/" }, { name: "Work", path: "/work" }, { name: study.title, path: `/work/${study.slug}` }]), { "@type": "CreativeWork", "@id": `${siteUrl}/work/${study.slug}#work`, name: study.title, description: study.description, url: `${siteUrl}/work/${study.slug}`, ...(study.coverImage ? { image: `${siteUrl}${study.coverImage.src}` } : {}), creator: { "@id": organizationId }, ...(study.year ? { dateCreated: study.year } : {}), keywords: study.technologies.join(", ") }] }} />}
       <section className="ag-page-hero">
         <div className="ag-container">
           <Breadcrumbs items={[{ name: "Home", path: "/" }, { name: "Work", path: "/work" }, { name: study.title }]} />
@@ -62,10 +62,11 @@ export default async function CaseStudyPage({ params }: Props) {
             <div><dt>Industry</dt><dd>{study.industry}</dd></div>
             <div><dt>Services</dt><dd>{services.map((service, index) => <span key={service.slug}>{index > 0 ? ", " : ""}<Link href={servicePath(service.slug)} className="ag-inline-link">{service.name}</Link></span>)}</dd></div>
             <div><dt>Technologies</dt><dd>{study.technologies.join(", ")}</dd></div>
+            {study.credits?.map((credit) => <div key={credit.role + credit.name}><dt>{credit.role}</dt><dd>{credit.url ? <a href={credit.url} target="_blank" rel="noopener noreferrer" className="ag-inline-link">{credit.name}</a> : credit.name}</dd></div>)}
           </dl>
 
           {study.coverImage ? (
-            <div className="ag-case-cover"><Image src={study.coverImage.src} alt={study.coverImage.alt} fill sizes="(max-width: 1240px) 100vw, 1240px" className="object-cover" /></div>
+            <figure className="ag-case-shot"><Image src={study.coverImage.src} alt={study.coverImage.alt} width={study.coverImage.width} height={study.coverImage.height} sizes="(max-width: 1240px) 100vw, 1240px" priority /></figure>
           ) : study.visual ? (
             <div className="ag-case-cover ag-case-cover-visual"><ServiceVisual kind={study.visual} /></div>
           ) : null}
@@ -84,8 +85,8 @@ export default async function CaseStudyPage({ params }: Props) {
           </div>
 
           {study.gallery?.length ? (
-            <div className="ag-work-grid" style={{ marginTop: 48 }}>
-              {study.gallery.map((image) => <Image key={image.src} src={image.src} alt={image.alt} width={image.width} height={image.height} sizes="(max-width: 768px) 100vw, 50vw" style={{ width: "100%", height: "auto", borderRadius: 14 }} />)}
+            <div className="ag-case-gallery">
+              {study.gallery.map((image) => <figure key={image.src} className={`ag-case-shot${image.width >= 1200 ? " ag-case-shot-wide" : ""}`}><Image src={image.src} alt={image.alt} width={image.width} height={image.height} sizes="(max-width: 768px) 100vw, 1240px" /></figure>)}
             </div>
           ) : null}
           {study.liveUrl ? <p style={{ marginTop: 32 }}><a href={study.liveUrl} className="ag-link" target="_blank" rel="noopener noreferrer">Visit the live project</a></p> : null}

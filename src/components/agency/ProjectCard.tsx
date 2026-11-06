@@ -16,14 +16,16 @@ export function ProjectCard({ study, size = "large", headingLevel = 3 }: { study
     </div>
   );
   return (
-    <Link href={`/work/${study.slug}`} className={`pc pc-${size} ag-reveal`}>
+    <Link href={`/work/${study.slug}`} className={`pc pc-${size}${study.coverImage ? " pc-image" : ""} ag-reveal`}>
       <div className="pc-media">
         {study.coverImage ? (
-          <Image src={study.coverImage.src} alt={study.coverImage.alt} fill sizes={size === "large" ? "(max-width: 900px) 100vw, 1240px" : "(max-width: 900px) 100vw, 50vw"} className="object-cover" />
+          <Image src={study.coverImage.src} alt={study.coverImage.alt} fill sizes={size === "large" ? "(max-width: 900px) 100vw, 1240px" : "(max-width: 900px) 100vw, 50vw"} className="object-cover" style={{ objectPosition: "top left" }} />
         ) : study.visual ? (
           <ServiceVisual kind={study.visual} tone={size === "large" ? "dark" : "light"} />
         ) : null}
         {study.isPlaceholder ? <span className="pc-tag">Concept study · not client work</span> : null}
+        {study.coverImage && size === "large" ? <span className="pc-scrim" aria-hidden="true" /> : null}
+        {!study.isPlaceholder ? <span className="pc-tag pc-tag-client">Client project</span> : null}
         <span className="pc-go" aria-hidden="true"><ArrowUpRight size={22} /></span>
         {size === "large" ? body : null}
       </div>

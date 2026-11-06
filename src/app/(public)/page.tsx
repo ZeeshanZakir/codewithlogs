@@ -260,7 +260,7 @@ export default async function HomePage() {
       {/* Featured work */}
       <section className="hp-work" aria-labelledby="work-title">
         <div className="ag-container">
-          <SectionHeader id="work-title" eyebrow="Featured work" title={<>Selected Work, <span className="ag-hl">Told Honestly.</span></>} lead="Our case studies show the challenge, the approach and verified results, published only with client approval. While client case studies are being prepared for publication, these concept studies show how we design, and they are labelled as such." />
+          <SectionHeader id="work-title" eyebrow="Featured work" title={<>Selected Work, <span className="ag-hl">Told Honestly.</span></>} lead="Real projects for real clients: the challenge, the approach and what we built. Results are published only when they are measured and approved by the client." />
           <div className="pc-grid pc-grid-home">
             {caseStudies.slice(0, 3).map((study, index) => <ProjectCard key={study.slug} study={study} size={index === 0 ? "large" : "medium"} />)}
           </div>

@@ -27,8 +27,7 @@ const caseStudyParts = [
 ];
 
 export default function WorkPage() {
-  const hasRealWork = publishedCaseStudies.length > 0;
-  const list = hasRealWork ? publishedCaseStudies : caseStudies;
+  const conceptStudies = caseStudies.filter((study) => study.isPlaceholder);
   return (
     <div className="ag-page">
       <JsonLd data={{ "@context": "https://schema.org", "@graph": [breadcrumbSchema([{ name: "Home", path: "/" }, { name: "Work", path: "/work" }])] }} />
@@ -47,16 +46,22 @@ export default function WorkPage() {
 
       <section className="ag-section" aria-labelledby="work-list-title">
         <div className="ag-container">
-          <h2 id="work-list-title" className="sr-only">{hasRealWork ? "Case studies" : "Concept studies"}</h2>
-          {!hasRealWork && (
-            <p className="ag-notice" role="note" style={{ marginBottom: 40 }}>
-              <Info size={18} aria-hidden="true" />
-              <span>Our client case studies are being prepared for publication. Until then, the projects below are <strong>concept studies, not client work</strong>. They show our design approach and how each case study will be presented.</span>
-            </p>
-          )}
+          <h2 id="work-list-title" className="ag-h2" style={{ marginTop: 0, marginBottom: 40 }}>Client work</h2>
           <div className="pc-grid">
-            {list.map((study, index) => <ProjectCard key={study.slug} study={study} size={index === 0 ? "large" : "medium"} />)}
+            {publishedCaseStudies.map((study) => <ProjectCard key={study.slug} study={study} size="large" />)}
           </div>
+          {conceptStudies.length > 0 && (
+            <>
+              <h2 className="ag-h2" style={{ marginTop: "clamp(72px, 9vw, 120px)", marginBottom: 24 }}>Concept studies</h2>
+              <p className="ag-notice" role="note" style={{ marginBottom: 40 }}>
+                <Info size={18} aria-hidden="true" />
+                <span>These are <strong>concept studies, not client work</strong>. They show our design approach while more client case studies are prepared for publication.</span>
+              </p>
+              <div className="pc-grid pc-grid-concepts">
+                {conceptStudies.map((study) => <ProjectCard key={study.slug} study={study} size="medium" />)}
+              </div>
+            </>
+          )}
         </div>
       </section>
 
